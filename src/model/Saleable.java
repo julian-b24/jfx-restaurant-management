@@ -1,0 +1,52 @@
+package model;
+
+public abstract class Saleable {
+	
+	public final static boolean DEAFULT_REFERENCE = false;		//When a saleable is created, it is by deafult not referenced
+	public final static boolean DEAFULT_AVAILABLE = true;		//When a saleable is created, it is by deafult available
+	
+	private String name;			//Name of the saleable
+	private String lastEditorRef;	//Id of the last editor
+	private boolean productRef;		//Reference of the saleable in any other product, true if is referenced, false in case of it's not referenced
+	private boolean available;		//State of the product, true in case is enable, false in any other way
+	
+	public Saleable(String nm, String lastE) {
+		name = nm;
+		lastEditorRef = lastE;
+		productRef = DEAFULT_REFERENCE;
+		available = DEAFULT_AVAILABLE;
+	}
+
+	//Getters & setters
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getLastEditorRef() {
+		return lastEditorRef;
+	}
+
+	public void setLastEditorRef(String lastEditorRef) {
+		this.lastEditorRef = lastEditorRef;
+	}
+
+	public boolean isProductRef() {
+		return productRef;
+	}
+
+	public void setProductRef(boolean productRef) {
+		this.productRef = productRef;
+	}
+
+	public boolean isAvailable() {
+		return available;
+	}
+
+	public void setAvailable(boolean available) {
+		this.available = available;
+	}
+}
