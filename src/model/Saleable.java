@@ -50,4 +50,17 @@ public abstract class Saleable {
 	public void setAvailable(boolean available) {
 		this.available = available;
 	}
+	
+	//Editable methods
+	/**
+	 * enable, sets the field "available" of a saleable in true.
+	 * <b> pos: </b> The field available is setted as true <br>
+	 */
+	public static void enable() {}
+	
+	/**
+	 * disable, sets the field "available" of a saleable in false.
+	 * <b> pos: </b> The field available is setted as false <br>
+	 */
+	public static void disable() {}
 }
