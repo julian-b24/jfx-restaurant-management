@@ -2,6 +2,7 @@ package model;
 
 public abstract class Saleable {
 	
+	//WARNING CONSTANTS NOT IN THE CLASS DIAGRAM
 	public final static boolean DEAFULT_REFERENCE = false;		//When a saleable is created, it is by deafult not referenced
 	public final static boolean DEAFULT_AVAILABLE = true;		//When a saleable is created, it is by deafult available
 	
