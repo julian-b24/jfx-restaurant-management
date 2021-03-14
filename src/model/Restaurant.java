@@ -2,8 +2,6 @@ package model;
 
 import java.util.ArrayList;
 
-import pruebasPi.Client;
-
 public class Restaurant {
 
 	private ArrayList<Product> products;
@@ -50,7 +48,7 @@ public class Restaurant {
 		}
 	}
 	
-	public int binarySearch(String fullName, ArrayList<Client> clients) {
+public int binarySearch(String fullName, ArrayList<Client> clients) {
 		
 		int pos = -2;
 		int in = 0;
@@ -65,13 +63,13 @@ public class Restaurant {
 			
 			if(in!=fin) {
 				if(fullName.compareTo(clients.get(middle).getLastName()+clients.get(middle).getName())>0) {
-				in = middle+1;
-				}else {
 					fin = middle-1;
+				}else {
+					in = middle+1;
 				}
 			}else {
 				if(fullName.compareTo(clients.get(middle).getLastName()+clients.get(middle).getName())>0) {
-					pos = middle-1;
+					pos = middle;
 					}else {
 						pos = middle+1;
 					}
