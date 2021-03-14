@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import pruebasPi.Client;
+
 public class Restaurant {
 
 	private ArrayList<Product> products;
@@ -31,12 +33,57 @@ public class Restaurant {
 		employees.add(newEmployee);
 	}
 	
-	public void crateClient(String nam, String lastN, String ccP, String adrs, String phn, String obs) {
+	public void createClient(String nam, String lastN, String ccP, String adrs, String phn, String obs){
 		
+		int pos = 0;
+		Client clientX = new Client(nam, lastN, ccP, adrs, phn, obs);
+		if(clients.size()>0) {
+			
+			pos = binarySearch(lastN+nam, clients);
+			if(pos==-1) {
+				clients.add(clientX);
+			}else {
+				clients.add(pos, clientX);
+			}
+		}else {
+			clients.add(clientX);
+		}
 	}
 	
-	public void insertOrginzedClient() {
+	public int binarySearch(String fullName, ArrayList<Client> clients) {
 		
+		int pos = -2;
+		int in = 0;
+		int fin = clients.size()-1;
+		
+		while(in<=fin && pos==-2) {
+			int middle = (in+fin)/2;
+			
+			if((clients.get(middle).getLastName()+clients.get(middle).getName()).equalsIgnoreCase(fullName)) {
+				pos = middle;
+			}
+			
+			if(in!=fin) {
+				if(fullName.compareTo(clients.get(middle).getLastName()+clients.get(middle).getName())>0) {
+				in = middle+1;
+				}else {
+					fin = middle-1;
+				}
+			}else {
+				if(fullName.compareTo(clients.get(middle).getLastName()+clients.get(middle).getName())>0) {
+					pos = middle-1;
+					}else {
+						pos = middle+1;
+					}
+			}				
+		}
+		if(pos<0) {
+			pos=0;
+		}else if(pos>clients.size()-1) {
+			pos = -1;
+		}
+		
+		return pos;
 	}
 	
 }

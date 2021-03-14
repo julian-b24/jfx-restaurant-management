@@ -1,6 +1,6 @@
 package model;
 
-public class Client extends Person{
+public class Client extends Person implements Comparable<Client>{
 	
 	private String adress;				//client adress
 	private String phone;				// client contact phone
@@ -13,6 +13,11 @@ public class Client extends Person{
 		phone = phn;
 		obsField = obs;
 		
+	}
+	
+	@Override
+	public int compareTo(Client otherClient) {
+		return (lastName+name).compareTo(otherClient.getLastName()+otherClient.getName());
 	}
 	
 	//Getters and setters
@@ -40,10 +45,6 @@ public class Client extends Person{
 	public void setObsField(String obsField) {
 		this.obsField = obsField;
 	}
-	
-	
-	
-	
 
 	
 }
