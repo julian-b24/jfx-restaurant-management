@@ -6,9 +6,9 @@ public class Client extends Person{
 	private String phone;				// client contact phone
 	private String obsField;			//client observation field
 	
-	public Client(String nam, String lastN, String adrs, String phn, String obs) {
+	public Client(String nam, String lastN, String ccP, String adrs, String phn, String obs) {
 		
-		super(nam, lastN);
+		super(nam, lastN, ccP);
 		adress = adrs;
 		phone = phn;
 		obsField = obs;

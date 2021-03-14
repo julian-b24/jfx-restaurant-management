@@ -6,11 +6,11 @@ public class Person {
 	protected String lastName;				//lastname of the person
 	protected String cc;					//cc of the person
 	
-	public Person(String nam, String lastN) {
+	public Person(String nam, String lastN, String ccP) {
 		
 		name = nam;
 		lastName = lastN;
-		cc = "";
+		cc = ccP;
 	}
 
 	//Getters and setters

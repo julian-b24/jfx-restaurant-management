@@ -4,9 +4,9 @@ public class Employee extends Person{
 
 	protected String employeeId;			//employee unique id
 	
-	public Employee(String nam, String lastN, String emplId) {
+	public Employee(String nam, String lastN, String ccP, String emplId) {
 		
-		super(nam, lastN);
+		super(nam, lastN, ccP);
 		employeeId = emplId;
 	}
 
