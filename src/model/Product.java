@@ -26,4 +26,9 @@ public class Product {
 		Size size = new Size(sizeTxt, priceFactor);
 		sizes.add(size);
 	}
+
+	public double getPrice() {
+		
+		return 0;
+	}
 }
