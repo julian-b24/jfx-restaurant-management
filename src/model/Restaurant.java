@@ -18,16 +18,16 @@ public class Restaurant {
 		employees = new ArrayList<>();
 	}
 	
-	public void createSystemUser(String nam, String lastN, String ccP, String emplId, String user, String passw) {
+	public void createSystemUser(String nam, String lastN, String ccP, String user, String passw) {
 		
-		SystemUser newUser = new SystemUser(nam, lastN, ccP, emplId, user, passw);
+		SystemUser newUser = new SystemUser(nam, lastN, ccP, user, passw);
 		systemUsers.add(newUser);
 		
 	}
 	
-	public void createEmployee(String nam, String lastN, String ccP, String emplId) {
+	public void createEmployee(String nam, String lastN, String ccP) {
 		
-		Employee newEmployee = new Employee(nam, lastN, ccP, emplId);
+		Employee newEmployee = new Employee(nam, lastN, ccP);
 		employees.add(newEmployee);
 	}
 	

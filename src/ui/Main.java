@@ -10,11 +10,11 @@ import model.Restaurant;
 public class Main extends Application{
 
 	private Restaurant restaurant;
-	//private RestaurantGUI restaurantGUI;
+	private RestaurantGUI restaurantGUI;
 	
 	public Main() {
 		restaurant = new Restaurant();
-		//restaurantGUI = new RestaurantGUI(restaurant);
+		restaurantGUI = new RestaurantGUI(restaurant);
 	}
 
 	public static void main(String[] args) {
@@ -24,16 +24,16 @@ public class Main extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("path"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main-pane.fxml"));
 		
-		//fxmlLoader.setController(restaurantGUI);
+		fxmlLoader.setController(restaurantGUI);
 		Parent root = fxmlLoader.load();
 		
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Casa Dorada");
 		primaryStage.show();
-		//Add method to show the login
+		restaurantGUI.loadLogin(null);
 	}
 
 }

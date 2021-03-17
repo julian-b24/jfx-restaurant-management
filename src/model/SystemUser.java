@@ -5,9 +5,9 @@ public class SystemUser extends Employee{
 	private String userName;			//employee username
 	private String password;			//employee password
 	
-	public SystemUser(String nam, String lastN, String ccP, String emplId, String user, String passw) {
+	public SystemUser(String nam, String lastN, String ccP, String user, String passw) {
 		
-		super(nam, lastN, emplId, ccP);
+		super(nam, lastN, ccP);
 		userName = user;
 		password = passw;
 		

@@ -4,10 +4,10 @@ public class Employee extends Person{
 
 	protected String employeeId;			//employee unique id
 	
-	public Employee(String nam, String lastN, String ccP, String emplId) {
+	public Employee(String nam, String lastN, String ccP) {
 		
 		super(nam, lastN, ccP);
-		employeeId = emplId;
+		//employeeId = emplId;
 	}
 
 	//Getter and setters
