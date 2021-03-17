@@ -93,8 +93,14 @@ public class Restaurant {
 		//Cast of type
 		ProductType type = ProductType.valueOf(typ.toUpperCase().replace(" ", "_"));
 		
-		Product lastProduct = products.get(products.size() -1);
-		int lastCode = lastProduct.getCode();
+		int lastCode;
+		if(products.size() > 0) {
+			Product lastProduct = products.get(products.size() -1);
+			lastCode = lastProduct.getCode();
+			
+		} else {
+			lastCode = 0;
+		}
 		
 		Product product = new Product(name, lastEditor, lastCode, tempIngredients, type);
 		products.add(product);
