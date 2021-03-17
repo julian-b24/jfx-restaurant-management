@@ -4,8 +4,8 @@ public class Ingredient extends Saleable {
 
 	private double price;
 	
-	public Ingredient(String nm, String lastE, double value) {
-		super(nm, lastE);
+	public Ingredient(String nm, String lastE, int lastCode, double value) {
+		super(nm, lastE, lastCode);
 		price = value;
 	}
 
