@@ -48,7 +48,7 @@ public class Restaurant {
 		}
 	}
 	
-public int binarySearch(String fullName, ArrayList<Client> clients) {
+	public int binarySearch(String fullName, ArrayList<Client> clients) {
 		
 		int pos = -2;
 		int in = 0;
@@ -83,5 +83,8 @@ public int binarySearch(String fullName, ArrayList<Client> clients) {
 		
 		return pos;
 	}
+	
+	//Req 1.1
+	public void createProduct(String name, String lastEditor, ArrayList<Ingredient> ingredients, String type) {}
 	
 }

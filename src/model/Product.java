@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-public class Product {
+public class Product extends Saleable{
 	
 	public static final String DEFAULT_SIZE = "Standard";
 	
@@ -10,7 +10,8 @@ public class Product {
 	private ArrayList<Size> sizes;
 	private ProductType type;
 
-	public Product(ArrayList<Ingredient> ingrdints, ProductType typ) {
+	public Product(String name, String lastE, ArrayList<Ingredient> ingrdints, ProductType typ) {
+		super(name, lastE);
 		ingredients = ingrdints;
 		sizes = new ArrayList<Size>();
 		addSize(DEFAULT_SIZE);
