@@ -8,14 +8,14 @@ public abstract class Saleable {
 	
 	private String name;			//Name of the saleable
 	private String lastEditorRef;	//Id of the last editor
-	private String code;
+	private int code;				//Code of the saleable
 	private boolean productRef;		//Reference of the saleable in any other product, true if is referenced, false in case of it's not referenced
 	private boolean available;		//State of the product, true in case is enable, false in any other way
 	
 	public Saleable(String nm, String lastE, int lastCode) {
 		name = nm;
 		lastEditorRef = lastE;
-		setCode(Integer.toString(lastCode + 1));
+		code = lastCode + 1;
 		productRef = DEAFULT_REFERENCE;
 		available = DEAFULT_AVAILABLE;
 	}
@@ -66,11 +66,11 @@ public abstract class Saleable {
 	 */
 	public static void disable() {}
 
-	public String getCode() {
+	public int getCode() {
 		return code;
 	}
 
-	public void setCode(String code) {
+	public void setCode(int code) {
 		this.code = code;
 	}
 }

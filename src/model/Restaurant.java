@@ -88,20 +88,55 @@ public class Restaurant {
 	public void createProduct(String name, String lastEditor, ArrayList<Integer> ingredientsIdx, String typ) {
 		
 		//Getting ingredients from list of ingredients
+		ArrayList<Ingredient> tempIngredients = getIngredientsByIdx(ingredientsIdx);
+		
+		//Cast of type
+		ProductType type = ProductType.valueOf(typ.toUpperCase().replace(" ", "_"));
+		
+		Product lastProduct = products.get(products.size() -1);
+		int lastCode = lastProduct.getCode();
+		
+		Product product = new Product(name, lastEditor, lastCode, tempIngredients, type);
+		products.add(product);
+	}
+	
+	public ArrayList<Ingredient> getIngredientsByIdx(ArrayList<Integer> ingredientsIdx) {
+		
 		ArrayList<Ingredient> tempIngredients = new ArrayList<Ingredient>();
 		for (int i = 0; i < ingredientsIdx.size(); i++) {
 			Ingredient tempIngredient = ingredients.get(ingredientsIdx.get(i));
 			tempIngredients.add(tempIngredient);
 		}
 		
-		//Cast of type
+		return tempIngredients;
+	}
+	
+	//Req 1.2
+	public void updateProduct(String name, String lastEditor, int code, ArrayList<Integer> ingredientsIdx, String typ, boolean available) {
+		
+		Product product = getProductByCode(code);
+		product.setName(name);
+		product.setLastEditorRef(lastEditor);
+		
 		ProductType type = ProductType.valueOf(typ.toUpperCase().replace(" ", "_"));
+		product.setType(type);
+		product.setAvailable(available);
+		ArrayList<Ingredient> tempIngredients = getIngredientsByIdx(ingredientsIdx);
+		product.setIngredients(tempIngredients);
+	}
+	
+	public Product getProductByCode(int code) {
 		
-		Product lastProduct = products.get(products.size() -1);
-		int lastCode = Integer.parseInt(lastProduct.getCode());
+		Product product = null;
 		
-		Product product = new Product(name, lastEditor, lastCode, tempIngredients, type);
-		products.add(product);
+		for (int i = 0; i < products.size(); i++) {
+			
+			if (products.get(i).getCode() == code) {
+				product = products.get(i);
+			}
+		}
+		
+		return  product;
 	}
 	
 }

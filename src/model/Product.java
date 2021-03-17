@@ -12,7 +12,7 @@ public class Product extends Saleable{
 
 	public Product(String name, String lastE, int lastCode, ArrayList<Ingredient> ingrdints, ProductType typ) {
 		super(name, lastE, lastCode);
-		ingredients = ingrdints;
+		setIngredients(ingrdints);
 		sizes = new ArrayList<Size>();
 		addSize(DEFAULT_SIZE);
 		type = typ;
@@ -31,5 +31,21 @@ public class Product extends Saleable{
 	public double getPrice() {
 		
 		return 0;
+	}
+
+	public ProductType getType() {
+		return type;
+	}
+
+	public void setType(ProductType type) {
+		this.type = type;
+	}
+
+	public ArrayList<Ingredient> getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(ArrayList<Ingredient> ingredients) {
+		this.ingredients = ingredients;
 	}
 }
