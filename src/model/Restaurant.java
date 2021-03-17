@@ -119,7 +119,7 @@ public class Restaurant {
 	}
 	
 	//Req 1.2
-	public void updateProduct(String name, String lastEditor, int code, ArrayList<Integer> ingredientsIdx, String typ, boolean available) {
+	public void updateProduct(String name, String lastEditor, int code, ArrayList<Integer> ingredientsIdx, String typ, boolean available, ArrayList<String> sizes, ArrayList<Double> sizesFactors) {
 		
 		Product product = getProductByCode(code);
 		product.setName(name);
@@ -128,8 +128,11 @@ public class Restaurant {
 		ProductType type = ProductType.valueOf(typ.toUpperCase().replace(" ", "_"));
 		product.setType(type);
 		product.setAvailable(available);
+		
 		ArrayList<Ingredient> tempIngredients = getIngredientsByIdx(ingredientsIdx);
 		product.setIngredients(tempIngredients);
+		
+		product.updateSizes(sizes, sizesFactors);
 	}
 	
 	public Product getProductByCode(int code) {
