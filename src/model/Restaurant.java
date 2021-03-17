@@ -97,7 +97,10 @@ public class Restaurant {
 		//Cast of type
 		ProductType type = ProductType.valueOf(typ.toUpperCase().replace(" ", "_"));
 		
-		Product product = new Product(name, lastEditor, tempIngredients, type);
+		Product lastProduct = products.get(products.size() -1);
+		int lastCode = Integer.parseInt(lastProduct.getCode());
+		
+		Product product = new Product(name, lastEditor, lastCode, tempIngredients, type);
 		products.add(product);
 	}
 	
