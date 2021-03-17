@@ -12,6 +12,7 @@ public class Restaurant {
 	
 	public Restaurant() {
 		
+		systemUsers = new ArrayList<>();
 		products = new ArrayList<>();
 		ingredients = new ArrayList<>();
 		clients = new ArrayList<>();
@@ -144,5 +145,32 @@ public class Restaurant {
 		
 		return  product;
 	}
+	
+
+	public ArrayList<Client> getClients() {
+		return clients;
+	}
+
+	public void setClients(ArrayList<Client> clients) {
+		this.clients = clients;
+	}
+
+	public ArrayList<Employee> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(ArrayList<Employee> employees) {
+		this.employees = employees;
+	}
+
+	public ArrayList<SystemUser> getSystemUsers() {
+		return systemUsers;
+	}
+
+	public void setSystemUsers(ArrayList<SystemUser> systemUsers) {
+		this.systemUsers = systemUsers;
+	}
+	
+	
 	
 }

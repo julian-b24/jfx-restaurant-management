@@ -66,8 +66,20 @@ public class RestaurantGUI {
 	
 	@FXML
 	void loginUser(ActionEvent event) {
-		
-	}
+			if(usernametxf.getText().equals("") || passwordtxf.getText().equals("")) {
+				//alert
+			}else {
+				for (int i = 0; i < restaurant.getSystemUsers().size(); i++) {
+					if(usernametxf.getText().equals(restaurant.getSystemUsers().get(i).getUserName()) &&
+							passwordtxf.getText().equals(restaurant.getSystemUsers().get(i).getPassword())) {
+						//load menu
+					}else {
+						//alert
+					}
+				}
+			}
+		}
+	
 	
 	//Register methods
 	@FXML
@@ -79,6 +91,9 @@ public class RestaurantGUI {
 			restaurant.createEmployee(rNametxf.getText(), rLastNametfx.getText(), rCctfx.getText());
 			restaurant.createSystemUser(rNametxf.getText(), rLastNametfx.getText(), rCctfx.getText(),
 					rUsernametxf.getText(), rPasswordtxf.getText());
+			loadLogin(null);
+		}else {
+			//alert
 		}
     }
 
@@ -103,7 +118,16 @@ public class RestaurantGUI {
     	if(name.equals("") || lastN.equals("") || cc.equals("") || userN.equals("") || pass.equals("")) {
     		valid = false;
     	}
+    	if(valid) {
+    		for (int i = 0; i < restaurant.getSystemUsers().size(); i++) {
+				if(restaurant.getSystemUsers().get(i).getUserName().equals(userN)) {
+					valid = false;
+				}
+			}
+    	}
     	
     	return valid;
     }
+    
+    
 }
