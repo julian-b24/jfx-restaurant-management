@@ -85,6 +85,20 @@ public class Restaurant {
 	}
 	
 	//Req 1.1
-	public void createProduct(String name, String lastEditor, ArrayList<Ingredient> ingredients, String type) {}
+	public void createProduct(String name, String lastEditor, ArrayList<Integer> ingredientsIdx, String typ) {
+		
+		//Getting ingredients from list of ingredients
+		ArrayList<Ingredient> tempIngredients = new ArrayList<Ingredient>();
+		for (int i = 0; i < ingredientsIdx.size(); i++) {
+			Ingredient tempIngredient = ingredients.get(ingredientsIdx.get(i));
+			tempIngredients.add(tempIngredient);
+		}
+		
+		//Cast of type
+		ProductType type = ProductType.valueOf(typ.toUpperCase().replace(" ", "_"));
+		
+		Product product = new Product(name, lastEditor, tempIngredients, type);
+		products.add(product);
+	}
 	
 }
