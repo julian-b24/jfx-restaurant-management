@@ -191,6 +191,13 @@ public class Restaurant {
 		}
 	}
 
+	//Req 1.4
+	public void diseableProduct(int code) {
+		
+		Product product = getProductByCode(code);
+		product.setAvailable(false);
+	}
+	
 	public ArrayList<Client> getClients() {
 		return clients;
 	}
