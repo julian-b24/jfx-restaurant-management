@@ -149,6 +149,47 @@ public class Restaurant {
 		return  product;
 	}
 	
+	//Req 1.3
+	public void deleteProduct(int code) {
+		
+		boolean found = false;	
+		int idx = 0;
+		
+		while (!found) {
+			Product product = products.get(idx);
+			if(product.getCode() == code) {
+				found = true;
+			}
+			idx++;
+		}
+		
+		if (found) {
+			removeProductReferences(code);
+			products.remove(idx);
+		}
+	}
+
+	public void removeProductReferences(int code) {
+
+		for (Ingredient ingredient : ingredients) {
+			
+			if (ingredient.isReferenced()) {
+				
+				ArrayList<String> references = ingredient.getReferences();
+				boolean found = false;
+				
+				for (int i = 0; i < references.size() && !found; i++) {
+					
+					int tempReference = Integer.parseInt(references.get(i));
+					
+					if (tempReference == code) {
+						ingredient.getReferences().remove(i);
+						found = true;
+					}
+				}
+			}
+		}
+	}
 
 	public ArrayList<Client> getClients() {
 		return clients;
