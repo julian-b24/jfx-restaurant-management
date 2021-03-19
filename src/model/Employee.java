@@ -2,21 +2,21 @@ package model;
 
 public class Employee extends Person{
 
-	protected String employeeId;			//employee unique id
+	protected int employeeId;			//employee unique id
 	
-	public Employee(String nam, String lastN, String ccP) {
+	public Employee(String nam, String lastN, String ccP, int id) {
 		
 		super(nam, lastN, ccP);
-		//employeeId = emplId;
+		employeeId = id+1;
 	}
 
 	//Getter and setters
 	
-	public String getEmployeeId() {
+	public int getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(String employeeId) {
+	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
 	}
 	
