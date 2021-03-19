@@ -128,5 +128,25 @@ public class Order {
 	public void setState(State state) {
 		this.state = state;
 	}
+
+	public void updateState() {
+		switch (state) {
+		case REQUESTED:
+			state = State.PROCESS;
+			break;
+			
+		case PROCESS:
+			state = State.DELIVERED;
+			break;
+			
+		case DELIVERED:
+			state = State.DELIVERED;
+			break;
+			
+		default:
+			break;
+		}
+		
+	}
 	
 }

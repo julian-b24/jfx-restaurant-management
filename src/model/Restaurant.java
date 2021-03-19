@@ -207,8 +207,9 @@ public class Restaurant {
 	public void createOrder(ArrayList<Integer> productsCodes, ArrayList<Integer> productsAmounts, String clientRef, 
 							String employeeRef, Date dateRequest, Date timeRequest, String obs) {
 		
-		//Note: Orders could be implemented with a HashMap<Product, Integer>
 		/*
+		Note: Orders could be implemented with a HashMap<Product, Integer>
+		
 		Map <Product, Integer> productsMap = new HashMap<Product, Integer>();
 		for (int i = 0; i < productsCodes.size(); i++) {
 			Product tempProduct = getProductByCode(productsCodes.get(i));
@@ -230,6 +231,40 @@ public class Restaurant {
 		
 		Order order = new Order(code, obs, clientRef, employeeRef, dateRequest, timeRequest, productsOrdered, productsAmounts);
 		orders.add(order);
+	}
+	
+	//Req 1.9
+	public void updateStateOrder(int code) {
+		
+		Order order = getOrderByCode(code);
+		order.updateState();
+	}
+	
+	public Order getOrderByCode(int code) {
+		
+		Order order = null;
+		
+		//binary search
+		int low = 0;
+		int top = orders.size() - 1;
+		boolean found = false;
+		
+		while(low < top && !found) {
+			
+			int mid = (low + top)/2;
+			if (orders.get(mid).getCode() == code) {
+				order = orders.get(mid);
+				found = true;
+			
+			} else if (orders.get(mid).getCode() < code) {
+				low = mid + 1;
+				
+			} else {
+				top = mid - 1;
+			}
+		}
+		
+		return order;
 	}
 
 	public ArrayList<Client> getClients() {
