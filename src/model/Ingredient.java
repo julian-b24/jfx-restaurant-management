@@ -25,6 +25,10 @@ public class Ingredient extends Saleable {
 		return (references.size() == 0)?true:false;
 	}
 
+	public ArrayList<String> getReferences() {
+		return references;
+	}
+	
 	public void setReferences(ArrayList<String> references) {
 		this.references = references;
 	}

@@ -94,8 +94,14 @@ public class Restaurant {
 		//Cast of type
 		ProductType type = ProductType.valueOf(typ.toUpperCase().replace(" ", "_"));
 		
-		Product lastProduct = products.get(products.size() -1);
-		int lastCode = lastProduct.getCode();
+		int lastCode;
+		if(products.size() > 0) {
+			Product lastProduct = products.get(products.size() -1);
+			lastCode = lastProduct.getCode();
+			
+		} else {
+			lastCode = 0;
+		}
 		
 		Product product = new Product(name, lastEditor, lastCode, tempIngredients, type);
 		products.add(product);
@@ -113,7 +119,7 @@ public class Restaurant {
 	}
 	
 	//Req 1.2
-	public void updateProduct(String name, String lastEditor, int code, ArrayList<Integer> ingredientsIdx, String typ, boolean available) {
+	public void updateProduct(String name, String lastEditor, int code, ArrayList<Integer> ingredientsIdx, String typ, boolean available, ArrayList<String> sizes, ArrayList<Double> sizesFactors) {
 		
 		Product product = getProductByCode(code);
 		product.setName(name);
@@ -122,8 +128,11 @@ public class Restaurant {
 		ProductType type = ProductType.valueOf(typ.toUpperCase().replace(" ", "_"));
 		product.setType(type);
 		product.setAvailable(available);
+		
 		ArrayList<Ingredient> tempIngredients = getIngredientsByIdx(ingredientsIdx);
 		product.setIngredients(tempIngredients);
+		
+		product.updateSizes(sizes, sizesFactors);
 	}
 	
 	public Product getProductByCode(int code) {
@@ -140,7 +149,55 @@ public class Restaurant {
 		return  product;
 	}
 	
+	//Req 1.3
+	public void deleteProduct(int code) {
+		
+		boolean found = false;	
+		int idx = 0;
+		
+		while (!found) {
+			Product product = products.get(idx);
+			if(product.getCode() == code) {
+				found = true;
+			}
+			idx++;
+		}
+		
+		if (found) {
+			removeProductReferences(code);
+			products.remove(idx);
+		}
+	}
 
+	public void removeProductReferences(int code) {
+
+		for (Ingredient ingredient : ingredients) {
+			
+			if (ingredient.isReferenced()) {
+				
+				ArrayList<String> references = ingredient.getReferences();
+				boolean found = false;
+				
+				for (int i = 0; i < references.size() && !found; i++) {
+					
+					int tempReference = Integer.parseInt(references.get(i));
+					
+					if (tempReference == code) {
+						ingredient.getReferences().remove(i);
+						found = true;
+					}
+				}
+			}
+		}
+	}
+
+	//Req 1.4
+	public void diseableProduct(int code) {
+		
+		Product product = getProductByCode(code);
+		product.setAvailable(false);
+	}
+	
 	public ArrayList<Client> getClients() {
 		return clients;
 	}
