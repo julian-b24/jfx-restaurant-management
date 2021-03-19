@@ -1,6 +1,8 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -267,6 +269,48 @@ public class Restaurant {
 		return order;
 	}
 
+	//create ingredient
+	public void createIngredient(String name, String lastE, int lastCode, double value){
+		Ingredient ingredientX = new Ingredient(name, lastE, lastCode, value);
+		if(ingredients.size()>0) {
+			sortIngredientByName();
+			boolean alreadyAdded = searchIngredient(name);
+			if(!alreadyAdded) {
+				ingredients.add(ingredientX);
+			}
+		}else {			
+			ingredients.add(ingredientX);
+		}
+		
+	}
+	
+	//sort ingredients
+	public void sortIngredientByName() {
+		Comparator<Ingredient> ingredientNameComparator = new IngredientNameComparator();
+		Collections.sort(ingredients, ingredientNameComparator);
+	}
+	
+	//search ingredient by name
+	public boolean searchIngredient(String name) {
+		
+		int low = 0;
+		int top = orders.size() - 1;
+		boolean found = false;
+		
+		while(low < top && !found) {
+			
+			int mid = (low + top)/2;
+			if (ingredients.get(mid).getName().equalsIgnoreCase(name)) {
+				found = true;
+			} else if (ingredients.get(mid).getName().compareTo(name) < 0) {
+				low = mid + 1;
+			} else {
+				top = mid - 1;
+			}
+		}
+		return found;
+	}
+	
 	public ArrayList<Client> getClients() {
 		return clients;
 	}
