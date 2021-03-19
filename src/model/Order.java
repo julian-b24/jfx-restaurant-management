@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Order {
 
-	private String code;
+	private int code;
 	private String observations;
 	private String clientRef;
 	private String employeeRef;
@@ -20,7 +20,7 @@ public class Order {
 	
 	private State state;
 	
-	public Order(String cod, String obs, String clntRef, String mployeRef, Date dte, Date tme, ArrayList<Product> products, ArrayList<Integer> amountEach) {
+	public Order(int cod, String obs, String clntRef, String mployeRef, Date dte, Date tme, ArrayList<Product> products, ArrayList<Integer> amountEach) {
 		
 		code = cod;
 		observations = obs;
@@ -31,6 +31,7 @@ public class Order {
 		orderProducts = products;
 		amountPerEach = amountEach;
 		calculateTotalPrice();
+		state = State.REQUESTED;
 	}
 
 	private void calculateTotalPrice() {
@@ -48,11 +49,11 @@ public class Order {
 	}
 	
 	//Getters and setters
-	public String getCode() {
+	public int getCode() {
 		return code;
 	}
 
-	public void setCode(String code) {
+	public void setCode(int code) {
 		this.code = code;
 	}
 

@@ -1,6 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Restaurant {
 
@@ -9,6 +12,7 @@ public class Restaurant {
 	private ArrayList<Client> clients;
 	private ArrayList<Employee> employees;
 	private ArrayList<SystemUser> systemUsers;
+	private ArrayList<Order> orders;
 	
 	public Restaurant() {
 		
@@ -95,7 +99,7 @@ public class Restaurant {
 		ProductType type = ProductType.valueOf(typ.toUpperCase().replace(" ", "_"));
 		
 		int lastCode;
-		if(products.size() > 0) {
+		if(products.size() > 0) {		//Change if statement for method getLastCode(ArrayList)
 			Product lastProduct = products.get(products.size() -1);
 			lastCode = lastProduct.getCode();
 			
@@ -107,6 +111,7 @@ public class Restaurant {
 		products.add(product);
 	}
 	
+	//This method needs to be write again
 	public ArrayList<Ingredient> getIngredientsByIdx(ArrayList<Integer> ingredientsIdx) {
 		
 		ArrayList<Ingredient> tempIngredients = new ArrayList<Ingredient>();
@@ -198,6 +203,35 @@ public class Restaurant {
 		product.setAvailable(false);
 	}
 	
+	//Req 1.8
+	public void createOrder(ArrayList<Integer> productsCodes, ArrayList<Integer> productsAmounts, String clientRef, 
+							String employeeRef, Date dateRequest, Date timeRequest, String obs) {
+		
+		//Note: Orders could be implemented with a HashMap<Product, Integer>
+		/*
+		Map <Product, Integer> productsMap = new HashMap<Product, Integer>();
+		for (int i = 0; i < productsCodes.size(); i++) {
+			Product tempProduct = getProductByCode(productsCodes.get(i));
+			Integer tempAmount = productsAmounts.get(i);
+			productsMap.put(tempProduct, tempAmount);
+		}
+		 */
+		ArrayList<Product> productsOrdered = new ArrayList<Product>();
+		for (Integer code : productsCodes) {
+			Product tempProduct = getProductByCode(code);
+			productsOrdered.add(tempProduct);
+		}
+		
+		//Builds the code of the order
+		int code = 0;
+		if (orders.size() > 0) {
+			code = orders.get(orders.size() - 1).getCode() + 1;
+		}
+		
+		Order order = new Order(code, obs, clientRef, employeeRef, dateRequest, timeRequest, productsOrdered, productsAmounts);
+		orders.add(order);
+	}
+
 	public ArrayList<Client> getClients() {
 		return clients;
 	}
