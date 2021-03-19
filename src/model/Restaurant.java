@@ -98,7 +98,7 @@ public class Restaurant {
 	}
 	
 	//Req 1.1
-	public void createProduct(String name, String lastEditor, ArrayList<Integer> ingredientsIdx, String typ) {
+	public void createProduct(String name, String creatorRef, String lastEditor, ArrayList<Integer> ingredientsIdx, String typ) {
 		
 		//Getting ingredients from list of ingredients
 		ArrayList<Ingredient> tempIngredients = getIngredientsByIdx(ingredientsIdx);
@@ -115,7 +115,7 @@ public class Restaurant {
 			lastCode = 0;
 		}
 		
-		Product product = new Product(name, lastEditor, lastCode, tempIngredients, type);
+		Product product = new Product(name, creatorRef, lastEditor, lastCode, tempIngredients, type);
 		products.add(product);
 	}
 	
@@ -276,14 +276,14 @@ public class Restaurant {
 	}
 
 	//create ingredient
-	public void createIngredient(String name, String lastE, double value){
+	public void createIngredient(String name, String creatorRef, String lastE, double value){
 		
 		int lastCode = 0;
 		if (ingredients.size() > 0) {
 			lastCode = ingredients.get(ingredients.size() - 1).getCode();
 		}
 		
-		Ingredient ingredientX = new Ingredient(name, lastE, lastCode, value);
+		Ingredient ingredientX = new Ingredient(name, creatorRef, lastE, lastCode, value);
 		if(ingredients.size()>0) {
 			sortIngredientByName();
 			boolean alreadyAdded = searchIngredient(name);
@@ -336,7 +336,7 @@ public class Restaurant {
 			String creatorRef = values[1];		//Add field to constructor of Saleable
 			String lastEditorRef = values[2];
 			double price = Double.parseDouble(values[3]);
-			createIngredient(name, lastEditorRef, price);
+			createIngredient(name, creatorRef, lastEditorRef, price);
 		}
 		
 		br.close();
