@@ -72,7 +72,7 @@ public class RestaurantGUI {
 				for (int i = 0; i < restaurant.getSystemUsers().size(); i++) {
 					if(usernametxf.getText().equals(restaurant.getSystemUsers().get(i).getUserName()) &&
 							passwordtxf.getText().equals(restaurant.getSystemUsers().get(i).getPassword())) {
-						//load menu
+						loadMenu();
 					}else {
 						//alert
 					}
@@ -110,6 +110,45 @@ public class RestaurantGUI {
 		}
 		mainPane.getChildren().clear();
 		mainPane.getChildren().setAll(addContactPane);
+    }
+    
+    void loadMenu() {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu-pane.fxml"));
+		fxmlLoader.setController(this); 	
+		
+		Parent addContactPane = null;
+		try {
+			addContactPane = fxmlLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mainPane.getChildren().clear();
+		mainPane.getChildren().setAll(addContactPane);
+	}
+    
+    @FXML
+    void loadAdminOrders(ActionEvent event) {
+    	
+    }
+
+    @FXML
+    void loadAdminProducts(ActionEvent event) {
+    	
+    }
+
+    @FXML
+    void loadAdminUser(ActionEvent event) {
+    	
+    }
+
+    @FXML
+    void loadGenerateReports(ActionEvent event) {
+
+    }
+
+    @FXML
+    void loadImports(ActionEvent event) {
+
     }
     
     //
