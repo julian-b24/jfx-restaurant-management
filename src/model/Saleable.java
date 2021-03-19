@@ -7,12 +7,14 @@ public abstract class Saleable {
 	public final static boolean DEAFULT_AVAILABLE = true;		//When a saleable is created, it is by deafult available
 	
 	private String name;			//Name of the saleable
+	private String creatorRef;		//Id of the user that creates the saleable
 	private String lastEditorRef;	//Id of the last editor
 	private int code;				//Code of the saleable
 	private boolean available;		//State of the product, true in case is enable, false in any other way
 	
-	public Saleable(String nm, String lastE, int lastCode) {
+	public Saleable(String nm, String creatRef, String lastE, int lastCode) {
 		name = nm;
+		creatorRef = creatRef;
 		lastEditorRef = lastE;
 		code = lastCode + 1;
 		available = DEAFULT_AVAILABLE;
@@ -43,6 +45,22 @@ public abstract class Saleable {
 		this.available = available;
 	}
 	
+	public String getCreatorRef() {
+		return creatorRef;
+	}
+
+	public void setCreatorRef(String creatorRef) {
+		this.creatorRef = creatorRef;
+	}
+	
+	public int getCode() {
+		return code;
+	}
+
+	public void setCode(int code) {
+		this.code = code;
+	}
+	
 	//Editable methods
 	/**
 	 * enable, sets the field "available" of a saleable in true.
@@ -56,11 +74,4 @@ public abstract class Saleable {
 	 */
 	public static void disable() {}
 
-	public int getCode() {
-		return code;
-	}
-
-	public void setCode(int code) {
-		this.code = code;
-	}
 }

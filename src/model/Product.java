@@ -12,8 +12,8 @@ public class Product extends Saleable{
 	private ArrayList<Size> sizes;
 	private ProductType type;
 
-	public Product(String name, String lastE, int lastCode, ArrayList<Ingredient> ingrdints, ProductType typ) {
-		super(name, lastE, lastCode);
+	public Product(String name, String creatRef, String lastE, int lastCode, ArrayList<Ingredient> ingrdints, ProductType typ) {
+		super(name, creatRef, lastE, lastCode);
 		setIngredients(ingrdints);
 		sizes = new ArrayList<Size>();
 		addSize(DEFAULT_SIZE);

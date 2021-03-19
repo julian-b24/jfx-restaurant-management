@@ -7,8 +7,8 @@ public class Ingredient extends Saleable {
 	private double price;
 	private ArrayList<String> references;
 	
-	public Ingredient(String nm, String lastE, int lastCode, double value) {
-		super(nm, lastE, lastCode);
+	public Ingredient(String nm, String creatRef, String lastE, int lastCode, double value) {
+		super(nm, creatRef, lastE, lastCode);
 		price = value;
 		references = new ArrayList<String>();
 	}

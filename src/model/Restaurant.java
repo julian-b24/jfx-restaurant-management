@@ -1,5 +1,9 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -9,6 +13,8 @@ import java.util.Map;
 
 public class Restaurant {
 
+	public final static String INGREDIENTS_PATH = "data/ingredients.csv";
+	
 	private ArrayList<Product> products;
 	private ArrayList<Ingredient> ingredients;
 	private ArrayList<Client> clients;
@@ -105,7 +111,7 @@ public class Restaurant {
 	}
 	
 	//Req 1.1
-	public void createProduct(String name, String lastEditor, ArrayList<Integer> ingredientsIdx, String typ) {
+	public void createProduct(String name, String creatorRef, String lastEditor, ArrayList<Integer> ingredientsIdx, String typ) {
 		
 		//Getting ingredients from list of ingredients
 		ArrayList<Ingredient> tempIngredients = getIngredientsByIdx(ingredientsIdx);
@@ -122,7 +128,7 @@ public class Restaurant {
 			lastCode = 0;
 		}
 		
-		Product product = new Product(name, lastEditor, lastCode, tempIngredients, type);
+		Product product = new Product(name, creatorRef, lastEditor, lastCode, tempIngredients, type);
 		products.add(product);
 	}
 	
@@ -283,8 +289,14 @@ public class Restaurant {
 	}
 
 	//create ingredient
-	public void createIngredient(String name, String lastE, int lastCode, double value){
-		Ingredient ingredientX = new Ingredient(name, lastE, lastCode, value);
+	public void createIngredient(String name, String creatorRef, String lastE, double value){
+		
+		int lastCode = 0;
+		if (ingredients.size() > 0) {
+			lastCode = ingredients.get(ingredients.size() - 1).getCode();
+		}
+		
+		Ingredient ingredientX = new Ingredient(name, creatorRef, lastE, lastCode, value);
 		if(ingredients.size()>0) {
 			sortIngredientByName();
 			boolean alreadyAdded = searchIngredient(name);
@@ -322,6 +334,25 @@ public class Restaurant {
 			}
 		}
 		return found;
+	}
+	
+	//Import Ingredients
+	public void importIngredients() throws IOException {
+		
+		BufferedReader br = new BufferedReader(new FileReader(INGREDIENTS_PATH));
+		br.readLine(); //Read first line
+		
+		String line = br.readLine();
+		while (line != null) {
+			String[] values = line.split(",");
+			String name = values[0];
+			String creatorRef = values[1];		//Add field to constructor of Saleable
+			String lastEditorRef = values[2];
+			double price = Double.parseDouble(values[3]);
+			createIngredient(name, creatorRef, lastEditorRef, price);
+		}
+		
+		br.close();
 	}
 	
 	public ArrayList<Client> getClients() {
