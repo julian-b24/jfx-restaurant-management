@@ -27,15 +27,28 @@ public class Restaurant {
 	
 	public void createSystemUser(String nam, String lastN, String ccP, String user, String passw) {
 		
-		SystemUser newUser = new SystemUser(nam, lastN, ccP, user, passw);
-		systemUsers.add(newUser);
-		
+		int lastId = 0;
+		if(systemUsers.size()>0) {
+			Employee emplX = employees.get(employees.size()-1);
+			lastId = emplX.getEmployeeId();
+			SystemUser newUser = new SystemUser(nam, lastN, ccP, user, passw, lastId);
+		}else {
+			SystemUser newUser = new SystemUser(nam, lastN, ccP, user, passw, lastId);
+			systemUsers.add(newUser);
+		}		
 	}
 	
 	public void createEmployee(String nam, String lastN, String ccP) {
 		
-		Employee newEmployee = new Employee(nam, lastN, ccP);
-		employees.add(newEmployee);
+		int lastId = 0;
+		if(employees.size()>0) {
+			Employee emplX = employees.get(employees.size()-1);
+			lastId = emplX.getEmployeeId();
+			Employee newEmployee = new Employee(nam, lastN, ccP, lastId);
+		}else {
+			Employee newEmployee = new Employee(nam, lastN, ccP, lastId);
+			employees.add(newEmployee);
+		}
 	}
 	
 	public void createClient(String nam, String lastN, String ccP, String adrs, String phn, String obs){
