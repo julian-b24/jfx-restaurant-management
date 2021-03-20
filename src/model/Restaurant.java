@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -238,7 +241,7 @@ public class Restaurant {
 	
 	//Req 1.8
 	public void createOrder(ArrayList<Integer> productsCodes, ArrayList<Integer> productsAmounts, String clientRef, 
-							int employeeRef, Date dateRequest, Date timeRequest, String obs) {
+							int employeeRef, LocalDate dateRequest, String obs, String state) {
 		
 		/*
 		Note: Orders could be implemented with a HashMap<Product, Integer>
@@ -262,7 +265,13 @@ public class Restaurant {
 			code = orders.get(orders.size() - 1).getCode() + 1;
 		}
 		
-		Order order = new Order(code, obs, clientRef, employeeRef, dateRequest, timeRequest, productsOrdered, productsAmounts);
+		Order order;
+		if (state == null) {
+			order = new Order(code, obs, clientRef, employeeRef, dateRequest, productsOrdered, productsAmounts);
+		} else {
+			order = new Order(code, obs, clientRef, employeeRef, dateRequest, productsOrdered, productsAmounts, state);
+		}
+		
 		orders.add(order);
 	}
 	
@@ -407,6 +416,35 @@ public class Restaurant {
 			codes.add(Integer.parseInt(values[5]));
 			String type = values[6];
 			createProduct(name, creatorRef, lastEditorRef, codes, type);
+		}
+		
+		br.close();
+	}
+	
+	//Req 4.3
+	public void importOrders() throws IOException {
+		
+		BufferedReader br = new BufferedReader(new FileReader(PRODUCTS_PATH));
+		br.readLine(); //Read first line
+
+		String line = br.readLine();
+		while (line != null) {
+			String[] values = line.split(",");
+			String obs = values[0];
+			String ccClient = values[1];
+			int employeeId = Integer.parseInt(values[2]);
+			String dateString = values[3] + " " + values[4];
+			LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern(Order.DATE_FORMAT));
+			ArrayList<Integer> productsTemp = new ArrayList<Integer>();
+			productsTemp.add(Integer.parseInt(values[5]));
+			productsTemp.add(Integer.parseInt(values[6]));
+			productsTemp.add(Integer.parseInt(values[7]));
+			ArrayList<Integer> amounts = new ArrayList<Integer>();
+			amounts.add(Integer.parseInt(values[8]));
+			amounts.add(Integer.parseInt(values[9]));
+			amounts.add(Integer.parseInt(values[10]));
+			String state = values[11];
+			createOrder(productsTemp, amounts, ccClient, employeeId, date, obs, state);
 		}
 		
 		br.close();

@@ -1,17 +1,18 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Order {
 
+	public final static String DATE_FORMAT = "MM/dd/yy HH:mm a";
+	
 	private int code;
 	private String observations;
 	private String clientRef;
 	private int employeeRef;
 	
-	private Date date;
-	private Date time;
+	private LocalDate date;
 	
 	private ArrayList<Product> orderProducts;
 	private ArrayList<Integer> amountPerEach;
@@ -20,18 +21,23 @@ public class Order {
 	
 	private State state;
 	
-	public Order(int cod, String obs, String clntRef, int mployeRef, Date dte, Date tme, ArrayList<Product> products, ArrayList<Integer> amountEach) {
+	public Order(int cod, String obs, String clntRef, int mployeRef, LocalDate dte, ArrayList<Product> products, ArrayList<Integer> amountEach) {
 		
 		code = cod;
 		observations = obs;
 		clientRef = clntRef;
 		employeeRef = mployeRef;
 		date = dte;
-		time = tme;
 		orderProducts = products;
 		amountPerEach = amountEach;
 		calculateTotalPrice();
 		state = State.REQUESTED;
+	}
+	
+	public Order(int cod, String obs, String clntRef, int mployeRef, LocalDate dte, ArrayList<Product> products, ArrayList<Integer> amountEach, String stae) {
+		
+		this(cod, obs, clntRef, mployeRef, dte, products, amountEach);
+		state = State.valueOf(stae);
 	}
 
 	private void calculateTotalPrice() {
@@ -81,20 +87,12 @@ public class Order {
 		this.employeeRef = employeeRef;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
-	}
-
-	public Date getTime() {
-		return time;
-	}
-
-	public void setTime(Date time) {
-		this.time = time;
 	}
 
 	public ArrayList<Product> getOrderProducts() {
