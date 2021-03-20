@@ -387,6 +387,50 @@ public class Restaurant {
 	public void setIngredients(ArrayList<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	}
+
+	public void updateIngredient(String referenceIngredient, String newName, String newValue) {
+		System.out.println(referenceIngredient+","+newName);
+		
+		int index = binarySearchIng(referenceIngredient, ingredients);
+		ingredients.get(index).setName(newName);
+		ingredients.get(index).setPrice(Double.parseDouble(newValue));
+	}
+	
+	public int binarySearchIng(String fullName, ArrayList<Ingredient> ings) {
+		
+		int pos = -2;
+		int in = 0;
+		int fin = ings.size()-1;
+		
+		while(in<=fin && pos==-2) {
+			int middle = (in+fin)/2;
+			
+			if((ings.get(middle).getName()+ings.get(middle).getName()).equalsIgnoreCase(fullName)) {
+				pos = middle;
+			}
+			
+			if(in!=fin) {
+				if(fullName.compareTo(ings.get(middle).getName()+ings.get(middle).getName())>0) {
+					fin = middle-1;
+				}else {
+					in = middle+1;
+				}
+			}else {
+				if(fullName.compareTo(ings.get(middle).getName()+ings.get(middle).getName())>0) {
+					pos = middle;
+					}else {
+						pos = middle+1;
+					}
+			}				
+		}
+		if(pos<0) {
+			pos=0;
+		}else if(pos>ings.size()-1) {
+			pos = ings.size()-1;
+		}
+		
+		return pos;
+	}
 	
 	
 	
