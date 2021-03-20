@@ -293,20 +293,20 @@ public class Restaurant {
 		
 		int lastCode = 0;
 		double value = Double.parseDouble(val);
-		if (ingredients.size() > 0) {
-			lastCode = ingredients.get(ingredients.size() - 1).getCode();
-		}
+		Ingredient ingredientX; 
 		
-		Ingredient ingredientX = new Ingredient(name, creatorRef, lastE, lastCode, value);
 		if(ingredients.size()>0) {
-			sortIngredientByName();
+			lastCode = ingredients.get(ingredients.size() - 1).getCode();
+			ingredientX = new Ingredient(name, creatorRef, lastE, lastCode, value);
 			boolean alreadyAdded = searchIngredient(name);
 			if(!alreadyAdded) {
 				ingredients.add(ingredientX);
 			}
 		}else {			
+			ingredientX = new Ingredient(name, creatorRef, lastE, lastCode, value);
 			ingredients.add(ingredientX);
 		}
+		sortIngredientByName();
 		
 	}
 	
@@ -320,7 +320,7 @@ public class Restaurant {
 	public boolean searchIngredient(String name) {
 		
 		int low = 0;
-		int top = orders.size() - 1;
+		int top = ingredients.size() - 1;
 		boolean found = false;
 		
 		while(low < top && !found) {

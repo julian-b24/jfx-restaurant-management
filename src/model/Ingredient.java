@@ -32,4 +32,5 @@ public class Ingredient extends Saleable {
 	public void setReferences(ArrayList<String> references) {
 		this.references = references;
 	}
+
 }

@@ -6,7 +6,7 @@ public abstract class Saleable {
 	//WARNING CONSTANTS NOT IN THE CLASS DIAGRAM
 	public final static boolean DEAFULT_AVAILABLE = true;		//When a saleable is created, it is by deafult available
 	
-	private String name;			//Name of the saleable
+	protected String name;			//Name of the saleable
 	private String creatorRef;		//Id of the user that creates the saleable
 	private String lastEditorRef;	//Id of the last editor
 	private int code;				//Code of the saleable
