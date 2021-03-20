@@ -13,8 +13,10 @@ import java.util.Map;
 
 public class Restaurant {
 
-	public final static String INGREDIENTS_PATH = "data/ingredients.csv";
-	public final static String CLIENTS_PATH = "data/clients.csv";
+	public final static String INGREDIENTS_PATH = "data/csv/ingredients.csv";
+	public final static String CLIENTS_PATH = "data/csv/clients.csv";
+	public final static String PRODUCTS_PATH = "data/csv/products.csv";
+	public final static String ORDERS_PATH = "data/csv/orders.csv";
 	
 	private ArrayList<Product> products;
 	private ArrayList<Ingredient> ingredients;
@@ -112,10 +114,10 @@ public class Restaurant {
 	}
 	
 	//Req 1.1
-	public void createProduct(String name, String creatorRef, String lastEditor, ArrayList<Integer> ingredientsIdx, String typ) {
+	public void createProduct(String name, String creatorRef, String lastEditor, ArrayList<Integer> ingredientsCodes, String typ) {
 		
 		//Getting ingredients from list of ingredients
-		ArrayList<Ingredient> tempIngredients = getIngredientsByIdx(ingredientsIdx);
+		ArrayList<Ingredient> tempIngredients = getIngredientsByCode(ingredientsCodes);
 		
 		//Cast of type
 		ProductType type = ProductType.valueOf(typ.toUpperCase().replace(" ", "_"));
@@ -133,20 +135,29 @@ public class Restaurant {
 		products.add(product);
 	}
 	
-	//This method needs to be write again
-	public ArrayList<Ingredient> getIngredientsByIdx(ArrayList<Integer> ingredientsIdx) {
+	public ArrayList<Ingredient> getIngredientsByCode(ArrayList<Integer> codes) {
 		
 		ArrayList<Ingredient> tempIngredients = new ArrayList<Ingredient>();
-		for (int i = 0; i < ingredientsIdx.size(); i++) {
-			Ingredient tempIngredient = ingredients.get(ingredientsIdx.get(i));
-			tempIngredients.add(tempIngredient);
-		}
 		
+		boolean stop = false;
+		int j = 0;
+		for (int i = 0; i < ingredients.size() && !stop; i++) {
+			
+			if (ingredients.get(i).getCode() == codes.get(j)) {
+				Ingredient tempIngredient = ingredients.get(i);
+				tempIngredients.add(tempIngredient);
+				j++;
+			}
+			
+			if (codes.size() == tempIngredients.size()) {
+				stop = true;
+			}
+		}
 		return tempIngredients;
 	}
 	
 	//Req 1.2
-	public void updateProduct(String name, String lastEditor, int code, ArrayList<Integer> ingredientsIdx, String typ, boolean available, ArrayList<String> sizes, ArrayList<Double> sizesFactors) {
+	public void updateProduct(String name, String lastEditor, int code, ArrayList<Integer> ingredientsCodes, String typ, boolean available, ArrayList<String> sizes, ArrayList<Double> sizesFactors) {
 		
 		Product product = getProductByCode(code);
 		product.setName(name);
@@ -156,7 +167,7 @@ public class Restaurant {
 		product.setType(type);
 		product.setAvailable(available);
 		
-		ArrayList<Ingredient> tempIngredients = getIngredientsByIdx(ingredientsIdx);
+		ArrayList<Ingredient> tempIngredients = getIngredientsByCode(ingredientsCodes);
 		product.setIngredients(tempIngredients);
 		
 		product.updateSizes(sizes, sizesFactors);
@@ -373,6 +384,29 @@ public class Restaurant {
 			String phone = values[4];
 			String obs = values[5];
 			createClient(firstName, lastName, cc, address, phone, obs);
+		}
+		
+		br.close();
+	}
+	
+	//Req 4.2
+	public void importProducts() throws IOException {
+		
+		BufferedReader br = new BufferedReader(new FileReader(PRODUCTS_PATH));
+		br.readLine(); //Read first line
+		
+		String line = br.readLine();
+		while (line != null) {
+			String[] values = line.split(",");
+			String name = values[0];
+			String creatorRef = values[1];
+			String lastEditorRef = values[2];
+			ArrayList<Integer> codes = new ArrayList<Integer>();
+			codes.add(Integer.parseInt(values[3]));
+			codes.add(Integer.parseInt(values[4]));
+			codes.add(Integer.parseInt(values[5]));
+			String type = values[6];
+			createProduct(name, creatorRef, lastEditorRef, codes, type);
 		}
 		
 		br.close();
