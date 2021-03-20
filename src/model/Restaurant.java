@@ -226,7 +226,7 @@ public class Restaurant {
 	
 	//Req 1.8
 	public void createOrder(ArrayList<Integer> productsCodes, ArrayList<Integer> productsAmounts, String clientRef, 
-							String employeeRef, Date dateRequest, Date timeRequest, String obs) {
+							int employeeRef, Date dateRequest, Date timeRequest, String obs) {
 		
 		/*
 		Note: Orders could be implemented with a HashMap<Product, Integer>

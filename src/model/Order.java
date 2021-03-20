@@ -8,7 +8,7 @@ public class Order {
 	private int code;
 	private String observations;
 	private String clientRef;
-	private String employeeRef;
+	private int employeeRef;
 	
 	private Date date;
 	private Date time;
@@ -20,7 +20,7 @@ public class Order {
 	
 	private State state;
 	
-	public Order(int cod, String obs, String clntRef, String mployeRef, Date dte, Date tme, ArrayList<Product> products, ArrayList<Integer> amountEach) {
+	public Order(int cod, String obs, String clntRef, int mployeRef, Date dte, Date tme, ArrayList<Product> products, ArrayList<Integer> amountEach) {
 		
 		code = cod;
 		observations = obs;
@@ -73,11 +73,11 @@ public class Order {
 		this.clientRef = clientRef;
 	}
 
-	public String getEmployeeRef() {
+	public int getEmployeeRef() {
 		return employeeRef;
 	}
 
-	public void setEmployeeRef(String employeeRef) {
+	public void setEmployeeRef(int employeeRef) {
 		this.employeeRef = employeeRef;
 	}
 
