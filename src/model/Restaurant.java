@@ -14,6 +14,7 @@ import java.util.Map;
 public class Restaurant {
 
 	public final static String INGREDIENTS_PATH = "data/ingredients.csv";
+	public final static String CLIENTS_PATH = "data/clients.csv";
 	
 	private ArrayList<Product> products;
 	private ArrayList<Ingredient> ingredients;
@@ -351,6 +352,27 @@ public class Restaurant {
 			String lastEditorRef = values[2];
 			String price = values[3];
 			createIngredient(name, creatorRef, lastEditorRef, price);
+		}
+		
+		br.close();
+	}
+	
+	//Req 4.1
+	public void importClients() throws IOException {
+		
+		BufferedReader br = new BufferedReader(new FileReader(CLIENTS_PATH));
+		br.readLine(); //Read first line
+		
+		String line = br.readLine();
+		while (line != null) {
+			String[] values = line.split(",");
+			String firstName = values[0];
+			String lastName = values[1];
+			String cc = values[2];
+			String address = values[3];
+			String phone = values[4];
+			String obs = values[5];
+			createClient(firstName, lastName, cc, address, phone, obs);
 		}
 		
 		br.close();
