@@ -64,6 +64,7 @@
                   <Insets left="50.0" top="30.0" />
                </VBox.margin>
             </JFXButton>
+            <JFXButton prefHeight="39.0" prefWidth="188.0" style="-fx-background-color: #D9A404;" text="Agregar ingrediente" textFill="#fff8bf" />
          </children>
       </VBox>
       <TableView fx:id="tableIngr" layoutX="499.0" layoutY="54.0" prefHeight="700.0" prefWidth="734.0" stylesheets="@../styles/tableStyle.css" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">

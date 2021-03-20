@@ -4,12 +4,15 @@ import java.io.IOException;
 
 import com.jfoenix.controls.JFXTextField;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.Ingredient;
 import model.Restaurant;
@@ -195,9 +198,10 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void loadAdminIngredients(ActionEvent event) {
+    void loadAdminIngredients(ActionEvent event) {	
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("adminIngredients-pane.fxml"));
 		fxmlLoader.setController(this); 	
+		
 		
 		Parent addContactPane = null;
 		try {
@@ -206,7 +210,10 @@ public class RestaurantGUI {
 			e.printStackTrace();
 		}
 		mainPane.getChildren().clear();
+		String css = "styles/tableStyle.css";
+		addContactPane.getStylesheets().add(css);
 		mainPane.getChildren().setAll(addContactPane);
+		initizalizeTableIngr();
     }
     
     //
@@ -234,6 +241,19 @@ public class RestaurantGUI {
     		System.out.println("YEAH");
     	}
     }
+    
+    public void initizalizeTableIngr() {
+    		 ObservableList<Ingredient> accountArray = FXCollections.observableArrayList(restaurant.getIngredients());
+    		 
+    		 colIngr.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("name"));
+    		 colCreator.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("creatorRef"));
+    		 colLastE.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("lastEditorRef"));
+    		 colCode.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("code"));
+    		 colValue.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("price"));
+    		 
+    		 tableIngr.setItems(accountArray);	 
+    	 }
+    
     
     
 }

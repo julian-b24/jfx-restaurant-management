@@ -379,6 +379,16 @@ public class Restaurant {
 	public void setSystemUsers(ArrayList<SystemUser> systemUsers) {
 		this.systemUsers = systemUsers;
 	}
+
+	public ArrayList<Ingredient> getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(ArrayList<Ingredient> ingredients) {
+		this.ingredients = ingredients;
+	}
+	
+	
 	
 	
 	
