@@ -8,11 +8,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import model.Ingredient;
 import model.Restaurant;
 
 public class RestaurantGUI {
 
+	//other attributes
+	private String actualUser;
+	
 	//MainAnchorPane
 	@FXML
     private AnchorPane mainPane;
@@ -40,7 +46,33 @@ public class RestaurantGUI {
     @FXML
     private JFXTextField rPasswordtxf;
 	
-    
+    //ingredients pane
+    @FXML
+    private JFXTextField txtIngredientName;
+
+    @FXML
+    private JFXTextField txtIngredientValue;
+
+    @FXML
+    private TableView<Ingredient> tableIngr;
+
+    @FXML
+    private TableColumn<Ingredient, String> colIngr;
+
+    @FXML
+    private TableColumn<Ingredient, String> colCreator;
+
+    @FXML
+    private TableColumn<Ingredient, String> colLastE;
+
+    @FXML
+    private TableColumn<Ingredient, String> colCode;
+
+    @FXML
+    private TableColumn<Ingredient, String> colValue;
+
+       
+    //    
     private Restaurant restaurant;
     
     //Constructor
@@ -72,6 +104,7 @@ public class RestaurantGUI {
 				for (int i = 0; i < restaurant.getSystemUsers().size(); i++) {
 					if(usernametxf.getText().equals(restaurant.getSystemUsers().get(i).getUserName()) &&
 							passwordtxf.getText().equals(restaurant.getSystemUsers().get(i).getPassword())) {
+						actualUser = usernametxf.getText();
 						loadMenu();
 					}else {
 						//alert
@@ -133,7 +166,17 @@ public class RestaurantGUI {
 
     @FXML
     void loadAdminProducts(ActionEvent event) {
-    	
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("adminProducts-pane.fxml"));
+		fxmlLoader.setController(this); 	
+		
+		Parent addContactPane = null;
+		try {
+			addContactPane = fxmlLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mainPane.getChildren().clear();
+		mainPane.getChildren().setAll(addContactPane);
     }
 
     @FXML
@@ -151,6 +194,21 @@ public class RestaurantGUI {
 
     }
     
+    @FXML
+    void loadAdminIngredients(ActionEvent event) {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("adminIngredients-pane.fxml"));
+		fxmlLoader.setController(this); 	
+		
+		Parent addContactPane = null;
+		try {
+			addContactPane = fxmlLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mainPane.getChildren().clear();
+		mainPane.getChildren().setAll(addContactPane);
+    }
+    
     //
     public boolean validateRegisterInput(String name, String lastN, String cc, String userN, String pass) {
     	boolean valid = true;
@@ -166,6 +224,15 @@ public class RestaurantGUI {
     	}
     	
     	return valid;
+    }
+    
+    @FXML
+    void createIngredient(ActionEvent event) {
+    	
+    	if(!txtIngredientName.getText().equals("") && !txtIngredientValue.getText().equals("")){
+    		restaurant.createIngredient(txtIngredientName.getText(), actualUser, actualUser, txtIngredientValue.getText());
+    		System.out.println("YEAH");
+    	}
     }
     
     

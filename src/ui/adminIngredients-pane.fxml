@@ -3,6 +3,8 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
@@ -12,8 +14,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
-      <VBox layoutX="6.0" layoutY="6.0" prefHeight="783.0" prefWidth="720.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <VBox layoutX="-2.0" prefHeight="789.0" prefWidth="501.0" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Text fill="#fff2cd" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestionar ingredientes">
                <font>
@@ -41,7 +43,7 @@
             </Text>
             <JFXTextField fx:id="txtIngredientName" promptText="Nombre">
                <VBox.margin>
-                  <Insets left="50.0" right="300.0" />
+                  <Insets left="50.0" right="150.0" />
                </VBox.margin>
             </JFXTextField>
             <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor del ingrediente">
@@ -54,7 +56,7 @@
             </Text>
             <JFXTextField fx:id="txtIngredientValue" promptText="Valor">
                <VBox.margin>
-                  <Insets left="50.0" right="300.0" />
+                  <Insets left="50.0" right="150.0" />
                </VBox.margin>
             </JFXTextField>
             <JFXButton onAction="#createIngredient" prefHeight="39.0" prefWidth="188.0" style="-fx-background-color: #D9A404;" text="Agregar ingrediente" textFill="#fff8bf">
@@ -64,5 +66,14 @@
             </JFXButton>
          </children>
       </VBox>
+      <TableView fx:id="tableIngr" layoutX="499.0" layoutY="54.0" prefHeight="700.0" prefWidth="734.0" stylesheets="@../styles/tableStyle.css" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+        <columns>
+          <TableColumn fx:id="colIngr" prefWidth="172.0" text="Nombre ingrediente" />
+          <TableColumn fx:id="colCreator" prefWidth="202.0" text="Usuario creador" />
+            <TableColumn fx:id="colLastE" prefWidth="178.0" text="Último editor" />
+            <TableColumn fx:id="colCode" prefWidth="85.0" text="Código" />
+            <TableColumn fx:id="colValue" prefWidth="109.0" text="Valor" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

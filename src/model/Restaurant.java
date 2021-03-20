@@ -289,9 +289,10 @@ public class Restaurant {
 	}
 
 	//create ingredient
-	public void createIngredient(String name, String creatorRef, String lastE, double value){
+	public void createIngredient(String name, String creatorRef, String lastE, String val){
 		
 		int lastCode = 0;
+		double value = Double.parseDouble(val);
 		if (ingredients.size() > 0) {
 			lastCode = ingredients.get(ingredients.size() - 1).getCode();
 		}
@@ -348,7 +349,7 @@ public class Restaurant {
 			String name = values[0];
 			String creatorRef = values[1];		//Add field to constructor of Saleable
 			String lastEditorRef = values[2];
-			double price = Double.parseDouble(values[3]);
+			String price = values[3];
 			createIngredient(name, creatorRef, lastEditorRef, price);
 		}
 		
