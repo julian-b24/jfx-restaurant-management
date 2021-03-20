@@ -317,6 +317,25 @@ public class RestaurantGUI {
     		 tableIngr.setItems(accountArray);	 
     	 }
     
+    @FXML
+    void loadAProducts(ActionEvent event) {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("adminProduct-pane.fxml"));
+		fxmlLoader.setController(this); 	
+		
+		
+		Parent addContactPane = null;
+		try {
+			addContactPane = fxmlLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mainPane.getChildren().clear();
+		String css = "styles/tableStyle.css";
+		addContactPane.getStylesheets().add(css);
+		mainPane.getChildren().setAll(addContactPane);
+		
+    }
     
+   
     
 }

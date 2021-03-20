@@ -490,6 +490,4 @@ public class Restaurant {
 	
 	
 	
-	
-	
 }

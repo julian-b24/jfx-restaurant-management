@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <VBox layoutX="-2.0" prefHeight="789.0" prefWidth="460.0" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text fill="#fff2cd" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestionar productos">
+               <font>
+                  <Font name="Montserrat SemiBold" size="28.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="50.0" top="50.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="#ffd736" strokeType="OUTSIDE" strokeWidth="0.0" text="Crear productos">
+               <font>
+                  <Font name="Montserrat SemiBold" size="22.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="50.0" top="30.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre del producto">
+               <VBox.margin>
+                  <Insets left="50.0" top="40.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Montserrat Medium" size="16.0" />
+               </font>
+            </Text>
+            <JFXTextField fx:id="txtPName" promptText="Nombre">
+               <VBox.margin>
+                  <Insets left="50.0" right="150.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Lista de ingredientes">
+               <font>
+                  <Font name="Montserrat Medium" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="50.0" top="40.0" />
+               </VBox.margin>
+            </Text>
+            <JFXTextArea fx:id="txtPIngrs" prefHeight="20.0" prefWidth="460.0" text="Nombres ingredientes">
+               <VBox.margin>
+                  <Insets left="50.0" right="150.0" />
+               </VBox.margin>
+            </JFXTextArea>
+            <JFXRadioButton fx:id="rbs1" text="separador: ,">
+               <VBox.margin>
+                  <Insets left="50.0" top="30.0" />
+               </VBox.margin>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="rbs2" text="separador ;">
+               <VBox.margin>
+                  <Insets left="50.0" top="15.0" />
+               </VBox.margin>
+            </JFXRadioButton>
+            <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de producto">
+               <font>
+                  <Font name="Montserrat Medium" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="50.0" top="40.0" />
+               </VBox.margin>
+            </Text>
+            <JFXRadioButton text="Plato principal">
+               <VBox.margin>
+                  <Insets left="50.0" top="15.0" />
+               </VBox.margin>
+            </JFXRadioButton>
+            <JFXRadioButton text="Adición">
+               <VBox.margin>
+                  <Insets left="50.0" top="15.0" />
+               </VBox.margin>
+            </JFXRadioButton>
+            <JFXRadioButton text="Bebida">
+               <VBox.margin>
+                  <Insets left="50.0" top="15.0" />
+               </VBox.margin>
+            </JFXRadioButton>
+            <JFXButton prefHeight="31.0" prefWidth="158.0" style="-fx-background-color: #D9A404;" text="Crear producto" textFill="#fff8cf">
+               <VBox.margin>
+                  <Insets left="50.0" top="50.0" />
+               </VBox.margin>
+            </JFXButton>
+         </children>
+      </VBox>
+      <TableView layoutX="467.0" layoutY="50.0" prefHeight="700.0" prefWidth="768.0" stylesheets="@../styles/tableStyle.css" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+         <columns>
+            <TableColumn prefWidth="171.0" text="Nombre ingrediente" />
+            <TableColumn prefWidth="179.0" text="Usuario creador" />
+            <TableColumn prefWidth="175.0" text="Último editor" />
+            <TableColumn prefWidth="69.0" text="Código" />
+            <TableColumn prefWidth="86.0" text="Valor" />
+            <TableColumn prefWidth="87.0" text="Editar" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
