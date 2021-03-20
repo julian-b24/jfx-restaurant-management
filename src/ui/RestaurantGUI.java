@@ -25,6 +25,7 @@ public class RestaurantGUI {
 
 	//other attributes
 	private String actualUser;
+	private String referenceIngredient;
 	
 	//MainAnchorPane
 	@FXML
@@ -81,7 +82,14 @@ public class RestaurantGUI {
     @FXML
     private TableColumn<Ingredient, Button> colEdit;
 
-       
+    //edit ingredient
+    @FXML
+    private JFXTextField txtNewIngName;
+
+    @FXML
+    private JFXTextField txtNewIngVal;
+
+   
     //    
     private Restaurant restaurant;
     
@@ -263,9 +271,38 @@ public class RestaurantGUI {
     	}
     }
     
+    @FXML
+    void LoadEditI(ActionEvent event) {
+    	Ingredient ing = tableIngr.getSelectionModel().getSelectedItem();
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editIngr-pane.fxml"));
+		fxmlLoader.setController(this); 	
+		
+		
+		Parent addContactPane = null;
+		try {
+			addContactPane = fxmlLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mainPane.getChildren().clear();
+		String css = "styles/tableStyle.css";
+		addContactPane.getStylesheets().add(css);
+		mainPane.getChildren().setAll(addContactPane);
+		
+		txtNewIngName.setText(ing.getName());
+		txtNewIngVal.setText(""+ing.getPrice());
+		referenceIngredient = ing.getName();
+    }
+    
+    @FXML
+    void updateIngredient(ActionEvent event) {
+    	if(!txtNewIngName.equals("") && !txtNewIngVal.equals("")) {
+    		restaurant.updateIngredient(referenceIngredient, txtNewIngName.getText(), txtNewIngVal.getText());
+    	}
+    }
+    
     public void initizalizeTableIngr() {
     		 ObservableList<Ingredient> accountArray = FXCollections.observableArrayList(restaurant.getIngredients());
-    		 tableIngr.setEditable(true);
     		 
     		 colIngr.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("name"));  		 
     		 

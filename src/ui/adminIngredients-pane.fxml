@@ -64,6 +64,7 @@
                </VBox.margin>
             </JFXButton>
             <JFXButton onAction="#reLoadAdminProducts" prefHeight="39.0" prefWidth="188.0" style="-fx-background-color: #D9A404;" text="Agregar ingrediente" textFill="#fff8bf" />
+            <JFXButton onAction="#LoadEditI" text="edit" textFill="WHITE" />
          </children>
       </VBox>
       <TableView fx:id="tableIngr" layoutX="501.0" layoutY="50.0" prefHeight="700.0" prefWidth="768.0" stylesheets="@../styles/tableStyle.css" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="50.0">
