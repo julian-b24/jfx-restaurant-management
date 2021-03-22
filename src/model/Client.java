@@ -2,7 +2,7 @@ package model;
 
 public class Client extends Person implements Comparable<Client>{
 	
-	private String adress;				//client adress
+	private String adress;				//client address
 	private String phone;				// client contact phone
 	private String obsField;			//client observation field
 	

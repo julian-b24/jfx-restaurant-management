@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import com.sun.corba.se.spi.orbutil.fsm.Action;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +22,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.Ingredient;
+import model.Product;
 import model.Restaurant;
 
 public class RestaurantGUI {
@@ -29,6 +31,7 @@ public class RestaurantGUI {
 	private String actualUser;						//A reference to the system user that is currently logged in
 	private String referenceIngredient;				//A reference to an ingredient selected in the ingredients table, that allows the program to recognize which ingredient has to be edited 
 	private ArrayList<Integer> tempIngrsIndex;		//Temporal list with the indexes of the ingredients that will be added
+	private String referenceProduct;
 	
 	//MainAnchorPane
 	@FXML
@@ -107,6 +110,30 @@ public class RestaurantGUI {
 
     @FXML
     private JFXRadioButton rbDrink;
+    //prodcut table
+    @FXML
+    private TableView<Product> tvProducts;
+
+    @FXML
+    private TableColumn<Product, String> colPname;
+
+    @FXML
+    private TableColumn<Product, String> colPIngs;
+
+    @FXML
+    private TableColumn<Product, String> colLEP;
+
+    @FXML
+    private TableColumn<Product, String> colPCode;
+
+    @FXML
+    private TableColumn<Product, String> coPPrice;
+
+    @FXML
+    private TableColumn<Product, String> colPav;
+
+    @FXML
+    private TableColumn<Product, String> colPType;
    
     //admin products
     @FXML
@@ -161,7 +188,7 @@ public class RestaurantGUI {
 					if(usernametxf.getText().equals(restaurant.getSystemUsers().get(i).getUserName()) &&
 							passwordtxf.getText().equals(restaurant.getSystemUsers().get(i).getPassword())) {
 						actualUser = usernametxf.getText();
-						loadMenu();
+						loadMenu(null);
 					}else {
 						//alert
 					}
@@ -201,7 +228,8 @@ public class RestaurantGUI {
 		mainPane.getChildren().setAll(addContactPane);
     }
     
-    void loadMenu() {
+    @FXML
+    void loadMenu(ActionEvent event) {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu-pane.fxml"));
 		fxmlLoader.setController(this); 	
 		
@@ -387,6 +415,7 @@ public class RestaurantGUI {
 		addContactPane.getStylesheets().add(css);
 		mainPane.getChildren().setAll(addContactPane);
 		initizalizeTableIngrProd();
+		initizalizeTableProducts();
 		
     }
     
@@ -406,7 +435,7 @@ public class RestaurantGUI {
     		}
     		
     		restaurant.createProduct(txtPName.getText(), actualUser, actualUser, tempIngrsIndex, type);
-
+    		
     		}
     }
     
@@ -451,5 +480,33 @@ public class RestaurantGUI {
 
 		return valid;
 	}
+	
+	 public void initizalizeTableProducts() {
+		 ObservableList<Product> productArray = FXCollections.observableArrayList(restaurant.getProducts());
+		 
+		 colPname.setCellValueFactory(new PropertyValueFactory<Product,String>("name"));  		 
+		 
+		 colPIngs.setCellValueFactory(new PropertyValueFactory<Product,String>("ingredients"));
+		 
+		 colLEP.setCellValueFactory(new PropertyValueFactory<Product,String>("lastEditorRef"));
+		 
+		 colPCode.setCellValueFactory(new PropertyValueFactory<Product,String>("code"));
+		 
+		 coPPrice.setCellValueFactory(new PropertyValueFactory<Product,String>("price")); 
+		 
+		 coPPrice.setCellValueFactory(new PropertyValueFactory<Product,String>("price"));    	
+
+		 colPav.setCellValueFactory(new PropertyValueFactory<Product,String>("available"));    	
+		 
+		 colPType.setCellValueFactory(new PropertyValueFactory<Product,String>("type"));    	
+		 
+		 tvProducts.setItems(productArray);	 
+	 }
+	 
+	 @FXML
+	 void loadEditProduct(ActionEvent event) {
+		 Product productX = tvProducts.getSelectionModel().getSelectedItem();
+		 
+	 }
     
 }

@@ -11,6 +11,7 @@ public class Product extends Saleable{
 	private ArrayList<Ingredient> ingredients;
 	private ArrayList<Size> sizes;
 	private ProductType type;
+	private double price;
 	
 	public Product(String name, String creatRef, String lastE, int lastCode, ArrayList<Ingredient> ingrdints, ProductType typ) {
 		super(name, creatRef, lastE, lastCode);
@@ -18,6 +19,7 @@ public class Product extends Saleable{
 		sizes = new ArrayList<Size>();
 		addSize(DEFAULT_SIZE);
 		type = typ;
+		price = 0;
 	}
 	
 	public void addSize(String sizeTxt) {
@@ -70,4 +72,21 @@ public class Product extends Saleable{
 		sizes = tempSizes;
 	}
 
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	/*public String typeToString() {
+		String type ="";
+		if(this.type.equals("MAIN_DISH")) {
+			type = "Plato principal";
+		}else if(this.type.equals("ADDITIONAL_DISH")) {
+			type = "Adicion";
+		}else {
+			type = "Bebida";
+		}
+		
+		return type;
+	}*/
+	
 }
