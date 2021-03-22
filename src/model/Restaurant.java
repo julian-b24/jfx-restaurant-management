@@ -2,9 +2,11 @@ package model;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -23,6 +25,13 @@ public class Restaurant implements Serializable{
 	public final static String ORDERS_PATH = "data/csv/orders.csv";
 	
 	public final static String REPORT_EMPLOYEES_CONSOLIDATED_PATH = "data/reports/consolidated_report.csv";
+	
+	final String SAVE_PATH_PRODUCTS = "system-files/products-files.txr";
+	final String SAVE_PATH_INGREDIENTS = "system-files/ingredients-files.txr";
+	final String SAVE_PATH_ORDERS = "system-files/orders-files.txr";
+	final String SAVE_PATH_CLIENTS = "system-files/clients-files.txr";
+	final String SAVE_PATH_EMPLOYEES = "system-files/employees-files.txr";
+	final String SAVE_PATH_SYSTEM_USERS = "system-files/system-users-files.txr";
 	
 	private ArrayList<Product> products;
 	private ArrayList<Ingredient> ingredients;
@@ -638,6 +647,30 @@ public class Restaurant implements Serializable{
 		this.orders = orders;
 	}
 	
-	
+	public void saveData() throws FileNotFoundException, IOException {
+		ObjectOutputStream oosI =  new ObjectOutputStream(new FileOutputStream(SAVE_PATH_INGREDIENTS));
+		oosI.writeObject(ingredients);
+		oosI.close();
+		
+		ObjectOutputStream oosP =  new ObjectOutputStream(new FileOutputStream(SAVE_PATH_PRODUCTS));
+		oosP.writeObject(products);
+		oosP.close();
+		
+		ObjectOutputStream oosO =  new ObjectOutputStream(new FileOutputStream(SAVE_PATH_ORDERS));
+		oosO.writeObject(orders);
+		oosO.close();
+		
+		ObjectOutputStream oosC =  new ObjectOutputStream(new FileOutputStream(SAVE_PATH_CLIENTS));
+		oosC.writeObject(clients);
+		oosC.close();
+		
+		ObjectOutputStream oosS =  new ObjectOutputStream(new FileOutputStream(SAVE_PATH_SYSTEM_USERS));
+		oosS.writeObject(systemUsers);
+		oosS.close();
+		
+		ObjectOutputStream oosE =  new ObjectOutputStream(new FileOutputStream(SAVE_PATH_EMPLOYEES));
+		oosS.writeObject(employees);
+		oosS.close();
+	}
 	
 }
