@@ -76,6 +76,21 @@ public class Product extends Saleable{
 		this.price = price;
 	}
 
+	public Size getSizeByName(String sizeString) {
+		
+		Size size = null;
+		
+		boolean found = false;
+		for (int i = 0; i < sizes.size() && !found; i++) {
+			if (sizes.get(i).getSize().equals(sizeString)) {
+				size = sizes.get(i);
+				found = true;
+			}
+		}
+		
+		return size;
+	}
+
 	/*public String typeToString() {
 		String type ="";
 		if(this.type.equals("MAIN_DISH")) {

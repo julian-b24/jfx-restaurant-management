@@ -21,8 +21,9 @@ public class Order implements Serializable{
 	private double totalPrice;
 	
 	private State state;
+	private ArrayList<Size> sizes;
 	
-	public Order(int cod, String obs, String clntRef, int mployeRef, LocalDate dte, ArrayList<Product> products, ArrayList<Integer> amountEach) {
+	public Order(int cod, String obs, String clntRef, int mployeRef, LocalDate dte, ArrayList<Product> products, ArrayList<Integer> amountEach, ArrayList<Size> sizs) {
 		
 		code = cod;
 		observations = obs;
@@ -33,11 +34,12 @@ public class Order implements Serializable{
 		amountPerEach = amountEach;
 		calculateTotalPrice();
 		state = State.REQUESTED;
+		sizes = sizs;
 	}
 	
-	public Order(int cod, String obs, String clntRef, int mployeRef, LocalDate dte, ArrayList<Product> products, ArrayList<Integer> amountEach, String stae) {
+	public Order(int cod, String obs, String clntRef, int mployeRef, LocalDate dte, ArrayList<Product> products, ArrayList<Integer> amountEach, ArrayList<Size> sizs, String stae) {
 		
-		this(cod, obs, clntRef, mployeRef, dte, products, amountEach);
+		this(cod, obs, clntRef, mployeRef, dte, products, amountEach, sizs);
 		state = State.valueOf(stae);
 	}
 
@@ -150,6 +152,14 @@ public class Order implements Serializable{
 	
 	public int compareEmployeeRef(Order order) {
 		return employeeRef - order.getEmployeeRef();
+	}
+
+	public ArrayList<Size> getSizes() {
+		return sizes;
+	}
+
+	public void setSizes(ArrayList<Size> sizes) {
+		this.sizes = sizes;
 	}
 	
 }
