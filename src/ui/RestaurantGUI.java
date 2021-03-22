@@ -1,7 +1,10 @@
 package ui;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
 import javafx.collections.FXCollections;
@@ -13,10 +16,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import model.Ingredient;
 import model.Restaurant;
@@ -24,8 +26,9 @@ import model.Restaurant;
 public class RestaurantGUI {
 
 	//other attributes
-	private String actualUser;
-	private String referenceIngredient;
+	private String actualUser;						//A reference to the system user that is currently logged in
+	private String referenceIngredient;				//A reference to an ingredient selected in the ingredients table, that allows the program to recognize which ingredient has to be edited 
+	private ArrayList<Integer> tempIngrsIndex;		//Temporal list with the indexes of the ingredients that will be added
 	
 	//MainAnchorPane
 	@FXML
@@ -89,13 +92,48 @@ public class RestaurantGUI {
     @FXML
     private JFXTextField txtNewIngVal;
 
+    //admin products
+    @FXML
+    private JFXTextField txtPName;
+
+    @FXML
+    private JFXRadioButton rbMainDish;
+
+    @FXML
+    private ToggleGroup types;
+
+    @FXML
+    private JFXRadioButton rbAdition;
+
+    @FXML
+    private JFXRadioButton rbDrink;
    
+    //admin products
+    @FXML
+    private TableView<Ingredient> tvIngP;
+
+    @FXML
+    private TableColumn<Ingredient, String> colNip;
+
+    @FXML
+    private TableColumn<Ingredient, String> colIngcreP;
+
+    @FXML
+    private TableColumn<Ingredient, String> colIngLastEP;
+
+    @FXML
+    private TableColumn<Ingredient, String> colIngCodP;
+
+    @FXML
+    private TableColumn<Ingredient, String> colIngVal;
+    
     //    
     private Restaurant restaurant;
     
     //Constructor
     public RestaurantGUI(Restaurant restaurant) {
 		this.restaurant = restaurant;
+		tempIngrsIndex = new ArrayList<>();
 	}
 
 	//Login methods
@@ -302,7 +340,7 @@ public class RestaurantGUI {
     }
     
     public void initizalizeTableIngr() {
-    		 ObservableList<Ingredient> accountArray = FXCollections.observableArrayList(restaurant.getIngredients());
+    		 ObservableList<Ingredient> ingredientArray = FXCollections.observableArrayList(restaurant.getIngredients());
     		 
     		 colIngr.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("name"));  		 
     		 
@@ -314,14 +352,29 @@ public class RestaurantGUI {
     		 
     		 colValue.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("price"));    		
     		 
-    		 tableIngr.setItems(accountArray);	 
+    		 tableIngr.setItems(ingredientArray);	 
     	 }
+    
+    public void initizalizeTableIngrProd() {
+		 ObservableList<Ingredient> ingredientArrays = FXCollections.observableArrayList(restaurant.getIngredients());
+		 
+		 colNip.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("name"));  		 
+		 
+		 colIngcreP.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("creatorRef"));
+		 
+		 colIngLastEP.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("lastEditorRef"));
+		 
+		 colIngCodP.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("code"));
+		 
+		 colIngVal.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("price"));    		
+		 
+		 tvIngP.setItems(ingredientArrays);	 
+	 }
     
     @FXML
     void loadAProducts(ActionEvent event) {
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("adminProduct-pane.fxml"));
 		fxmlLoader.setController(this); 	
-		
 		
 		Parent addContactPane = null;
 		try {
@@ -333,9 +386,70 @@ public class RestaurantGUI {
 		String css = "styles/tableStyle.css";
 		addContactPane.getStylesheets().add(css);
 		mainPane.getChildren().setAll(addContactPane);
+		initizalizeTableIngrProd();
 		
     }
     
-   
+    @FXML
+    void createProduct(ActionEvent event) {
+    	String type="";
+    	boolean valid = validateInputProduct();
+    	System.out.println(valid);
+    	if(valid) {
+    		
+    		if(rbMainDish.isSelected()) {
+    			type = "MAIN_DISH";
+    		}else if(rbAdition.isSelected()) {
+    			type = "ADDITIONAL_DISH";
+    		}else {
+    			type = "DRINK";
+    		}
+    		
+    		restaurant.createProduct(txtPName.getText(), actualUser, actualUser, tempIngrsIndex, type);
+
+    		}
+    }
+    
+    @FXML
+    void addIngredientToProduct(ActionEvent event) {
+    	Ingredient ingrX = tvIngP.getSelectionModel().getSelectedItem();
+    
+    	if(tempIngrsIndex.size()>0) {
+    		boolean canAdd = searchTempIngr(ingrX.getCode());
+	    if(canAdd) {
+	    		tempIngrsIndex.add(ingrX.getCode());
+
+	    	}
+    	}else {
+    		tempIngrsIndex.add(ingrX.getCode());
+
+    	}
+	    		
+    }
+    
+    public boolean searchTempIngr(int codeI) {
+    	boolean found=false;
+    	for (int i = 0; i < tempIngrsIndex.size() && !found; i++) {
+			if(tempIngrsIndex.get(i)==codeI) {
+				found = true;
+			}
+		}
+    	return found;
+    }
+
+	private boolean validateInputProduct() {
+		
+		boolean valid = true;
+
+		if(txtPName.getText().equals("")) {
+			valid = false;
+		}
+
+		if(!rbMainDish.isSelected() && !rbAdition.isSelected() && !rbDrink.isSelected()) {
+			valid = false;
+		}
+
+		return valid;
+	}
     
 }
