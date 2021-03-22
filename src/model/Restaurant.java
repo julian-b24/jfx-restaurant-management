@@ -275,7 +275,7 @@ public class Restaurant implements Serializable{
 	}
 	
 	//Req 1.8
-	public void createOrder(ArrayList<Integer> productsCodes, ArrayList<Integer> productsAmounts, String clientRef, 
+	public void createOrder(ArrayList<Integer> productsCodes, ArrayList<Integer> productsAmounts, ArrayList<String> productsSizes, String clientRef, 
 							int employeeRef, LocalDate dateRequest, String obs, String state) throws IOException {
 		
 		/*
@@ -289,9 +289,13 @@ public class Restaurant implements Serializable{
 		}
 		 */
 		ArrayList<Product> productsOrdered = new ArrayList<Product>();
-		for (Integer code : productsCodes) {
-			Product tempProduct = getProductByCode(code);
+		ArrayList<Size> sizes = new ArrayList<Size>();
+		for (int i = 0;  i < productsCodes.size(); i++) {
+			Product tempProduct = getProductByCode(productsCodes.get(i));
 			productsOrdered.add(tempProduct);
+			
+			Size size = tempProduct.getSizeByName(productsSizes.get(i));
+			sizes.add(size);
 		}
 		
 		//Builds the code of the order
@@ -300,11 +304,13 @@ public class Restaurant implements Serializable{
 			code = orders.get(orders.size() - 1).getCode() + 1;
 		}
 		
+		
+		
 		Order order;
 		if (state == null) {
-			order = new Order(code, obs, clientRef, employeeRef, dateRequest, productsOrdered, productsAmounts);
+			order = new Order(code, obs, clientRef, employeeRef, dateRequest, productsOrdered, productsAmounts, sizes);
 		} else {
-			order = new Order(code, obs, clientRef, employeeRef, dateRequest, productsOrdered, productsAmounts, state);
+			order = new Order(code, obs, clientRef, employeeRef, dateRequest, productsOrdered, productsAmounts, sizes, state);
 		}
 		
 		orders.add(order);
@@ -482,7 +488,7 @@ public class Restaurant implements Serializable{
 			amounts.add(Integer.parseInt(values[9]));
 			amounts.add(Integer.parseInt(values[10]));
 			String state = values[11];
-			createOrder(productsTemp, amounts, ccClient, employeeId, date, obs, state);
+			createOrder(productsTemp, amounts, null, ccClient, employeeId, date, obs, state); //Add list of Strings
 		}
 		
 		br.close();
