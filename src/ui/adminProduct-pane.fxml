@@ -96,7 +96,7 @@
             <Button mnemonicParsing="false" onAction="#loadEditProduct" text="Editar" />
          </children>
       </VBox>
-      <TableView fx:id="tvIngP" layoutX="467.0" layoutY="50.0" prefHeight="330.0" prefWidth="768.0" stylesheets="@../styles/tableStyle.css" AnchorPane.bottomAnchor="420.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+      <TableView fx:id="tvIngP" layoutX="462.0" layoutY="54.0" prefHeight="330.0" prefWidth="768.0" stylesheets="@../styles/tableStyle.css" AnchorPane.bottomAnchor="416.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="54.0">
          <columns>
             <TableColumn fx:id="colNip" prefWidth="185.0" text="Nombre ingrediente" />
             <TableColumn fx:id="colIngcreP" prefWidth="183.0" text="Usuario creador" />

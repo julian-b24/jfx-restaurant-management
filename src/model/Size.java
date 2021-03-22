@@ -1,6 +1,8 @@
 package model;
 
-public class Size {
+import java.io.Serializable;
+
+public class Size implements Serializable{
 	
 	private static final double DEFAULT_PRICE_FACTOR = 1;
 	
