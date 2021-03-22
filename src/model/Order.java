@@ -147,4 +147,8 @@ public class Order {
 		
 	}
 	
+	public int compareEmployeeRef(Order order) {
+		return employeeRef - order.getEmployeeRef();
+	}
+	
 }

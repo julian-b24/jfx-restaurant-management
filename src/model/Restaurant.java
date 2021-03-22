@@ -1,9 +1,14 @@
 package model;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,6 +25,8 @@ public class Restaurant {
 	public final static String CLIENTS_PATH = "data/csv/clients.csv";
 	public final static String PRODUCTS_PATH = "data/csv/products.csv";
 	public final static String ORDERS_PATH = "data/csv/orders.csv";
+	
+	public final static String REPORT_EMPLOYEES_CONSOLIDATED_PATH = "data/reports/consolidated_report.csv";
 	
 	private ArrayList<Product> products;
 	private ArrayList<Ingredient> ingredients;
@@ -449,6 +456,99 @@ public class Restaurant {
 		
 		br.close();
 	}
+	
+	//Process Req 2.2
+	public void sortOrdersByEmployeesId() {
+		
+		//Insertion sort
+		for (int i = 0; i < orders.size(); i++) {
+			int posMin = i;
+			for (int j = i + 1; j < orders.size(); j++) {
+				
+				if (orders.get(j).compareEmployeeRef(orders.get(i)) < 0) {
+					posMin = j;
+				}
+			}
+			Order aux = orders.get(i);
+			orders.set(i, orders.get(posMin));
+			orders.set(posMin, aux);
+		}
+	}
+	
+	/**
+	 * Generates the info of the consolidates report of employees.
+	 * <b> pre: </b> The list of employees must be sorted by id and the orders must be sorted by the employeeRef <br>
+	 * @param low 
+	 * @param top 
+	 * @return A HashMap with the info. The keys are the employees and the values are ArrayLists of the orders that references the employee
+	 */
+	public Map<Employee, ArrayList<Order>> getInfoReportEmployeesConsolidated(LocalDate top, LocalDate low) {
+		
+		Map<Employee, ArrayList<Order>> report = new HashMap<Employee, ArrayList<Order>>();
+		
+		int j = 0;	//Index to iterate over the orders
+		
+		for (Employee employee : employees) {
+			ArrayList<Order> tempOrders = new ArrayList<Order>();
+			
+			boolean stop = false;
+			while (j < orders.size() && !stop) {
+				
+				if (employee.getEmployeeId() == orders.get(j).getEmployeeRef()) {
+					if (isBetweenDates(orders.get(j).getDate(), low, top) ) {
+						tempOrders.add(orders.get(j));
+					}
+					
+					j++;
+				} else {
+					stop = true;
+				}
+			}
+			
+			report.put(employee, tempOrders);
+		}
+		
+		return report;
+	}
+	
+	public boolean isBetweenDates(LocalDate date, LocalDate low, LocalDate top) {
+		
+		boolean between = false;
+		boolean greaterOrEqual = date.isAfter(low) || date.isEqual(low);
+		boolean lowerOrEqual = date.isBefore(top) || date.isEqual(top);
+		between = greaterOrEqual && lowerOrEqual;
+		
+		return between;
+	}
+	
+	public void generateReportEmployeesConsolidated(String lowDate, String topDate) throws IOException {
+		
+		PrintWriter pw = new PrintWriter(REPORT_EMPLOYEES_CONSOLIDATED_PATH);
+		sortOrdersByEmployeesId();
+		
+		LocalDate top = LocalDate.parse(topDate, DateTimeFormatter.ofPattern(Order.DATE_FORMAT));
+		LocalDate low = LocalDate.parse(lowDate, DateTimeFormatter.ofPattern(Order.DATE_FORMAT));
+		
+		Map<Employee, ArrayList<Order>> info = getInfoReportEmployeesConsolidated(top, low);
+		
+		pw.println("employeeId;employeeName;totalSales;numSales");
+		
+		for (Map.Entry<Employee, ArrayList<Order>> entry : info.entrySet()) {
+			
+			double totalSales = 0;
+			for (Order order : entry.getValue()) {
+				totalSales += order.getTotalPrice();
+			}
+			
+			int numSales = entry.getValue().size();
+			pw.println(	entry.getKey().getEmployeeId() + ";" + entry.getKey().getName() + ";" +
+						totalSales + ";" + numSales);
+		}
+		
+		
+		pw.close();
+	}
+	
 	
 	public ArrayList<Client> getClients() {
 		return clients;

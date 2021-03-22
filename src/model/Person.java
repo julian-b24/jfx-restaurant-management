@@ -1,6 +1,6 @@
 package model;
 
-public class Person {
+public abstract class Person {
 	
 	protected String name;					//name of the person
 	protected String lastName;				//lastname of the person

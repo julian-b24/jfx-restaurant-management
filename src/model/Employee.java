@@ -20,6 +20,8 @@ public class Employee extends Person{
 		this.employeeId = employeeId;
 	}
 	
-	
+	public int compareById(Employee employee) {
+		return employeeId - employee.getEmployeeId();
+	}
 	
 }
