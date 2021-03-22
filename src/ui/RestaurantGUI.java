@@ -600,6 +600,7 @@ public class RestaurantGUI {
 	 
 	 @FXML
 	 void loadEditProduct(ActionEvent event) {
+		 //add a colleciton 
 		 Product productX = tvProducts.getSelectionModel().getSelectedItem();
 		 for (int i = 0; i < productX.getIngredients().size(); i++) {
 			tempIngrsCodes.add(productX.getIngredients().get(i).getCode());
@@ -631,13 +632,13 @@ public class RestaurantGUI {
 			}
 			
 			//type
-			/*if(productX.getType().equals("MAIN_DISH")) {
+			if(productX.getType().toString().equals("MAIN_DISH")){
 				rbPMainDish.setSelected(true);
-			}else if(productX.getType().equals("ADDITIONAL_DISH")) {
+			}else if(productX.getType().toString().equals("ADDITIONAL_DISH")){
 				rbPAd.setSelected(true);
-			}else if(productX.getType().equals("DRINK")){
+			}else if(productX.getType().toString().equals("DRINK")){
 				rbPDrink.setSelected(true);
-			}*/
+			}
 			
 			initializeIngsInProduct(productX);
 			initializeAllRegisIngs();
@@ -663,15 +664,12 @@ public class RestaurantGUI {
 				 actionIngtxt.setText("");
 			 }
 		 }
+		 System.out.println(tempIngrsCodes.size());
 		 
-
     }
 
     @FXML
     void removeIngrFromProduct(ActionEvent event) {
-
-			 System.out.println(tempIngrsCodes.size());
-
     	
     	Ingredient ingrToRemove = tvIdp.getSelectionModel().getSelectedItem();
 		if(ingrToRemove!=null && actionIngtxt.equals("")) {
@@ -683,9 +681,6 @@ public class RestaurantGUI {
 				 tempIngrsCodes.remove(restaurant.binarySearchIng(actionIngtxt.getText(), restaurant.getIngredients()));
 			 }
 		 }
-		
-
-			 System.out.println(tempIngrsCodes.size());
 
     }
 

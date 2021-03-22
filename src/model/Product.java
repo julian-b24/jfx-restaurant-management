@@ -100,17 +100,5 @@ public class Product extends Saleable{
 		return size;
 	}
 
-	/*public String typeToString() {
-		String type ="";
-		if(this.type.equals("MAIN_DISH")) {
-			type = "Plato principal";
-		}else if(this.type.equals("ADDITIONAL_DISH")) {
-			type = "Adicion";
-		}else {
-			type = "Bebida";
-		}
-		
-		return type;
-	}*/
 	
 }
