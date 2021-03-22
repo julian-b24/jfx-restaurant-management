@@ -33,5 +33,5 @@ public class Ingredient extends Saleable implements Serializable{
 	public void setReferences(ArrayList<String> references) {
 		this.references = references;
 	}
-
+	
 }

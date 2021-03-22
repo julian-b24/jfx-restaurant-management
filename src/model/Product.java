@@ -6,6 +6,11 @@ import java.util.Map;
 
 public class Product extends Saleable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public static final String DEFAULT_SIZE = "Standard";
 	
 	private ArrayList<Ingredient> ingredients;
@@ -74,6 +79,10 @@ public class Product extends Saleable{
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public ArrayList<Size> getSizes() {
+		return sizes;
 	}
 
 	/*public String typeToString() {

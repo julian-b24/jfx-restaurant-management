@@ -24,13 +24,14 @@ import javafx.scene.layout.AnchorPane;
 import model.Ingredient;
 import model.Product;
 import model.Restaurant;
+import model.Size;
 
 public class RestaurantGUI {
 
 	//other attributes
 	private String actualUser;						//A reference to the system user that is currently logged in
 	private String referenceIngredient;				//A reference to an ingredient selected in the ingredients table, that allows the program to recognize which ingredient has to be edited 
-	private ArrayList<Integer> tempIngrsIndex;		//Temporal list with the indexes of the ingredients that will be added
+	private ArrayList<Integer> tempIngrsCodes;		//Temporal list with the indexes of the ingredients that will be added to the product
 	private String referenceProduct;
 	
 	//MainAnchorPane
@@ -154,13 +155,85 @@ public class RestaurantGUI {
     @FXML
     private TableColumn<Ingredient, String> colIngVal;
     
-    //    
+    //edit products
+    @FXML
+    private JFXTextField txtNewProductName;
+
+    @FXML
+    private JFXTextField txtNewProductPrice;
+
+    @FXML
+    private JFXRadioButton rbProductAvailable;
+
+    @FXML
+    private ToggleGroup state;
+
+    @FXML
+    private JFXRadioButton rbProductUnavailable;
+
+    @FXML
+    private JFXTextField actionIngtxt;
+
+    @FXML
+    private TableView<Ingredient> tvallInings;
+
+    @FXML
+    private TableColumn<Ingredient, String> colAlIngsNames;
+
+    @FXML
+    private TableColumn<Ingredient, String> colAllIngsCodes;
+
+    @FXML
+    private TableColumn<Ingredient, String> colAllINgPrices;
+
+    @FXML
+    private TableView<Ingredient> tvIdp;
+
+    @FXML
+    private TableColumn<Ingredient, String> colIngInProduct;
+
+    @FXML
+    private TableColumn<Ingredient, String> colIngInPCode;
+
+    @FXML
+    private TableColumn<Ingredient, String> colIngInPPrice;
+    
+    @FXML
+    private TableView<Size> tvProdSizes;
+
+    @FXML
+    private TableColumn<Size, String> colProdSizeName;
+
+    @FXML
+    private TableColumn<Size, String> colProdSizePrice;
+    //
     private Restaurant restaurant;
+    
+    @FXML
+    private JFXTextField txtAddNameSize;
+
+    @FXML
+    private JFXTextField txtMultiply;
+    
+    @FXML
+    private ToggleGroup pState;
+    
+    @FXML
+    private JFXRadioButton rbPMainDish;
+
+    @FXML
+    private ToggleGroup ptype;
+
+    @FXML
+    private JFXRadioButton rbPAd;
+
+    @FXML
+    private JFXRadioButton rbPDrink;
     
     //Constructor
     public RestaurantGUI(Restaurant restaurant) {
 		this.restaurant = restaurant;
-		tempIngrsIndex = new ArrayList<>();
+		tempIngrsCodes = new ArrayList<>();
 	}
 
 	//Login methods
@@ -451,7 +524,8 @@ public class RestaurantGUI {
     		}
     		
     		try {
-				restaurant.createProduct(txtPName.getText(), actualUser, actualUser, tempIngrsIndex, type);
+				restaurant.createProduct(txtPName.getText(), actualUser, actualUser, tempIngrsCodes, type);
+				tempIngrsCodes.clear();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -464,14 +538,14 @@ public class RestaurantGUI {
     void addIngredientToProduct(ActionEvent event) {
     	Ingredient ingrX = tvIngP.getSelectionModel().getSelectedItem();
     
-    	if(tempIngrsIndex.size()>0) {
+    	if(tempIngrsCodes.size()>0) {
     		boolean canAdd = searchTempIngr(ingrX.getCode());
 	    if(canAdd) {
-	    		tempIngrsIndex.add(ingrX.getCode());
+	    		tempIngrsCodes.add(ingrX.getCode());
 
 	    	}
     	}else {
-    		tempIngrsIndex.add(ingrX.getCode());
+    		tempIngrsCodes.add(ingrX.getCode());
 
     	}
 	    		
@@ -479,8 +553,8 @@ public class RestaurantGUI {
     
     public boolean searchTempIngr(int codeI) {
     	boolean found=false;
-    	for (int i = 0; i < tempIngrsIndex.size() && !found; i++) {
-			if(tempIngrsIndex.get(i)==codeI) {
+    	for (int i = 0; i < tempIngrsCodes.size() && !found; i++) {
+			if(tempIngrsCodes.get(i)==codeI) {
 				found = true;
 			}
 		}
@@ -527,7 +601,131 @@ public class RestaurantGUI {
 	 @FXML
 	 void loadEditProduct(ActionEvent event) {
 		 Product productX = tvProducts.getSelectionModel().getSelectedItem();
+		 for (int i = 0; i < productX.getIngredients().size(); i++) {
+			tempIngrsCodes.add(productX.getIngredients().get(i).getCode());
+		}
 		 
+		 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editProduct-pane.fxml"));
+			fxmlLoader.setController(this); 	
+			
+			Parent addContactPane = null;
+			try {
+				addContactPane = fxmlLoader.load();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			mainPane.getChildren().clear();
+			String css = "styles/tableStyle.css";
+			addContactPane.getStylesheets().add(css);
+			mainPane.getChildren().setAll(addContactPane);
+			
+			//set Screen
+			txtNewProductName.setText(productX.getName());
+			txtNewProductPrice.setText(""+productX.getPrice());
+			
+			//available
+			if(productX.isAvailable()) {
+				rbProductAvailable.setSelected(true);
+			}else {
+				rbProductUnavailable.setSelected(true);
+			}
+			
+			//type
+			/*if(productX.getType().equals("MAIN_DISH")) {
+				rbPMainDish.setSelected(true);
+			}else if(productX.getType().equals("ADDITIONAL_DISH")) {
+				rbPAd.setSelected(true);
+			}else if(productX.getType().equals("DRINK")){
+				rbPDrink.setSelected(true);
+			}*/
+			
+			initializeIngsInProduct(productX);
+			initializeAllRegisIngs();
+			initSizesProduct(productX);
+			
 	 }
+	 
+	 @FXML
+	 void addIngrToProduct(ActionEvent event) {
+		
+		 Ingredient ingrToAdd = tvallInings.getSelectionModel().getSelectedItem();
+		
+		 
+		 if(ingrToAdd!=null) {
+			 
+			 tempIngrsCodes.add(ingrToAdd.getCode());
+		 }else if(!actionIngtxt.getText().equals(actionIngtxt.getPromptText())) {
+			 
+			 boolean exists = restaurant.searchIngredient(actionIngtxt.getText());
+
+			 if(exists) {
+				 tempIngrsCodes.add(restaurant.binarySearchIng(actionIngtxt.getText(), restaurant.getIngredients()));
+				 actionIngtxt.setText("");
+			 }
+		 }
+		 
+
+    }
+
+    @FXML
+    void removeIngrFromProduct(ActionEvent event) {
+
+			 System.out.println(tempIngrsCodes.size());
+
+    	
+    	Ingredient ingrToRemove = tvIdp.getSelectionModel().getSelectedItem();
+		if(ingrToRemove!=null && actionIngtxt.equals("")) {
+			
+			tempIngrsCodes.remove(ingrToRemove.getCode());
+		}else if(ingrToRemove==null && !actionIngtxt.equals("")) {
+			 boolean exists = restaurant.searchIngredient(actionIngtxt.getText());
+			 if(exists) {
+				 tempIngrsCodes.remove(restaurant.binarySearchIng(actionIngtxt.getText(), restaurant.getIngredients()));
+			 }
+		 }
+		
+
+			 System.out.println(tempIngrsCodes.size());
+
+    }
+
+    @FXML
+    void updateProduct(ActionEvent event) {
+
+   	}
     
+    public void initializeIngsInProduct(Product px) {
+    	
+    	ObservableList<Ingredient> ingredientsInProduct = FXCollections.observableArrayList(px.getIngredients());
+		 
+		 colIngInProduct.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("name"));  		 
+		 
+		 colIngInPCode.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("code"));
+		 
+		 colIngInPPrice.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("price"));    		
+		 
+		 tvIdp.setItems(ingredientsInProduct);
+    }
+    
+    public void initializeAllRegisIngs() {
+    	ObservableList<Ingredient> ingredientsInProduct = FXCollections.observableArrayList(restaurant.getIngredients());
+		 
+    	colAlIngsNames.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("name"));  		 
+		 
+    	colAllIngsCodes.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("code"));
+		 
+    	colAllINgPrices.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("price"));    		
+		 
+    	tvallInings.setItems(ingredientsInProduct);
+    }
+    
+    public void initSizesProduct(Product px) {
+    	ObservableList<Size> productSizes = FXCollections.observableArrayList(px.getSizes());
+		 
+    	colProdSizeName.setCellValueFactory(new PropertyValueFactory<Size,String>("size"));  		 
+		 
+    	colProdSizePrice.setCellValueFactory(new PropertyValueFactory<Size,String>("priceFactor"));   		
+		
+    	tvProdSizes.setItems(productSizes);
+    }
 }

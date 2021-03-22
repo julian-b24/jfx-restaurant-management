@@ -70,11 +70,10 @@
       <TableView fx:id="tableIngr" layoutX="501.0" layoutY="50.0" prefHeight="700.0" prefWidth="768.0" stylesheets="@../styles/tableStyle.css" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="50.0">
         <columns>
           <TableColumn fx:id="colIngr" prefWidth="171.0" text="Nombre ingrediente" />
-          <TableColumn fx:id="colCreator" prefWidth="179.0" text="Usuario creador" />
-            <TableColumn fx:id="colLastE" prefWidth="175.0" text="Último editor" />
-            <TableColumn fx:id="colCode" prefWidth="69.0" text="Código" />
-            <TableColumn fx:id="colValue" prefWidth="86.0" text="Valor" />
-            <TableColumn fx:id="colEdit" prefWidth="87.0" text="Editar" />
+          <TableColumn fx:id="colCreator" prefWidth="193.0" text="Usuario creador" />
+            <TableColumn fx:id="colLastE" prefWidth="195.0" text="Último editor" />
+            <TableColumn fx:id="colCode" prefWidth="99.0" text="Código" />
+            <TableColumn fx:id="colValue" prefWidth="109.0" text="Valor" />
         </columns>
       </TableView>
    </children>
