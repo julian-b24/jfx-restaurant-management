@@ -1,10 +1,13 @@
 package model;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -637,6 +640,53 @@ public class Restaurant {
 		this.orders = orders;
 	}
 	
-	
+	public void loadData() throws IOException, ClassNotFoundException{
+		
+		File fileProducts = new File(SAVE_PATH_PRODUCTS);
+		File fileIngredients = new File(SAVE_PATH_INGREDIENTS);
+		File fileClients = new File(SAVE_PATH_CLIENTS);
+		File fileEmployees = new File(SAVE_PATH_EMPLOYEES);
+		File fileSystemUsers = new File(SAVE_PATH_SYSTEM_USERS);
+		File fileOrders = new File(SAVE_PATH_ORDERS);
+		
+
+		if (fileProducts.exists()) {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileProducts));
+			products = (ArrayList<Product>) ois.readObject();
+			ois.close();
+		}
+		
+		
+		if (fileIngredients.exists()) {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileIngredients));
+			ingredients = (ArrayList<Ingredient>) ois.readObject();
+			ois.close();
+		}
+		
+		if (fileClients.exists()) {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileClients));
+			clients = (ArrayList<Client>) ois.readObject();
+			ois.close();
+		}
+		
+		if (fileEmployees.exists()) {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileEmployees));
+			employees = (ArrayList<Employee>) ois.readObject();
+			ois.close();
+		}
+
+		if (fileSystemUsers.exists()) {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileSystemUsers));
+			systemUsers = (ArrayList<SystemUser>) ois.readObject();
+			ois.close();
+		}
+		
+		
+		if (fileOrders.exists()) {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileOrders));
+			orders = (ArrayList<Order>) ois.readObject();
+			ois.close();
+		}
+	}
 	
 }
