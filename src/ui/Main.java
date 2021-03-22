@@ -34,6 +34,7 @@ public class Main extends Application{
 		primaryStage.setTitle("Casa Dorada");
 		primaryStage.show();
 		restaurantGUI.loadLogin(null);
+		restaurant.loadData();
 	}
 
 }

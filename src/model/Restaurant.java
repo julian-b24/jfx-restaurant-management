@@ -32,12 +32,12 @@ public class Restaurant implements Serializable{
 	
 	public final static String REPORT_EMPLOYEES_CONSOLIDATED_PATH = "data/reports/consolidated_report.csv";
 	
-	final String SAVE_PATH_PRODUCTS = "system-files/products-files.txr";
-	final String SAVE_PATH_INGREDIENTS = "system-files/ingredients-files.txr";
-	final String SAVE_PATH_ORDERS = "system-files/orders-files.txr";
-	final String SAVE_PATH_CLIENTS = "system-files/clients-files.txr";
-	final String SAVE_PATH_EMPLOYEES = "system-files/employees-files.txr";
-	final String SAVE_PATH_SYSTEM_USERS = "system-files/system-users-files.txr";
+	final String SAVE_PATH_PRODUCTS = "data/system-files/products-files.txr";
+	final String SAVE_PATH_INGREDIENTS = "data/system-files/ingredients-files.txr";
+	final String SAVE_PATH_ORDERS = "data/system-files/orders-files.txr";
+	final String SAVE_PATH_CLIENTS = "data/system-files/clients-files.txr";
+	final String SAVE_PATH_EMPLOYEES = "data/system-files/employees-files.txr";
+	final String SAVE_PATH_SYSTEM_USERS = "data/system-files/system-users-files.txr";
 	
 	private ArrayList<Product> products;
 	private ArrayList<Ingredient> ingredients;
@@ -55,7 +55,7 @@ public class Restaurant implements Serializable{
 		employees = new ArrayList<>();
 	}
 	
-	public void createSystemUser(String nam, String lastN, String ccP, String user, String passw) {
+	public void createSystemUser(String nam, String lastN, String ccP, String user, String passw) throws IOException {
 		
 		int lastId = 0;
 		if(systemUsers.size()>0) {
@@ -65,10 +65,13 @@ public class Restaurant implements Serializable{
 		}else {
 			SystemUser newUser = new SystemUser(nam, lastN, ccP, user, passw, lastId);
 			systemUsers.add(newUser);
-		}		
+		}	
+		
+		saveSystemUser();
+		
 	}
 	
-	public void createEmployee(String nam, String lastN, String ccP) {
+	public void createEmployee(String nam, String lastN, String ccP) throws IOException {
 		
 		int lastId = 0;
 		if(employees.size()>0) {
@@ -79,9 +82,11 @@ public class Restaurant implements Serializable{
 			Employee newEmployee = new Employee(nam, lastN, ccP, lastId);
 			employees.add(newEmployee);
 		}
+		
+		saveEmployeeData();
 	}
 	
-	public void createClient(String nam, String lastN, String ccP, String adrs, String phn, String obs){
+	public void createClient(String nam, String lastN, String ccP, String adrs, String phn, String obs) throws IOException{
 		
 		int pos = 0;
 		Client clientX = new Client(nam, lastN, ccP, adrs, phn, obs);
@@ -96,6 +101,8 @@ public class Restaurant implements Serializable{
 		}else {
 			clients.add(clientX);
 		}
+
+		saveClientsData();
 	}
 	
 	public int binarySearch(String fullName, ArrayList<Client> clients) {
@@ -135,7 +142,7 @@ public class Restaurant implements Serializable{
 	}
 	
 	//Req 1.1
-	public void createProduct(String name, String creatorRef, String lastEditor, ArrayList<Integer> ingredientsCodes, String typ) {
+	public void createProduct(String name, String creatorRef, String lastEditor, ArrayList<Integer> ingredientsCodes, String typ) throws IOException {
 		
 		//Getting ingredients from list of ingredients
 		ArrayList<Ingredient> tempIngredients = getIngredientsByCode(ingredientsCodes);
@@ -154,6 +161,8 @@ public class Restaurant implements Serializable{
 		
 		Product product = new Product(name, creatorRef, lastEditor, lastCode, tempIngredients, type);
 		products.add(product);
+		saveProductsData();
+		
 	}
 	
 	public ArrayList<Ingredient> getIngredientsByCode(ArrayList<Integer> codes) {
@@ -178,7 +187,7 @@ public class Restaurant implements Serializable{
 	}
 	
 	//Req 1.2
-	public void updateProduct(String name, String lastEditor, int code, ArrayList<Integer> ingredientsCodes, String typ, boolean available, ArrayList<String> sizes, ArrayList<Double> sizesFactors) {
+	public void updateProduct(String name, String lastEditor, int code, ArrayList<Integer> ingredientsCodes, String typ, boolean available, ArrayList<String> sizes, ArrayList<Double> sizesFactors) throws IOException {
 		
 		Product product = getProductByCode(code);
 		product.setName(name);
@@ -192,6 +201,8 @@ public class Restaurant implements Serializable{
 		product.setIngredients(tempIngredients);
 		
 		product.updateSizes(sizes, sizesFactors);
+		
+		saveProductsData();
 	}
 	
 	public Product getProductByCode(int code) {
@@ -209,7 +220,7 @@ public class Restaurant implements Serializable{
 	}
 	
 	//Req 1.3
-	public void deleteProduct(int code) {
+	public void deleteProduct(int code) throws IOException {
 		
 		boolean found = false;	
 		int idx = 0;
@@ -226,9 +237,11 @@ public class Restaurant implements Serializable{
 			removeProductReferences(code);
 			products.remove(idx);
 		}
+		
+		saveProductsData();
 	}
 
-	public void removeProductReferences(int code) {
+	public void removeProductReferences(int code) throws IOException {
 
 		for (Ingredient ingredient : ingredients) {
 			
@@ -248,18 +261,22 @@ public class Restaurant implements Serializable{
 				}
 			}
 		}
+		
+		saveProductsData();
+		saveIngredientData();
 	}
 
 	//Req 1.4
-	public void diseableProduct(int code) {
+	public void diseableProduct(int code) throws IOException {
 		
 		Product product = getProductByCode(code);
 		product.setAvailable(false);
+		saveProductsData();
 	}
 	
 	//Req 1.8
 	public void createOrder(ArrayList<Integer> productsCodes, ArrayList<Integer> productsAmounts, String clientRef, 
-							int employeeRef, LocalDate dateRequest, String obs, String state) {
+							int employeeRef, LocalDate dateRequest, String obs, String state) throws IOException {
 		
 		/*
 		Note: Orders could be implemented with a HashMap<Product, Integer>
@@ -291,13 +308,15 @@ public class Restaurant implements Serializable{
 		}
 		
 		orders.add(order);
+		saveOrdersData();
 	}
 	
 	//Req 1.9
-	public void updateStateOrder(int code) {
+	public void updateStateOrder(int code) throws IOException {
 		
 		Order order = getOrderByCode(code);
 		order.updateState();
+		saveOrdersData();
 	}
 	
 	public Order getOrderByCode(int code) {
@@ -328,7 +347,7 @@ public class Restaurant implements Serializable{
 	}
 
 	//create ingredient
-	public void createIngredient(String name, String creatorRef, String lastE, String val){
+	public void createIngredient(String name, String creatorRef, String lastE, String val) throws IOException{
 		
 		int lastCode = 0;
 		double value = Double.parseDouble(val);
@@ -346,6 +365,7 @@ public class Restaurant implements Serializable{
 			ingredients.add(ingredientX);
 		}
 		sortIngredientByName();
+		saveIngredientData();
 		
 	}
 	
@@ -593,12 +613,14 @@ public class Restaurant implements Serializable{
 		this.ingredients = ingredients;
 	}
 
-	public void updateIngredient(String referenceIngredient, String newName, String newValue) {
+	public void updateIngredient(String referenceIngredient, String newName, String newValue) throws IOException {
 		System.out.println(referenceIngredient+","+newName);
 		
 		int index = binarySearchIng(referenceIngredient, ingredients);
 		ingredients.get(index).setName(newName);
 		ingredients.get(index).setPrice(Double.parseDouble(newValue));
+		
+		saveIngredientData();
 	}
 	
 	public int binarySearchIng(String fullName, ArrayList<Ingredient> ings) {
@@ -654,29 +676,48 @@ public class Restaurant implements Serializable{
 	}
 
 	public void saveData() throws FileNotFoundException, IOException {
+		saveIngredientData();
+		saveProductsData();
+		saveOrdersData();
+		saveClientsData();
+		saveSystemUser();
+		saveEmployeeData();
+	}
+	
+	public void saveIngredientData() throws IOException {
 		ObjectOutputStream oosI =  new ObjectOutputStream(new FileOutputStream(SAVE_PATH_INGREDIENTS));
 		oosI.writeObject(ingredients);
 		oosI.close();
-		
+	}
+	
+	public void saveProductsData() throws IOException {
 		ObjectOutputStream oosP =  new ObjectOutputStream(new FileOutputStream(SAVE_PATH_PRODUCTS));
 		oosP.writeObject(products);
 		oosP.close();
-		
+	}
+	
+	public void saveOrdersData() throws IOException {
 		ObjectOutputStream oosO =  new ObjectOutputStream(new FileOutputStream(SAVE_PATH_ORDERS));
 		oosO.writeObject(orders);
 		oosO.close();
-		
+	}
+	
+	public void saveClientsData() throws IOException {
 		ObjectOutputStream oosC =  new ObjectOutputStream(new FileOutputStream(SAVE_PATH_CLIENTS));
 		oosC.writeObject(clients);
 		oosC.close();
-		
+	}
+	
+	public void saveSystemUser() throws IOException {
 		ObjectOutputStream oosS =  new ObjectOutputStream(new FileOutputStream(SAVE_PATH_SYSTEM_USERS));
 		oosS.writeObject(systemUsers);
 		oosS.close();
-		
+	}
+	
+	public void saveEmployeeData() throws IOException {
 		ObjectOutputStream oosE =  new ObjectOutputStream(new FileOutputStream(SAVE_PATH_EMPLOYEES));
-		oosS.writeObject(employees);
-		oosS.close();
+		oosE.writeObject(employees);
+		oosE.close();
 	}
 	
 	public void loadData() throws IOException, ClassNotFoundException{
@@ -687,7 +728,6 @@ public class Restaurant implements Serializable{
 		File fileEmployees = new File(SAVE_PATH_EMPLOYEES);
 		File fileSystemUsers = new File(SAVE_PATH_SYSTEM_USERS);
 		File fileOrders = new File(SAVE_PATH_ORDERS);
-		
 
 		if (fileProducts.exists()) {
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileProducts));

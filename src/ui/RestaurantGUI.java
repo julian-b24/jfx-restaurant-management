@@ -204,9 +204,15 @@ public class RestaurantGUI {
 				rUsernametxf.getText(), rPasswordtxf.getText());
 		
 		if(valid) {
-			restaurant.createEmployee(rNametxf.getText(), rLastNametfx.getText(), rCctfx.getText());
-			restaurant.createSystemUser(rNametxf.getText(), rLastNametfx.getText(), rCctfx.getText(),
-					rUsernametxf.getText(), rPasswordtxf.getText());
+			try {
+				restaurant.createEmployee(rNametxf.getText(), rLastNametfx.getText(), rCctfx.getText());
+				restaurant.createSystemUser(rNametxf.getText(), rLastNametfx.getText(), rCctfx.getText(),
+						rUsernametxf.getText(), rPasswordtxf.getText());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			loadLogin(null);
 		}else {
 			//alert
@@ -333,7 +339,12 @@ public class RestaurantGUI {
     void createIngredient(ActionEvent event) {
     	
     	if(!txtIngredientName.getText().equals("") && !txtIngredientValue.getText().equals("")){
-    		restaurant.createIngredient(txtIngredientName.getText(), actualUser, actualUser, txtIngredientValue.getText());
+    		try {
+				restaurant.createIngredient(txtIngredientName.getText(), actualUser, actualUser, txtIngredientValue.getText());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     	}
     }
     
@@ -363,7 +374,12 @@ public class RestaurantGUI {
     @FXML
     void updateIngredient(ActionEvent event) {
     	if(!txtNewIngName.equals("") && !txtNewIngVal.equals("")) {
-    		restaurant.updateIngredient(referenceIngredient, txtNewIngName.getText(), txtNewIngVal.getText());
+    		try {
+				restaurant.updateIngredient(referenceIngredient, txtNewIngName.getText(), txtNewIngVal.getText());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     	}
     }
     
@@ -434,7 +450,12 @@ public class RestaurantGUI {
     			type = "DRINK";
     		}
     		
-    		restaurant.createProduct(txtPName.getText(), actualUser, actualUser, tempIngrsIndex, type);
+    		try {
+				restaurant.createProduct(txtPName.getText(), actualUser, actualUser, tempIngrsIndex, type);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     		
     		}
     }
