@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Order {
+public class Order implements Serializable{
 
 	public final static String DATE_FORMAT = "MM/dd/yy HH:mm a";
 	

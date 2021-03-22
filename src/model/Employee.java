@@ -1,6 +1,8 @@
 package model;
 
-public class Employee extends Person{
+import java.io.Serializable;
+
+public class Employee extends Person {
 
 	protected int employeeId;			//employee unique id
 	

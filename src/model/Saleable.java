@@ -1,7 +1,8 @@
 package model;
 
+import java.io.Serializable;
 
-public abstract class Saleable {
+public abstract class Saleable implements Serializable{
 	
 	//WARNING CONSTANTS NOT IN THE CLASS DIAGRAM
 	public final static boolean DEAFULT_AVAILABLE = true;		//When a saleable is created, it is by deafult available
