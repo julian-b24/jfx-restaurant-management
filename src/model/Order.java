@@ -6,7 +6,9 @@ import java.util.ArrayList;
 
 public class Order implements Serializable{
 
-	public final static String DATE_FORMAT = "MM/dd/yy HH:mm a";
+	private static final long serialVersionUID = 1L;
+
+	public final static String DATE_FORMAT = "MM/dd/yy HH:mm";
 	
 	private int code;
 	private String observations;
