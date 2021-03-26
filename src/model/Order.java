@@ -8,7 +8,7 @@ public class Order implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	public final static String DATE_FORMAT = "MM/dd/yy HH:mm";
+	public final static String DATE_FORMAT = "MM/dd/yyyy HH:mm";
 	
 	private int code;
 	private String observations;

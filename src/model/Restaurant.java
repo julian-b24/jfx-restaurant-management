@@ -610,9 +610,9 @@ public class Restaurant implements Serializable{
 	public boolean isBetweenDates(LocalDate date, LocalDate low, LocalDate top) {
 		
 		boolean between = false;
-		boolean greaterOrEqual = date.isAfter(low) || date.isEqual(low);
-		boolean lowerOrEqual = date.isBefore(top) || date.isEqual(top);
-		between = greaterOrEqual && lowerOrEqual;
+		int underDate = date.compareTo(top);
+		int overDate = low.compareTo(date);
+		between = underDate <= 0 && overDate <= 0;
 		
 		return between;
 	}
