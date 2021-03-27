@@ -862,14 +862,14 @@ public class Restaurant implements Serializable{
 	
 	public int binarySearchIng(String fullName, ArrayList<Ingredient> ings) {
 		
-		int pos = -2;
+		int pos = -1;
 		int in = 0;
 		int fin = ings.size()-1;
 		
-		while(in<=fin && pos==-2) {
+		while(in<=fin && pos==-1) {
 			int middle = (in+fin)/2;
 			
-			if((ings.get(middle).getName()+ings.get(middle).getName()).equalsIgnoreCase(fullName)) {
+			if((ings.get(middle).getName().equalsIgnoreCase(fullName))) {
 				pos = middle;
 			}
 			
@@ -892,7 +892,7 @@ public class Restaurant implements Serializable{
 		}else if(pos>ings.size()-1) {
 			pos = ings.size()-1;
 		}
-		
+		System.out.println("MALDITA PPOZZZ ::::::::::"+pos);
 		return pos;
 	}
 

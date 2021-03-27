@@ -32,7 +32,7 @@ public class RestaurantGUI {
 	private String actualUser;						//A reference to the system user that is currently logged in
 	private String referenceIngredient;				//A reference to an ingredient selected in the ingredients table, that allows the program to recognize which ingredient has to be edited 
 	private ArrayList<Integer> tempIngrsCodes;		//Temporal list with the indexes of the ingredients that will be added to the product
-	private String referenceProduct;
+	private Product referenceProduct;
 	
 	//MainAnchorPane
 	@FXML
@@ -601,10 +601,9 @@ public class RestaurantGUI {
 	 @FXML
 	 void loadEditProduct(ActionEvent event) {
 		 //add a colleciton 
+		 
 		 Product productX = tvProducts.getSelectionModel().getSelectedItem();
-		 for (int i = 0; i < productX.getIngredients().size(); i++) {
-			tempIngrsCodes.add(productX.getIngredients().get(i).getCode());
-		}
+		 referenceProduct = productX;
 		 
 		 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editProduct-pane.fxml"));
 			fxmlLoader.setController(this); 	
@@ -640,9 +639,9 @@ public class RestaurantGUI {
 				rbPDrink.setSelected(true);
 			}
 			
-			initializeIngsInProduct(productX);
+			initializeIngsInProduct(referenceProduct);
 			initializeAllRegisIngs();
-			initSizesProduct(productX);
+			initSizesProduct(referenceProduct);
 			
 	 }
 	 
@@ -651,22 +650,25 @@ public class RestaurantGUI {
 		
 		 Ingredient ingrToAdd = tvallInings.getSelectionModel().getSelectedItem();
 		 
-		 if(ingrToAdd!=null && actionIngtxt.getText().isEmpty()) {
+		 if(ingrToAdd!=null) {
 			 
 			 tempIngrsCodes.add(ingrToAdd.getCode());
+			 referenceProduct.getIngredients().add(ingrToAdd);
+			 loadEditProduct(null);
+			 
 		 }
 		 
-		 if(!actionIngtxt.getText().isEmpty()) {
+		 if(!actionIngtxt.getText().isEmpty() || !actionIngtxt.getText().equals(actionIngtxt.getPromptText())) {
 			 
 			 boolean exists = restaurant.searchIngredient(actionIngtxt.getText());
 			    
 			 if(exists) {
-		
-				 tempIngrsCodes.add(restaurant.binarySearchIng(actionIngtxt.getText(), restaurant.getIngredients()));
-				 actionIngtxt.setText("");
+				
+				 int posToAdd = restaurant.binarySearchIng(actionIngtxt.getText(), restaurant.getIngredients());
+				 referenceProduct.getIngredients().add(restaurant.getIngredients().get(posToAdd));
+				 loadEditProduct(null);	
 			 }
 		 }
-		 System.out.println(tempIngrsCodes.size());
 		 
     }
 
@@ -674,35 +676,34 @@ public class RestaurantGUI {
     void removeIngrFromProduct(ActionEvent event) {
     	 System.out.println(tempIngrsCodes.size());
     	
-    	int posToRemove=-1;
     	Ingredient ingrToRemove = tvIdp.getSelectionModel().getSelectedItem();
+    	
 		if(ingrToRemove!=null) {
 			
-			for (int i = 0; i < tempIngrsCodes.size(); i++) {
-				System.out.println("ING: "+tempIngrsCodes.get(i));
-			}
-			
-			posToRemove = searhIngCode(ingrToRemove.getCode());
-			if(posToRemove!=-1) {
-				tempIngrsCodes.remove(posToRemove);
-			}
-			
-		}else if(!actionIngtxt.getText().equals(actionIngtxt.getPromptText())) {
-			
-			int removeCode = restaurant.binarySearchIng(actionIngtxt.getText(), restaurant.getIngredients());
-			posToRemove = searhIngCode(restaurant.getIngredients().get(removeCode).getCode());
-			System.out.println("CODIGO: "+restaurant.getIngredients().get(removeCode).getCode());
-			if(posToRemove!=-1) {
-				tempIngrsCodes.remove(posToRemove);
-				 actionIngtxt.setText("");
-			}
-		 }
+			int posToRem =searhIngInTempProduct(ingrToRemove.getCode());
+			if(posToRem!=-1){
+				referenceProduct.getIngredients().remove(posToRem);
+				loadEditProduct(null);
+			}			
+		}
 		
-		 System.out.println(tempIngrsCodes.size());
+		if(!actionIngtxt.getText().equals(actionIngtxt.getPromptText()) || !actionIngtxt.getText().isEmpty()) {
+			
+		
+			int removeCod = restaurant.binarySearchIng(actionIngtxt.getText(), restaurant.getIngredients());
+			int posToRemo = searhIngInTempProduct(restaurant.getIngredients().get(removeCod).getCode());
+
+			if(posToRemo!=-1) {
+				
+				referenceProduct.getIngredients().remove(posToRemo);
+				loadEditProduct(null);
+			}	
+		}
 
     }
     
     public int searhIngCode(int code) {
+    	
     	int pos = -1;
     	boolean found = false;
 		for (int i = 0; i < tempIngrsCodes.size() && !found; i++) {
@@ -713,6 +714,21 @@ public class RestaurantGUI {
 		}
 		return pos;
     }
+    
+	 public int searhIngInTempProduct(int code) {
+	    	
+	    	int pos = -1;
+	    	boolean found = false;
+	    	System.out.println("DAMINT"+referenceProduct.getIngredients().size());
+			for (int i = 0; i < referenceProduct.getIngredients().size() && !found; i++) {
+				System.out.println("CODIGO DEL COSOOOOOOOOAAAAAAA"+referenceProduct.getIngredients().get(i).getCode());
+				if(code == referenceProduct.getIngredients().get(i).getCode()){
+					pos = i;
+					found = true;
+				}
+			}
+			return pos;
+	    }
     
     @FXML
     void updateProduct(ActionEvent event) {
