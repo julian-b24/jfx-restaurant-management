@@ -386,7 +386,7 @@ public class Restaurant implements Serializable{
 	//search ingredient by name
 	public boolean searchIngredient(String name) {
 		
-		int low = 0;
+		/*int low = 0;
 		int top = ingredients.size() - 1;
 		boolean found = false;
 		
@@ -401,6 +401,15 @@ public class Restaurant implements Serializable{
 				top = mid - 1;
 			}
 		}
+		return found;*/
+		
+		boolean found = false;
+		for (int i = 0; i < ingredients.size() && !found; i++) {
+			if(ingredients.get(i).getName().equalsIgnoreCase(name)) {
+				found = true;
+			}
+		}
+		
 		return found;
 	}
 	
