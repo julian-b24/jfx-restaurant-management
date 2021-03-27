@@ -15,6 +15,7 @@ import java.io.ObjectInputStream;
 
 import java.io.PrintWriter;
 import java.io.Serializable;
+import java.io.Writer;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -30,7 +31,8 @@ public class Restaurant implements Serializable{
 	public final static String PRODUCTS_PATH = "data/csv/products.csv";
 	public final static String ORDERS_PATH = "data/csv/orders.csv";
 	
-	public final static String REPORT_EMPLOYEES_CONSOLIDATED_PATH = "data/reports/consolidated_report.csv";
+	public final static String REPORT_EMPLOYEES_CONSOLIDATED_PATH = "data/reports/employees_consolidated_report.csv";
+	private static final String REPORT_PRODUCTS_CONSOLIDATED_PATH = "data/reports/products_consolidated_report.csv";
 	
 	final String SAVE_PATH_PRODUCTS = "data/system-files/products-files.txr";
 	final String SAVE_PATH_INGREDIENTS = "data/system-files/ingredients-files.txr";
@@ -278,24 +280,25 @@ public class Restaurant implements Serializable{
 	public void createOrder(ArrayList<Integer> productsCodes, ArrayList<Integer> productsAmounts, ArrayList<String> productsSizes, String clientRef, 
 							int employeeRef, LocalDate dateRequest, String obs, String state) throws IOException {
 		
-		/*
-		Note: Orders could be implemented with a HashMap<Product, Integer>
-		
-		Map <Product, Integer> productsMap = new HashMap<Product, Integer>();
-		for (int i = 0; i < productsCodes.size(); i++) {
-			Product tempProduct = getProductByCode(productsCodes.get(i));
-			Integer tempAmount = productsAmounts.get(i);
-			productsMap.put(tempProduct, tempAmount);
-		}
-		 */
 		ArrayList<Product> productsOrdered = new ArrayList<Product>();
 		ArrayList<Size> sizes = new ArrayList<Size>();
+		
+		//Fill the lists with the products ordered according to the code and the sizes for each one
 		for (int i = 0;  i < productsCodes.size(); i++) {
 			Product tempProduct = getProductByCode(productsCodes.get(i));
 			productsOrdered.add(tempProduct);
 			
-			Size size = tempProduct.getSizeByName(productsSizes.get(i));
-			sizes.add(size);
+			if (productsSizes != null) {
+				Size size = tempProduct.getSizeByName(productsSizes.get(i));
+				sizes.add(size);
+			}
+		}
+		
+		//In case the list of sizes is null, the list will be filled with default sizes
+		if (productsSizes == null) {
+			for (int j = 0; j < productsOrdered.size(); j++) {
+				sizes.add(new Size(Product.DEFAULT_SIZE));
+			}
 		}
 		
 		//Builds the code of the order
@@ -303,8 +306,6 @@ public class Restaurant implements Serializable{
 		if (orders.size() > 0) {
 			code = orders.get(orders.size() - 1).getCode() + 1;
 		}
-		
-		
 		
 		Order order;
 		if (state == null) {
@@ -486,16 +487,22 @@ public class Restaurant implements Serializable{
 			String obs = values[0];
 			String ccClient = values[1];
 			int employeeId = Integer.parseInt(values[2]);
+			
 			String dateString = values[3] + " " + values[4];
 			LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern(Order.DATE_FORMAT));
+			
 			ArrayList<Integer> productsTemp = new ArrayList<Integer>();
-			productsTemp.add(Integer.parseInt(values[5]));
-			productsTemp.add(Integer.parseInt(values[6]));
-			productsTemp.add(Integer.parseInt(values[7]));
 			ArrayList<Integer> amounts = new ArrayList<Integer>();
+			
+			productsTemp.add(Integer.parseInt(values[5]));
+			amounts.add(Integer.parseInt(values[6]));
+			
+			productsTemp.add(Integer.parseInt(values[7]));
 			amounts.add(Integer.parseInt(values[8]));
-			amounts.add(Integer.parseInt(values[9]));
+			
+			productsTemp.add(Integer.parseInt(values[9]));
 			amounts.add(Integer.parseInt(values[10]));
+			
 			String state = values[11];
 			createOrder(productsTemp, amounts, null, ccClient, employeeId, date, obs, state); //Add list of Strings
 		}
@@ -537,18 +544,12 @@ public class Restaurant implements Serializable{
 		for (Employee employee : employees) {
 			ArrayList<Order> tempOrders = new ArrayList<Order>();
 			
-			boolean stop = false;
-			while (j < orders.size() && !stop) {
+			while (j < orders.size() && employee.getEmployeeId() == orders.get(j).getEmployeeRef()) {
 				
-				if (employee.getEmployeeId() == orders.get(j).getEmployeeRef()) {
-					if (isBetweenDates(orders.get(j).getDate(), low, top) ) {
-						tempOrders.add(orders.get(j));
-					}
-					
-					j++;
-				} else {
-					stop = true;
+				if (isBetweenDates(orders.get(j).getDate(), low, top) ) {
+					tempOrders.add(orders.get(j));
 				}
+				j++;
 			}
 			
 			report.put(employee, tempOrders);
@@ -557,12 +558,70 @@ public class Restaurant implements Serializable{
 		return report;
 	}
 	
+	
+	public Map<Product, Map<Integer, Double>> getInforReportProductsConsolidated(LocalDate top, LocalDate low) {
+		
+		//Principal Key: Product -> Value: Times Ordered
+		//Second Key: Times Ordered -> Value: Total collected
+		//Summary: Product -> Times Ordered -> Total collected
+		Map<Product, Map<Integer, Double>> report = new HashMap<Product, Map<Integer, Double>>();
+		
+		//Generates the HashMap with all the products as keys and zeros in any other value or key
+		for (Product product : products) {
+			
+			Map<Integer, Double> collected = new HashMap<Integer, Double>();
+			Integer count = 0;
+			Double total_collected = 0.0;
+			
+			collected.put(count, total_collected);
+			report.put(product, collected);
+		}
+		
+		
+		//Iterate over all orders getting the amount and the total collected for each product
+		for (Order order : orders) {
+			
+			if (isBetweenDates(order.getDate(), low, top) ) {
+				
+				for (int i = 0; i < order.getOrderProducts().size(); i++) {
+					
+					//Calculating the total of  product in a specific order
+					Product tempProduct = order.getOrderProducts().get(i);
+					Double tempSizeFactor = order.getSizes().get(i).getPriceFactor();
+					int tempAmount = order.getAmountPerEach().get(i);
+					Double tempTotal = tempProduct.getPrice() * tempSizeFactor * tempAmount;
+					
+					
+					Map<Integer, Double> tempCollected = report.get(tempProduct);
+					
+					//Getting the old data
+					//This loop will repeat just once, lastAmount = key of the map
+					Integer oldAmount = 0;
+					for (Map.Entry<Integer, Double> entry : tempCollected.entrySet()) {
+						oldAmount = entry.getKey();
+					}
+					
+					Double oldTotal = tempCollected.get(oldAmount);
+					
+					//Replace of the old values and adding the new ones
+					Integer newAmount = tempAmount + oldAmount;
+					Double newTotal = tempTotal + oldTotal;
+					tempCollected.remove(oldAmount);
+					tempCollected.put(newAmount, newTotal);
+					report.put(tempProduct, tempCollected);
+				}
+			}
+		}
+		
+		return report;
+	}
+	
 	public boolean isBetweenDates(LocalDate date, LocalDate low, LocalDate top) {
 		
 		boolean between = false;
-		boolean greaterOrEqual = date.isAfter(low) || date.isEqual(low);
-		boolean lowerOrEqual = date.isBefore(top) || date.isEqual(top);
-		between = greaterOrEqual && lowerOrEqual;
+		int underDate = date.compareTo(top);
+		int overDate = low.compareTo(date);
+		between = underDate <= 0 && overDate <= 0;
 		
 		return between;
 	}
@@ -595,6 +654,41 @@ public class Restaurant implements Serializable{
 		pw.close();
 	}
 	
+	public void generateReportProductsConsolidated(String lowDate, String topDate) throws FileNotFoundException {
+		
+		PrintWriter pw = new PrintWriter(REPORT_PRODUCTS_CONSOLIDATED_PATH);
+		
+		LocalDate top = LocalDate.parse(topDate, DateTimeFormatter.ofPattern(Order.DATE_FORMAT));
+		LocalDate low = LocalDate.parse(lowDate, DateTimeFormatter.ofPattern(Order.DATE_FORMAT));
+		
+		pw.println("productName;timerOrdered;totalMoney");
+		
+		Map<Product, Map<Integer, Double>> info = getInforReportProductsConsolidated(top, low);
+		double totalSales = 0.0;
+		int totalAmount = 0;
+		
+		for (Map.Entry<Product, Map<Integer, Double>> entryProduct: info.entrySet()) {
+			
+			Map<Integer, Double> values = entryProduct.getValue();
+			String tempProductName = entryProduct.getKey().getName();
+			int tempAmount = 0;
+			double tempSales = 0.0;
+			
+			for (Map.Entry<Integer, Double> entryValues: values.entrySet()) {
+				
+				tempAmount = entryValues.getKey();
+				tempSales = entryValues.getValue();
+			}
+			
+			totalSales += tempSales;
+			totalAmount += tempAmount;
+			
+			pw.println(tempProductName + ";" + tempAmount + ";" + tempSales);
+		}
+		
+		pw.println(" ;" + totalAmount + ";" + totalSales);
+		pw.close();
+	}
 	
 	public ArrayList<Client> getClients() {
 		return clients;
