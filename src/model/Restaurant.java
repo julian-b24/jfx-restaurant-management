@@ -32,7 +32,8 @@ public class Restaurant implements Serializable{
 	public final static String ORDERS_PATH = "data/csv/orders.csv";
 	
 	public final static String REPORT_EMPLOYEES_CONSOLIDATED_PATH = "data/reports/employees_consolidated_report.csv";
-	private static final String REPORT_PRODUCTS_CONSOLIDATED_PATH = "data/reports/products_consolidated_report.csv";
+	public final static String REPORT_PRODUCTS_CONSOLIDATED_PATH = "data/reports/products_consolidated_report.csv";
+	public final static String REPORT_ORDERS_CONSOLIDATED_PATH = "data/reports/orders_consolidated_report.csv";
 	
 	final String SAVE_PATH_PRODUCTS = "data/system-files/products-files.txr";
 	final String SAVE_PATH_INGREDIENTS = "data/system-files/ingredients-files.txr";
@@ -403,6 +404,37 @@ public class Restaurant implements Serializable{
 		return found;
 	}
 	
+	/**
+	 * Search a client in the list of clients according to his identification number and returns the position of it in the list.
+	 * <b> pre: </b> The list of clients must be sorted by the identification of the clients <br>
+	 * @param cc, the identification number of a client
+	 * @return the position of the client in the list, if it is not on the list will return -1
+	 */
+	public int searchClientByCc(String cc) {
+		
+		int position = -1;
+		
+		int low = 0;
+		int top = clients.size() - 1;
+		boolean found = false;
+		
+		while(low < top && !found) {
+			
+			int mid = (low + top)/2;
+			if (clients.get(mid).getCc().equals(cc)) {
+				position = mid;
+				found = true;
+				
+			} else if (clients.get(mid).getCc().compareTo(cc) < 0) {
+				low = mid + 1;
+			} else {
+				top = mid - 1;
+			}
+		}
+		
+		return position;
+	}
+	
 	//Import Ingredients
 	public void importIngredients() throws IOException {
 		
@@ -516,6 +548,26 @@ public class Restaurant implements Serializable{
 			Order aux = orders.get(i);
 			orders.set(i, orders.get(posMin));
 			orders.set(posMin, aux);
+		}
+	}
+	
+	public void sortEmployeesById() {
+		
+		//Bubble sort
+		boolean changed = true;
+		for (int i = 1; i < employees.size() - 1 && changed; i++) {
+			changed = false;
+			
+			for (int j = 0; j < employees.size() - i; j++) {
+				
+				if (employees.get(j).compareById(employees.get(j + 1)) > 0) {
+					
+					Employee tempEmployee = employees.get(j);
+					employees.set(j, employees.get(j + 1));
+					employees.set(j + 1, tempEmployee);
+					changed = true;
+				}
+			}
 		}
 	}
 	
@@ -681,6 +733,82 @@ public class Restaurant implements Serializable{
 		pw.close();
 	}
 	
+	public void generateReportOrdersConsolidated(String lowDate, String topDate, String separator) throws FileNotFoundException {
+		
+		PrintWriter pw = new PrintWriter(REPORT_ORDERS_CONSOLIDATED_PATH);
+		
+		LocalDate top = LocalDate.parse(topDate, DateTimeFormatter.ofPattern(Order.DATE_FORMAT));
+		LocalDate low = LocalDate.parse(lowDate, DateTimeFormatter.ofPattern(Order.DATE_FORMAT));
+		
+		
+		pw.println("clientName;clientAddress;clientPhone;employeeName;orderDate;observations;productName;productValue;productAmount".replace(";", separator));
+		
+		for (Order order : orders) {
+			
+			if (isBetweenDates(order.getDate(), low, top)) {
+				
+				//Client info
+				Client client = clients.get(searchClientByCc(order.getClientRef()));
+				String clientName = client.getName();
+				String clientAddress = client.getAdress();
+				String clientPhone = client.getPhone();
+				
+				//Employee info
+				sortEmployeesById();
+				Employee employee = employees.get(searchEmployeeById(order.getEmployeeRef()));
+				String employeeName = employee.getName();
+				
+				//Date info
+				String date = order.getDate().format(DateTimeFormatter.ofPattern(Order.DATE_FORMAT));
+				
+				String line = clientName + ";" + clientAddress + ";" +  clientPhone + ";" + employeeName
+							  + ";" + date + ";";
+				
+				//Products info
+				String podructsLine = "";
+				for (int i = 0; i < order.getOrderProducts().size(); i++) {
+					
+					Product product = order.getOrderProducts().get(i);
+					Size size = order.getSizes().get(i);
+					//Name of the product will include the size of it in the order, it's useful to difference it.
+					String productName = product.getName() + size.getSize();
+					String amount = Integer.toString(order.getAmountPerEach().get(i));
+					String value = Double.toString(product.getPrice() * size.getPriceFactor());
+					podructsLine.concat(productName + ";" + amount + ";" + value + ";");
+				}
+				
+				line.concat(podructsLine).replace(";", separator);
+				pw.println(line);
+			}
+		}
+		
+		pw.close();
+	}
+	
+	private int searchEmployeeById(int id) {
+		
+		int position = -1;
+		
+		int low = 0;
+		int top = employees.size() - 1;
+		boolean found = false;
+		
+		while(low < top && !found) {
+			
+			int mid = (low + top)/2;
+			if (employees.get(mid).getEmployeeId() == id) {
+				position = mid;
+				found = true;
+				
+			} else if (employees.get(mid).getEmployeeId() - id < 0) {
+				low = mid + 1;
+			} else {
+				top = mid - 1;
+			}
+		}
+		return position;
+	}
+
 	public ArrayList<Client> getClients() {
 		return clients;
 	}
