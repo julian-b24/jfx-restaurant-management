@@ -650,16 +650,18 @@ public class RestaurantGUI {
 	 void addIngrToProduct(ActionEvent event) {
 		
 		 Ingredient ingrToAdd = tvallInings.getSelectionModel().getSelectedItem();
-		
 		 
-		 if(ingrToAdd!=null) {
+		 if(ingrToAdd!=null && actionIngtxt.getText().isEmpty()) {
 			 
 			 tempIngrsCodes.add(ingrToAdd.getCode());
-		 }else if(!actionIngtxt.getText().equals(actionIngtxt.getPromptText())) {
+		 }
+		 
+		 if(!actionIngtxt.getText().isEmpty()) {
 			 
 			 boolean exists = restaurant.searchIngredient(actionIngtxt.getText());
-
+			    
 			 if(exists) {
+		
 				 tempIngrsCodes.add(restaurant.binarySearchIng(actionIngtxt.getText(), restaurant.getIngredients()));
 				 actionIngtxt.setText("");
 			 }
@@ -670,23 +672,51 @@ public class RestaurantGUI {
 
     @FXML
     void removeIngrFromProduct(ActionEvent event) {
+    	 System.out.println(tempIngrsCodes.size());
     	
+    	int posToRemove=-1;
     	Ingredient ingrToRemove = tvIdp.getSelectionModel().getSelectedItem();
-		if(ingrToRemove!=null && actionIngtxt.equals("")) {
+		if(ingrToRemove!=null) {
 			
-			tempIngrsCodes.remove(ingrToRemove.getCode());
-		}else if(ingrToRemove==null && !actionIngtxt.equals("")) {
-			 boolean exists = restaurant.searchIngredient(actionIngtxt.getText());
-			 if(exists) {
-				 tempIngrsCodes.remove(restaurant.binarySearchIng(actionIngtxt.getText(), restaurant.getIngredients()));
-			 }
+			for (int i = 0; i < tempIngrsCodes.size(); i++) {
+				System.out.println("ING: "+tempIngrsCodes.get(i));
+			}
+			
+			posToRemove = searhIngCode(ingrToRemove.getCode());
+			if(posToRemove!=-1) {
+				tempIngrsCodes.remove(posToRemove);
+			}
+			
+		}else if(!actionIngtxt.getText().equals(actionIngtxt.getPromptText())) {
+			
+			int removeCode = restaurant.binarySearchIng(actionIngtxt.getText(), restaurant.getIngredients());
+			posToRemove = searhIngCode(restaurant.getIngredients().get(removeCode).getCode());
+			System.out.println("CODIGO: "+restaurant.getIngredients().get(removeCode).getCode());
+			if(posToRemove!=-1) {
+				tempIngrsCodes.remove(posToRemove);
+				 actionIngtxt.setText("");
+			}
 		 }
+		
+		 System.out.println(tempIngrsCodes.size());
 
     }
-
+    
+    public int searhIngCode(int code) {
+    	int pos = -1;
+    	boolean found = false;
+		for (int i = 0; i < tempIngrsCodes.size() && !found; i++) {
+			if(code == tempIngrsCodes.get(i)){
+				pos = i;
+				found = true;
+			}
+		}
+		return pos;
+    }
+    
     @FXML
     void updateProduct(ActionEvent event) {
-
+    	
    	}
     
     public void initializeIngsInProduct(Product px) {
