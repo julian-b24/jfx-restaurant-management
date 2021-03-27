@@ -174,16 +174,11 @@ public class Restaurant implements Serializable{
 		
 		boolean stop = false;
 		int j = 0;
-		for (int i = 0; i < ingredients.size() && !stop; i++) {
-			
-			if (ingredients.get(i).getCode() == codes.get(j)) {
-				Ingredient tempIngredient = ingredients.get(i);
-				tempIngredients.add(tempIngredient);
-				j++;
-			}
-			
-			if (codes.size() == tempIngredients.size()) {
-				stop = true;
+		for (int i = 0; i < codes.size() && !stop; i++) {
+			for (int k = 0; k < ingredients.size(); k++) {
+				if(ingredients.get(k).getCode()== codes.get(i)) {
+					tempIngredients.add(ingredients.get(k));
+				}
 			}
 		}
 		return tempIngredients;
@@ -892,7 +887,6 @@ public class Restaurant implements Serializable{
 		}else if(pos>ings.size()-1) {
 			pos = ings.size()-1;
 		}
-		System.out.println("MALDITA PPOZZZ ::::::::::"+pos);
 		return pos;
 	}
 

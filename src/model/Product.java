@@ -99,6 +99,6 @@ public class Product extends Saleable{
 		
 		return size;
 	}
-
+	
 	
 }

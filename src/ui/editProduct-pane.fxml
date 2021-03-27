@@ -210,12 +210,12 @@
                         <Insets left="15.0" />
                      </HBox.margin>
                   </VBox>
-                  <JFXButton prefHeight="36.0" prefWidth="155.0" style="-fx-background-color: #D9A404;" text="Eliminar tamaño" textFill="#fff8ca">
+                  <JFXButton onAction="#removeSizeFromProduct" prefHeight="36.0" prefWidth="155.0" style="-fx-background-color: #D9A404;" text="Eliminar tamaño" textFill="#fff8ca">
                      <HBox.margin>
                         <Insets left="30.0" top="5.0" />
                      </HBox.margin>
                   </JFXButton>
-                  <JFXButton prefHeight="35.0" prefWidth="155.0" style="-fx-background-color: #D9A404;" text="Añadir tamaño" textFill="#fff8ca">
+                  <JFXButton onAction="#addSizeToProduct" prefHeight="35.0" prefWidth="155.0" style="-fx-background-color: #D9A404;" text="Añadir tamaño" textFill="#fff8ca">
                      <HBox.margin>
                         <Insets left="20.0" top="5.0" />
                      </HBox.margin>

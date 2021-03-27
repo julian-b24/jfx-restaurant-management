@@ -4,14 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.jfoenix.controls.JFXRadioButton;
-import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-import com.sun.corba.se.spi.orbutil.fsm.Action;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,6 +18,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.Ingredient;
+import model.Order;
 import model.Product;
 import model.Restaurant;
 import model.Size;
@@ -33,6 +30,9 @@ public class RestaurantGUI {
 	private String referenceIngredient;				//A reference to an ingredient selected in the ingredients table, that allows the program to recognize which ingredient has to be edited 
 	private ArrayList<Integer> tempIngrsCodes;		//Temporal list with the indexes of the ingredients that will be added to the product
 	private Product referenceProduct;
+	private ArrayList<Integer> tempProductCodes;
+	private ArrayList<Integer> tempProductsAmounts;
+	private ArrayList<String> tempProductsSizes;
 	
 	//MainAnchorPane
 	@FXML
@@ -230,6 +230,61 @@ public class RestaurantGUI {
     @FXML
     private JFXRadioButton rbPDrink;
     
+    //Create order
+    @FXML
+    private JFXTextField txtOrderClientName;
+
+    @FXML
+    private JFXTextField txtOrderClientLastName;
+
+    @FXML
+    private JFXTextField txtOrderClientCC;
+
+    @FXML
+    private JFXTextField txtOrderClientAdress;
+
+    @FXML
+    private JFXTextField txtOrderClientPhone;
+
+    @FXML
+    private JFXTextField txtOrderClientObsField;
+
+    @FXML
+    private JFXTextField txtOrderProductName;
+
+    @FXML
+    private JFXTextField txtOrderProductAmount;
+
+    @FXML
+    private JFXTextField txtOrderProductSize;
+
+    @FXML
+    private TableView<Product> tvProductsList;
+
+    @FXML
+    private TableColumn<Product, String> colProductsNames;
+
+    @FXML
+    private TableColumn<Product, String> colProductsCodes;
+
+    @FXML
+    private TableColumn<Product, String> colProductsPrices;
+
+    @FXML
+    private TableView<Order> tvOrders;
+
+    @FXML
+    private TableColumn<Order, String> colOrdersClients;
+
+    @FXML
+    private TableColumn<Order, String> colOrdersCodes;
+
+    @FXML
+    private TableColumn<Order, String> colOrdersStates;
+
+    @FXML
+    private TableColumn<Order, String> colOrdersPrices;
+    
     //Constructor
     public RestaurantGUI(Restaurant restaurant) {
 		this.restaurant = restaurant;
@@ -321,11 +376,6 @@ public class RestaurantGUI {
 		mainPane.getChildren().clear();
 		mainPane.getChildren().setAll(addContactPane);
 	}
-    
-    @FXML
-    void loadAdminOrders(ActionEvent event) {
-    	
-    }
 
     @FXML
     void loadAdminProducts(ActionEvent event) {
@@ -620,8 +670,8 @@ public class RestaurantGUI {
 			mainPane.getChildren().setAll(addContactPane);
 			
 			//set Screen
-			txtNewProductName.setText(productX.getName());
-			txtNewProductPrice.setText(""+productX.getPrice());
+			txtNewProductName.setPromptText(referenceProduct.getName());
+			txtNewProductPrice.setPromptText(""+referenceProduct.getPrice());
 			
 			//available
 			if(productX.isAvailable()) {
@@ -729,10 +779,86 @@ public class RestaurantGUI {
 			}
 			return pos;
 	    }
-    
+   
+	 @FXML
+	 void addSizeToProduct(ActionEvent event) {
+		 if(!txtAddNameSize.getText().isEmpty() && !txtMultiply.getText().isEmpty()) {
+			 referenceProduct.addSize(txtAddNameSize.getText(), Double.parseDouble(txtMultiply.getText()));
+			 loadEditProduct(null);
+		 }
+	 }
+	 
+	 @FXML
+	 void removeSizeFromProduct(ActionEvent event) {
+		 boolean found = false;
+		 int pos =-1;
+		 
+		 if(!txtAddNameSize.getText().isEmpty()) {
+			 for (int i = 0; i < referenceProduct.getSizes().size() && !found; i++) {
+				if(referenceProduct.getSizes().get(i).getSize().equalsIgnoreCase(txtAddNameSize.getText())) {
+					found = true;
+					pos = i;
+				}
+			}
+		 }
+		 if(pos!=-1) {
+			 referenceProduct.getSizes().remove(pos);
+			 loadEditProduct(null);
+		 }
+		 
+     }
+	 
+	 
     @FXML
     void updateProduct(ActionEvent event) {
     	
+    	if(txtNewProductName.getText().isEmpty()) {
+    		txtNewProductName.setText(referenceProduct.getName());
+    	}
+    	if(txtNewProductName.getText().isEmpty()) {
+    		txtNewProductPrice.setText(""+referenceProduct.getPrice());
+    	}
+    	
+    	//available
+    	boolean isAvailable=true;
+		if(rbProductUnavailable.isSelected()) {
+			isAvailable=false;
+		}
+		
+		//type
+		String type="";
+		if(rbPMainDish.isSelected()) {
+			type = "MAIN_DISH";
+		}else if(rbPAd.isSelected()) {
+			type = "ADDIOTIONAL_DISH";
+		}else {
+			type = "DRINK";
+		}
+    	
+    	tempIngrsCodes.clear();
+    	System.out.println("INGS SIZE: "+ tempIngrsCodes.size());
+    	
+    	for (int i = 0; i < referenceProduct.getIngredients().size() ; i++) {
+			tempIngrsCodes.add(referenceProduct.getIngredients().get(i).getCode());
+			System.out.println("CODES INGS: "+referenceProduct.getIngredients().get(i).getCode());
+		}
+    	System.out.println("INGS SIZE: "+ tempIngrsCodes.size());
+    	
+    	ArrayList<String> sizesNames = new ArrayList<>();
+    	ArrayList<Double> priceFactors = new ArrayList<>();
+    	
+    	for (int i = 0; i < referenceProduct.getSizes().size(); i++) {
+			sizesNames.add(referenceProduct.getSizes().get(i).getSize());
+			priceFactors.add(referenceProduct.getSizes().get(i).getPriceFactor());
+		}
+    	
+    	
+		try {
+			restaurant.updateProduct(txtNewProductName.getText(), actualUser, referenceProduct.getCode(), tempIngrsCodes, type, isAvailable, sizesNames, priceFactors);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}	
    	}
     
     public void initializeIngsInProduct(Product px) {
@@ -768,5 +894,55 @@ public class RestaurantGUI {
     	colProdSizePrice.setCellValueFactory(new PropertyValueFactory<Size,String>("priceFactor"));   		
 		
     	tvProdSizes.setItems(productSizes);
+    }
+    
+    @FXML
+    void loadAdminOrders(ActionEvent event) {
+    	
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("createOrder-pane.fxml"));
+		fxmlLoader.setController(this); 	
+		
+		Parent addContactPane = null;
+		try {
+			addContactPane = fxmlLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mainPane.getChildren().clear();
+		String css = "styles/tableStyle.css";
+		addContactPane.getStylesheets().add(css);
+		mainPane.getChildren().setAll(addContactPane);
+		initializePorudctsInCreateOrder();
+    }
+    
+    @FXML
+    void addProductToOrder(ActionEvent event) {
+    	
+    }
+
+    @FXML
+    void createOrder(ActionEvent event) {
+
+    }
+
+    @FXML
+    void loadEditOrder(ActionEvent event) {
+
+    }
+    
+    public void initializePorudctsInCreateOrder() {
+    	ObservableList<Product> allProducts = FXCollections.observableArrayList(restaurant.getProducts());
+		 
+    	colProductsNames.setCellValueFactory(new PropertyValueFactory<Product,String>("name"));  		 
+		 
+    	colProductsCodes.setCellValueFactory(new PropertyValueFactory<Product,String>("code"));
+		 
+    	colProductsPrices.setCellValueFactory(new PropertyValueFactory<Product,String>("price"));    		
+		 
+    	tvProductsList.setItems(allProducts);
+    }
+    
+    public void intializeOrders() {
+    	
     }
 }
