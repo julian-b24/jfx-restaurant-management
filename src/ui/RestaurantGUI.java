@@ -31,6 +31,7 @@ public class RestaurantGUI {
 	private String referenceIngredient;				//A reference to an ingredient selected in the ingredients table, that allows the program to recognize which ingredient has to be edited 
 	private ArrayList<Integer> tempIngrsCodes;		//Temporal list with the indexes of the ingredients that will be added to the product
 	private Product referenceProduct;
+	private Order referenceOrder;
 	private ArrayList<Integer> tempProductCodes;
 	private ArrayList<Integer> tempProductsAmounts;
 	private ArrayList<String> tempProductsSizes;
@@ -324,18 +325,23 @@ public class RestaurantGUI {
     private TableColumn<Product, String> colEOProductPrice;
 
     @FXML
-    private TableView<Order> tvregisteredProducts;
+    private TableView<Product> tvregisteredProducts;
 
     @FXML
-    private TableColumn<Order, String> colEOOrderName;
+    private TableColumn<Product, String> colEOOrderName;
 
     @FXML
-    private TableColumn<Order, String> colEOCode;
+    private TableColumn<Product, String> colEOCode;
 
     @FXML
-    private TableColumn<Order, String> colEOPrice;
+    private TableColumn<Product, String> colEOPrice;
 
-    
+    @FXML
+    private JFXTextField txtEOAmount;
+
+    @FXML
+    private JFXTextField txtEOSize;
+
     
     //Constructor
     public RestaurantGUI(Restaurant restaurant) {
@@ -1016,7 +1022,10 @@ public class RestaurantGUI {
     		
     		try {
 				restaurant.createOrder(tempProductCodes, tempProductsAmounts, tempProductsSizes, txtOrderClientCC.getText(), id, orderTime, txtOrderOBs.getText(), state);
-				System.out.println("AAAAAA");
+				tempProductCodes.clear();
+				tempProductsAmounts.clear();
+				tempProductsSizes.clear();
+				
 			} catch (IOException e) {
 				
 				e.printStackTrace();
@@ -1026,8 +1035,9 @@ public class RestaurantGUI {
 
     @FXML
     void loadEditOrder(ActionEvent event) {
-    	
+    	System.out.println("LOADED AGAIN");
     	Order orderX = tvOrders.getSelectionModel().getSelectedItem();
+    	referenceOrder = orderX;
     	
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editOrder-pane.fxml"));
 		fxmlLoader.setController(this); 	
@@ -1054,7 +1064,8 @@ public class RestaurantGUI {
 			radioBtnState4.setSelected(true);
 		}
 		
-		initializeProductsInOrder(orderX);
+		initializeProductsInOrder(referenceOrder);
+		initializeProductsInEditingOrder();
 
     }
     
@@ -1086,7 +1097,87 @@ public class RestaurantGUI {
     
     @FXML
     void eOaddIngrToProduct(ActionEvent event) {
+    	Product productX = tvregisteredProducts.getSelectionModel().getSelectedItem();
     	
+    	//product added by selecting an item from the table
+    	if(productX!=null) {
+    		
+    		tempIngrsCodes.add(productX.getCode());
+    		referenceOrder.getOrderProducts().add(productX);
+    		
+    		if(txtEOAmount.getText().isEmpty() && txtEOSize.getText().isEmpty()) {
+    			tempProductsAmounts.add(1);
+    			tempProductsSizes.add(Product.DEFAULT_SIZE); 
+    			loadEditOrder(null);
+    			
+    		}else if (!txtEOAmount.getText().isEmpty() && txtEOSize.getText().isEmpty()) {
+    			
+    			tempProductsAmounts.add(Integer.parseInt(txtEOAmount.getText()));
+    			tempProductsSizes.add(Product.DEFAULT_SIZE); 
+    			loadEditOrder(null);
+    			
+    		}else if(txtEOAmount.getText().isEmpty() && !txtEOSize.getText().isEmpty()) {
+    			
+    			tempProductsAmounts.add(1);
+    			
+    			Size sizeX =productX.getSizeByName(txtEOSize.getText());
+    			
+    			if(sizeX!=null) {
+    				tempProductsSizes.add(txtEOSize.getText()); 
+    				loadEditOrder(null);
+    			}
+    		}else {
+    			tempProductsAmounts.add(Integer.parseInt(txtEOAmount.getText()));
+    			Size sizeX =productX.getSizeByName(txtEOSize.getText());
+    			
+    			if(sizeX!=null) {
+    				tempProductsSizes.add(txtEOSize.getText()); 
+    				loadEditOrder(null);
+    			}  			
+    			
+    		}
+    	//Product added by searching the code
+    	}else if (!txtEOProductName.getText().isEmpty()) {
+    		Product temProduct = restaurant.getProductByCode(Integer.parseInt(txtEOProductName.getText()));
+    		Size sizeX;
+    		
+    		if(temProduct!=null) {
+    			
+    			tempIngrsCodes.add(temProduct.getCode());
+    			referenceOrder.getOrderProducts().add(temProduct);
+    			
+    			if(txtEOAmount.getText().isEmpty() && txtEOSize.getText().isEmpty()) {
+        			tempProductsAmounts.add(1);
+        			tempProductsSizes.add(Product.DEFAULT_SIZE); 
+        			loadEditOrder(null);
+        			
+        		}else if (!txtEOAmount.getText().isEmpty() && txtEOSize.getText().isEmpty()) {
+        			
+        			tempProductsAmounts.add(Integer.parseInt(txtEOAmount.getText()));
+        			tempProductsSizes.add(Product.DEFAULT_SIZE); 
+        			loadEditOrder(null);
+        			
+        		}else if(txtEOAmount.getText().isEmpty() && !txtEOSize.getText().isEmpty()) {
+        			
+        			tempProductsAmounts.add(1);
+        			
+        			sizeX =temProduct.getSizeByName(txtEOSize.getText());
+        			
+        			if(sizeX!=null) {
+        				tempProductsSizes.add(txtEOSize.getText()); 
+        				loadEditOrder(null);
+        			}
+        		}else {
+        			tempProductsAmounts.add(Integer.parseInt(txtEOAmount.getText()));
+        			 sizeX = temProduct.getSizeByName(txtEOSize.getText());
+        			
+        			if(sizeX!=null) {
+        				tempProductsSizes.add(txtEOSize.getText()); 
+        				loadEditOrder(null);
+        			}  			
+        		}
+    		}
+    	}
     }
 
     @FXML
@@ -1110,5 +1201,18 @@ public class RestaurantGUI {
     	colEOProductPrice.setCellValueFactory(new PropertyValueFactory<Product,String>("price"));
 		 
     	tvPIO.setItems(productsInOrder);
+    }
+    
+    public void initializeProductsInEditingOrder() {
+    	
+    	ObservableList<Product> productsRegistered = FXCollections.observableArrayList(restaurant.getProducts());
+		 
+    	colEOOrderName.setCellValueFactory(new PropertyValueFactory<Product,String>("name"));  		 
+		 
+    	colEOCode.setCellValueFactory(new PropertyValueFactory<Product,String>("code"));
+		 
+    	colEOPrice.setCellValueFactory(new PropertyValueFactory<Product,String>("price"));
+		 
+    	tvregisteredProducts.setItems(productsRegistered);
     }
 }

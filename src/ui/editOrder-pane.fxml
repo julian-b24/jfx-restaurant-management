@@ -79,7 +79,7 @@
                <children>
                   <VBox prefHeight="58.0" prefWidth="270.0">
                      <children>
-                        <Text fill="#fff1cc" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre producto">
+                        <Text fill="#fff1cc" strokeType="OUTSIDE" strokeWidth="0.0" text="Código del producto">
                            <font>
                               <Font name="Montserrat Medium" size="16.0" />
                            </font>
@@ -87,7 +87,7 @@
                               <Insets top="30.0" />
                            </VBox.margin>
                         </Text>
-                        <JFXTextField fx:id="txtEOProductName" prefHeight="31.0" prefWidth="204.0" promptText="Nombre del producto">
+                        <JFXTextField fx:id="txtEOProductName" prefHeight="31.0" prefWidth="204.0" promptText="Código del producto">
                            <VBox.margin>
                               <Insets right="50.0" />
                            </VBox.margin>
@@ -104,7 +104,7 @@
                               <Insets top="30.0" />
                            </VBox.margin>
                         </Text>
-                        <JFXTextField prefHeight="31.0" prefWidth="204.0" promptText="Cantidad">
+                        <JFXTextField fx:id="txtEOAmount" prefHeight="31.0" prefWidth="204.0" promptText="Cantidad">
                            <VBox.margin>
                               <Insets right="50.0" />
                            </VBox.margin>
@@ -123,7 +123,7 @@
                         </Text>
                         <VBox prefHeight="58.0" prefWidth="270.0">
                            <children>
-                              <JFXTextField fx:id="actionIngtxt11" prefHeight="31.0" prefWidth="204.0" promptText="Tamaño">
+                              <JFXTextField fx:id="txtEOSize" prefHeight="31.0" prefWidth="204.0" promptText="Tamaño">
                                  <VBox.margin>
                                     <Insets right="50.0" />
                                  </VBox.margin>
@@ -165,7 +165,7 @@
                   <Insets />
                </VBox.margin>
             </Text>
-            <TableView fx:id="tvPIO" prefHeight="165.0" prefWidth="375.0" stylesheets="@../styles/tableStyle.css">
+            <TableView fx:id="tvPIO" prefHeight="305.0" prefWidth="401.0" stylesheets="@../styles/tableStyle.css">
                <columns>
                   <TableColumn fx:id="colEOProductName" prefWidth="185.0" text="Nombre producto" />
                   <TableColumn fx:id="colEOProductCode" prefWidth="84.0" text="Código" />
@@ -183,7 +183,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Text>
-            <TableView fx:id="tvregisteredProducts" prefHeight="178.0" prefWidth="375.0" stylesheets="@../styles/tableStyle.css">
+            <TableView fx:id="tvregisteredProducts" prefHeight="276.0" prefWidth="401.0" stylesheets="@../styles/tableStyle.css">
                <columns>
                   <TableColumn fx:id="colEOOrderName" prefWidth="185.0" text="Nombre ingrediente" />
                   <TableColumn fx:id="colEOCode" prefWidth="84.0" text="Código" />
@@ -192,18 +192,6 @@
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
-            </TableView>
-            <Text fill="#ffd16d" strokeType="OUTSIDE" strokeWidth="0.0" text="Productos registrados">
-               <font>
-                  <Font name="Montserrat Medium" size="22.0" />
-               </font>
-            </Text>
-            <TableView fx:id="tvregisteredProducts1" prefHeight="178.0" prefWidth="375.0" stylesheets="@../styles/tableStyle.css">
-               <columns>
-                  <TableColumn fx:id="colEOOrderName1" prefWidth="185.0" text="Nombre ingrediente" />
-                  <TableColumn fx:id="colEOCode1" prefWidth="84.0" text="Código" />
-                  <TableColumn fx:id="colEOPrice1" prefWidth="97.0" text="Precio" />
-               </columns>
             </TableView>
          </children>
       </VBox>
