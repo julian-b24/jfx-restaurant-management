@@ -289,6 +289,54 @@ public class RestaurantGUI {
     @FXML
     private JFXTextField txtOrderOBs;
     
+    //edit order
+    @FXML
+    private JFXRadioButton radioBtnState1;
+
+    @FXML
+    private ToggleGroup orderState;
+
+    @FXML
+    private JFXRadioButton radioBtnState2;
+
+    @FXML
+    private JFXRadioButton radioBtnState3;
+
+    @FXML
+    private JFXRadioButton radioBtnState4;
+
+    @FXML
+    private JFXTextField txtEOProductName;
+
+    @FXML
+    private JFXTextField actionIngtxt11;
+
+    @FXML
+    private TableView<Product> tvPIO;
+
+    @FXML
+    private TableColumn<Product, String> colEOProductName;
+
+    @FXML
+    private TableColumn<Product, String> colEOProductCode;
+
+    @FXML
+    private TableColumn<Product, String> colEOProductPrice;
+
+    @FXML
+    private TableView<Order> tvregisteredProducts;
+
+    @FXML
+    private TableColumn<Order, String> colEOOrderName;
+
+    @FXML
+    private TableColumn<Order, String> colEOCode;
+
+    @FXML
+    private TableColumn<Order, String> colEOPrice;
+
+    
+    
     //Constructor
     public RestaurantGUI(Restaurant restaurant) {
 		this.restaurant = restaurant;
@@ -844,7 +892,6 @@ public class RestaurantGUI {
 			tempIngrsCodes.add(referenceProduct.getIngredients().get(i).getCode());
 			System.out.println("CODES INGS: "+referenceProduct.getIngredients().get(i).getCode());
 		}
-    	System.out.println("INGS SIZE: "+ tempIngrsCodes.size());
     	
     	ArrayList<String> sizesNames = new ArrayList<>();
     	ArrayList<Double> priceFactors = new ArrayList<>();
@@ -865,8 +912,7 @@ public class RestaurantGUI {
     
     public void initializeIngsInProduct(Product px) {
     	
-    	ObservableList<Ingredient> ingredientsInProduct = FXCollections.observableArrayList(px.getIngredients());
-		System.out.println("TAMAÑO TABLA: "+px.getIngredients().size()); 
+    	ObservableList<Ingredient> ingredientsInProduct = FXCollections.observableArrayList(px.getIngredients()); 
     	
 		colIngInProduct.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("name"));  		 
 		 
@@ -980,6 +1026,35 @@ public class RestaurantGUI {
 
     @FXML
     void loadEditOrder(ActionEvent event) {
+    	
+    	Order orderX = tvOrders.getSelectionModel().getSelectedItem();
+    	
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editOrder-pane.fxml"));
+		fxmlLoader.setController(this); 	
+		
+		Parent addContactPane = null;
+		try {
+			addContactPane = fxmlLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mainPane.getChildren().clear();
+		String css = "styles/tableStyle.css";
+		addContactPane.getStylesheets().add(css);
+		mainPane.getChildren().setAll(addContactPane);
+		
+		//state
+		if(orderX.getState().getState().equals("Solicitado")) {
+			radioBtnState1.setSelected(true);
+		}else if(orderX.getState().getState().equals("En proceso")){
+			radioBtnState2.setSelected(true);
+		}else if(orderX.getState().getState().equals("Enviado")){
+			radioBtnState3.setSelected(true);
+		}else if(orderX.getState().getState().equals("Entregado")){
+			radioBtnState4.setSelected(true);
+		}
+		
+		initializeProductsInOrder(orderX);
 
     }
     
@@ -998,7 +1073,7 @@ public class RestaurantGUI {
     public void intializeOrders() {
     	ObservableList<Order> allOrders = FXCollections.observableArrayList(restaurant.getOrders());
 		 
-    	colOrdersClients.setCellValueFactory(new PropertyValueFactory<Order,String>("employeeRef"));  		 
+    	colOrdersClients.setCellValueFactory(new PropertyValueFactory<Order,String>("clientRef"));  		 
 		 
     	colOrdersCodes.setCellValueFactory(new PropertyValueFactory<Order,String>("code"));
 		 
@@ -1007,5 +1082,33 @@ public class RestaurantGUI {
     	colOrdersPrices.setCellValueFactory(new PropertyValueFactory<Order,String>("totalPrice"));    		
 		 
     	tvOrders.setItems(allOrders);
+    }
+    
+    @FXML
+    void eOaddIngrToProduct(ActionEvent event) {
+    	
+    }
+
+    @FXML
+    void eOremoveIngrFromProduct(ActionEvent event) {
+    	
+    }
+
+    @FXML
+    void eOupdateProduct(ActionEvent event) {
+    	
+    }
+    
+    public void initializeProductsInOrder(Order orderX) {
+    	
+    	ObservableList<Product> productsInOrder = FXCollections.observableArrayList(orderX.getOrderProducts());
+		 
+    	colEOProductName.setCellValueFactory(new PropertyValueFactory<Product,String>("name"));  		 
+		 
+    	colEOProductCode.setCellValueFactory(new PropertyValueFactory<Product,String>("code"));
+		 
+    	colEOProductPrice.setCellValueFactory(new PropertyValueFactory<Product,String>("price"));
+		 
+    	tvPIO.setItems(productsInOrder);
     }
 }
