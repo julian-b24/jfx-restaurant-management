@@ -1217,74 +1217,41 @@ public class RestaurantGUI {
     	
     	int posToRemoveInRef;
     	Size sizeX;
-    	//Remove product that was selected in the table
-    	if(productX!=null) {
-    		
-    		//default removal. If all fields are empty and an item is selected, then the program will remove only one product of the given code with a standard size
-    		if(txtEOAmount.getText().isEmpty() && txtEOSize.getText().isEmpty()) { 			
-        			
-    			//remove from order reference (table view purposes)
-    			posToRemoveInRef = searchProductByCodeInReferenceOrder(productX.getCode(), Product.DEFAULT_SIZE);
-    			
-    			if(posToRemoveInRef!=-1) {
-    				
-    				if(tempProductsAmounts.get(posToRemoveInRef)>1) {
-    					
-    					tempProductsAmounts.set(posToRemoveInRef, tempProductsAmounts.get(posToRemoveInRef)-1);
-    					
-    				}else {
-    					
-    					tempProductCodes.remove(posToRemoveInRef);
-        				tempProductsSizes.remove(posToRemoveInRef);
-        				tempProductsAmounts.remove(posToRemoveInRef);
-        				referenceOrder.getOrderProducts().remove(posToRemoveInRef);
-    				}
-    				loadEditOrder(null);
-    			}
-        	//remove one product with an specified size
-    		}else if(txtEOAmount.getText().isEmpty() && !txtEOSize.getText().isEmpty()) {
-    			sizeX = productX.getSizeByName(txtEOSize.getText());
-    			
-    			if(sizeX!=null) {
-    				posToRemoveInRef = searchProductByCodeInReferenceOrder(productX.getCode(), txtEOSize.getText());
-        			
-        			if(posToRemoveInRef!=-1) {
-        				if(tempProductsAmounts.get(posToRemoveInRef)>1) {
-        					
-        					tempProductsAmounts.set(posToRemoveInRef, tempProductsAmounts.get(posToRemoveInRef)-1);
-        					
-        				}else {
-        					
-        					tempProductCodes.remove(posToRemoveInRef);
-            				tempProductsSizes.remove(posToRemoveInRef);
-            				tempProductsAmounts.remove(posToRemoveInRef);
-            				referenceOrder.getOrderProducts().remove(posToRemoveInRef);
-        				}
-        				loadEditOrder(null);
-        			}
-    			}
-    		//Remove X amount of products with default size
-    		}else if(!txtEOAmount.getText().isEmpty() && txtEOSize.getText().isEmpty()) {
-    			
-    			posToRemoveInRef = searchProductByCodeInReferenceOrder(productX.getCode(), Product.DEFAULT_SIZE);
-    			
-    			if(posToRemoveInRef!=-1) {
-    				
-    				//The amount of products to remove is lower than the amount of products from that type in the order
-    				if(Integer.parseInt(txtEOAmount.getText())<tempProductsAmounts.get(posToRemoveInRef)) {
-    					tempProductsAmounts.set(posToRemoveInRef, tempProductsAmounts.get(posToRemoveInRef)-Integer.parseInt(txtEOAmount.getText()));
-    				//The amount of products to remove is equal or greater than the existing amount
-    				}else{
-    					tempProductCodes.remove(posToRemoveInRef);
-        				tempProductsSizes.remove(posToRemoveInRef);
-        				tempProductsAmounts.remove(posToRemoveInRef);
-        				referenceOrder.getOrderProducts().remove(posToRemoveInRef);
-    				}
-    				loadEditOrder(null);
-    			}
-    		}//else
+
+		//if any filed is empty it fills it with default values (1 for amounts, default size for sizes and the code of the selected item)
+    	if(txtEOAmount.getText().isEmpty()) {
+    		txtEOAmount.setText(""+1);
     	}
-    }
+    	if(txtEOSize.getText().isEmpty()) {
+    		txtEOSize.setText(Product.DEFAULT_SIZE);
+    	}
+    	
+    	if(txtEOProductName.getText().isEmpty() && productX!=null) {
+    		txtEOProductName.setText(""+productX.getCode());
+    	}
+    	
+    	productX = restaurant.getProductByCode(Integer.parseInt(txtEOProductName.getText()));
+    	sizeX = productX.getSizeByName(txtEOSize.getText());
+		
+		if(sizeX!=null) {
+			posToRemoveInRef = searchProductByCodeInReferenceOrder(Integer.parseInt(txtEOProductName.getText()), txtEOSize.getText());
+			
+			if(posToRemoveInRef!=-1) {
+				//checks if the amount number of products to remove is lower than the actual amount
+				if(Integer.parseInt(txtEOAmount.getText())<tempProductsAmounts.get(posToRemoveInRef)) {
+					
+					tempProductsAmounts.set(posToRemoveInRef, tempProductsAmounts.get(posToRemoveInRef)-Integer.parseInt(txtEOAmount.getText()));
+				//The amount of products to remove is equal or greater than the existing amount
+				}else{
+					tempProductCodes.remove(posToRemoveInRef);
+    				tempProductsSizes.remove(posToRemoveInRef);
+    				tempProductsAmounts.remove(posToRemoveInRef);
+    				referenceOrder.getOrderProducts().remove(posToRemoveInRef);
+				}
+				loadEditOrder(null);
+    		}	
+		}
+    }    	
     
     public int searchProductByCode(int code){
     	
