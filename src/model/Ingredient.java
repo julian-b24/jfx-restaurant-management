@@ -8,12 +8,12 @@ public class Ingredient extends Saleable implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private double price;
-	private ArrayList<String> references;
+	private ArrayList<Integer> references;
 	
 	public Ingredient(String nm, String creatRef, String lastE, int lastCode, double value) {
 		super(nm, creatRef, lastE, lastCode);
 		price = value;
-		references = new ArrayList<String>();
+		references = new ArrayList<Integer>();
 	}
 
 	public double getPrice() {
@@ -28,12 +28,26 @@ public class Ingredient extends Saleable implements Serializable{
 		return (references.size() == 0)?true:false;
 	}
 
-	public ArrayList<String> getReferences() {
+	public ArrayList<Integer> getReferences() {
 		return references;
 	}
 	
-	public void setReferences(ArrayList<String> references) {
+	public void setReferences(ArrayList<Integer> references) {
 		this.references = references;
+	}
+
+	public void addReference(int code) {
+		
+		boolean isIn = false;
+		for (int i = 0; i < references.size() && !isIn; i++) {
+			if (references.get(i) == code) {
+				isIn = true;
+			}
+		}
+		
+		if (!isIn) {
+			references.add(code);
+		}
 	}
 	
 }

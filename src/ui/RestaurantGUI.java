@@ -1026,7 +1026,7 @@ public class RestaurantGUI {
 				e.printStackTrace();
 			}
     		
-    		LocalDate orderTime = LocalDate.now();
+    		LocalDateTime orderTime = LocalDateTime.now();
     		
 			/*String formato = "yyyy-MM-dd HH:mm:ss";
 			DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);

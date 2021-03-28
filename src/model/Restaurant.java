@@ -13,7 +13,7 @@ import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
 
 import java.io.PrintWriter;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -162,9 +162,10 @@ public class Restaurant{
 		}
 		
 		Product product = new Product(name, creatorRef, lastEditor, lastCode, tempIngredients, type);
+		product.generateIngredientsReferences();
 		products.add(product);
 		saveProductsData();
-		
+		saveIngredientData();
 	}
 	
 	public ArrayList<Ingredient> getIngredientsByCode(ArrayList<Integer> codes) {
@@ -243,12 +244,12 @@ public class Restaurant{
 			
 			if (ingredient.isReferenced()) {
 				
-				ArrayList<String> references = ingredient.getReferences();
+				ArrayList<Integer> references = ingredient.getReferences();
 				boolean found = false;
 				
 				for (int i = 0; i < references.size() && !found; i++) {
 					
-					int tempReference = Integer.parseInt(references.get(i));
+					int tempReference = references.get(i);
 					
 					if (tempReference == code) {
 						ingredient.getReferences().remove(i);
@@ -272,7 +273,7 @@ public class Restaurant{
 	
 	//Req 1.8
 	public void createOrder(ArrayList<Integer> productsCodes, ArrayList<Integer> productsAmounts, ArrayList<String> productsSizes, String clientRef, 
-							int employeeRef, LocalDate dateRequest, String obs, String state) throws IOException {
+							int employeeRef, LocalDateTime dateRequest, String obs, String state) throws IOException {
 		
 		ArrayList<Product> productsOrdered = new ArrayList<Product>();
 		ArrayList<Size> sizes = new ArrayList<Size>();
@@ -420,6 +421,37 @@ public class Restaurant{
 				found = true;
 				
 			} else if (clients.get(mid).getCc().compareTo(cc) < 0) {
+				top = mid - 1;
+			} else {
+				low = mid + 1;
+			}
+		}
+		
+		return position;
+	}
+	
+	/**
+	 * Search a client by his name and return his/her position in the list.
+	 * <b> pre: </b> The list of clients must be sorted by name and last name in descending order <br>
+	 * @param firstName, String, first name of the client to search
+	 * @param lastName, String, last name of the client to search
+	 * @return position, the position of the client in the list, if he/she is not in it, the return will be -1
+	 */
+	public int searchClientByName(String firstName, String lastName) {
+		
+		int position = -1;
+		
+		int low = 0;
+		int top = clients.size() - 1;
+		boolean found = false;
+		
+		while(low < top && !found) {
+			
+			int mid = (low + top)/2;
+			if (clients.get(mid).getName().equals(firstName) && clients.get(mid).getLastName().equals(lastName)) {
+				position = mid;
+				found = true;
+			} else if((lastName + firstName).compareTo(clients.get(mid).getLastName() + clients.get(mid).getName()) < 0) {
 				low = mid + 1;
 			} else {
 				top = mid - 1;
@@ -509,7 +541,7 @@ public class Restaurant{
 			int employeeId = Integer.parseInt(values[2]);
 			
 			String dateString = values[3] + " " + values[4];
-			LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern(Order.DATE_FORMAT));
+			LocalDateTime date = LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern(Order.DATE_FORMAT));
 			
 			ArrayList<Integer> productsTemp = new ArrayList<Integer>();
 			ArrayList<Integer> amounts = new ArrayList<Integer>();
@@ -576,7 +608,7 @@ public class Restaurant{
 	 * @param top 
 	 * @return A HashMap with the info. The keys are the employees and the values are ArrayLists of the orders that references the employee
 	 */
-	public Map<Employee, ArrayList<Order>> getInfoReportEmployeesConsolidated(LocalDate top, LocalDate low) {
+	public Map<Employee, ArrayList<Order>> getInfoReportEmployeesConsolidated(LocalDateTime top, LocalDateTime low) {
 		
 		Map<Employee, ArrayList<Order>> report = new HashMap<Employee, ArrayList<Order>>();
 		
@@ -600,7 +632,7 @@ public class Restaurant{
 	}
 	
 	
-	public Map<Product, Map<Integer, Double>> getInforReportProductsConsolidated(LocalDate top, LocalDate low) {
+	public Map<Product, Map<Integer, Double>> getInforReportProductsConsolidated(LocalDateTime top, LocalDateTime low) {
 		
 		//Principal Key: Product -> Value: Times Ordered
 		//Second Key: Times Ordered -> Value: Total collected
@@ -657,7 +689,7 @@ public class Restaurant{
 		return report;
 	}
 	
-	public boolean isBetweenDates(LocalDate date, LocalDate low, LocalDate top) {
+	public boolean isBetweenDates(LocalDateTime date, LocalDateTime low, LocalDateTime top) {
 		
 		boolean between = false;
 		int underDate = date.compareTo(top);
@@ -667,17 +699,14 @@ public class Restaurant{
 		return between;
 	}
 	
-	public void generateReportEmployeesConsolidated(String lowDate, String topDate) throws IOException {
+	public void generateReportEmployeesConsolidated(LocalDateTime low, LocalDateTime top, String separator) throws IOException {
 		
 		PrintWriter pw = new PrintWriter(REPORT_EMPLOYEES_CONSOLIDATED_PATH);
 		sortOrdersByEmployeesId();
 		
-		LocalDate top = LocalDate.parse(topDate, DateTimeFormatter.ofPattern(Order.DATE_FORMAT));
-		LocalDate low = LocalDate.parse(lowDate, DateTimeFormatter.ofPattern(Order.DATE_FORMAT));
-		
 		Map<Employee, ArrayList<Order>> info = getInfoReportEmployeesConsolidated(top, low);
 		
-		pw.println("employeeId;employeeName;totalSales;numSales");
+		pw.println("employeeId;employeeName;totalSales;numSales".replace(";", separator));
 		
 		for (Map.Entry<Employee, ArrayList<Order>> entry : info.entrySet()) {
 			
@@ -687,20 +716,17 @@ public class Restaurant{
 			}
 			
 			int numSales = entry.getValue().size();
-			pw.println(	entry.getKey().getEmployeeId() + ";" + entry.getKey().getName() + ";" +
-						totalSales + ";" + numSales);
+			pw.println(	(entry.getKey().getEmployeeId() + ";" + entry.getKey().getName() + ";" +
+						totalSales + ";" + numSales).replace(";", separator));
 		}
 		
 		
 		pw.close();
 	}
 	
-	public void generateReportProductsConsolidated(String lowDate, String topDate) throws FileNotFoundException {
+	public void generateReportProductsConsolidated(LocalDateTime low, LocalDateTime top, String separator) throws FileNotFoundException {
 		
 		PrintWriter pw = new PrintWriter(REPORT_PRODUCTS_CONSOLIDATED_PATH);
-		
-		LocalDate top = LocalDate.parse(topDate, DateTimeFormatter.ofPattern(Order.DATE_FORMAT));
-		LocalDate low = LocalDate.parse(lowDate, DateTimeFormatter.ofPattern(Order.DATE_FORMAT));
 		
 		pw.println("productName;timerOrdered;totalMoney");
 		
@@ -724,20 +750,16 @@ public class Restaurant{
 			totalSales += tempSales;
 			totalAmount += tempAmount;
 			
-			pw.println(tempProductName + ";" + tempAmount + ";" + tempSales);
+			pw.println((tempProductName + ";" + tempAmount + ";" + tempSales).replace(";", separator));
 		}
 		
-		pw.println(" ;" + totalAmount + ";" + totalSales);
+		pw.println((" ;" + totalAmount + ";" + totalSales).replace(";", separator));
 		pw.close();
 	}
 	
-	public void generateReportOrdersConsolidated(String lowDate, String topDate, String separator) throws FileNotFoundException {
+	public void generateReportOrdersConsolidated(LocalDateTime low, LocalDateTime top, String separator) throws FileNotFoundException {
 		
 		PrintWriter pw = new PrintWriter(REPORT_ORDERS_CONSOLIDATED_PATH);
-		
-		LocalDate top = LocalDate.parse(topDate, DateTimeFormatter.ofPattern(Order.DATE_FORMAT));
-		LocalDate low = LocalDate.parse(lowDate, DateTimeFormatter.ofPattern(Order.DATE_FORMAT));
-		
 		
 		pw.println("clientName;clientAddress;clientPhone;employeeName;orderDate;observations;productName;productValue;productAmount".replace(";", separator));
 		

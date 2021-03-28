@@ -119,5 +119,13 @@ public class Product extends Saleable implements Comparable<Product>{
 		
 		return compare;
 	}
+
+	public void generateIngredientsReferences() {
+		
+		for (Ingredient ingredient : ingredients) {
+			ingredient.addReference(getCode());
+		}
+		
+	}
 	
 }
