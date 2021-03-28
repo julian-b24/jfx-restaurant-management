@@ -453,6 +453,7 @@ public class Restaurant{
 			String lastEditorRef = values[2];
 			String price = values[3];
 			createIngredient(name, creatorRef, lastEditorRef, price);
+			line = br.readLine();
 		}
 		
 		br.close();
@@ -474,6 +475,7 @@ public class Restaurant{
 			String phone = values[4];
 			String obs = values[5];
 			createClient(firstName, lastName, cc, address, phone, obs);
+			line = br.readLine();
 		}
 		
 		br.close();
@@ -497,6 +499,7 @@ public class Restaurant{
 			codes.add(Integer.parseInt(values[5]));
 			String type = values[6];
 			createProduct(name, creatorRef, lastEditorRef, codes, type);
+			line = br.readLine();
 		}
 		
 		br.close();
@@ -532,6 +535,7 @@ public class Restaurant{
 			
 			String state = values[11];
 			createOrder(productsTemp, amounts, null, ccClient, employeeId, date, obs, state); //Add list of Strings
+			line = br.readLine();
 		}
 		
 		br.close();
