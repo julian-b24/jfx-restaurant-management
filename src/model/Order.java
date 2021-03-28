@@ -1,7 +1,7 @@
 package model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Order implements Serializable{
@@ -15,7 +15,7 @@ public class Order implements Serializable{
 	private String clientRef;
 	private int employeeRef;
 	
-	private LocalDate date;
+	private LocalDateTime date;
 	
 	private ArrayList<Product> orderProducts;
 	private ArrayList<Integer> amountPerEach;
@@ -25,7 +25,7 @@ public class Order implements Serializable{
 	private State state;
 	private ArrayList<Size> sizes;
 	
-	public Order(int cod, String obs, String clntRef, int mployeRef, LocalDate dte, ArrayList<Product> products, ArrayList<Integer> amountEach, ArrayList<Size> sizs) {
+	public Order(int cod, String obs, String clntRef, int mployeRef, LocalDateTime dte, ArrayList<Product> products, ArrayList<Integer> amountEach, ArrayList<Size> sizs) {
 		
 		code = cod;
 		observations = obs;
@@ -39,7 +39,7 @@ public class Order implements Serializable{
 		sizes = sizs;
 	}
 	
-	public Order(int cod, String obs, String clntRef, int mployeRef, LocalDate dte, ArrayList<Product> products, ArrayList<Integer> amountEach, ArrayList<Size> sizs, String stae) {
+	public Order(int cod, String obs, String clntRef, int mployeRef, LocalDateTime dte, ArrayList<Product> products, ArrayList<Integer> amountEach, ArrayList<Size> sizs, String stae) {
 		
 		this(cod, obs, clntRef, mployeRef, dte, products, amountEach, sizs);
 		state = State.valueOf(stae);
@@ -92,11 +92,11 @@ public class Order implements Serializable{
 		this.employeeRef = employeeRef;
 	}
 
-	public LocalDate getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 
