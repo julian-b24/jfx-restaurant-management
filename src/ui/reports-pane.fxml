@@ -1,42 +1,146 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
-      <VBox layoutX="418.0" layoutY="200.0" prefHeight="400.0" prefWidth="398.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="418.0" AnchorPane.rightAnchor="464.0" AnchorPane.topAnchor="200.0">
+      <HBox layoutX="46.0" layoutY="362.0" prefHeight="252.0" prefWidth="1174.0">
          <children>
-            <JFXButton onAction="#generateOrderReport" prefHeight="64.0" prefWidth="471.0" style="-fx-background-color: #D9A404;" text="Generar reporte pedidos " textFill="#fff5d8">
-               <font>
-                  <Font name="Montserrat Medium" size="23.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="50.0" />
-               </VBox.margin>
-            </JFXButton>
-            <JFXButton onAction="#generateClientsReport" prefHeight="64.0" prefWidth="464.0" style="-fx-background-color: #D9A404;" text="Generar reporte clientes " textFill="#fff5d8">
-               <font>
-                  <Font name="Montserrat Medium" size="23.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="50.0" />
-               </VBox.margin>
-            </JFXButton>
-            <JFXButton onAction="#generateEmployeeReport" prefHeight="64.0" prefWidth="418.0" style="-fx-background-color: #D9A404;" text="Generar reporte empleados" textFill="#fff5d8">
-               <font>
-                  <Font name="Montserrat Medium" size="23.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="50.0" />
-               </VBox.margin>
-            </JFXButton>
+            <VBox alignment="TOP_CENTER" prefHeight="252.0" prefWidth="406.0">
+               <children>
+                  <Text fill="#ffc721" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción reporte pedido">
+                     <VBox.margin>
+                        <Insets left="40.0" right="40.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#ffffe1" strokeType="OUTSIDE" strokeWidth="0.0" text="Genera un reporte de todos los pedidos entregados en un rango de fechas dado. Destacando la información de los pedidos junto con su valor." textAlignment="CENTER" wrappingWidth="325.0">
+                     <font>
+                        <Font name="Montserrat Medium" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Text>
+                  <JFXButton onAction="#generateOrderReport" prefHeight="64.0" prefWidth="471.0" style="-fx-background-color: #D9A404;" text="Generar reporte pedidos " textFill="#fff5d8">
+                     <font>
+                        <Font name="Montserrat Medium" size="19.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="40.0" right="40.0" top="50.0" />
+                     </VBox.margin>
+                  </JFXButton>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="494.0" prefWidth="384.0">
+               <children>
+                  <Text fill="#ffc721" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción reporte clientes">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#ffffe1" strokeType="OUTSIDE" strokeWidth="0.0" text="Genera un reporte de todos los clientes registrados en un rango de fechas dado. Destacando sus principales atributos" textAlignment="CENTER" wrappingWidth="325.0">
+                     <font>
+                        <Font name="Montserrat Medium" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Text>
+                  <JFXButton onAction="#generateClientsReport" prefHeight="64.0" prefWidth="464.0" style="-fx-background-color: #D9A404;" text="Generar reporte clientes " textFill="#fff5d8">
+                     <font>
+                        <Font name="Montserrat Medium" size="19.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="40.0" right="40.0" top="68.0" />
+                     </VBox.margin>
+                  </JFXButton>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="567.0" prefWidth="419.0">
+               <children>
+                  <Text fill="#ffc721" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción reporte empleados">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#ffffe1" strokeType="OUTSIDE" strokeWidth="0.0" text="Genera un reporte de todos los empleados registrados en un rango de fechas dado. Destacando sus principales atributos y ventas." textAlignment="CENTER" wrappingWidth="325.0">
+                     <font>
+                        <Font name="Montserrat Medium" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Text>
+                  <JFXButton onAction="#generateEmployeeReport" prefHeight="64.0" prefWidth="418.0" style="-fx-background-color: #D9A404;" text="Generar reporte empleados" textFill="#fff5d8">
+                     <font>
+                        <Font name="Montserrat Medium" size="19.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="40.0" right="40.0" top="48.0" />
+                     </VBox.margin>
+                  </JFXButton>
+               </children>
+            </VBox>
          </children>
-      </VBox>
+      </HBox>
+      <JFXButton layoutX="46.0" layoutY="40.0" onAction="#loadMenu" prefHeight="38.0" prefWidth="107.0" style="-fx-background-color: #D9A404;" text="Menu" textFill="#fff3e0" />
+      <Text fill="#fff3dc" layoutX="557.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reportes">
+         <font>
+            <Font name="Montserrat Medium" size="36.0" />
+         </font>
+      </Text>
+      <HBox alignment="TOP_CENTER" layoutX="80.0" layoutY="234.0" prefHeight="44.0" prefWidth="1107.0">
+         <children>
+            <Text fill="#ffd28f" strokeType="OUTSIDE" strokeWidth="0.0" text="Separador:">
+               <font>
+                  <Font name="Montserrat Medium" size="18.0" />
+               </font>
+            </Text>
+            <JFXTextField fx:id="txtSeparator" focusColor="#fff6cc" promptText=";" text=";">
+               <HBox.margin>
+                  <Insets left="15.0" />
+               </HBox.margin>
+            </JFXTextField>
+            <Text fill="#ffd28f" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha inicio:">
+               <font>
+                  <Font name="Montserrat Medium" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
+            </Text>
+            <JFXDatePicker fx:id="txtInitialDate">
+               <HBox.margin>
+                  <Insets left="15.0" />
+               </HBox.margin>
+            </JFXDatePicker>
+            <Text fill="#ffd28f" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha fin:">
+               <font>
+                  <Font name="Montserrat Medium" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
+            </Text>
+            <JFXDatePicker fx:id="txtFinalDate">
+               <HBox.margin>
+                  <Insets left="15.0" />
+               </HBox.margin>
+            </JFXDatePicker>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

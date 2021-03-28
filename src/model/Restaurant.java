@@ -1007,4 +1007,12 @@ public class Restaurant{
 
 	}
 	
+	public String getOrderFormat() {
+		String format="";
+		
+		format=Order.DATE_FORMAT;
+		
+		return format;
+	}
+	
 }

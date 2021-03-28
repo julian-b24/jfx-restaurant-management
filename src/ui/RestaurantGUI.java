@@ -1,9 +1,14 @@
 package ui;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
@@ -343,7 +348,14 @@ public class RestaurantGUI {
     private JFXTextField txtEOSize;
     
     //Reports menu
+    @FXML
+    private JFXTextField txtSeparator;
 
+    @FXML
+    private JFXDatePicker txtInitialDate;
+
+    @FXML
+    private JFXDatePicker txtFinalDate;
     
     //Constructor
     public RestaurantGUI(Restaurant restaurant) {
@@ -455,6 +467,7 @@ public class RestaurantGUI {
 		mainPane.getChildren().setAll(addContactPane);
     }
     
+    //???
     @FXML
     void reLoadAdminProducts(ActionEvent event) {
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("adminProducts-pane.fxml"));
@@ -474,25 +487,7 @@ public class RestaurantGUI {
     void loadAdminUser(ActionEvent event) {
     	
     }
-
-    @FXML
-    void loadGenerateReports(ActionEvent event) {
-    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("reports-pane.fxml"));
-		fxmlLoader.setController(this);
-		
-		Parent addContactPane = null;
-		try {
-			addContactPane = fxmlLoader.load();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		mainPane.getChildren().clear();
-		String css = "styles/tableStyle.css";
-		addContactPane.getStylesheets().add(css);
-		mainPane.getChildren().setAll(addContactPane);
-    }
-
+    
     @FXML
     void loadImports(ActionEvent event) {
 
@@ -1030,7 +1025,13 @@ public class RestaurantGUI {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+    		
     		LocalDate orderTime = LocalDate.now();
+    		
+			/*String formato = "yyyy-MM-dd HH:mm:ss";
+			DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);
+			LocalDateTime ahora = LocalDateTime.now();
+			String rightNow = formateador.format(ahora);*/
     		
     		int id = restaurant.searchEmployeeByUserName(actualUser);
     		String state ="REQUESTED";
@@ -1253,6 +1254,7 @@ public class RestaurantGUI {
 		}
     }    	
     
+    
     public int searchProductByCode(int code){
     	
     	int pos = -1;
@@ -1314,13 +1316,71 @@ public class RestaurantGUI {
     }
     
     @FXML
+    void loadGenerateReports(ActionEvent event) {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("reports-pane.fxml"));
+		fxmlLoader.setController(this);
+		
+		Parent addContactPane = null;
+		try {
+			addContactPane = fxmlLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		mainPane.getChildren().clear();
+		String css = "styles/tableStyle.css";
+		addContactPane.getStylesheets().add(css);
+		mainPane.getChildren().setAll(addContactPane);
+
+		//dates default
+		LocalDate localDate = LocalDate.now();
+		//getStart of the day time
+		LocalDateTime startOfDay = LocalDateTime.of(localDate, LocalTime.MIDNIGHT);
+		//get end of the day time
+		LocalDateTime endOfDay = LocalDateTime.of(localDate, LocalTime.MAX);
+		//get format from products
+		String formatString =restaurant.getOrderFormat();
+		//set formatter
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(formatString);
+		
+		//
+		if(txtInitialDate.getValue()==null) {
+		
+			dateFormat.format(startOfDay);
+			txtInitialDate.setValue(startOfDay.toLocalDate());
+		}		
+		if(txtFinalDate.getValue()==null) {
+			
+			dateFormat.format(endOfDay);
+			txtFinalDate.setValue(endOfDay.toLocalDate());
+		}
+    }
+    
+    @FXML
     void generateClientsReport(ActionEvent event) {
     	
     }
 
     @FXML
     void generateEmployeeReport(ActionEvent event) {
-
+    	
+    	//get format from products
+    	String formatString =restaurant.getOrderFormat();
+    	//set formatter
+    	DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(formatString);
+    	LocalDate init = txtInitialDate.getValue();
+    	LocalDate finit = txtFinalDate.getValue();
+    	
+    	LocalDateTime startOfDay = LocalDateTime.of(init, LocalTime.MIDNIGHT);
+    	LocalDateTime endOfDay = LocalDateTime.of(finit, LocalTime.MAX);
+    	
+    	String lowDate = dateFormat.format(startOfDay);
+    	String topDate = dateFormat.format(endOfDay);
+    	
+    	System.out.println(lowDate);
+    	System.out.println(topDate);
+    	
+    	//restaurant.generateReportEmployeesConsolidated(lowDate, topDate);
     }
 
     @FXML
