@@ -421,6 +421,37 @@ public class Restaurant{
 				found = true;
 				
 			} else if (clients.get(mid).getCc().compareTo(cc) < 0) {
+				top = mid - 1;
+			} else {
+				low = mid + 1;
+			}
+		}
+		
+		return position;
+	}
+	
+	/**
+	 * Search a client by his name and return his/her position in the list.
+	 * <b> pre: </b> The list of clients must be sorted by name and last name in descending order <br>
+	 * @param firstName, String, first name of the client to search
+	 * @param lastName, String, last name of the client to search
+	 * @return position, the position of the client in the list, if he/she is not in it, the return will be -1
+	 */
+	public int searchClientByName(String firstName, String lastName) {
+		
+		int position = -1;
+		
+		int low = 0;
+		int top = clients.size() - 1;
+		boolean found = false;
+		
+		while(low < top && !found) {
+			
+			int mid = (low + top)/2;
+			if (clients.get(mid).getName().equals(firstName) && clients.get(mid).getLastName().equals(lastName)) {
+				position = mid;
+				found = true;
+			} else if((lastName + firstName).compareTo(clients.get(mid).getLastName() + clients.get(mid).getName()) < 0) {
 				low = mid + 1;
 			} else {
 				top = mid - 1;
