@@ -378,25 +378,17 @@ public class Restaurant{
 		Collections.sort(ingredients, ingredientNameComparator);
 	}
 	
+	/**
+	 * Sorts the products list based on their price, using Collections.sort().
+	 * <b> pos: </b> The list of products is going to be sorted in decreasing price <br>
+	 */
+	public void sortPorductsByPrice() {
+		Collections.sort(products);
+	}
+	
+	
 	//search ingredient by name
 	public boolean searchIngredient(String name) {
-		
-		/*int low = 0;
-		int top = ingredients.size() - 1;
-		boolean found = false;
-		
-		while(low < top && !found) {
-			
-			int mid = (low + top)/2;
-			if (ingredients.get(mid).getName().equalsIgnoreCase(name)) {
-				found = true;
-			} else if (ingredients.get(mid).getName().compareTo(name) < 0) {
-				low = mid + 1;
-			} else {
-				top = mid - 1;
-			}
-		}
-		return found;*/
 		
 		boolean found = false;
 		for (int i = 0; i < ingredients.size() && !found; i++) {

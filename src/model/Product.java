@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Product extends Saleable{
+public class Product extends Saleable implements Comparable<Product>{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -105,6 +105,19 @@ public class Product extends Saleable{
 		}
 		
 		price = total;
+	}
+	
+	@Override
+	public int compareTo(Product otherProduct) {
+		
+		int compare = 0;
+		if (getPrice() - otherProduct.getPrice() > 0) { //The product has a greater price than the otheProduct
+			compare = 1;
+		} else if(getPrice() - otherProduct.getPrice() < 0) { //Other product has a greater price
+			compare = -1;
+		}
+		
+		return compare;
 	}
 	
 }
