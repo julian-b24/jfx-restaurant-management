@@ -508,7 +508,7 @@ public class Restaurant{
 	//Req 4.3
 	public void importOrders() throws IOException {
 		
-		BufferedReader br = new BufferedReader(new FileReader(PRODUCTS_PATH));
+		BufferedReader br = new BufferedReader(new FileReader(ORDERS_PATH));
 		br.readLine(); //Read first line
 
 		String line = br.readLine();
