@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class Client extends Person implements Comparable<Client>, Serializable{
 	
+	private static final long serialVersionUID = 1L;
+	
 	private String adress;				//client address
 	private String phone;				// client contact phone
 	private String obsField;			//client observation field

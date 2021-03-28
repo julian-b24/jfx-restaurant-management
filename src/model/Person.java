@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public abstract class Person implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+	
 	protected String name;					//name of the person
 	protected String lastName;				//lastname of the person
 	protected String cc;					//cc of the person

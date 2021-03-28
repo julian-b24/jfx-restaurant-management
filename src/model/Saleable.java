@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public abstract class Saleable implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	//WARNING CONSTANTS NOT IN THE CLASS DIAGRAM
 	public final static boolean DEAFULT_AVAILABLE = true;		//When a saleable is created, it is by deafult available
 	

@@ -6,7 +6,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import java.io.ObjectOutputStream;
@@ -14,8 +13,7 @@ import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
 
 import java.io.PrintWriter;
-import java.io.Serializable;
-import java.io.Writer;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -24,8 +22,9 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Restaurant implements Serializable{
+public class Restaurant{
 
+	
 	public final static String INGREDIENTS_PATH = "data/csv/ingredients.csv";
 	public final static String CLIENTS_PATH = "data/csv/clients.csv";
 	public final static String PRODUCTS_PATH = "data/csv/products.csv";
