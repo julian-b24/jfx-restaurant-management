@@ -1,6 +1,7 @@
 package ui;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import com.jfoenix.controls.JFXRadioButton;
@@ -285,10 +286,16 @@ public class RestaurantGUI {
     @FXML
     private TableColumn<Order, String> colOrdersPrices;
     
+    @FXML
+    private JFXTextField txtOrderOBs;
+    
     //Constructor
     public RestaurantGUI(Restaurant restaurant) {
 		this.restaurant = restaurant;
 		tempIngrsCodes = new ArrayList<>();
+		tempProductCodes = new ArrayList<>();
+		tempProductsAmounts = new ArrayList<>();
+		tempProductsSizes = new ArrayList<>();
 	}
 
 	//Login methods
@@ -913,16 +920,66 @@ public class RestaurantGUI {
 		addContactPane.getStylesheets().add(css);
 		mainPane.getChildren().setAll(addContactPane);
 		initializePorudctsInCreateOrder();
+		intializeOrders();
     }
     
     @FXML
     void addProductToOrder(ActionEvent event) {
     	
+    	Product productX = tvProductsList.getSelectionModel().getSelectedItem();
+    	
+    	if(productX!=null) {
+    		tempProductCodes.add(productX.getCode());
+    		
+    		if(txtOrderProductAmount.getText().equalsIgnoreCase(txtOrderProductAmount.getPromptText()) || txtOrderProductAmount.getText().equals("")) {
+    			tempProductsAmounts.add(1);
+    		}else {
+    			tempProductsAmounts.add(Integer.parseInt(txtOrderProductAmount.getText()));
+    		}
+    		if(txtOrderProductSize.getText().equalsIgnoreCase(txtOrderProductSize.getPromptText()) || txtOrderProductSize.getText().equals("")) {
+    			tempProductsSizes.add("Standard");
+    		}else {
+    			Size sizeX = productX.getSizeByName(txtOrderProductSize.getText());
+    			if(sizeX!=null) {
+    				tempProductsSizes.add(txtOrderProductSize.getText());
+    			}
+    			
+    		}
+    	}
+    	
+    	if(!txtOrderProductName.getText().equalsIgnoreCase(txtOrderProductName.getPromptText()) && !txtOrderProductName.getText().equals("")) {
+    	
+    		Product tempProduct = restaurant.getProductByCode(Integer.parseInt(	txtOrderProductName.getText()));
+    		if(tempProduct!=null) {
+    			tempProductCodes.add(tempProduct.getCode());
+    		}
+    	}
     }
 
     @FXML
     void createOrder(ActionEvent event) {
-
+    	if(!txtOrderClientName.getText().isEmpty() && !txtOrderClientLastName.getText().isEmpty() && !txtOrderClientCC.getText().isEmpty() && 
+    			!txtOrderClientAdress.getText().isEmpty() && !txtOrderClientPhone.getText().isEmpty() && tempProductCodes.size()>0) {
+    		
+    		try {
+				restaurant.createClient(txtOrderClientName.getText(), txtOrderClientLastName.getText(), txtOrderClientCC.getText(), txtOrderClientAdress.getText(), txtOrderClientPhone.getText(), txtOrderClientObsField.getText());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    		LocalDate orderTime = LocalDate.now();
+    		
+    		int id = restaurant.searchEmployeeByUserName(actualUser);
+    		String state ="REQUESTED";
+    		
+    		try {
+				restaurant.createOrder(tempProductCodes, tempProductsAmounts, tempProductsSizes, txtOrderClientName.getText(), id, orderTime, txtOrderOBs.getText(), state);
+				System.out.println("AAAAAA");
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+    	}
     }
 
     @FXML
@@ -943,6 +1000,16 @@ public class RestaurantGUI {
     }
     
     public void intializeOrders() {
-    	
+    	ObservableList<Order> allOrders = FXCollections.observableArrayList(restaurant.getOrders());
+		 
+    	colOrdersClients.setCellValueFactory(new PropertyValueFactory<Order,String>("employeeRef"));  		 
+		 
+    	colOrdersCodes.setCellValueFactory(new PropertyValueFactory<Order,String>("code"));
+		 
+    	colOrdersStates.setCellValueFactory(new PropertyValueFactory<Order,String>("state"));
+
+    	colOrdersPrices.setCellValueFactory(new PropertyValueFactory<Order,String>("totalPrice"));    		
+		 
+    	tvOrders.setItems(allOrders);
     }
 }

@@ -52,7 +52,7 @@
                               <Font name="Montserrat Medium" size="16.0" />
                            </font>
                         </Text>
-                        <JFXTextField fx:id="txtOrderClientLastName" prefHeight="31.0" prefWidth="227.0" promptText="Nombre" text="Apellido" />
+                        <JFXTextField fx:id="txtOrderClientLastName" prefHeight="31.0" prefWidth="227.0" promptText="Apellido" />
                      </children>
                      <HBox.margin>
                         <Insets right="50.0" />
@@ -75,7 +75,7 @@
                               <Font name="Montserrat Medium" size="16.0" />
                            </font>
                         </Text>
-                        <JFXTextField fx:id="txtOrderClientCC" prefHeight="31.0" prefWidth="227.0" promptText="Nombre" text="C.C">
+                        <JFXTextField fx:id="txtOrderClientCC" prefHeight="31.0" prefWidth="227.0" promptText="c.c">
                            <VBox.margin>
                               <Insets left="50.0" right="50.0" />
                            </VBox.margin>
@@ -89,7 +89,7 @@
                               <Font name="Montserrat Medium" size="16.0" />
                            </font>
                         </Text>
-                        <JFXTextField fx:id="txtOrderClientAdress" prefHeight="31.0" prefWidth="227.0" promptText="Nombre" text="dirección" />
+                        <JFXTextField fx:id="txtOrderClientAdress" prefHeight="31.0" prefWidth="227.0" promptText="Dirección" />
                      </children>
                      <HBox.margin>
                         <Insets right="50.0" />
@@ -112,7 +112,7 @@
                               <Font name="Montserrat Medium" size="16.0" />
                            </font>
                         </Text>
-                        <JFXTextField fx:id="txtOrderClientPhone" prefHeight="31.0" prefWidth="227.0" promptText="Nombre" text="Teléfono">
+                        <JFXTextField fx:id="txtOrderClientPhone" prefHeight="31.0" prefWidth="227.0" promptText="Teléfono">
                            <VBox.margin>
                               <Insets left="50.0" right="50.0" />
                            </VBox.margin>
@@ -126,7 +126,7 @@
                               <Font name="Montserrat Medium" size="16.0" />
                            </font>
                         </Text>
-                        <JFXTextField fx:id="txtOrderClientObsField" prefHeight="31.0" prefWidth="227.0" promptText="Nombre" text="Observaciones" />
+                        <JFXTextField fx:id="txtOrderClientObsField" prefHeight="31.0" prefWidth="227.0" promptText="Observaciones" />
                      </children>
                      <HBox.margin>
                         <Insets right="50.0" />
@@ -138,7 +138,7 @@
                <children>
                   <VBox prefHeight="78.0" prefWidth="176.0">
                      <children>
-                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre producto">
+                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Código producto">
                            <font>
                               <Font name="Montserrat Medium" size="16.0" />
                            </font>
@@ -146,7 +146,7 @@
                               <Insets left="50.0" />
                            </VBox.margin>
                         </Text>
-                        <JFXTextField fx:id="txtOrderProductName" prefHeight="31.0" prefWidth="227.0" promptText="Nombre" text="Nombre">
+                        <JFXTextField fx:id="txtOrderProductName" prefHeight="31.0" prefWidth="227.0" promptText="Código">
                            <VBox.margin>
                               <Insets left="50.0" />
                            </VBox.margin>
@@ -160,7 +160,7 @@
                               <Font name="Montserrat Medium" size="16.0" />
                            </font>
                         </Text>
-                        <JFXTextField fx:id="txtOrderProductAmount" prefHeight="31.0" prefWidth="227.0" promptText="Nombre" text="Cantidad" />
+                        <JFXTextField fx:id="txtOrderProductAmount" prefHeight="31.0" prefWidth="227.0" promptText="Cantidad" />
                      </children>
                      <HBox.margin>
                         <Insets left="30.0" />
@@ -173,7 +173,7 @@
                               <Font name="Montserrat Medium" size="16.0" />
                            </font>
                         </Text>
-                        <JFXTextField fx:id="txtOrderProductSize" prefHeight="31.0" prefWidth="227.0" promptText="Nombre" text="Tamaño" />
+                        <JFXTextField fx:id="txtOrderProductSize" prefHeight="31.0" prefWidth="227.0" promptText="Tamaño" />
                      </children>
                      <HBox.margin>
                         <Insets left="30.0" />
@@ -184,6 +184,19 @@
                   <Insets top="30.0" />
                </VBox.margin>
             </HBox>
+            <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Observaciones de la orden">
+               <font>
+                  <Font name="Montserrat Medium" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="50.0" />
+               </VBox.margin>
+            </Text>
+            <JFXTextField fx:id="txtOrderOBs" prefHeight="31.0" prefWidth="227.0" promptText="Observaciones de la orden">
+               <VBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </VBox.margin>
+            </JFXTextField>
             <Button mnemonicParsing="false" onAction="#addProductToOrder" prefHeight="31.0" prefWidth="163.0" style="-fx-background-color: #D9A404;" text="Añadir producto" textFill="#fff7d9">
                <VBox.margin>
                   <Insets left="50.0" top="20.0" />

@@ -56,6 +56,7 @@ public class Restaurant implements Serializable{
 		ingredients = new ArrayList<>();
 		clients = new ArrayList<>();
 		employees = new ArrayList<>();
+		orders = new ArrayList<>();
 	}
 	
 	public void createSystemUser(String nam, String lastN, String ccP, String user, String passw) throws IOException {
@@ -811,6 +812,19 @@ public class Restaurant implements Serializable{
 			}
 		}
 		return position;
+	}
+	
+	public int searchEmployeeByUserName(String userN) {
+		
+		boolean found = false;
+		int id=-1;
+		for (int i = 0; i < systemUsers.size() && !found; i++) {
+			if(systemUsers.get(i).getUserName().equals(userN)) {
+				found = true;
+				id = systemUsers.get(i).getEmployeeId();
+			}
+		}
+		return id;
 	}
 
 	public ArrayList<Client> getClients() {
