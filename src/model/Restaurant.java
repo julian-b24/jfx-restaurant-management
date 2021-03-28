@@ -13,7 +13,6 @@ import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
 
 import java.io.PrintWriter;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -174,7 +173,6 @@ public class Restaurant{
 		ArrayList<Ingredient> tempIngredients = new ArrayList<Ingredient>();
 		
 		boolean stop = false;
-		int j = 0;
 		for (int i = 0; i < codes.size() && !stop; i++) {
 			for (int k = 0; k < ingredients.size(); k++) {
 				if(ingredients.get(k).getCode()== codes.get(i)) {

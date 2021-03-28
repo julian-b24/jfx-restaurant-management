@@ -486,6 +486,7 @@ public class RestaurantGUI {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		mainPane.getChildren().clear();
 		String css = "styles/tableStyle.css";
 		addContactPane.getStylesheets().add(css);
@@ -1131,13 +1132,13 @@ public class RestaurantGUI {
     		
     		if(txtEOAmount.getText().isEmpty() && txtEOSize.getText().isEmpty()) {
     			tempProductsAmounts.add(1);
-    			tempProductsSizes.add(null); 
+    			tempProductsSizes.add(Product.DEFAULT_SIZE); 
     			loadEditOrder(null);
     			
     		}else if (!txtEOAmount.getText().isEmpty() && txtEOSize.getText().isEmpty()) {
     			
     			tempProductsAmounts.add(Integer.parseInt(txtEOAmount.getText()));
-    			tempProductsSizes.add(null); 
+    			tempProductsSizes.add(Product.DEFAULT_SIZE); 
     			loadEditOrder(null);
     			
     		}else if(txtEOAmount.getText().isEmpty() && !txtEOSize.getText().isEmpty()) {
@@ -1172,13 +1173,13 @@ public class RestaurantGUI {
     			
     			if(txtEOAmount.getText().isEmpty() && txtEOSize.getText().isEmpty()) {
         			tempProductsAmounts.add(1);
-        			tempProductsSizes.add(null); 
+        			tempProductsSizes.add(Product.DEFAULT_SIZE); 
         			loadEditOrder(null);
         			
         		}else if (!txtEOAmount.getText().isEmpty() && txtEOSize.getText().isEmpty()) {
         			
         			tempProductsAmounts.add(Integer.parseInt(txtEOAmount.getText()));
-        			tempProductsSizes.add(null); 
+        			tempProductsSizes.add(Product.DEFAULT_SIZE); 
         			loadEditOrder(null);
         			
         		}else if(txtEOAmount.getText().isEmpty() && !txtEOSize.getText().isEmpty()) {
@@ -1214,30 +1215,43 @@ public class RestaurantGUI {
     	
     	Product productX = tvPIO.getSelectionModel().getSelectedItem();
     	
-    	if(productX!=null) {
-    		
-    		//default removal. If all fields are empty and an item is selected, then the program will remove only one product of the given code with a standard size
-    		if(txtEOAmount.getText().isEmpty() && txtEOSize.getText().isEmpty()) {
-    			int posToRemove = searchProductByCode(productX.getCode());
-        		
-        		if(posToRemove!=-1) {  			
-        			
-        			//remove from order reference (table view purposes)
-        			int posToRemoveInRef = searchProductByCodeInReferenceOrder(productX.getCode(), Product.DEFAULT_SIZE);
-        			
-        			if(posToRemoveInRef!=-1) {
-        				
-        				tempProductCodes.remove(posToRemove);
-            			tempProductsAmounts.remove(posToRemove);
-            			tempProductsSizes.remove(posToRemove); 
-        				referenceOrder.getOrderProducts().remove(posToRemoveInRef);
-        			}
-        			loadEditOrder(null);
-        		}
-    		}
-    		
+    	int posToRemoveInRef;
+    	Size sizeX;
+
+		//if any filed is empty it fills it with default values (1 for amounts, default size for sizes and the code of the selected item)
+    	if(txtEOAmount.getText().isEmpty()) {
+    		txtEOAmount.setText(""+1);
     	}
-    }
+    	if(txtEOSize.getText().isEmpty()) {
+    		txtEOSize.setText(Product.DEFAULT_SIZE);
+    	}
+    	
+    	if(txtEOProductName.getText().isEmpty() && productX!=null) {
+    		txtEOProductName.setText(""+productX.getCode());
+    	}
+    	
+    	productX = restaurant.getProductByCode(Integer.parseInt(txtEOProductName.getText()));
+    	sizeX = productX.getSizeByName(txtEOSize.getText());
+		
+		if(sizeX!=null) {
+			posToRemoveInRef = searchProductByCodeInReferenceOrder(Integer.parseInt(txtEOProductName.getText()), txtEOSize.getText());
+			
+			if(posToRemoveInRef!=-1) {
+				//checks if the amount number of products to remove is lower than the actual amount
+				if(Integer.parseInt(txtEOAmount.getText())<tempProductsAmounts.get(posToRemoveInRef)) {
+					
+					tempProductsAmounts.set(posToRemoveInRef, tempProductsAmounts.get(posToRemoveInRef)-Integer.parseInt(txtEOAmount.getText()));
+				//The amount of products to remove is equal or greater than the existing amount
+				}else{
+					tempProductCodes.remove(posToRemoveInRef);
+    				tempProductsSizes.remove(posToRemoveInRef);
+    				tempProductsAmounts.remove(posToRemoveInRef);
+    				referenceOrder.getOrderProducts().remove(posToRemoveInRef);
+				}
+				loadEditOrder(null);
+    		}	
+		}
+    }    	
     
     public int searchProductByCode(int code){
     	
@@ -1259,9 +1273,8 @@ public class RestaurantGUI {
     	int pos = -1;
     	boolean found = false;
     	
-    	for (int i = 0; i < referenceOrder.getOrderProducts().size() && !found; i++) {
- 
-			if(referenceOrder.getOrderProducts().get(i).getCode() == code && tempProductsSizes.get(i).equals(size)) {
+    	for (int i = 0; i < tempProductCodes.size() && !found; i++) {
+			if(tempProductCodes.get(i) == code && tempProductsSizes.get(i).equals(size)) {
 				pos = i;
 				found = true;
 			}
@@ -1302,7 +1315,7 @@ public class RestaurantGUI {
     
     @FXML
     void generateClientsReport(ActionEvent event) {
-
+    	
     }
 
     @FXML
