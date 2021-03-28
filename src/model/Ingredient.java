@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 public class Ingredient extends Saleable implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	
 	private double price;
 	private ArrayList<String> references;
 	

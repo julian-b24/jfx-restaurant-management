@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class Size implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	private static final double DEFAULT_PRICE_FACTOR = 1;
 	
 	private String size;

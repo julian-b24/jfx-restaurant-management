@@ -1,9 +1,9 @@
 package model;
 
-import java.io.Serializable;
-
 public class Employee extends Person {
 
+	private static final long serialVersionUID = 1L;
+	
 	protected int employeeId;			//employee unique id
 	
 	public Employee(String nam, String lastN, String ccP, int id) {
