@@ -657,7 +657,6 @@ public class RestaurantGUI {
 	 
 	 @FXML
 	 void loadEditProduct(ActionEvent event) {
-		 //add a colleciton 
 		 
 		 Product productX = tvProducts.getSelectionModel().getSelectedItem();
 		 referenceProduct = productX;
@@ -731,7 +730,6 @@ public class RestaurantGUI {
 
     @FXML
     void removeIngrFromProduct(ActionEvent event) {
-    	 System.out.println(tempIngrsCodes.size());
     	
     	Ingredient ingrToRemove = tvIdp.getSelectionModel().getSelectedItem();
     	
@@ -740,13 +738,12 @@ public class RestaurantGUI {
 			int posToRem =searhIngInTempProduct(ingrToRemove.getCode());
 			if(posToRem!=-1){
 				referenceProduct.getIngredients().remove(posToRem);
+				//System.out.println("");
 				loadEditProduct(null);
-			}			
-		}
-		
-		if(!actionIngtxt.getText().equals(actionIngtxt.getPromptText()) || !actionIngtxt.getText().isEmpty()) {
+			}		
 			
-		
+		}else if(!actionIngtxt.getText().equals(actionIngtxt.getPromptText()) || !actionIngtxt.getText().isEmpty()) {
+			
 			int removeCod = restaurant.binarySearchIng(actionIngtxt.getText(), restaurant.getIngredients());
 			int posToRemo = searhIngInTempProduct(restaurant.getIngredients().get(removeCod).getCode());
 
@@ -776,9 +773,7 @@ public class RestaurantGUI {
 	    	
 	    	int pos = -1;
 	    	boolean found = false;
-	    	System.out.println("DAMINT"+referenceProduct.getIngredients().size());
 			for (int i = 0; i < referenceProduct.getIngredients().size() && !found; i++) {
-				System.out.println("CODIGO DEL COSOOOOOOOOAAAAAAA"+referenceProduct.getIngredients().get(i).getCode());
 				if(code == referenceProduct.getIngredients().get(i).getCode()){
 					pos = i;
 					found = true;
@@ -871,14 +866,15 @@ public class RestaurantGUI {
     public void initializeIngsInProduct(Product px) {
     	
     	ObservableList<Ingredient> ingredientsInProduct = FXCollections.observableArrayList(px.getIngredients());
+		System.out.println("TAMAÑO TABLA: "+px.getIngredients().size()); 
+    	
+		colIngInProduct.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("name"));  		 
 		 
-		 colIngInProduct.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("name"));  		 
+		colIngInPCode.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("code"));
+		
+		colIngInPPrice.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("price"));    		
 		 
-		 colIngInPCode.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("code"));
-		 
-		 colIngInPPrice.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("price"));    		
-		 
-		 tvIdp.setItems(ingredientsInProduct);
+		tvIdp.setItems(ingredientsInProduct);
     }
     
     public void initializeAllRegisIngs() {
@@ -973,7 +969,7 @@ public class RestaurantGUI {
     		String state ="REQUESTED";
     		
     		try {
-				restaurant.createOrder(tempProductCodes, tempProductsAmounts, tempProductsSizes, txtOrderClientName.getText(), id, orderTime, txtOrderOBs.getText(), state);
+				restaurant.createOrder(tempProductCodes, tempProductsAmounts, tempProductsSizes, txtOrderClientCC.getText(), id, orderTime, txtOrderOBs.getText(), state);
 				System.out.println("AAAAAA");
 			} catch (IOException e) {
 				

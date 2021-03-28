@@ -158,7 +158,7 @@
             </Text>
             <HBox prefHeight="53.0" prefWidth="723.0">
                <children>
-                  <JFXTextField fx:id="actionIngtxt" prefHeight="31.0" prefWidth="365.0" text="Nombre del ingrediente" />
+                  <JFXTextField fx:id="actionIngtxt" prefHeight="31.0" prefWidth="365.0" promptText="Nombre del ingrediente" />
                   <JFXButton onAction="#removeIngrFromProduct" prefHeight="36.0" prefWidth="165.0" style="-fx-background-color: #D9A404;" text="Eliminar ingrediente" textFill="#fffcdd">
                      <HBox.margin>
                         <Insets left="40.0" />
