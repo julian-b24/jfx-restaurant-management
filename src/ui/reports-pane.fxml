@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+      <VBox layoutX="418.0" layoutY="200.0" prefHeight="400.0" prefWidth="398.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="418.0" AnchorPane.rightAnchor="464.0" AnchorPane.topAnchor="200.0">
+         <children>
+            <JFXButton onAction="#generateOrderReport" prefHeight="64.0" prefWidth="471.0" style="-fx-background-color: #D9A404;" text="Generar reporte pedidos " textFill="#fff5d8">
+               <font>
+                  <Font name="Montserrat Medium" size="23.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </JFXButton>
+            <JFXButton onAction="#generateClientsReport" prefHeight="64.0" prefWidth="464.0" style="-fx-background-color: #D9A404;" text="Generar reporte clientes " textFill="#fff5d8">
+               <font>
+                  <Font name="Montserrat Medium" size="23.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </JFXButton>
+            <JFXButton onAction="#generateEmployeeReport" prefHeight="64.0" prefWidth="418.0" style="-fx-background-color: #D9A404;" text="Generar reporte empleados" textFill="#fff5d8">
+               <font>
+                  <Font name="Montserrat Medium" size="23.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </JFXButton>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

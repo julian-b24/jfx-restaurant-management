@@ -341,6 +341,8 @@ public class RestaurantGUI {
 
     @FXML
     private JFXTextField txtEOSize;
+    
+    //Reports menu
 
     
     //Constructor
@@ -475,7 +477,19 @@ public class RestaurantGUI {
 
     @FXML
     void loadGenerateReports(ActionEvent event) {
-
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("reports-pane.fxml"));
+		fxmlLoader.setController(this);
+		
+		Parent addContactPane = null;
+		try {
+			addContactPane = fxmlLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mainPane.getChildren().clear();
+		String css = "styles/tableStyle.css";
+		addContactPane.getStylesheets().add(css);
+		mainPane.getChildren().setAll(addContactPane);
     }
 
     @FXML
@@ -985,7 +999,7 @@ public class RestaurantGUI {
     			tempProductsAmounts.add(Integer.parseInt(txtOrderProductAmount.getText()));
     		}
     		if(txtOrderProductSize.getText().equalsIgnoreCase(txtOrderProductSize.getPromptText()) || txtOrderProductSize.getText().equals("")) {
-    			tempProductsSizes.add("Standard");
+    			tempProductsSizes.add(null);
     		}else {
     			Size sizeX = productX.getSizeByName(txtOrderProductSize.getText());
     			if(sizeX!=null) {
@@ -1036,8 +1050,18 @@ public class RestaurantGUI {
     @FXML
     void loadEditOrder(ActionEvent event) {
     	System.out.println("LOADED AGAIN");
+    	
     	Order orderX = tvOrders.getSelectionModel().getSelectedItem();
     	referenceOrder = orderX;
+    	
+    	for (int i = 0; i < orderX.getOrderProducts().size(); i++) {
+    		if(tempProductCodes.size()<orderX.getOrderProducts().size()) {
+    			
+    			tempProductCodes.add(orderX.getOrderProducts().get(i).getCode());
+    			tempProductsSizes.add(orderX.getSizes().get(i).getSize());
+    			tempProductsAmounts.add(orderX.getAmountPerEach().get(i));
+    		}
+		}
     	
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editOrder-pane.fxml"));
 		fxmlLoader.setController(this); 	
@@ -1102,18 +1126,18 @@ public class RestaurantGUI {
     	//product added by selecting an item from the table
     	if(productX!=null) {
     		
-    		tempIngrsCodes.add(productX.getCode());
+    		tempProductCodes.add(productX.getCode());
     		referenceOrder.getOrderProducts().add(productX);
     		
     		if(txtEOAmount.getText().isEmpty() && txtEOSize.getText().isEmpty()) {
     			tempProductsAmounts.add(1);
-    			tempProductsSizes.add(Product.DEFAULT_SIZE); 
+    			tempProductsSizes.add(null); 
     			loadEditOrder(null);
     			
     		}else if (!txtEOAmount.getText().isEmpty() && txtEOSize.getText().isEmpty()) {
     			
     			tempProductsAmounts.add(Integer.parseInt(txtEOAmount.getText()));
-    			tempProductsSizes.add(Product.DEFAULT_SIZE); 
+    			tempProductsSizes.add(null); 
     			loadEditOrder(null);
     			
     		}else if(txtEOAmount.getText().isEmpty() && !txtEOSize.getText().isEmpty()) {
@@ -1143,18 +1167,18 @@ public class RestaurantGUI {
     		
     		if(temProduct!=null) {
     			
-    			tempIngrsCodes.add(temProduct.getCode());
+    			tempProductCodes.add(temProduct.getCode());
     			referenceOrder.getOrderProducts().add(temProduct);
     			
     			if(txtEOAmount.getText().isEmpty() && txtEOSize.getText().isEmpty()) {
         			tempProductsAmounts.add(1);
-        			tempProductsSizes.add(Product.DEFAULT_SIZE); 
+        			tempProductsSizes.add(null); 
         			loadEditOrder(null);
         			
         		}else if (!txtEOAmount.getText().isEmpty() && txtEOSize.getText().isEmpty()) {
         			
         			tempProductsAmounts.add(Integer.parseInt(txtEOAmount.getText()));
-        			tempProductsSizes.add(Product.DEFAULT_SIZE); 
+        			tempProductsSizes.add(null); 
         			loadEditOrder(null);
         			
         		}else if(txtEOAmount.getText().isEmpty() && !txtEOSize.getText().isEmpty()) {
@@ -1167,6 +1191,7 @@ public class RestaurantGUI {
         				tempProductsSizes.add(txtEOSize.getText()); 
         				loadEditOrder(null);
         			}
+        			
         		}else {
         			tempProductsAmounts.add(Integer.parseInt(txtEOAmount.getText()));
         			 sizeX = temProduct.getSizeByName(txtEOSize.getText());
@@ -1178,12 +1203,71 @@ public class RestaurantGUI {
         		}
     		}
     	}
+    	
+    	System.out.println("SIZE AFTER ADDITION: "+tempProductCodes.size());
+    	System.out.println("SIZE sizes: "+tempProductsSizes.size());
+    	System.out.println("SIZE amount: "+tempProductsAmounts.size());
     }
 
     @FXML
     void eOremoveIngrFromProduct(ActionEvent event) {
     	
+    	Product productX = tvPIO.getSelectionModel().getSelectedItem();
+    	
+    	if(productX!=null) {
+    		
+    		//default removal. If all fields are empty and an item is selected, then the program will remove only one product of the given code with a standard size
+    		if(txtEOAmount.getText().isEmpty() && txtEOSize.getText().isEmpty()) {
+    			int posToRemove = searchProductByCode(productX.getCode());
+        		
+        		if(posToRemove!=-1) {  			
+        			
+        			//remove from order reference (table view purposes)
+        			int posToRemoveInRef = searchProductByCodeInReferenceOrder(productX.getCode(), Product.DEFAULT_SIZE);
+        			
+        			if(posToRemoveInRef!=-1) {
+        				
+        				tempProductCodes.remove(posToRemove);
+            			tempProductsAmounts.remove(posToRemove);
+            			tempProductsSizes.remove(posToRemove); 
+        				referenceOrder.getOrderProducts().remove(posToRemoveInRef);
+        			}
+        			loadEditOrder(null);
+        		}
+    		}
+    		
+    	}
     }
+    
+    public int searchProductByCode(int code){
+    	
+    	int pos = -1;
+    	boolean found = false;
+    	
+    	for (int i = 0; i < tempProductCodes.size() && !found; i++) {
+ 
+			if(tempProductCodes.get(i) == code) {
+				pos = i;
+				found = true;
+			}
+		}
+    	return pos;
+    }
+    
+    public int searchProductByCodeInReferenceOrder(int code, String size){
+    	
+    	int pos = -1;
+    	boolean found = false;
+    	
+    	for (int i = 0; i < referenceOrder.getOrderProducts().size() && !found; i++) {
+ 
+			if(referenceOrder.getOrderProducts().get(i).getCode() == code && tempProductsSizes.get(i).equals(size)) {
+				pos = i;
+				found = true;
+			}
+		}
+    	return pos;
+    }    
 
     @FXML
     void eOupdateProduct(ActionEvent event) {
@@ -1214,5 +1298,20 @@ public class RestaurantGUI {
     	colEOPrice.setCellValueFactory(new PropertyValueFactory<Product,String>("price"));
 		 
     	tvregisteredProducts.setItems(productsRegistered);
+    }
+    
+    @FXML
+    void generateClientsReport(ActionEvent event) {
+
+    }
+
+    @FXML
+    void generateEmployeeReport(ActionEvent event) {
+
+    }
+
+    @FXML
+    void generateOrderReport(ActionEvent event) {
+
     }
 }
