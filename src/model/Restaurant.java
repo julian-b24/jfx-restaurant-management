@@ -163,9 +163,10 @@ public class Restaurant{
 		}
 		
 		Product product = new Product(name, creatorRef, lastEditor, lastCode, tempIngredients, type);
+		product.generateIngredientsReferences();
 		products.add(product);
 		saveProductsData();
-		
+		saveIngredientData();
 	}
 	
 	public ArrayList<Ingredient> getIngredientsByCode(ArrayList<Integer> codes) {
@@ -245,12 +246,12 @@ public class Restaurant{
 			
 			if (ingredient.isReferenced()) {
 				
-				ArrayList<String> references = ingredient.getReferences();
+				ArrayList<Integer> references = ingredient.getReferences();
 				boolean found = false;
 				
 				for (int i = 0; i < references.size() && !found; i++) {
 					
-					int tempReference = Integer.parseInt(references.get(i));
+					int tempReference = references.get(i);
 					
 					if (tempReference == code) {
 						ingredient.getReferences().remove(i);
