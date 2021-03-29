@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -392,16 +393,32 @@ public class RestaurantGUI {
 	@FXML
 	void loginUser(ActionEvent event) {
 			if(usernametxf.getText().equals("") || passwordtxf.getText().equals("")) {
-				//alert
+
+				usernametxf.getStyleClass().add("wrong-login");
+				passwordtxf.getStyleClass().add("wrong-login");
+				Alert alert = new Alert(Alert.AlertType.WARNING);
+				alert.setTitle("Campos Vacíos");
+				alert.setContentText("Al menos uno de los dos campos está vacío!");
+				alert.showAndWait();
+				
 			}else {
+				boolean loged = false;
 				for (int i = 0; i < restaurant.getSystemUsers().size(); i++) {
 					if(usernametxf.getText().equals(restaurant.getSystemUsers().get(i).getUserName()) &&
 							passwordtxf.getText().equals(restaurant.getSystemUsers().get(i).getPassword())) {
 						actualUser = usernametxf.getText();
 						loadMenu(null);
-					}else {
-						//alert
+						loged = true;
 					}
+				}
+				
+				if (!loged) {
+					usernametxf.getStyleClass().add("wrong-login");
+					passwordtxf.getStyleClass().add("wrong-login");
+					Alert alert = new Alert(Alert.AlertType.ERROR);
+					alert.setTitle("Valores incorrctos");
+					alert.setContentText("Al menos uno de los dos valores es incorrecto!");
+					alert.showAndWait();
 				}
 			}
 		}
