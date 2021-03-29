@@ -468,22 +468,6 @@ public class RestaurantGUI {
 		mainPane.getChildren().clear();
 		mainPane.getChildren().setAll(addContactPane);
     }
-    
-    //???
-    @FXML
-    void reLoadAdminProducts(ActionEvent event) {
-    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("adminProducts-pane.fxml"));
-		fxmlLoader.setController(this); 	
-		
-		Parent addContactPane = null;
-		try {
-			addContactPane = fxmlLoader.load();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		mainPane.getChildren().clear();
-		mainPane.getChildren().setAll(addContactPane);
-    }
 
     @FXML
     void loadAdminUser(ActionEvent event) {
@@ -1300,6 +1284,10 @@ public class RestaurantGUI {
     void eOupdateProduct(ActionEvent event) {
     	try {
 			restaurant.updateOrder(orderCodeReference, tempProductCodes, tempProductsAmounts, tempProductsSizes);
+			tempIngrsCodes.clear();
+			tempProductsAmounts.clear();
+			tempProductsSizes.clear();
+			
 		} catch (IOException e) {
 		
 			e.printStackTrace();

@@ -158,6 +158,11 @@
                   <Insets top="30.0" />
                </VBox.margin>
             </JFXButton>
+            <JFXButton onAction="#loadMenu" prefHeight="43.0" prefWidth="165.0" style="-fx-background-color: #D9A404;" text="Volver al menú" textFill="#fffcdd">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </JFXButton>
          </children>
       </VBox>
       <VBox layoutX="851.0" layoutY="53.0" prefHeight="697.0" prefWidth="375.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="53.0">
