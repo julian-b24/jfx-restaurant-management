@@ -452,7 +452,7 @@ public class RestaurantGUI {
 
 	//Login methods
 	@FXML
-	void loadRegister(ActionEvent event) {
+	public void loadRegister(ActionEvent event) {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("registerSysUser-pane.fxml"));
 		fxmlLoader.setController(this); 	
 		
@@ -467,7 +467,7 @@ public class RestaurantGUI {
 	}
 	
 	@FXML
-	void loginUser(ActionEvent event) {
+	public void loginUser(ActionEvent event) {
 			if(usernametxf.getText().equals("") || passwordtxf.getText().equals("")) {
 
 				usernametxf.getStyleClass().add("wrong-login");
@@ -499,7 +499,7 @@ public class RestaurantGUI {
 	
 	//Register methods
 	@FXML
-    void createSystemUser(ActionEvent event) {
+    public void createSystemUser(ActionEvent event) {
 		boolean valid = validateRegisterInput(rNametxf.getText(), rLastNametfx.getText(), rCctfx.getText(),
 				rUsernametxf.getText(), rPasswordtxf.getText());
 		
@@ -522,7 +522,7 @@ public class RestaurantGUI {
     }
 
     @FXML
-    void loadLogin(ActionEvent event) {
+    public void loadLogin(ActionEvent event) {
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login-pane.fxml"));
 		fxmlLoader.setController(this); 	
 		
@@ -537,7 +537,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void loadMenu(ActionEvent event) {
+    public void loadMenu(ActionEvent event) {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu-pane.fxml"));
 		fxmlLoader.setController(this); 	
 		
@@ -552,7 +552,7 @@ public class RestaurantGUI {
 	}
 
     @FXML
-    void loadAdminProducts(ActionEvent event) {
+    public void loadAdminProducts(ActionEvent event) {
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("adminProducts-pane.fxml"));
 		fxmlLoader.setController(this); 	
 		
@@ -567,7 +567,7 @@ public class RestaurantGUI {
     }
 
     @FXML
-    void loadAdminUser(ActionEvent event) {
+    public void loadAdminUser(ActionEvent event) {
     	
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("adminUsers-pane.fxml"));
 		fxmlLoader.setController(this); 	
@@ -583,7 +583,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void loadImports(ActionEvent event) {
+    public void loadImports(ActionEvent event) {
     	
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("imports-pane.fxml"));
 		fxmlLoader.setController(this); 	
@@ -601,7 +601,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void loadAdminIngredients(ActionEvent event) {	
+    public void loadAdminIngredients(ActionEvent event) {	
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("adminIngredients-pane.fxml"));
 		fxmlLoader.setController(this); 	
 		
@@ -637,7 +637,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void createIngredient(ActionEvent event) {
+    public void createIngredient(ActionEvent event) {
     	
     	if(!txtIngredientName.getText().equals("") && !txtIngredientValue.getText().equals("")){
     		try {
@@ -650,7 +650,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void LoadEditI(ActionEvent event) {
+    public void LoadEditI(ActionEvent event) {
     	Ingredient ing = tableIngr.getSelectionModel().getSelectedItem();
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editIngr-pane.fxml"));
 		fxmlLoader.setController(this); 	
@@ -680,7 +680,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void updateIngredient(ActionEvent event) {
+    public void updateIngredient(ActionEvent event) {
     	if(!txtNewIngName.equals("") && !txtNewIngVal.equals("")) {
     		try {
     			boolean available= false;
@@ -729,7 +729,7 @@ public class RestaurantGUI {
 	 }
     
     @FXML
-    void loadAProducts(ActionEvent event) {
+    public void loadAProducts(ActionEvent event) {
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("adminProduct-pane.fxml"));
 		fxmlLoader.setController(this); 	
 		
@@ -749,7 +749,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void createProduct(ActionEvent event) {
+    public void createProduct(ActionEvent event) {
     	String type="";
     	boolean valid = validateInputProduct();
     	System.out.println(valid);
@@ -775,7 +775,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void addIngredientToProduct(ActionEvent event) {
+    public void addIngredientToProduct(ActionEvent event) {
     	Ingredient ingrX = tvIngP.getSelectionModel().getSelectedItem();
     	
     	if(ingrX != null) {
@@ -861,7 +861,7 @@ public class RestaurantGUI {
 	 }
 	 
 	 @FXML
-	 void loadEditProduct(ActionEvent event) {
+	 public void loadEditProduct(ActionEvent event) {
 		 
 		 Product productX = tvProducts.getSelectionModel().getSelectedItem();
 		 referenceProduct = productX;
@@ -906,7 +906,7 @@ public class RestaurantGUI {
 	 }
 	 
 	 @FXML
-	 void addIngrToProduct(ActionEvent event) {
+	 public void addIngrToProduct(ActionEvent event) {
 		 
 		 Ingredient ingrToAdd = tvallInings.getSelectionModel().getSelectedItem();
 		 
@@ -931,7 +931,7 @@ public class RestaurantGUI {
 	 }
 
     @FXML
-    void removeIngrFromProduct(ActionEvent event) {
+    public void removeIngrFromProduct(ActionEvent event) {
     	
     	Ingredient ingrToRemove = tvIdp.getSelectionModel().getSelectedItem();
     	
@@ -985,7 +985,7 @@ public class RestaurantGUI {
 	    }
    
 	 @FXML
-	 void addSizeToProduct(ActionEvent event) {
+	 public void addSizeToProduct(ActionEvent event) {
 		 if(!txtAddNameSize.getText().isEmpty() && !txtMultiply.getText().isEmpty()) {
 			 referenceProduct.addSize(txtAddNameSize.getText(), Double.parseDouble(txtMultiply.getText()));
 			 loadEditProduct(null);
@@ -993,7 +993,7 @@ public class RestaurantGUI {
 	 }
 	 
 	 @FXML
-	 void removeSizeFromProduct(ActionEvent event) {
+	 public void removeSizeFromProduct(ActionEvent event) {
 		 boolean found = false;
 		 int pos =-1;
 		 
@@ -1014,7 +1014,7 @@ public class RestaurantGUI {
 	 
 	 
     @FXML
-    void updateProduct(ActionEvent event) {
+    public void updateProduct(ActionEvent event) {
     	
     	if(txtNewProductName.getText().isEmpty()) {
     		txtNewProductName.setText(referenceProduct.getName());
@@ -1097,7 +1097,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void loadAdminOrders(ActionEvent event) {
+    public void loadAdminOrders(ActionEvent event) {
     	
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("createOrder-pane.fxml"));
 		fxmlLoader.setController(this); 	
@@ -1117,7 +1117,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void addProductToOrder(ActionEvent event) {
+    public void addProductToOrder(ActionEvent event) {
     	
     	if(!txtOrderProductCode.getText().isEmpty() && !txtOrderProductAmount.getText().isEmpty() && !txtOrderProductSize.getText().isEmpty()) {
     		
@@ -1179,7 +1179,7 @@ public class RestaurantGUI {
     }
 
     @FXML
-    void fillProductTextFields(MouseEvent event) {
+    public void fillProductTextFields(MouseEvent event) {
     	
     	Product productX = tvProductsList.getSelectionModel().getSelectedItem();	
     	
@@ -1192,7 +1192,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void createOrder(ActionEvent event) {
+    public void createOrder(ActionEvent event) {
     		
 		LocalDateTime orderTime = LocalDateTime.now();
 		
@@ -1209,7 +1209,10 @@ public class RestaurantGUI {
 				restaurant.createOrder(tempProductCodes, tempProductsAmounts, tempProductsSizes, clientRef, id, orderTime, txtOrderOBs.getText(), state);
 			}else {
 				//Alert no hay referenica al cliente 
-				System.out.println("NO HAY REFERENCIA MI REY");
+				Alert warning = new Alert(AlertType.WARNING);
+				warning.setTitle("Cliente no encontrado");
+				warning.setContentText("No se ha ingresado un cliente válido.");
+				warning.showAndWait();
 			}
 			
 			clientRef = null;
@@ -1224,7 +1227,7 @@ public class RestaurantGUI {
     }
 
     @FXML
-    void loadEditOrder(ActionEvent event) {
+    public void loadEditOrder(ActionEvent event) {
     	    	
     	Order orderX = tvOrders.getSelectionModel().getSelectedItem();
     	referenceOrder = orderX;
@@ -1296,7 +1299,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void eOaddIngrToProduct(ActionEvent event) {
+    public void eOaddIngrToProduct(ActionEvent event) {
     	Product productX = tvregisteredProducts.getSelectionModel().getSelectedItem();
     	
     	//product added by selecting an item from the table
@@ -1386,7 +1389,7 @@ public class RestaurantGUI {
     }
 
     @FXML
-    void eOremoveIngrFromProduct(ActionEvent event) {
+    public void eOremoveIngrFromProduct(ActionEvent event) {
     	
     	Product productX = tvPIO.getSelectionModel().getSelectedItem();
     	
@@ -1459,7 +1462,7 @@ public class RestaurantGUI {
     }    
     
     @FXML
-    void eOupdateProduct(ActionEvent event) {
+    public void eOupdateProduct(ActionEvent event) {
     	try {
     		 			
 			restaurant.updateOrder(orderCodeReference, tempProductCodes, tempProductsAmounts, tempProductsSizes);
@@ -1498,7 +1501,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void loadGenerateReports(ActionEvent event) {
+    public void loadGenerateReports(ActionEvent event) {
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("reports-pane.fxml"));
 		fxmlLoader.setController(this);
 		
@@ -1539,7 +1542,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void generateProductReport(ActionEvent event) {
+    public void generateProductReport(ActionEvent event) {
     	
     	LocalDateTime startOfDay = getLowDate();
     	LocalDateTime endOfDay = getTopDate();
@@ -1583,7 +1586,7 @@ public class RestaurantGUI {
     
 
     @FXML
-    void generateEmployeeReport(ActionEvent event) {
+    public void generateEmployeeReport(ActionEvent event) {
     	
     	LocalDateTime startOfDay = getLowDate();
     	LocalDateTime endOfDay = getTopDate();
@@ -1599,7 +1602,7 @@ public class RestaurantGUI {
     }
 
     @FXML
-    void generateOrderReport(ActionEvent event) {
+    public void generateOrderReport(ActionEvent event) {
     	LocalDateTime startOfDay = getLowDate();
     	LocalDateTime endOfDay = getTopDate();
     	
@@ -1614,7 +1617,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void setStateForward(ActionEvent event) {
+    public void setStateForward(ActionEvent event) {
     	
 			try {
 				restaurant.updateStateOrder(orderCodeReference);
@@ -1627,7 +1630,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void eliminateIngredient(ActionEvent event) {
+    public void eliminateIngredient(ActionEvent event) {
     	
     	try {
     		
@@ -1638,6 +1641,10 @@ public class RestaurantGUI {
     			loadAdminIngredients(null);
     		}else {
     			//alert
+    			Alert warning = new Alert(AlertType.WARNING);
+    			warning.setTitle("Ingrediente referenciado!");
+    			warning.setContentText("Al menos un producto tiene este ingrediente! No se puede eliminar un ingrediente referenciado");
+    			warning.showAndWait();
     		}
 						
 		} catch (IOException e) {
@@ -1647,14 +1654,19 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void eliminateProduct(ActionEvent event) {
+    public void eliminateProduct(ActionEvent event) {
     	
     		try {
     			if(restaurant.getProductByCode(referenceProduct.getCode()).getRefCodes().isEmpty()) {
-				restaurant.deleteProduct(referenceProduct.getCode());
-				loadAdminProducts(null);
+					restaurant.deleteProduct(referenceProduct.getCode());
+					loadAdminProducts(null);
     			}else {
-    	    		//alert
+    	    		//alert product is referenced
+    				Alert warning = new Alert(AlertType.WARNING);
+    				warning.setTitle("Producto referenciado");
+    				warning.setContentText( "Al menos una orden o ingrediente usa este producto! No se puede eliminar un" + 
+    										" producto referenciado.");
+    				warning.showAndWait();
     	    	}
 			} catch (IOException e) {
 				
@@ -1663,7 +1675,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void imoprtProducts(ActionEvent event) {
+    public void imoprtProducts(ActionEvent event) {
     	
     	try {
 			restaurant.importProducts();
@@ -1674,7 +1686,7 @@ public class RestaurantGUI {
     }
 
     @FXML
-    void importClients(ActionEvent event) {
+    public void importClients(ActionEvent event) {
     	try {
 			restaurant.importClients();
 		} catch (IOException e) {
@@ -1684,7 +1696,7 @@ public class RestaurantGUI {
     }
 
     @FXML
-    void importIngredients(ActionEvent event) {
+    public void importIngredients(ActionEvent event) {
 
     	try {
 			restaurant.importIngredients();
@@ -1695,7 +1707,7 @@ public class RestaurantGUI {
     }
 
     @FXML
-    void importOrders(ActionEvent event) {
+    public void importOrders(ActionEvent event) {
 
     	try {
 			restaurant.importOrders();
@@ -1706,7 +1718,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void loadAdminClients(ActionEvent event) {
+    public void loadAdminClients(ActionEvent event) {
     	
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("createClient-pane.fxml"));
 		fxmlLoader.setController(this); 	
@@ -1722,7 +1734,7 @@ public class RestaurantGUI {
     }
 
     @FXML
-    void loadAdminEmployees(ActionEvent event) {
+    public void loadAdminEmployees(ActionEvent event) {
 
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("createEmployee-pane.fxml"));
 		fxmlLoader.setController(this); 	
@@ -1738,7 +1750,7 @@ public class RestaurantGUI {
     }
 
     @FXML
-    void loadAdminSystemUsers(ActionEvent event) {
+    public void loadAdminSystemUsers(ActionEvent event) {
 
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("updateSystermUser-pane.fxml"));
 		fxmlLoader.setController(this); 	
@@ -1765,7 +1777,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void createClient(ActionEvent event) {
+    public void createClient(ActionEvent event) {
     	
     	if(!txtClientName.getText().isEmpty() && !txtClientLastName.getText().isEmpty() && !txtClientCC.getText().isEmpty() && 
 		!txtClientAdress.getText().isEmpty() && !txtClientPhone.getText().isEmpty()) {
@@ -1779,14 +1791,13 @@ public class RestaurantGUI {
 				}
 				
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     	}
     }
     
     @FXML
-    void searchClient(ActionEvent event) {
+    public void searchClient(ActionEvent event) {
     	
     	if(!txtSearchClientName.getText().isEmpty() && !txtSearhClientLastName.getText().isEmpty()) {
     		
@@ -1807,7 +1818,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void editClient(ActionEvent event) {
+    public void editClient(ActionEvent event) {
     	
     	if(!txtCCToEdit.getText().isEmpty()) {
     		int posClient = restaurant.searchClientByCc(txtCCToEdit.getText());
@@ -1844,7 +1855,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void updateClient(ActionEvent event) {
+    public void updateClient(ActionEvent event) {
     	System.out.println("HM");
     	
     	System.out.println(txtNewClientLastName.getText().isEmpty());
@@ -1867,7 +1878,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void createEmployee(ActionEvent event) {
+    public void createEmployee(ActionEvent event) {
    
     	if(!txtEmployeeName.getText().isEmpty() && !txtEmployeeLastName.getText().isEmpty() && !txtEmployeeCc.getText().isEmpty()) {
     		
@@ -1885,7 +1896,7 @@ public class RestaurantGUI {
     }
 
     @FXML
-    void editEmployee(ActionEvent event) {
+    public void editEmployee(ActionEvent event) {
 
     	if(!txtCCEmployeeToEdit.getText().isEmpty()) {
     		
@@ -1917,7 +1928,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void updateEmployeeX(ActionEvent event) {
+    public void updateEmployeeX(ActionEvent event) {
     	
     	if(!txtNewEmploName.getText().isEmpty() && !txtNewEmploLastName.getText().isEmpty()) {
     		
@@ -1934,7 +1945,7 @@ public class RestaurantGUI {
     }
 
     @FXML
-    void updateUser(ActionEvent event) {
+    public void updateUser(ActionEvent event) {
     	
     	if(!txtEidtUserName.getText().isEmpty() && !txtEditUserLatName.getText().isEmpty() && !txtEditUsername.getText().isEmpty() && !txtEditUserPassword.getText().isEmpty()) {
     		try {
