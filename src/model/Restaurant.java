@@ -996,6 +996,20 @@ public class Restaurant{
 		}
 		return pos;
 	}
+	
+	public boolean producIsAvailable(int code) {
+		
+		Product product = getProductByCode(code);
+		boolean available = product.isAvailable();
+		return available;
+	}
+	
+	public boolean ingredientIsAvailable(int code) {
+		
+		Ingredient ingredient = getIngredientByCode(code);
+		boolean available = ingredient.isAvailable();
+		return available;
+	}
 
 	public ArrayList<Product> getProducts() {
 		return products;
