@@ -891,7 +891,7 @@ public class Restaurant{
 		int pos = -1;
 		boolean found = false;
 		
-		for (int i = 0; i < employees.size(); i++) {
+		for (int i = 0; i < employees.size() && !found; i++) {
 			if(employees.get(i).getCc().equals(cc)) {
 				pos = i;
 				found = true;
