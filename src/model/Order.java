@@ -117,6 +117,7 @@ public class Order implements Serializable{
 	}
 
 	public double getTotalPrice() {
+		calculateTotalPrice();
 		return totalPrice;
 	}
 
