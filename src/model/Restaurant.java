@@ -623,12 +623,12 @@ public class Restaurant{
 	}
 	
 	
-	public Map<Product, Map<Integer, Double>> getInforReportProductsConsolidated(LocalDateTime top, LocalDateTime low) {
+	public Map<Integer, Map<Integer, Double>> getInforReportProductsConsolidated(LocalDateTime top, LocalDateTime low) {
 		
 		//Principal Key: Product -> Value: Times Ordered
 		//Second Key: Times Ordered -> Value: Total collected
-		//Summary: Product -> Times Ordered -> Total collected
-		Map<Product, Map<Integer, Double>> report = new HashMap<Product, Map<Integer, Double>>();
+		//Summary: Product code -> Times Ordered -> Total collected
+		Map<Integer, Map<Integer, Double>> report = new HashMap<Integer, Map<Integer, Double>>();
 		
 		//Generates the HashMap with all the products as keys and zeros in any other value or key
 		for (Product product : products) {
@@ -638,9 +638,8 @@ public class Restaurant{
 			Double total_collected = 0.0;
 			
 			collected.put(count, total_collected);
-			report.put(product, collected);
+			report.put(product.getCode(), collected);
 		}
-		
 		
 		//Iterate over all orders getting the amount and the total collected for each product
 		for (Order order : orders) {
@@ -652,22 +651,17 @@ public class Restaurant{
 					//Calculating the total of  product in a specific order
 					Product tempProduct = order.getOrderProducts().get(i);
 
-					
-					for (int j = 0; j < order.getSizes().size(); j++) {
-						System.out.println("size: "+order.getSizes().get(i));
-					}
-					
 					Double tempSizeFactor = order.getSizes().get(i).getPriceFactor();
 					int tempAmount = order.getAmountPerEach().get(i);
 					Double tempTotal = tempProduct.getPrice() * tempSizeFactor * tempAmount;
 					
 					
-					Map<Integer, Double> tempCollected = report.get(tempProduct);
+					Map<Integer, Double> tempCollected = report.get(tempProduct.getCode());
 					
 					//Getting the old data
 					//This loop will repeat just once, lastAmount = key of the map
 					Integer oldAmount = 0;
-					for (Map.Entry<Integer, Double> entry : tempCollected.entrySet()) {
+					for (Map.Entry<Integer, Double> entry : report.get(tempProduct.getCode()).entrySet()) {
 						oldAmount = entry.getKey();
 					}
 					
@@ -678,7 +672,7 @@ public class Restaurant{
 					Double newTotal = tempTotal + oldTotal;
 					tempCollected.remove(oldAmount);
 					tempCollected.put(newAmount, newTotal);
-					report.put(tempProduct, tempCollected);
+					report.put(tempProduct.getCode(), tempCollected);
 				}
 			}
 		}
@@ -727,14 +721,14 @@ public class Restaurant{
 		
 		pw.println("productName;timerOrdered;totalMoney");
 		
-		Map<Product, Map<Integer, Double>> info = getInforReportProductsConsolidated(top, low);
+		Map<Integer, Map<Integer, Double>> info = getInforReportProductsConsolidated(top, low);
 		double totalSales = 0.0;
 		int totalAmount = 0;
 		
-		for (Map.Entry<Product, Map<Integer, Double>> entryProduct: info.entrySet()) {
+		for (Map.Entry<Integer, Map<Integer, Double>> entryProduct: info.entrySet()) {
 			
 			Map<Integer, Double> values = entryProduct.getValue();
-			String tempProductName = entryProduct.getKey().getName();
+			String tempProductName = getProductByCode(entryProduct.getKey()).getName();			
 			int tempAmount = 0;
 			double tempSales = 0.0;
 			
