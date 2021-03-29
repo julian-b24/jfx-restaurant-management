@@ -1465,9 +1465,16 @@ public class RestaurantGUI {
     void eliminateIngredient(ActionEvent event) {
     	
     	try {
+    		
     		int ingredientPos = restaurant.binarySearchIng(referenceIngredient, restaurant.getIngredients());
-			restaurant.deleteIngredient(restaurant.getIngredients().get(ingredientPos).getCode());
-			loadAdminIngredients(null);
+    		
+    		if(restaurant.getIngredients().get(ingredientPos).getReferences().isEmpty()) {
+    			restaurant.deleteIngredient(restaurant.getIngredients().get(ingredientPos).getCode());
+    			loadAdminIngredients(null);
+    		}else {
+    			//alert
+    		}
+						
 		} catch (IOException e) {
 			
 			e.printStackTrace();

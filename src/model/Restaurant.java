@@ -253,8 +253,7 @@ public class Restaurant{
 			}
 		}
 		
-		if (found) {
-			removeIngredientReferences(code);
+		if (found && ingredients.get(idx).getReferences().isEmpty()) {
 			ingredients.remove(idx);
 		}
 		
@@ -276,29 +275,6 @@ public class Restaurant{
 		}
 		
 		return ingredient;
-	}
-
-	public void removeIngredientReferences(int code) {
-		
-		for (Integer reference : getIngredientByCode(code).getReferences()){
-			
-			Product product = getProductByCode(reference);
-			boolean removed = false;
-			int removeIdx = -1;
-			
-			for (int i = 0; i < product.getIngredients().size() && !removed; i++) {
-				
-				if(product.getIngredients().get(i).getCode() == code) {
-					
-					removeIdx = i;
-					removed = true;
-				}
-			}
-			
-			if(removeIdx != -1) {
-				product.getIngredients().remove(removeIdx);		
-			}
-		}
 	}
 
 	public void removeProductReferences(int code) throws IOException {
