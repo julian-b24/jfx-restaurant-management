@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
@@ -44,6 +45,7 @@ public class RestaurantGUI {
 	private ArrayList<Integer> tempProductsAmounts;
 	private ArrayList<String> tempProductsSizes;
 	private String clientRef;						//cc from client in order
+	private long searchTime;						//binary search time of client by name
 	
 	//MainAnchorPane
 	@FXML
@@ -312,6 +314,9 @@ public class RestaurantGUI {
     @FXML
     private JFXTextField txtOrderOBs;
     
+    @FXML
+    private Label labelSearchTimeClient;
+    
     //edit order
     @FXML
     private JFXRadioButton radioBtnState1;
@@ -397,6 +402,45 @@ public class RestaurantGUI {
     @FXML
     private JFXTextField txtNewClientObsField;
     
+    //createEmployee
+    @FXML
+    private JFXTextField txtEmployeeName;
+
+    @FXML
+    private JFXTextField txtEmployeeLastName;
+
+    @FXML
+    private JFXTextField txtEmployeeCc;
+
+    @FXML
+    private JFXTextField txtCCEmployeeToEdit;
+    
+    //edit employee
+    @FXML
+    private JFXTextField txtNewEmploName;
+
+    @FXML
+    private JFXTextField txtNewEmploLastName;
+
+    @FXML
+    private JFXTextField txtUpdateEmploCC;
+    
+    //update sysUser
+    @FXML
+    private JFXTextField txtEidtUserName;
+
+    @FXML
+    private JFXTextField txtEditUserLatName;
+
+    @FXML
+    private JFXTextField txtEditUsername;
+
+    @FXML
+    private JFXTextField txtEditUserPassword;
+
+    @FXML
+    private JFXTextField txtEdituserCC;
+    
     //Constructor
     public RestaurantGUI(Restaurant restaurant) {
 		this.restaurant = restaurant;
@@ -462,8 +506,7 @@ public class RestaurantGUI {
 		if(valid) {
 			try {
 				restaurant.createEmployee(rNametxf.getText(), rLastNametfx.getText(), rCctfx.getText());
-											restaurant.createSystemUser(rNametxf.getText(), rLastNametfx.getText(), 
-											rCctfx.getText(), rUsernametxf.getText(), rPasswordtxf.getText());
+				restaurant.createSystemUser(rNametxf.getText(), rLastNametfx.getText(), rCctfx.getText(), rUsernametxf.getText(), rPasswordtxf.getText());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -1681,11 +1724,44 @@ public class RestaurantGUI {
     @FXML
     void loadAdminEmployees(ActionEvent event) {
 
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("createEmployee-pane.fxml"));
+		fxmlLoader.setController(this); 	
+		
+		Parent addContactPane = null;
+		try {
+			addContactPane = fxmlLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mainPane.getChildren().clear();
+		mainPane.getChildren().setAll(addContactPane);
     }
 
     @FXML
     void loadAdminSystemUsers(ActionEvent event) {
 
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("updateSystermUser-pane.fxml"));
+		fxmlLoader.setController(this); 	
+		
+		Parent addContactPane = null;
+		try {
+			addContactPane = fxmlLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mainPane.getChildren().clear();
+		mainPane.getChildren().setAll(addContactPane);
+		
+		int posSystemU = restaurant.searchSystemUser(actualUser);
+		System.out.println("ACCTUAL "+actualUser+": POS: "+ posSystemU);
+		
+		txtEidtUserName.setText(restaurant.getSystemUsers().get(posSystemU).getName());
+		txtEditUserLatName.setText(restaurant.getSystemUsers().get(posSystemU).getLastName());
+		txtEditUsername.setText(restaurant.getSystemUsers().get(posSystemU).getUserName());
+		txtEditUserPassword.setText(restaurant.getSystemUsers().get(posSystemU).getPassword());
+		txtEdituserCC.setText(restaurant.getSystemUsers().get(posSystemU).getCc());
+		
+		txtEdituserCC.setEditable(false);
     }
     
     @FXML
@@ -1713,13 +1789,19 @@ public class RestaurantGUI {
     void searchClient(ActionEvent event) {
     	
     	if(!txtSearchClientName.getText().isEmpty() && !txtSearhClientLastName.getText().isEmpty()) {
+    		
+    		long start = System.nanoTime();
     		int posClient = restaurant.searchClientByName(txtSearchClientName.getText(), txtSearhClientLastName.getText());
+    		long end = System.nanoTime();
+    		
+    		searchTime = end-start;
+    		labelSearchTimeClient.setText("" + searchTime + " ns");
+    		
     		if(posClient != -1) {
     			clientRef = restaurant.getClients().get(posClient).getCc();
     			System.out.println(clientRef);
     		}else {
     			//alert cliente no encontrado
-    			System.out.println("NO ESTA ESTE CLIENTE MIJO");
     		}
     	}
     }
@@ -1783,5 +1865,87 @@ public class RestaurantGUI {
     		//alert empty fields
     	}
     }
+    
+    @FXML
+    void createEmployee(ActionEvent event) {
+   
+    	if(!txtEmployeeName.getText().isEmpty() && !txtEmployeeLastName.getText().isEmpty() && !txtEmployeeCc.getText().isEmpty()) {
+    		
+    		try {
 
+				restaurant.createEmployee(txtEmployeeName.getText(), txtEmployeeLastName.getText(), txtEmployeeCc.getText());
+
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+    	}else {
+    		//alert empty fields
+    	}
+    }
+
+    @FXML
+    void editEmployee(ActionEvent event) {
+
+    	if(!txtCCEmployeeToEdit.getText().isEmpty()) {
+    		
+    		int posEmployee = restaurant.searchEmployeeByCC(txtCCEmployeeToEdit.getText());
+    		
+    		if(posEmployee != -1) {
+    			
+    			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("updateEmployee-pane.fxml"));
+    			fxmlLoader.setController(this); 	
+    			
+    			Parent addContactPane = null;
+    			try {
+    				addContactPane = fxmlLoader.load();
+    			} catch (IOException e) {
+    				e.printStackTrace();
+    			}
+    			mainPane.getChildren().clear();
+    			mainPane.getChildren().setAll(addContactPane);
+    			
+    			txtNewEmploName.setText(restaurant.getEmployees().get(posEmployee).getName());
+    			txtNewEmploLastName.setText(restaurant.getEmployees().get(posEmployee).getLastName());
+    			txtUpdateEmploCC.setText(restaurant.getEmployees().get(posEmployee).getCc());
+    			
+    			txtUpdateEmploCC.setEditable(false);
+    		}
+    	}else {
+    		//alert texftfield vacio
+    	}
+    }
+    
+    @FXML
+    void updateEmployeeX(ActionEvent event) {
+    	
+    	if(!txtNewEmploName.getText().isEmpty() && !txtNewEmploLastName.getText().isEmpty()) {
+    		
+    		try {
+				restaurant.updateEmployee(txtUpdateEmploCC.getText(), txtNewEmploName.getText(), txtNewEmploLastName.getText());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    		
+    	}else {
+    		//alert empty fields
+    	}
+    }
+
+    @FXML
+    void updateUser(ActionEvent event) {
+    	
+    	if(!txtEidtUserName.getText().isEmpty() && !txtEditUserLatName.getText().isEmpty() && !txtEditUsername.getText().isEmpty() && !txtEditUserPassword.getText().isEmpty()) {
+    		try {
+				restaurant.updateSystemUser(actualUser, txtEidtUserName.getText(), txtEditUserLatName.getText(), txtEditUsername.getText(), txtEditUserPassword.getText());
+				System.out.println("ACTUALIZADO EL USUARIO");
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+    	}else {
+    		//alert empty fields
+    	}
+    }
 }

@@ -862,7 +862,7 @@ public class Restaurant{
 		pw.close();
 	}
 	
-	private int searchEmployeeById(int id) {
+	public int searchEmployeeById(int id) {
 		
 		int position = -1;
 		
@@ -885,6 +885,21 @@ public class Restaurant{
 		}
 		return position;
 	}
+	
+	public int searchEmployeeByCC(String cc) {
+		
+		int pos = -1;
+		boolean found = false;
+		
+		for (int i = 0; i < employees.size(); i++) {
+			if(employees.get(i).getCc().equals(cc)) {
+				pos = i;
+				found = true;
+			}
+		}
+		return pos;
+	}
+	
 	
 	public int searchEmployeeByUserName(String userN) {
 		
@@ -1121,6 +1136,44 @@ public class Restaurant{
 		client.setObsField(obsField);
 		
 		saveClientsData();
+	}
+
+	public void updateEmployee(String employeeCC, String name, String lastName) throws IOException {
+		
+		int posEmployee = searchEmployeeByCC(employeeCC);
+		
+		Employee employee = employees.get(posEmployee);
+		employee.setName(name);
+		employee.setLastName(lastName);
+		
+		saveEmployeeData();
+	}
+	
+	public int searchSystemUser(String username) {
+		
+		int pos = -1;
+		boolean found = false;
+		for (int i = 0; i < systemUsers.size() && !found; i++) {
+			if(systemUsers.get(i).getUserName().equals(username)) {
+				pos = i;
+				found = true;
+			}
+			
+		}
+		return pos;		
+	}
+
+	public void updateSystemUser(String username, String name, String lastName, String newUserName, String password) throws IOException {
+		
+		int posSystemU = searchSystemUser(username);
+		
+		SystemUser systemUser = systemUsers.get(posSystemU);
+		systemUser.setName(name);
+		systemUser.setLastName(lastName);
+		systemUser.setUserName(newUserName);
+		systemUser.setPassword(password);
+		
+		saveSystemUser();
 	}
 	
 }

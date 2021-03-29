@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+      <VBox prefHeight="800.0" prefWidth="652.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="628.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text fill="#ffd563" strokeType="OUTSIDE" strokeWidth="0.0" text="Editar usuairo">
+               <font>
+                  <Font name="Montserrat SemiBold" size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="50.0" top="59.0" />
+               </VBox.margin>
+            </Text>
+            <HBox prefHeight="64.0" prefWidth="523.0">
+               <children>
+                  <VBox prefHeight="64.0" prefWidth="322.0">
+                     <children>
+                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+                           <VBox.margin>
+                              <Insets left="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Montserrat Medium" size="16.0" />
+                           </font>
+                        </Text>
+                        <JFXTextField fx:id="txtEidtUserName" prefHeight="31.0" prefWidth="227.0" promptText="Nombre">
+                           <VBox.margin>
+                              <Insets left="50.0" right="50.0" />
+                           </VBox.margin>
+                        </JFXTextField>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="100.0" prefWidth="277.0">
+                     <children>
+                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido">
+                           <font>
+                              <Font name="Montserrat Medium" size="16.0" />
+                           </font>
+                        </Text>
+                        <JFXTextField fx:id="txtEditUserLatName" prefHeight="31.0" prefWidth="227.0" promptText="Apellido" />
+                     </children>
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="64.0" prefWidth="523.0">
+               <children>
+                  <VBox prefHeight="64.0" prefWidth="322.0">
+                     <children>
+                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario">
+                           <VBox.margin>
+                              <Insets left="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Montserrat Medium" size="16.0" />
+                           </font>
+                        </Text>
+                        <JFXTextField fx:id="txtEditUsername" prefHeight="31.0" prefWidth="227.0" promptText="username">
+                           <VBox.margin>
+                              <Insets left="50.0" right="50.0" />
+                           </VBox.margin>
+                        </JFXTextField>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="100.0" prefWidth="277.0">
+                     <children>
+                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="contraseña de usuario">
+                           <font>
+                              <Font name="Montserrat Medium" size="16.0" />
+                           </font>
+                        </Text>
+                        <JFXTextField fx:id="txtEditUserPassword" prefHeight="31.0" prefWidth="227.0" promptText="contraseña" />
+                     </children>
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="100.0" prefWidth="337.0">
+                     <children>
+                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Cédula del usuario">
+                           <VBox.margin>
+                              <Insets left="50.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Montserrat Medium" size="16.0" />
+                           </font>
+                        </Text>
+                        <JFXTextField fx:id="txtEdituserCC" prefHeight="31.0" prefWidth="227.0" promptText="c.c">
+                           <VBox.margin>
+                              <Insets left="50.0" right="50.0" />
+                           </VBox.margin>
+                        </JFXTextField>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <JFXButton onAction="#updateUser" prefHeight="38.0" prefWidth="230.0" style="-fx-background-color: #D9A404;" text="Actualizar usuario" textFill="#ffeecc">
+               <VBox.margin>
+                  <Insets left="50.0" top="30.0" />
+               </VBox.margin>
+            </JFXButton>
+            <JFXButton onAction="#loadMenu" prefHeight="38.0" prefWidth="230.0" style="-fx-background-color: #D9A404;" text="Volver al menú" textFill="#ffeecc">
+               <VBox.margin>
+                  <Insets left="50.0" top="40.0" />
+               </VBox.margin>
+            </JFXButton>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
