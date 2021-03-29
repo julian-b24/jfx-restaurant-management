@@ -1067,7 +1067,7 @@ public class RestaurantGUI {
         			if (!sizeExists) {
         				warningString += "- El producto no tiene el tamaño indicado \n";
 					}
-        			
+        			warning.setContentText(warningString);
         			warning.showAndWait();
         			
         		}
