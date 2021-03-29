@@ -331,7 +331,7 @@ public class Restaurant{
 		int top = orders.size() - 1;
 		boolean found = false;
 		
-		while(low < top && !found) {
+		while(low <= top && !found) {
 			
 			int mid = (low + top)/2;
 			if (orders.get(mid).getCode() == code) {
@@ -340,7 +340,6 @@ public class Restaurant{
 			
 			} else if (orders.get(mid).getCode() < code) {
 				low = mid + 1;
-				
 			} else {
 				top = mid - 1;
 			}
