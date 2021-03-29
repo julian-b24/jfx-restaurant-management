@@ -741,7 +741,7 @@ public class Restaurant{
 		
 		PrintWriter pw = new PrintWriter(REPORT_PRODUCTS_CONSOLIDATED_PATH);
 		
-		pw.println("productName;timerOrdered;totalMoney");
+		pw.println("productName;timerOrdered;totalMoney".replace(";", separator));
 		
 		Map<Integer, Map<Integer, Double>> info = getInforReportProductsConsolidated(top, low);
 		double totalSales = 0.0;
