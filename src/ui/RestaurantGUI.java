@@ -481,7 +481,20 @@ public class RestaurantGUI {
     
     @FXML
     void loadImports(ActionEvent event) {
-
+    	
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("imports-pane.fxml"));
+		fxmlLoader.setController(this); 	
+		
+		Parent addContactPane = null;
+		try {
+			addContactPane = fxmlLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mainPane.getChildren().clear();
+		String css = "styles/tableStyle.css";
+		addContactPane.getStylesheets().add(css);
+		mainPane.getChildren().setAll(addContactPane);
     }
     
     @FXML
@@ -1500,5 +1513,48 @@ public class RestaurantGUI {
 				
 				e.printStackTrace();
 			}
+    }
+    
+    @FXML
+    void imoprtProducts(ActionEvent event) {
+    	
+    	try {
+			restaurant.importProducts();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+    }
+
+    @FXML
+    void importClients(ActionEvent event) {
+    	try {
+			restaurant.importClients();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+    }
+
+    @FXML
+    void importIngredients(ActionEvent event) {
+
+    	try {
+			restaurant.importIngredients();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+    }
+
+    @FXML
+    void importOrders(ActionEvent event) {
+
+    	try {
+			restaurant.importOrders();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
     }
 }
