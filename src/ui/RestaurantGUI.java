@@ -397,10 +397,7 @@ public class RestaurantGUI {
 
 				usernametxf.getStyleClass().add("wrong-login");
 				passwordtxf.getStyleClass().add("wrong-login");
-				Alert alert = new Alert(Alert.AlertType.WARNING);
-				alert.setTitle("Campos Vacíos");
-				alert.setContentText("Al menos uno de los dos campos está vacío!");
-				alert.showAndWait();
+				warningEmpyText();
 				
 			}else {
 				boolean loged = false;
@@ -817,16 +814,21 @@ public class RestaurantGUI {
 		 
 		 if(ingrToAdd!=null && actionIngtxt.getText().isEmpty()) {
 				 
-			 actionIngtxt.setText(""+ingrToAdd.getCode());
+			actionIngtxt.setText(""+ingrToAdd.getCode());
 		 }
 		 	 
 		 if(restaurant.ingredientIsAvailable(Integer.parseInt(actionIngtxt.getText()))) {
 				 
-			 tempIngrsCodes.add(Integer.parseInt(actionIngtxt.getText()));
-			 referenceProduct.getIngredients().add(restaurant.getIngredientByCode(Integer.parseInt(actionIngtxt.getText())));
-			 loadEditProduct(null);
+			tempIngrsCodes.add(Integer.parseInt(actionIngtxt.getText()));
+			referenceProduct.getIngredients().add(restaurant.getIngredientByCode(Integer.parseInt(actionIngtxt.getText())));
+			loadEditProduct(null);
 		 }else {
-			 //alerta no disponible
+			//alerta no disponible
+			Alert warning = new Alert(AlertType.WARNING);
+ 			warning.setTitle("Operación inválida");
+ 			warning.setContentText("El ingrediente seleccionado está deshabilitado! No se puede agregar a ningún" +
+     							 "producto");
+ 			warning.showAndWait();
 		 }
 	 }
 
@@ -1022,8 +1024,11 @@ public class RestaurantGUI {
     	if(!txtOrderProductCode.getText().isEmpty() && !txtOrderProductAmount.getText().isEmpty() && !txtOrderProductSize.getText().isEmpty()) {
     		
     		boolean productExists = restaurant.getProductByCode(Integer.parseInt(txtOrderProductCode.getText())) != null;
-    		boolean sizeExists = restaurant.getProductByCode(Integer.parseInt(txtOrderProductCode.getText())).getSizeByName(txtOrderProductSize.getText()) != null;
-    		
+    		boolean sizeExists = false;
+    		if (productExists) {
+    			sizeExists = restaurant.getProductByCode(Integer.parseInt(txtOrderProductCode.getText())).getSizeByName(txtOrderProductSize.getText()) != null;
+			}
+
     		try {
     			int numberAmount = Integer.parseInt(txtOrderProductAmount.getText());
     			boolean isPositive = numberAmount > 0;
@@ -1034,16 +1039,45 @@ public class RestaurantGUI {
         			tempProductsAmounts.add(numberAmount);
         			tempProductsSizes.add(txtOrderProductSize.getText());
         		}else {
-        			//alerta el producto o el amaño no existen, o el numero es negativo
+        			//alerta el producto o el tamaño no existen, o el numero es negativo
+        			Alert warning = new Alert(AlertType.WARNING);
+        			warning.setTitle("Error añadiendo el producto a la orden");
+        			String warningString = "Se puede haber presentado alguno de los siguientes errores: \n";
+        			if (!isPositive) {
+						warningString += " - El número ingresado no es mayor que 0 \n";
+					}
+        			
+        			if (!productExists) {
+        				warningString += "- No existe un producto con el código ingresado \n";
+					}
+        			
+        			if (!sizeExists) {
+        				warningString += "- El producto no tiene el tamaño indicado \n";
+					}
+        			
+        			warning.showAndWait();
+        			
         		}
     		}catch(NumberFormatException e) {
     			//alerta el txt no es un numero
+    			Alert error = new Alert(AlertType.ERROR);
+    			error.setTitle("Cantidad inválida");
+    			error.setContentText("La cantidad ingresada no es un número! Ingrese una cantidad válida");
+    			error.showAndWait();
     		}
     				
     		
     	}else {
     		//alerta algun textfield vacio
+    		warningEmpyText();
     	}
+    }
+    
+    public void warningEmpyText() {
+    	Alert alert = new Alert(Alert.AlertType.WARNING);
+		alert.setTitle("Campos Vacíos");
+		alert.setContentText("Al menos uno de los dos campos está vacío!");
+		alert.showAndWait();
     }
 
     @FXML
