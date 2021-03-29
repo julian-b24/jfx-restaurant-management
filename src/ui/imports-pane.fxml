@@ -10,9 +10,9 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
-      <VBox layoutX="423.0" layoutY="79.0" prefHeight="642.0" prefWidth="398.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="423.0" AnchorPane.rightAnchor="459.0" AnchorPane.topAnchor="79.0">
+      <VBox layoutX="423.0" layoutY="138.0" prefHeight="604.0" prefWidth="398.0" AnchorPane.bottomAnchor="58.0" AnchorPane.leftAnchor="423.0" AnchorPane.rightAnchor="459.0" AnchorPane.topAnchor="138.0">
          <children>
-            <JFXButton onAction="#loadAdminProducts" prefHeight="64.0" prefWidth="471.0" style="-fx-background-color: #D9A404;" text="Gestionar productos" textFill="#fff5d8">
+            <JFXButton onAction="#importClients" prefHeight="64.0" prefWidth="418.0" style="-fx-background-color: #D9A404;" text="Importar clientes " textFill="#fff5d8">
                <font>
                   <Font name="Montserrat Medium" size="23.0" />
                </font>
@@ -20,7 +20,7 @@
                   <Insets top="50.0" />
                </VBox.margin>
             </JFXButton>
-            <JFXButton onAction="#loadAdminOrders" prefHeight="64.0" prefWidth="464.0" style="-fx-background-color: #D9A404;" text="Gestionar pedidos" textFill="#fff5d8">
+            <JFXButton onAction="#importIngredients" prefHeight="64.0" prefWidth="413.0" style="-fx-background-color: #D9A404;" text="Importar ingredientes" textFill="#fff5d8">
                <font>
                   <Font name="Montserrat Medium" size="23.0" />
                </font>
@@ -28,7 +28,7 @@
                   <Insets top="50.0" />
                </VBox.margin>
             </JFXButton>
-            <JFXButton onAction="#loadAdminUser" prefHeight="64.0" prefWidth="418.0" style="-fx-background-color: #D9A404;" text="Gestionar usuarios" textFill="#fff5d8">
+            <JFXButton onAction="#imoprtProducts" prefHeight="64.0" prefWidth="408.0" style="-fx-background-color: #D9A404;" text="Importar productos " textFill="#fff5d8">
                <font>
                   <Font name="Montserrat Medium" size="23.0" />
                </font>
@@ -36,15 +36,7 @@
                   <Insets top="50.0" />
                </VBox.margin>
             </JFXButton>
-            <JFXButton onAction="#loadGenerateReports" prefHeight="64.0" prefWidth="413.0" style="-fx-background-color: #D9A404;" text="Generar reportes" textFill="#fff5d8">
-               <font>
-                  <Font name="Montserrat Medium" size="23.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="50.0" />
-               </VBox.margin>
-            </JFXButton>
-            <JFXButton onAction="#loadImports" prefHeight="64.0" prefWidth="408.0" style="-fx-background-color: #D9A404;" text="Importar información" textFill="#fff5d8">
+            <JFXButton onAction="#importOrders" prefHeight="64.0" prefWidth="408.0" style="-fx-background-color: #D9A404;" text="Importar Ordenes" textFill="#fff5d8">
                <font>
                   <Font name="Montserrat Medium" size="23.0" />
                </font>
