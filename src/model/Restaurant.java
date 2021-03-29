@@ -614,6 +614,10 @@ public class Restaurant{
 		}
 	}
 	
+	public void sortOrdersByDate() {
+		Collections.sort(orders);
+	}
+	
 	public void sortEmployeesById() {
 		
 		//Bubble sort
@@ -825,7 +829,7 @@ public class Restaurant{
 					Product product = order.getOrderProducts().get(i);
 					Size size = order.getSizes().get(i);
 					//Name of the product will include the size of it in the order, it's useful to difference it.
-					String productName = product.getName() + size.getSize();
+					String productName = product.getName() + " - " + size.getSize();
 					String amount = Integer.toString(order.getAmountPerEach().get(i));
 					String value = Double.toString(product.getPrice() * size.getPriceFactor());
 					podructsLine += (productName + ";" + amount + ";" + value + ";");

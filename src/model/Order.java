@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Order implements Serializable{
+public class Order implements Comparable<Order>, Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -171,6 +171,11 @@ public class Order implements Serializable{
 			product.addReference(getCode());
 		}
 		
+	}
+
+	@Override
+	public int compareTo(Order otherOrdr) {
+		return date.compareTo(otherOrdr.getDate());
 	}
 	
 }
