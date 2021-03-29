@@ -43,6 +43,7 @@ public class RestaurantGUI {
 	private ArrayList<Integer> tempProductCodes;
 	private ArrayList<Integer> tempProductsAmounts;
 	private ArrayList<String> tempProductsSizes;
+	private String clientRef;
 	
 	//MainAnchorPane
 	@FXML
@@ -247,23 +248,30 @@ public class RestaurantGUI {
     private JFXRadioButton rbPDrink;
     
     //Create order
+    
     @FXML
-    private JFXTextField txtOrderClientName;
+    private JFXTextField txtSearchClientName;
 
     @FXML
-    private JFXTextField txtOrderClientLastName;
+    private JFXTextField txtSearhClientLastName;
+    
+    @FXML
+    private JFXTextField txtClientName;
 
     @FXML
-    private JFXTextField txtOrderClientCC;
+    private JFXTextField txtClientLastName;
 
     @FXML
-    private JFXTextField txtOrderClientAdress;
+    private JFXTextField txtClientCC;
 
     @FXML
-    private JFXTextField txtOrderClientPhone;
+    private JFXTextField txtClientAdress;
 
     @FXML
-    private JFXTextField txtOrderClientObsField;
+    private JFXTextField txtClientPhone;
+
+    @FXML
+    private JFXTextField txtClientObsField;
 
     @FXML
     private JFXTextField txtOrderProductCode;
@@ -498,6 +506,17 @@ public class RestaurantGUI {
     @FXML
     void loadAdminUser(ActionEvent event) {
     	
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("adminUsers-pane.fxml"));
+		fxmlLoader.setController(this); 	
+		
+		Parent addContactPane = null;
+		try {
+			addContactPane = fxmlLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mainPane.getChildren().clear();
+		mainPane.getChildren().setAll(addContactPane);
     }
     
     @FXML
@@ -1074,37 +1093,34 @@ public class RestaurantGUI {
     
     @FXML
     void createOrder(ActionEvent event) {
-    	if(!txtOrderClientName.getText().isEmpty() && !txtOrderClientLastName.getText().isEmpty() && !txtOrderClientCC.getText().isEmpty() && 
-    			!txtOrderClientAdress.getText().isEmpty() && !txtOrderClientPhone.getText().isEmpty() && tempProductCodes.size()>0) {
     		
-    		try {
-				restaurant.createClient(txtOrderClientName.getText(), txtOrderClientLastName.getText(), txtOrderClientCC.getText(), txtOrderClientAdress.getText(), txtOrderClientPhone.getText(), txtOrderClientObsField.getText());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		LocalDateTime orderTime = LocalDateTime.now();
+		
+		/*String formato = "yyyy-MM-dd HH:mm:ss";
+		DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);
+		LocalDateTime ahora = LocalDateTime.now();
+		String rightNow = formateador.format(ahora);*/
+		
+		int id = restaurant.searchEmployeeByUserName(actualUser);
+		String state ="REQUESTED";
+		
+		try {
+			if(clientRef != null) {
+				restaurant.createOrder(tempProductCodes, tempProductsAmounts, tempProductsSizes, clientRef, id, orderTime, txtOrderOBs.getText(), state);
+			}else {
+				//Alert no hay referenica al cliente 
+				System.out.println("NO HAY REFERENCIA MI REY");
 			}
-    		
-    		LocalDateTime orderTime = LocalDateTime.now();
-    		
-			/*String formato = "yyyy-MM-dd HH:mm:ss";
-			DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);
-			LocalDateTime ahora = LocalDateTime.now();
-			String rightNow = formateador.format(ahora);*/
-    		
-    		int id = restaurant.searchEmployeeByUserName(actualUser);
-    		String state ="REQUESTED";
-    		
-    		try {
-				restaurant.createOrder(tempProductCodes, tempProductsAmounts, tempProductsSizes, txtOrderClientCC.getText(), id, orderTime, txtOrderOBs.getText(), state);
-				tempProductCodes.clear();
-				tempProductsAmounts.clear();
-				tempProductsSizes.clear();
-				
-			} catch (IOException e) {
-				 	
-				e.printStackTrace();
-			}
-    	}
+			
+			clientRef = null;
+			tempProductCodes.clear();
+			tempProductsAmounts.clear();
+			tempProductsSizes.clear();
+			
+		} catch (IOException e) {
+			 	
+			e.printStackTrace();
+		}
     }
 
     @FXML
@@ -1588,4 +1604,68 @@ public class RestaurantGUI {
 			e.printStackTrace();
 		}
     }
+    
+    @FXML
+    void loadAdminClients(ActionEvent event) {
+    	
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("createClient-pane.fxml"));
+		fxmlLoader.setController(this); 	
+		
+		Parent addContactPane = null;
+		try {
+			addContactPane = fxmlLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mainPane.getChildren().clear();
+		mainPane.getChildren().setAll(addContactPane);
+    }
+
+    @FXML
+    void loadAdminEmployees(ActionEvent event) {
+
+    }
+
+    @FXML
+    void loadAdminSystemUsers(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void createClient(ActionEvent event) {
+    	
+    	if(!txtClientName.getText().isEmpty() && !txtClientLastName.getText().isEmpty() && !txtClientCC.getText().isEmpty() && 
+		!txtClientAdress.getText().isEmpty() && !txtClientPhone.getText().isEmpty()) {
+		
+			try {
+				if(!restaurant.clientAlreadyExistByCC(txtClientCC.getText())) {
+					restaurant.createClient(txtClientName.getText(), txtClientLastName.getText(), txtClientCC.getText(), txtClientAdress.getText(), txtClientPhone.getText(), txtClientObsField.getText());
+					System.out.println("NEW CLIENT");
+				}else {
+					//alert
+				}
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    }
+    
+    @FXML
+    void searchClient(ActionEvent event) {
+    	
+    	if(!txtSearchClientName.getText().isEmpty() && !txtSearhClientLastName.getText().isEmpty()) {
+    		int posClient = restaurant.searchClientByName(txtSearchClientName.getText(), txtSearhClientLastName.getText());
+    		if(posClient != -1) {
+    			clientRef = restaurant.getClients().get(posClient).getCc();
+    			System.out.println(clientRef);
+    		}else {
+    			//alert cliente no encontrado
+    			System.out.println("NO ESTA ESTE CLIENTE MIJO");
+    		}
+    	}
+    	
+    }
+    
 }

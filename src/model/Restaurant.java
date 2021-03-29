@@ -108,6 +108,18 @@ public class Restaurant{
 		saveClientsData();
 	}
 	
+	public boolean clientAlreadyExistByCC(String cc) {
+		
+		boolean found = false;
+		for (int i = 0; i < clients.size() && !found; i++) {
+			if(clients.get(i).getCc().equals(cc)) {
+				found = true;
+			}
+		}
+		
+		return found;
+	}
+	
 	public int binarySearch(String fullName, ArrayList<Client> clients) {
 		
 		int pos = -2;

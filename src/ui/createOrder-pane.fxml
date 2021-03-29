@@ -26,128 +26,12 @@
                   <Insets left="50.0" top="50.0" />
                </VBox.margin>
             </Text>
-            <Text fill="#ffd563" strokeType="OUTSIDE" strokeWidth="0.0" text="Crear cliente">
-               <font>
-                  <Font name="Montserrat SemiBold" size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="50.0" top="20.0" />
-               </VBox.margin>
-            </Text>
-            <HBox prefHeight="64.0" prefWidth="523.0">
-               <children>
-                  <VBox prefHeight="64.0" prefWidth="322.0">
-                     <children>
-                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre del cliente">
-                           <VBox.margin>
-                              <Insets left="50.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font name="Montserrat Medium" size="16.0" />
-                           </font>
-                        </Text>
-                        <JFXTextField fx:id="txtOrderClientName" prefHeight="31.0" prefWidth="227.0" promptText="Nombre">
-                           <VBox.margin>
-                              <Insets left="50.0" right="50.0" />
-                           </VBox.margin>
-                        </JFXTextField>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="100.0" prefWidth="277.0">
-                     <children>
-                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido del cliente">
-                           <font>
-                              <Font name="Montserrat Medium" size="16.0" />
-                           </font>
-                        </Text>
-                        <JFXTextField fx:id="txtOrderClientLastName" prefHeight="31.0" prefWidth="227.0" promptText="Apellido" />
-                     </children>
-                     <HBox.margin>
-                        <Insets right="50.0" />
-                     </HBox.margin>
-                  </VBox>
-               </children>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <VBox prefHeight="100.0" prefWidth="337.0">
-                     <children>
-                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Cédula del cliente">
-                           <VBox.margin>
-                              <Insets left="50.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font name="Montserrat Medium" size="16.0" />
-                           </font>
-                        </Text>
-                        <JFXTextField fx:id="txtOrderClientCC" prefHeight="31.0" prefWidth="227.0" promptText="c.c">
-                           <VBox.margin>
-                              <Insets left="50.0" right="50.0" />
-                           </VBox.margin>
-                        </JFXTextField>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="100.0" prefWidth="277.0">
-                     <children>
-                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="DIrección del cliente">
-                           <font>
-                              <Font name="Montserrat Medium" size="16.0" />
-                           </font>
-                        </Text>
-                        <JFXTextField fx:id="txtOrderClientAdress" prefHeight="31.0" prefWidth="227.0" promptText="Dirección" />
-                     </children>
-                     <HBox.margin>
-                        <Insets right="50.0" />
-                     </HBox.margin>
-                  </VBox>
-               </children>
-               <VBox.margin>
-                  <Insets top="30.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox prefHeight="64.0" prefWidth="523.0">
-               <children>
-                  <VBox prefHeight="100.0" prefWidth="337.0">
-                     <children>
-                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Teléfono del cliente">
-                           <VBox.margin>
-                              <Insets left="50.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font name="Montserrat Medium" size="16.0" />
-                           </font>
-                        </Text>
-                        <JFXTextField fx:id="txtOrderClientPhone" prefHeight="31.0" prefWidth="227.0" promptText="Teléfono">
-                           <VBox.margin>
-                              <Insets left="50.0" right="50.0" />
-                           </VBox.margin>
-                        </JFXTextField>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="100.0" prefWidth="277.0">
-                     <children>
-                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Observaciones del cliente">
-                           <font>
-                              <Font name="Montserrat Medium" size="16.0" />
-                           </font>
-                        </Text>
-                        <JFXTextField fx:id="txtOrderClientObsField" prefHeight="31.0" prefWidth="227.0" promptText="Observaciones" />
-                     </children>
-                     <HBox.margin>
-                        <Insets right="50.0" />
-                     </HBox.margin>
-                  </VBox>
-               </children>
-            </HBox>
             <Text fill="#ffd563" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar productos a la orden">
                <font>
                   <Font name="Montserrat SemiBold" size="20.0" />
                </font>
                <VBox.margin>
-                  <Insets left="50.0" />
+                  <Insets left="50.0" top="50.0" />
                </VBox.margin>
             </Text>
             <HBox prefHeight="78.0" prefWidth="500.0">
@@ -217,6 +101,62 @@
                   <Insets left="50.0" right="50.0" />
                </VBox.margin>
             </JFXTextField>
+            <Text fill="#ffd563" strokeType="OUTSIDE" strokeWidth="0.0" text="Buscar cliente">
+               <font>
+                  <Font name="Montserrat SemiBold" size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="50.0" top="50.0" />
+               </VBox.margin>
+            </Text>
+            <HBox prefHeight="68.0" prefWidth="558.0">
+               <children>
+                  <VBox prefHeight="68.0" prefWidth="338.0">
+                     <children>
+                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre cliente">
+                           <font>
+                              <Font name="Montserrat Medium" size="16.0" />
+                           </font>
+                        </Text>
+                        <JFXTextField fx:id="txtSearchClientName" prefHeight="31.0" prefWidth="227.0" promptText="Nombre">
+                           <VBox.margin>
+                              <Insets right="50.0" />
+                           </VBox.margin>
+                        </JFXTextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="50.0" right="25.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="68.0" prefWidth="348.0">
+                     <children>
+                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido cliente">
+                           <font>
+                              <Font name="Montserrat Medium" size="16.0" />
+                           </font>
+                        </Text>
+                        <JFXTextField fx:id="txtSearhClientLastName" prefHeight="31.0" prefWidth="291.0" promptText="Apellido">
+                           <VBox.margin>
+                              <Insets right="50.0" />
+                           </VBox.margin>
+                        </JFXTextField>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#searchClient" prefHeight="31.0" prefWidth="163.0" style="-fx-background-color: #D9A404;" text="Buscar cliente" textFill="#fff7d9">
+               <VBox.margin>
+                  <Insets left="50.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#loadAdminClients" prefHeight="31.0" prefWidth="163.0" style="-fx-background-color: #D9A404;" text="Crear nuevo cliente" textFill="#fff7d9">
+               <VBox.margin>
+                  <Insets left="50.0" top="17.0" />
+               </VBox.margin>
+            </Button>
             <Button mnemonicParsing="false" onAction="#addProductToOrder" prefHeight="31.0" prefWidth="163.0" style="-fx-background-color: #D9A404;" text="Añadir producto" textFill="#fff7d9">
                <VBox.margin>
                   <Insets left="50.0" top="20.0" />
@@ -224,7 +164,7 @@
             </Button>
             <JFXButton onAction="#createOrder" prefHeight="31.0" prefWidth="164.0" style="-fx-background-color: #D9A404;" text="Crear orden" textFill="#fff8cf">
                <VBox.margin>
-                  <Insets left="50.0" top="15.0" />
+                  <Insets left="50.0" top="20.0" />
                </VBox.margin>
             </JFXButton>
             <Button mnemonicParsing="false" onAction="#loadMenu" text="Volver" />
