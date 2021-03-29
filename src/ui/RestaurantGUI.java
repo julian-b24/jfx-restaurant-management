@@ -1298,7 +1298,13 @@ public class RestaurantGUI {
     
     @FXML
     void eOupdateProduct(ActionEvent event) {
-    	Integer.parseInt("hola");
+    	try {
+			restaurant.updateOrder(orderCodeReference, tempProductCodes, tempProductsAmounts, tempProductsSizes);
+		} catch (IOException e) {
+		
+			e.printStackTrace();
+		}
+    	loadEditOrder(null);
     }
     
     public void initializeProductsInOrder(Order orderX) {
