@@ -421,6 +421,14 @@ public class Restaurant{
 	}
 	
 	/**
+	 * Sorts the ingredients list based on their code, using Collections.sort().
+	 * <b> pos: </b> The list of products is going to be sorted in decreasing order by the code of the products <br>
+	 */
+	public void sortIngredientsBycode() {
+		Collections.sort(ingredients);
+	}
+	
+	/**
 	 * Sorts the products list based on their price, using Collections.sort().
 	 * <b> pos: </b> The list of products is going to be sorted in decreasing price <br>
 	 */
