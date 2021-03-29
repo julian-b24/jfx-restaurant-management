@@ -1,7 +1,6 @@
 package ui;
 
 import java.io.IOException;
-import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -104,6 +103,15 @@ public class RestaurantGUI {
 
     @FXML
     private JFXTextField txtNewIngVal;
+    
+    @FXML
+    private JFXRadioButton radioBtnIngAvailable;
+
+    @FXML
+    private ToggleGroup ingState;
+
+    @FXML
+    private JFXRadioButton radioBtnIngUnavailable;
 
     //admin products
     @FXML
@@ -167,9 +175,6 @@ public class RestaurantGUI {
     //edit products
     @FXML
     private JFXTextField txtNewProductName;
-
-    @FXML
-    private JFXTextField txtNewProductPrice;
 
     @FXML
     private JFXRadioButton rbProductAvailable;
@@ -549,15 +554,27 @@ public class RestaurantGUI {
 		txtNewIngName.setText(ing.getName());
 		txtNewIngVal.setText(""+ing.getPrice());
 		referenceIngredient = ing.getName();
+		
+		
+		if(ing.isAvailable()) {
+			radioBtnIngAvailable.setSelected(true);
+		}else {
+			radioBtnIngUnavailable.setSelected(true);
+		}
     }
     
     @FXML
     void updateIngredient(ActionEvent event) {
     	if(!txtNewIngName.equals("") && !txtNewIngVal.equals("")) {
     		try {
-				restaurant.updateIngredient(referenceIngredient, txtNewIngName.getText(), txtNewIngVal.getText());
+    			boolean available= false;
+    			if(radioBtnIngAvailable.isSelected()) {
+    				available = true;
+    			}
+    			
+				restaurant.updateIngredient(referenceIngredient, txtNewIngName.getText(), txtNewIngVal.getText(), available);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
     	}
@@ -727,7 +744,6 @@ public class RestaurantGUI {
 			
 			//set Screen
 			txtNewProductName.setPromptText(referenceProduct.getName());
-			txtNewProductPrice.setPromptText(""+referenceProduct.getPrice());
 			
 			//available
 			if(productX.isAvailable()) {
@@ -866,9 +882,6 @@ public class RestaurantGUI {
     	
     	if(txtNewProductName.getText().isEmpty()) {
     		txtNewProductName.setText(referenceProduct.getName());
-    	}
-    	if(txtNewProductName.getText().isEmpty()) {
-    		txtNewProductPrice.setText(""+referenceProduct.getPrice());
     	}
     	
     	//available
@@ -1283,10 +1296,8 @@ public class RestaurantGUI {
     @FXML
     void eOupdateProduct(ActionEvent event) {
     	try {
+    		 			
 			restaurant.updateOrder(orderCodeReference, tempProductCodes, tempProductsAmounts, tempProductsSizes);
-			tempIngrsCodes.clear();
-			tempProductsAmounts.clear();
-			tempProductsSizes.clear();
 			
 		} catch (IOException e) {
 		
@@ -1448,5 +1459,23 @@ public class RestaurantGUI {
 			}
 		
     	loadEditOrder(null);
+    }
+    
+    @FXML
+    void eliminateIngredient(ActionEvent event) {
+    	
+    	try {
+    		int ingredientPos = restaurant.binarySearchIng(referenceIngredient, restaurant.getIngredients());
+			restaurant.deleteIngredient(restaurant.getIngredients().get(ingredientPos).getCode());
+			loadAdminIngredients(null);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+    }
+    
+    @FXML
+    void eliminateProduct(ActionEvent event) {
+
     }
 }

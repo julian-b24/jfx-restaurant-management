@@ -47,21 +47,6 @@
                      </HBox.margin>
                   </VBox>
                   <VBox prefHeight="56.0" prefWidth="378.0">
-                     <children>
-                        <Text fill="#fff1cc" strokeType="OUTSIDE" strokeWidth="0.0" text="Nuevo valor del producto">
-                           <font>
-                              <Font name="Montserrat Medium" size="16.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Text>
-                        <JFXTextField fx:id="txtNewProductPrice" alignment="TOP_LEFT" focusColor="#fff0b8" promptText="valor del producto" unFocusColor="#7c6656">
-                           <VBox.margin>
-                              <Insets right="110.0" />
-                           </VBox.margin>
-                        </JFXTextField>
-                     </children>
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
@@ -227,7 +212,15 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <VBox prefHeight="88.0" prefWidth="171.0" />
+                  <VBox prefHeight="88.0" prefWidth="171.0">
+                     <children>
+                        <JFXButton onAction="#eliminateProduct" prefHeight="36.0" prefWidth="165.0" style="-fx-background-color: #D9A404;" text="Eliminar producto" textFill="#fffcdd">
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                     </children>
+                  </VBox>
                </children>
             </HBox>
             <JFXButton onAction="#eOupdateProduct" prefHeight="43.0" prefWidth="165.0" style="-fx-background-color: #D9A404;" text="Actualizar producto" textFill="#fffcdd" />

@@ -238,6 +238,68 @@ public class Restaurant{
 		
 		saveProductsData();
 	}
+	
+	public void deleteIngredient(int code) throws IOException {
+		
+		boolean found = false;	
+		int idx = 0;
+		
+		while (!found) {
+			Ingredient ingredient = ingredients.get(idx);
+			if(ingredient.getCode() == code) {
+				found = true;
+			}else {
+				idx++;
+			}
+		}
+		
+		if (found) {
+			removeIngredientReferences(code);
+			ingredients.remove(idx);
+		}
+		
+		saveIngredientData();
+		saveProductsData();
+	}
+	
+	public Ingredient getIngredientByCode(int code) {
+		
+		Ingredient ingredient = null;
+		boolean found = false;
+		
+		for (int i = 0; i < ingredients.size() && !found; i++) {
+			if(ingredients.get(i).getCode() == code) {
+				
+				ingredient = ingredients.get(i);
+				found = true;
+			}
+		}
+		
+		return ingredient;
+	}
+
+	public void removeIngredientReferences(int code) {
+		
+		for (Integer reference : getIngredientByCode(code).getReferences()){
+			
+			Product product = getProductByCode(reference);
+			boolean removed = false;
+			int removeIdx = -1;
+			
+			for (int i = 0; i < product.getIngredients().size() && !removed; i++) {
+				
+				if(product.getIngredients().get(i).getCode() == code) {
+					
+					removeIdx = i;
+					removed = true;
+				}
+			}
+			
+			if(removeIdx != -1) {
+				product.getIngredients().remove(removeIdx);		
+			}
+		}
+	}
 
 	public void removeProductReferences(int code) throws IOException {
 
@@ -889,12 +951,13 @@ public class Restaurant{
 		this.ingredients = ingredients;
 	}
 
-	public void updateIngredient(String referenceIngredient, String newName, String newValue) throws IOException {
+	public void updateIngredient(String referenceIngredient, String newName, String newValue, boolean newAvailable) throws IOException {
 		System.out.println(referenceIngredient+","+newName);
 		
 		int index = binarySearchIng(referenceIngredient, ingredients);
 		ingredients.get(index).setName(newName);
 		ingredients.get(index).setPrice(Double.parseDouble(newValue));
+		ingredients.get(index).setAvailable(newAvailable);
 		
 		saveIngredientData();
 	}
