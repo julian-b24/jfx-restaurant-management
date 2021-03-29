@@ -162,7 +162,7 @@
                               <Insets left="50.0" />
                            </VBox.margin>
                         </Text>
-                        <JFXTextField fx:id="txtOrderProductName" prefHeight="31.0" prefWidth="227.0" promptText="Código">
+                        <JFXTextField fx:id="txtOrderProductCode" prefHeight="31.0" prefWidth="227.0" promptText="Código">
                            <VBox.margin>
                               <Insets left="50.0" />
                            </VBox.margin>
@@ -231,7 +231,7 @@
             <Button mnemonicParsing="false" onAction="#loadEditOrder" text="Editar" />
          </children>
       </VBox>
-      <TableView fx:id="tvProductsList" layoutX="604.0" layoutY="100.0" prefHeight="285.0" prefWidth="626.0" stylesheets="@../styles/tableStyle.css" AnchorPane.bottomAnchor="415.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0">
+      <TableView fx:id="tvProductsList" layoutX="604.0" layoutY="100.0" onMouseClicked="#fillProductTextFields" prefHeight="285.0" prefWidth="626.0" stylesheets="@../styles/tableStyle.css" AnchorPane.bottomAnchor="415.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0">
          <columns>
             <TableColumn fx:id="colProductsNames" prefWidth="360.0" text="Nombre del producto" />
             <TableColumn fx:id="colProductsCodes" prefWidth="135.0" text="Código" />

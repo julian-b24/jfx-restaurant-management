@@ -22,6 +22,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Ingredient;
 import model.Order;
@@ -257,7 +258,7 @@ public class RestaurantGUI {
     private JFXTextField txtOrderClientObsField;
 
     @FXML
-    private JFXTextField txtOrderProductName;
+    private JFXTextField txtOrderProductCode;
 
     @FXML
     private JFXTextField txtOrderProductAmount;
@@ -984,36 +985,46 @@ public class RestaurantGUI {
     @FXML
     void addProductToOrder(ActionEvent event) {
     	
-    	Product productX = tvProductsList.getSelectionModel().getSelectedItem();
-    	
-    	if(productX!=null) {
-    		tempProductCodes.add(productX.getCode());
+    	if(!txtOrderProductCode.getText().isEmpty() && !txtOrderProductAmount.getText().isEmpty() && !txtOrderProductSize.getText().isEmpty()) {
     		
-    		if(txtOrderProductAmount.getText().equalsIgnoreCase(txtOrderProductAmount.getPromptText()) || txtOrderProductAmount.getText().equals("")) {
-    			tempProductsAmounts.add(1);
-    		}else {
-    			tempProductsAmounts.add(Integer.parseInt(txtOrderProductAmount.getText()));
+    		boolean productExists = restaurant.getProductByCode(Integer.parseInt(txtOrderProductCode.getText())) != null;
+    		boolean sizeExists = restaurant.getProductByCode(Integer.parseInt(txtOrderProductCode.getText())).getSizeByName(txtOrderProductSize.getText()) != null;
+    		
+    		try {
+    			int numberAmount = Integer.parseInt(txtOrderProductAmount.getText());
+    			boolean isPositive = numberAmount > 0;
+    					
+    			if(productExists && sizeExists && isPositive) {
+        			
+        			tempProductCodes.add(Integer.parseInt(txtOrderProductCode.getText()));
+        			tempProductsAmounts.add(numberAmount);
+        			tempProductsSizes.add(txtOrderProductSize.getText());
+        		}else {
+        			//alerta el producto o el amaño no existen, o el numero es negativo
+        		}
+    		}catch(NumberFormatException e) {
+    			//alerta el txt no es un numero
     		}
-    		if(txtOrderProductSize.getText().equalsIgnoreCase(txtOrderProductSize.getPromptText()) || txtOrderProductSize.getText().equals("")) {
-    			tempProductsSizes.add(null);
-    		}else {
-    			Size sizeX = productX.getSizeByName(txtOrderProductSize.getText());
-    			if(sizeX!=null) {
-    				tempProductsSizes.add(txtOrderProductSize.getText());
-    			}
-    			
-    		}
-    	}
-    	
-    	if(!txtOrderProductName.getText().equalsIgnoreCase(txtOrderProductName.getPromptText()) && !txtOrderProductName.getText().equals("")) {
-    	
-    		Product tempProduct = restaurant.getProductByCode(Integer.parseInt(	txtOrderProductName.getText()));
-    		if(tempProduct!=null) {
-    			tempProductCodes.add(tempProduct.getCode());
-    		}
+    				
+    		
+    	}else {
+    		//alerta algun textfield vacio
     	}
     }
 
+    @FXML
+    void fillProductTextFields(MouseEvent event) {
+    	
+    	Product productX = tvProductsList.getSelectionModel().getSelectedItem();	
+    	
+    	if(productX!=null) {
+    		
+    		txtOrderProductCode.setText(""+productX.getCode());
+    		txtOrderProductAmount.setText(""+1);
+    		txtOrderProductSize.setText("Standard");
+    	}
+    }
+    
     @FXML
     void createOrder(ActionEvent event) {
     	if(!txtOrderClientName.getText().isEmpty() && !txtOrderClientLastName.getText().isEmpty() && !txtOrderClientCC.getText().isEmpty() && 
@@ -1043,7 +1054,7 @@ public class RestaurantGUI {
 				tempProductsSizes.clear();
 				
 			} catch (IOException e) {
-				
+				 	
 				e.printStackTrace();
 			}
     	}
@@ -1283,10 +1294,10 @@ public class RestaurantGUI {
 		}
     	return pos;
     }    
-
+    
     @FXML
     void eOupdateProduct(ActionEvent event) {
-    	
+    	Integer.parseInt("hola");
     }
     
     public void initializeProductsInOrder(Order orderX) {
@@ -1359,32 +1370,75 @@ public class RestaurantGUI {
     @FXML
     void generateClientsReport(ActionEvent event) {
     	
+    	LocalDateTime startOfDay = getLowDate();
+    	LocalDateTime endOfDay = getTopDate();
+    	
+    	String separator = txtSeparator.getText();
+    	
+    	try {
+			restaurant.generateReportProductsConsolidated(startOfDay, endOfDay, separator);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
     }
-
-    @FXML
-    void generateEmployeeReport(ActionEvent event) {
+    
+    public LocalDateTime getLowDate() {
     	
     	//get format from products
     	String formatString =restaurant.getOrderFormat();
     	//set formatter
     	DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(formatString);
     	LocalDate init = txtInitialDate.getValue();
-    	LocalDate finit = txtFinalDate.getValue();
     	
     	LocalDateTime startOfDay = LocalDateTime.of(init, LocalTime.MIDNIGHT);
+    	
+    	return startOfDay;
+    }
+    
+    public LocalDateTime getTopDate() {
+    	
+    	//get format from products
+    	String formatString =restaurant.getOrderFormat();
+    	//set formatter
+    	DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(formatString);
+    	LocalDate finit = txtFinalDate.getValue();
+    	
     	LocalDateTime endOfDay = LocalDateTime.of(finit, LocalTime.MAX);
     	
-    	String lowDate = dateFormat.format(startOfDay);
-    	String topDate = dateFormat.format(endOfDay);
+    	return endOfDay;
+    }
+
+    
+
+    @FXML
+    void generateEmployeeReport(ActionEvent event) {
     	
-    	System.out.println(lowDate);
-    	System.out.println(topDate);
+    	LocalDateTime startOfDay = getLowDate();
+    	LocalDateTime endOfDay = getTopDate();
     	
-    	//restaurant.generateReportEmployeesConsolidated(lowDate, topDate);
+    	String separator = txtSeparator.getText();
+    	
+    	try {
+			restaurant.generateReportEmployeesConsolidated(startOfDay, endOfDay, separator);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
     }
 
     @FXML
     void generateOrderReport(ActionEvent event) {
-
+    	LocalDateTime startOfDay = getLowDate();
+    	LocalDateTime endOfDay = getTopDate();
+    	
+    	String separator = txtSeparator.getText();
+    	
+    	try {
+			restaurant.generateReportOrdersConsolidated(startOfDay, endOfDay, separator);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
     }
 }

@@ -16,6 +16,7 @@ import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -407,23 +408,13 @@ public class Restaurant{
 	 */
 	public int searchClientByCc(String cc) {
 		
+		boolean found = false;
 		int position = -1;
 		
-		int low = 0;
-		int top = clients.size() - 1;
-		boolean found = false;
-		
-		while(low < top && !found) {
-			
-			int mid = (low + top)/2;
-			if (clients.get(mid).getCc().equals(cc)) {
-				position = mid;
+		for (int i = 0; i < clients.size() && !found; i++) {
+			if(clients.get(i).getCc().equals(cc)) {
 				found = true;
-				
-			} else if (clients.get(mid).getCc().compareTo(cc) < 0) {
-				top = mid - 1;
-			} else {
-				low = mid + 1;
+				position = i;
 			}
 		}
 		
@@ -660,6 +651,12 @@ public class Restaurant{
 					
 					//Calculating the total of  product in a specific order
 					Product tempProduct = order.getOrderProducts().get(i);
+
+					
+					for (int j = 0; j < order.getSizes().size(); j++) {
+						System.out.println("size: "+order.getSizes().get(i));
+					}
+					
 					Double tempSizeFactor = order.getSizes().get(i).getPriceFactor();
 					int tempAmount = order.getAmountPerEach().get(i);
 					Double tempTotal = tempProduct.getPrice() * tempSizeFactor * tempAmount;
@@ -776,6 +773,7 @@ public class Restaurant{
 				//Employee info
 				sortEmployeesById();
 				Employee employee = employees.get(searchEmployeeById(order.getEmployeeRef()));
+				
 				String employeeName = employee.getName();
 				
 				//Date info
@@ -794,10 +792,11 @@ public class Restaurant{
 					String productName = product.getName() + size.getSize();
 					String amount = Integer.toString(order.getAmountPerEach().get(i));
 					String value = Double.toString(product.getPrice() * size.getPriceFactor());
-					podructsLine.concat(productName + ";" + amount + ";" + value + ";");
+					podructsLine += (productName + ";" + amount + ";" + value + ";");
 				}
 				
-				line.concat(podructsLine).replace(";", separator);
+				line += (podructsLine);
+				line.replace(";", separator);
 				pw.println(line);
 			}
 		}
@@ -813,7 +812,7 @@ public class Restaurant{
 		int top = employees.size() - 1;
 		boolean found = false;
 		
-		while(low < top && !found) {
+		while(low <= top && !found) {
 			
 			int mid = (low + top)/2;
 			if (employees.get(mid).getEmployeeId() == id) {
