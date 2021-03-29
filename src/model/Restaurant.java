@@ -228,16 +228,18 @@ public class Restaurant{
 			Product product = products.get(idx);
 			if(product.getCode() == code) {
 				found = true;
+			}else {
+				idx++;
 			}
-			idx++;
+			
 		}
 		
 		if (found) {
-			removeProductReferences(code);
 			products.remove(idx);
 		}
 		
 		saveProductsData();
+		saveIngredientData();
 	}
 	
 	public void deleteIngredient(int code) throws IOException {
@@ -276,31 +278,6 @@ public class Restaurant{
 		}
 		
 		return ingredient;
-	}
-
-	public void removeProductReferences(int code) throws IOException {
-
-		for (Ingredient ingredient : ingredients) {
-			
-			if (ingredient.isReferenced()) {
-				
-				ArrayList<Integer> references = ingredient.getReferences();
-				boolean found = false;
-				
-				for (int i = 0; i < references.size() && !found; i++) {
-					
-					int tempReference = references.get(i);
-					
-					if (tempReference == code) {
-						ingredient.getReferences().remove(i);
-						found = true;
-					}
-				}
-			}
-		}
-		
-		saveProductsData();
-		saveIngredientData();
 	}
 
 	//Req 1.4

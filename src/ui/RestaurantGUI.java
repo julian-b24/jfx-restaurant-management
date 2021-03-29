@@ -1489,11 +1489,10 @@ public class RestaurantGUI {
     @FXML
     void eliminateProduct(ActionEvent event) {
     	
-    	
     		try {
     			if(restaurant.getProductByCode(referenceProduct.getCode()).getRefCodes().isEmpty()) {
 				restaurant.deleteProduct(referenceProduct.getCode());
-				
+				loadAdminProducts(null);
     			}else {
     	    		//alert
     	    	}
