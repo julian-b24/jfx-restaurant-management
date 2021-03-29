@@ -144,7 +144,7 @@ public class Order implements Serializable{
 			break;
 			
 		case DELIVERED:
-			state = State.DELIVERED;
+			state = State.RECIEVED;
 			break;
 			
 		default:

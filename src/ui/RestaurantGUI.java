@@ -38,6 +38,7 @@ public class RestaurantGUI {
 	private ArrayList<Integer> tempIngrsCodes;		//Temporal list with the indexes of the ingredients that will be added to the product
 	private Product referenceProduct;
 	private Order referenceOrder;
+	private int orderCodeReference;
 	private ArrayList<Integer> tempProductCodes;
 	private ArrayList<Integer> tempProductsAmounts;
 	private ArrayList<String> tempProductsSizes;
@@ -1062,10 +1063,10 @@ public class RestaurantGUI {
 
     @FXML
     void loadEditOrder(ActionEvent event) {
-    	System.out.println("LOADED AGAIN");
-    	
+    	    	
     	Order orderX = tvOrders.getSelectionModel().getSelectedItem();
     	referenceOrder = orderX;
+    	orderCodeReference = orderX.getCode();
     	
     	for (int i = 0; i < orderX.getOrderProducts().size(); i++) {
     		if(tempProductCodes.size()<orderX.getOrderProducts().size()) {
@@ -1297,7 +1298,13 @@ public class RestaurantGUI {
     
     @FXML
     void eOupdateProduct(ActionEvent event) {
-    	Integer.parseInt("hola");
+    	try {
+			restaurant.updateOrder(orderCodeReference, tempProductCodes, tempProductsAmounts, tempProductsSizes);
+		} catch (IOException e) {
+		
+			e.printStackTrace();
+		}
+    	loadEditOrder(null);
     }
     
     public void initializeProductsInOrder(Order orderX) {
@@ -1368,7 +1375,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void generateClientsReport(ActionEvent event) {
+    void generateProductReport(ActionEvent event) {
     	
     	LocalDateTime startOfDay = getLowDate();
     	LocalDateTime endOfDay = getTopDate();
@@ -1440,5 +1447,18 @@ public class RestaurantGUI {
 			
 			e.printStackTrace();
 		}
+    }
+    
+    @FXML
+    void setStateForward(ActionEvent event) {
+    	
+			try {
+				restaurant.updateStateOrder(orderCodeReference);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+    	loadEditOrder(null);
     }
 }

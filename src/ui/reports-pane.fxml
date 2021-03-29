@@ -46,12 +46,12 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="494.0" prefWidth="384.0">
                <children>
-                  <Text fill="#ffc721" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción reporte clientes">
+                  <Text fill="#ffc721" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción reporte productos">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Text fill="#ffffe1" strokeType="OUTSIDE" strokeWidth="0.0" text="Genera un reporte de todos los clientes registrados en un rango de fechas dado. Destacando sus principales atributos" textAlignment="CENTER" wrappingWidth="325.0">
+                  <Text fill="#ffffe1" strokeType="OUTSIDE" strokeWidth="0.0" text="Genera un reporte de todos los productos registrados en un rango de fechas dado. Destacando sus principales atributos" textAlignment="CENTER" wrappingWidth="325.0">
                      <font>
                         <Font name="Montserrat Medium" size="15.0" />
                      </font>
@@ -59,7 +59,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </Text>
-                  <JFXButton onAction="#generateClientsReport" prefHeight="64.0" prefWidth="464.0" style="-fx-background-color: #D9A404;" text="Generar reporte clientes " textFill="#fff5d8">
+                  <JFXButton onAction="#generateProductReport" prefHeight="64.0" prefWidth="464.0" style="-fx-background-color: #D9A404;" text="Generar reporte productos" textFill="#fff5d8">
                      <font>
                         <Font name="Montserrat Medium" size="19.0" />
                      </font>

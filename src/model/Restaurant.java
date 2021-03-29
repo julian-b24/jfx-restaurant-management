@@ -314,6 +314,29 @@ public class Restaurant{
 		saveOrdersData();
 	}
 	
+	public void updateOrder(int orderToUpdtaeCode, ArrayList<Integer> productCodes, ArrayList<Integer> amountsPerEach, ArrayList<String> sizesStrings) throws IOException {
+		
+		Order orderX = getOrderByCode(orderToUpdtaeCode);
+		
+		ArrayList<Product> tempOrderProducts = new ArrayList<>();
+		ArrayList<Size> tempOrderSizes = new ArrayList<>();
+		
+		for (int i = 0; i < productCodes.size(); i++) {
+			tempOrderProducts.add(getProductByCode(productCodes.get(i)));
+			tempOrderSizes.add(tempOrderProducts.get(i).getSizeByName(sizesStrings.get(i)));
+		}
+		
+		/*for (int i = 0; i < productCodes.size(); i++) {
+			System.out.println(tempOrderProducts.get(i).getCode());
+			System.out.println(tempOrderSizes.get(i).getSize());
+		}*/
+		
+		orderX.setAmountPerEach(amountsPerEach);		
+		orderX.setSizes(tempOrderSizes);
+		orderX.setOrderProducts(tempOrderProducts);
+		saveOrdersData();
+	}
+	
 	//Req 1.9
 	public void updateStateOrder(int code) throws IOException {
 		
@@ -331,7 +354,7 @@ public class Restaurant{
 		int top = orders.size() - 1;
 		boolean found = false;
 		
-		while(low < top && !found) {
+		while(low <= top && !found) {
 			
 			int mid = (low + top)/2;
 			if (orders.get(mid).getCode() == code) {
@@ -340,7 +363,6 @@ public class Restaurant{
 			
 			} else if (orders.get(mid).getCode() < code) {
 				low = mid + 1;
-				
 			} else {
 				top = mid - 1;
 			}
