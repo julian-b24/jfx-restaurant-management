@@ -421,6 +421,14 @@ public class Restaurant{
 	}
 	
 	/**
+	 * Sorts the ingredients list based on their code, using Collections.sort().
+	 * <b> pos: </b> The list of products is going to be sorted in decreasing order by the code of the products <br>
+	 */
+	public void sortIngredientsBycode() {
+		Collections.sort(ingredients);
+	}
+	
+	/**
 	 * Sorts the products list based on their price, using Collections.sort().
 	 * <b> pos: </b> The list of products is going to be sorted in decreasing price <br>
 	 */
@@ -612,6 +620,10 @@ public class Restaurant{
 			orders.set(i, orders.get(posMin));
 			orders.set(posMin, aux);
 		}
+	}
+	
+	public void sortOrdersByDate() {
+		Collections.sort(orders);
 	}
 	
 	public void sortEmployeesById() {
@@ -825,7 +837,7 @@ public class Restaurant{
 					Product product = order.getOrderProducts().get(i);
 					Size size = order.getSizes().get(i);
 					//Name of the product will include the size of it in the order, it's useful to difference it.
-					String productName = product.getName() + size.getSize();
+					String productName = product.getName() + " - " + size.getSize();
 					String amount = Integer.toString(order.getAmountPerEach().get(i));
 					String value = Double.toString(product.getPrice() * size.getPriceFactor());
 					podructsLine += (productName + ";" + amount + ";" + value + ";");

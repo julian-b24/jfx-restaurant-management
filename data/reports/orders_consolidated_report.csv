@@ -1,4 +1,3 @@
 clientName;clientAddress;clientPhone;employeeName;orderDate;observations;productName;productValue;productAmount
-juan;cali;318;julian;03/28/2021 19:56;pizza de quesoStandard;1;500.0;pizza de quesoStandard;1;500.0;
-julio;bogota;3938838383;julian;03/28/2021 20:01;pizza de quesoStandard;1;500.0;pizza de quesoStandard;1;500.0;pizza de quesoStandard;1;500.0;pizza de quesoStandard;1;500.0;
-ahuma;a;2;julian;03/28/2021 20:04;pizza de quesoStandard;1;500.0;
+jose;cali;31835353;julian;03/29/2021 02:27;pizza - Standard;1;400.0;
+a;a;1;julian;03/29/2021 02:47;a - Standard;1;400.0;

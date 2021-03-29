@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Ingredient extends Saleable implements Serializable{
+public class Ingredient extends Saleable implements Comparable<Ingredient>, Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -48,6 +48,12 @@ public class Ingredient extends Saleable implements Serializable{
 		if (!isIn) {
 			references.add(code);
 		}
+	}
+
+	//Compares by code
+	@Override
+	public int compareTo(Ingredient otherIngredient) {
+		return getCode() - otherIngredient.getCode();
 	}
 	
 }
