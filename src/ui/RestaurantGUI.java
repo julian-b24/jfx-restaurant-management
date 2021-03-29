@@ -661,17 +661,29 @@ public class RestaurantGUI {
     @FXML
     void addIngredientToProduct(ActionEvent event) {
     	Ingredient ingrX = tvIngP.getSelectionModel().getSelectedItem();
-    
-    	if(tempIngrsCodes.size()>0) {
-    		boolean canAdd = searchTempIngr(ingrX.getCode());
-	    if(canAdd) {
-	    		tempIngrsCodes.add(ingrX.getCode());
-
-	    	}
+    	
+    	if(ingrX != null) {
+    		if( restaurant.ingredientIsAvailable(ingrX.getCode())) {
+    			if(tempIngrsCodes.size()>0) {
+    				
+            		boolean canAdd = searchTempIngr(ingrX.getCode());
+            		if(canAdd) {
+            			
+        	    		tempIngrsCodes.add(ingrX.getCode());
+        	    	}
+            	}else {
+            		tempIngrsCodes.add(ingrX.getCode());
+            	}
+    		}else {
+    			//alerta ingrediente no disponible
+    		}
+    			
+    		
     	}else {
-    		tempIngrsCodes.add(ingrX.getCode());
-
+    		//alerta nada seleccionado
     	}
+    	
+    	
 	    		
     }
     
@@ -769,30 +781,23 @@ public class RestaurantGUI {
 	 
 	 @FXML
 	 void addIngrToProduct(ActionEvent event) {
-		
+		 
 		 Ingredient ingrToAdd = tvallInings.getSelectionModel().getSelectedItem();
 		 
-		 if(ingrToAdd!=null) {
-			 
-			 tempIngrsCodes.add(ingrToAdd.getCode());
-			 referenceProduct.getIngredients().add(ingrToAdd);
+		 if(ingrToAdd!=null && actionIngtxt.getText().isEmpty()) {
+				 
+			 actionIngtxt.setText(""+ingrToAdd.getCode());
+		 }
+		 	 
+		 if(restaurant.ingredientIsAvailable(Integer.parseInt(actionIngtxt.getText()))) {
+				 
+			 tempIngrsCodes.add(Integer.parseInt(actionIngtxt.getText()));
+			 referenceProduct.getIngredients().add(restaurant.getIngredientByCode(Integer.parseInt(actionIngtxt.getText())));
 			 loadEditProduct(null);
-			 
+		 }else {
+			 //alerta no disponible
 		 }
-		 
-		 if(!actionIngtxt.getText().isEmpty() || !actionIngtxt.getText().equals(actionIngtxt.getPromptText())) {
-			 
-			 boolean exists = restaurant.searchIngredient(actionIngtxt.getText());
-			    
-			 if(exists) {
-				
-				 int posToAdd = restaurant.binarySearchIng(actionIngtxt.getText(), restaurant.getIngredients());
-				 referenceProduct.getIngredients().add(restaurant.getIngredients().get(posToAdd));
-				 loadEditProduct(null);	
-			 }
-		 }
-		 
-    }
+	 }
 
     @FXML
     void removeIngrFromProduct(ActionEvent event) {
@@ -1483,6 +1488,7 @@ public class RestaurantGUI {
     
     @FXML
     void eliminateProduct(ActionEvent event) {
-
+    	
+    	
     }
 }
