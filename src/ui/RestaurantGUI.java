@@ -43,7 +43,7 @@ public class RestaurantGUI {
 	private ArrayList<Integer> tempProductCodes;
 	private ArrayList<Integer> tempProductsAmounts;
 	private ArrayList<String> tempProductsSizes;
-	private String clientRef;
+	private String clientRef;						//cc from client in order
 	
 	//MainAnchorPane
 	@FXML
@@ -373,6 +373,29 @@ public class RestaurantGUI {
 
     @FXML
     private JFXDatePicker txtFinalDate;
+    
+    //CLIENT
+    @FXML
+    private JFXTextField txtCCToEdit;
+    
+    //update client
+    @FXML
+    private JFXTextField txtNewClientName;
+
+    @FXML
+    private JFXTextField txtNewClientLastName;
+
+    @FXML
+    private JFXTextField txtUpdateClientCC;
+
+    @FXML
+    private JFXTextField txtNewClientAdress;
+
+    @FXML
+    private JFXTextField txtNewClientPhone;
+
+    @FXML
+    private JFXTextField txtNewClientObsField;
     
     //Constructor
     public RestaurantGUI(Restaurant restaurant) {
@@ -1699,7 +1722,66 @@ public class RestaurantGUI {
     			System.out.println("NO ESTA ESTE CLIENTE MIJO");
     		}
     	}
-    	
     }
     
+    @FXML
+    void editClient(ActionEvent event) {
+    	
+    	if(!txtCCToEdit.getText().isEmpty()) {
+    		int posClient = restaurant.searchClientByCc(txtCCToEdit.getText());
+    		
+    		if(posClient != -1) {
+    			
+    			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editClient-pane.fxml"));
+    			fxmlLoader.setController(this); 	
+    			
+    			Parent addContactPane = null;
+    			try {
+    				addContactPane = fxmlLoader.load();
+    			} catch (IOException e) {
+    				e.printStackTrace();
+    			}
+    			mainPane.getChildren().clear();
+    			mainPane.getChildren().setAll(addContactPane);
+    			
+    			txtNewClientName.setText(restaurant.getClients().get(posClient).getName());
+    			txtNewClientLastName.setText(restaurant.getClients().get(posClient).getLastName());
+    			txtUpdateClientCC.setText(restaurant.getClients().get(posClient).getCc());
+    			txtNewClientAdress.setText(restaurant.getClients().get(posClient).getAdress());
+    			txtNewClientPhone.setText(restaurant.getClients().get(posClient).getPhone());
+    			txtNewClientObsField.setText(restaurant.getClients().get(posClient).getObsField());
+    			
+    			txtUpdateClientCC.setEditable(false);
+    			
+    		}else {
+    			//alerta cedula no encontrada
+    		}
+    	}else {
+    		//alerta textfield vacío
+    	}
+    }
+    
+    @FXML
+    void updateClient(ActionEvent event) {
+    	System.out.println("HM");
+    	
+    	System.out.println(txtNewClientLastName.getText().isEmpty());
+    	
+    	if(!txtNewClientName.getText().isEmpty() && !txtNewClientLastName.getText().isEmpty() && !txtNewClientAdress.getText().isEmpty() &&
+    			!txtNewClientPhone.getText().isEmpty()) {
+    		System.out.println("INSIDE IF");
+       		
+    		try {
+				restaurant.updateClient(txtCCToEdit.getText(), txtNewClientName.getText(), txtNewClientLastName.getText(), txtNewClientAdress.getText(),
+						txtNewClientPhone.getText(), txtNewClientObsField.getText());
+				System.out.println("CLIENT UPDATED");
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+    	}else{
+    		//alert empty fields
+    	}
+    }
+
 }

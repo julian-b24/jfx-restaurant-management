@@ -1109,5 +1109,18 @@ public class Restaurant{
 		
 		return format;
 	}
+
+	public void updateClient(String clientCC, String name, String lastName, String adress, String phone, String obsField) throws IOException {
+		int posClient = searchClientByCc(clientCC);
+		
+		Client client = clients.get(posClient);
+		client.setName(name);
+		client.setLastName(lastName);
+		client.setAdress(adress);
+		client.setPhone(phone);
+		client.setObsField(obsField);
+		
+		saveClientsData();
+	}
 	
 }
