@@ -12,6 +12,7 @@ public class Product extends Saleable implements Comparable<Product>{
 	
 	private ArrayList<Ingredient> ingredients;
 	private ArrayList<Size> sizes;
+	private ArrayList<Integer> refCodes;
 	private ProductType type;
 	private double price;
 	
@@ -19,6 +20,7 @@ public class Product extends Saleable implements Comparable<Product>{
 		super(name, creatRef, lastE, lastCode);
 		setIngredients(ingrdints);
 		sizes = new ArrayList<Size>();
+		refCodes = new ArrayList<Integer>();
 		addSize(DEFAULT_SIZE);
 		type = typ;
 		price = 0;
@@ -119,7 +121,33 @@ public class Product extends Saleable implements Comparable<Product>{
 		
 		return compare;
 	}
+	
+	public boolean isReferenced() {
+		return (refCodes.size() == 0)?true:false;
+	}
 
+	public ArrayList<Integer> getRefCodes() {
+		return refCodes;
+	}
+
+	public void setRefCodes(ArrayList<Integer> refCodes) {
+		this.refCodes = refCodes;
+	}
+
+	public void addReference(int code) {
+		
+		boolean isIn = false;
+		for (int i = 0; i < refCodes.size() && !isIn; i++) {
+			if (refCodes.get(i) == code) {
+				isIn = true;
+			}
+		}
+		
+		if (!isIn) {
+			refCodes.add(code);
+		}
+	}
+	
 	public void generateIngredientsReferences() {
 		
 		for (Ingredient ingredient : ingredients) {

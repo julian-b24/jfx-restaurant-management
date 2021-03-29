@@ -1490,5 +1490,16 @@ public class RestaurantGUI {
     void eliminateProduct(ActionEvent event) {
     	
     	
+    		try {
+    			if(restaurant.getProductByCode(referenceProduct.getCode()).getRefCodes().isEmpty()) {
+				restaurant.deleteProduct(referenceProduct.getCode());
+				
+    			}else {
+    	    		//alert
+    	    	}
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
     }
 }

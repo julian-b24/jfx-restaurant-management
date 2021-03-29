@@ -165,4 +165,12 @@ public class Order implements Serializable{
 		this.sizes = sizes;
 	}
 	
+	public void generateProductsReferences() {
+		
+		for (Product product : orderProducts) {
+			product.addReference(getCode());
+		}
+		
+	}
+	
 }

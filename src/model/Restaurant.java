@@ -200,6 +200,7 @@ public class Restaurant{
 		
 		product.updateSizes(sizes, sizesFactors);
 		
+		product.generateIngredientsReferences();
 		saveProductsData();
 	}
 	
@@ -348,6 +349,8 @@ public class Restaurant{
 			order = new Order(code, obs, clientRef, employeeRef, dateRequest, productsOrdered, productsAmounts, sizes, state);
 		}
 		
+		order.generateProductsReferences();
+		
 		orders.add(order);
 		saveOrdersData();
 	}
@@ -372,6 +375,8 @@ public class Restaurant{
 		orderX.setAmountPerEach(amountsPerEach);		
 		orderX.setSizes(tempOrderSizes);
 		orderX.setOrderProducts(tempOrderProducts);
+		
+		orderX.generateProductsReferences();
 		saveOrdersData();
 	}
 	
