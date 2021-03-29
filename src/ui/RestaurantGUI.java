@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -433,8 +434,8 @@ public class RestaurantGUI {
 		if(valid) {
 			try {
 				restaurant.createEmployee(rNametxf.getText(), rLastNametfx.getText(), rCctfx.getText());
-				restaurant.createSystemUser(rNametxf.getText(), rLastNametfx.getText(), rCctfx.getText(),
-						rUsernametxf.getText(), rPasswordtxf.getText());
+											restaurant.createSystemUser(rNametxf.getText(), rLastNametfx.getText(), 
+											rCctfx.getText(), rUsernametxf.getText(), rPasswordtxf.getText());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -442,7 +443,10 @@ public class RestaurantGUI {
 			
 			loadLogin(null);
 		}else {
-			//alert
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Valores inválidos");
+			alert.setContentText("Al menos uno de los campos está vacío o el nombre de usuario ingresado ya existe.");
+			alert.showAndWait();
 		}
     }
 
@@ -693,11 +697,21 @@ public class RestaurantGUI {
             	}
     		}else {
     			//alerta ingrediente no disponible
+    			Alert warning = new Alert(AlertType.WARNING);
+    			warning.setTitle("Operación inválida");
+    			warning.setContentText("El ingrediente seleccionado está deshabilitado! No se puede agregar a ningún" +
+        							 "producto");
+    			warning.showAndWait();
     		}
     			
     		
     	}else {
     		//alerta nada seleccionado
+    		Alert error = new Alert(AlertType.ERROR);
+    		error.setTitle("Error, ninguna selección");
+    		error.setContentText("No se ha seleccionado ningún ingrediente de la tabla. Debe seleccionar un ingrediente para " +
+    							 "poder añadirlo.");
+    		error.showAndWait();
     	}
     	
     	
