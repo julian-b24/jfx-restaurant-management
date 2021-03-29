@@ -16,7 +16,6 @@ import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -61,30 +60,29 @@ public class Restaurant{
 	public void createSystemUser(String nam, String lastN, String ccP, String user, String passw) throws IOException {
 		
 		int lastId = 0;
-		if(systemUsers.size()>0) {
+		if(systemUsers.size() > 0) {
 			Employee emplX = employees.get(employees.size()-1);
 			lastId = emplX.getEmployeeId();
 			SystemUser newUser = new SystemUser(nam, lastN, ccP, user, passw, lastId);
-		}else {
-			SystemUser newUser = new SystemUser(nam, lastN, ccP, user, passw, lastId);
 			systemUsers.add(newUser);
-		}	
+		}
+		
+		SystemUser newUser = new SystemUser(nam, lastN, ccP, user, passw, lastId);
+		systemUsers.add(newUser);
 		
 		saveSystemUser();
-		
 	}
 	
 	public void createEmployee(String nam, String lastN, String ccP) throws IOException {
 		
 		int lastId = 0;
-		if(employees.size()>0) {
+		if(employees.size() > 0) {
 			Employee emplX = employees.get(employees.size()-1);
 			lastId = emplX.getEmployeeId();
-			Employee newEmployee = new Employee(nam, lastN, ccP, lastId);
-		}else {
-			Employee newEmployee = new Employee(nam, lastN, ccP, lastId);
-			employees.add(newEmployee);
 		}
+
+		Employee newEmployee = new Employee(nam, lastN, ccP, lastId);
+		employees.add(newEmployee);
 		
 		saveEmployeeData();
 	}
@@ -1054,6 +1052,7 @@ public class Restaurant{
 		oosE.close();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void loadData() throws IOException, ClassNotFoundException{
 		
 		File fileProducts = new File(SAVE_PATH_PRODUCTS);
