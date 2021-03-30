@@ -978,10 +978,11 @@ public class RestaurantGUI {
 	 @FXML
 	 public void loadEditProduct(ActionEvent event) {
 		 
-		 Product productX = tvProducts.getSelectionModel().getSelectedItem();
-		 referenceProduct = productX;
-		 
-		 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editProduct-pane.fxml"));
+		Product productX = tvProducts.getSelectionModel().getSelectedItem();
+		referenceProduct = productX;
+		
+		if (productX != null) {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editProduct-pane.fxml"));
 			fxmlLoader.setController(this); 	
 			
 			Parent addContactPane = null;
@@ -1017,7 +1018,12 @@ public class RestaurantGUI {
 			initializeIngsInProduct(referenceProduct);
 			initializeAllRegisIngs();
 			initSizesProduct(referenceProduct);
-			
+		} else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Ningún elemento seleccionado");
+			alert.setContentText("No se ha seleccionado ningún producto para editar!");
+			alert.showAndWait();
+		}
 	 }
 	 
 	 @FXML
@@ -1069,6 +1075,13 @@ public class RestaurantGUI {
 				loadEditProduct(null);
 			}	
 		}
+		
+		if(ingrToRemove == null) {
+			Alert error = new Alert(AlertType.ERROR);
+			error.setTitle("Ningún elemento seleccionado");
+			error.setContentText("No se ha seleccionado ningún ingrediente a remover.");
+			error.showAndWait();
+		}
 
     }
     
@@ -1103,6 +1116,8 @@ public class RestaurantGUI {
 		 if(!txtAddNameSize.getText().isEmpty() && !txtMultiply.getText().isEmpty()) {
 			 referenceProduct.addSize(txtAddNameSize.getText(), Double.parseDouble(txtMultiply.getText()));
 			 loadEditProduct(null);
+		 } else {
+			 warningEmpyText();
 		 }
 	 }
 	 
@@ -1217,15 +1232,16 @@ public class RestaurantGUI {
 		Parent addContactPane = null;
 		try {
 			addContactPane = fxmlLoader.load();
+			mainPane.getChildren().clear();
+			String css = "styles/tableStyle.css";
+			addContactPane.getStylesheets().add(css);
+			mainPane.getChildren().setAll(addContactPane);
+			initializePorudctsInCreateOrder();
+			intializeOrders();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		mainPane.getChildren().clear();
-		String css = "styles/tableStyle.css";
-		addContactPane.getStylesheets().add(css);
-		mainPane.getChildren().setAll(addContactPane);
-		initializePorudctsInCreateOrder();
-		intializeOrders();
     }
     
     @FXML
@@ -1286,7 +1302,7 @@ public class RestaurantGUI {
     public void warningEmpyText() {
     	Alert alert = new Alert(Alert.AlertType.WARNING);
 		alert.setTitle("Campos Vacíos");
-		alert.setContentText("Al menos uno de los dos campos está vacío!");
+		alert.setContentText("Existen campos vacíos!");
 		alert.showAndWait();
     }
 
@@ -1502,7 +1518,14 @@ public class RestaurantGUI {
         			}  			
         		}
     		}
-    	}
+    	} 
+    	
+    	if (productX == null) {
+    		Alert error = new Alert(AlertType.ERROR);
+			error.setTitle("Ningún elemento seleccionado");
+			error.setContentText("No se ha seleccionado ningún producto.");
+			error.showAndWait();
+		}
     }
 
     @FXML
@@ -1512,39 +1535,52 @@ public class RestaurantGUI {
     	
     	int posToRemoveInRef;
     	Size sizeX;
-
-		//if any filed is empty it fills it with default values (1 for amounts, default size for sizes and the code of the selected item)
-    	if(txtEOAmount.getText().isEmpty()) {
-    		txtEOAmount.setText(""+1);
-    	}
-    	if(txtEOSize.getText().isEmpty()) {
-    		txtEOSize.setText(Product.DEFAULT_SIZE);
-    	}
     	
-    	if(txtEOProductName.getText().isEmpty() && productX!=null) {
-    		txtEOProductName.setText(""+productX.getCode());
-    	}
-    	
-    	productX = restaurant.getProductByCode(Integer.parseInt(txtEOProductName.getText()));
-    	sizeX = productX.getSizeByName(txtEOSize.getText());
-		
-		if(sizeX!=null) {
-			posToRemoveInRef = searchProductByCodeInReferenceOrder(Integer.parseInt(txtEOProductName.getText()), txtEOSize.getText());
-			
-			if(posToRemoveInRef!=-1) {
-				//checks if the amount number of products to remove is lower than the actual amount
-				if(Integer.parseInt(txtEOAmount.getText())<tempProductsAmounts.get(posToRemoveInRef)) {
-					
-					tempProductsAmounts.set(posToRemoveInRef, tempProductsAmounts.get(posToRemoveInRef)-Integer.parseInt(txtEOAmount.getText()));
-				//The amount of products to remove is equal or greater than the existing amount
-				}else{
-					tempProductCodes.remove(posToRemoveInRef);
-    				tempProductsSizes.remove(posToRemoveInRef);
-    				tempProductsAmounts.remove(posToRemoveInRef);
-    				referenceOrder.getOrderProducts().remove(posToRemoveInRef);
-				}
-				loadEditOrder(null);
-    		}	
+    	if (productX != null) {
+    		//if any filed is empty it fills it with default values (1 for amounts, default size for sizes and the code of the selected item)
+        	if(txtEOAmount.getText().isEmpty()) {
+        		txtEOAmount.setText(""+1);
+        	}
+        	if(txtEOSize.getText().isEmpty()) {
+        		txtEOSize.setText(Product.DEFAULT_SIZE);
+        	}
+        	
+        	if(txtEOProductName.getText().isEmpty() && productX!=null) {
+        		txtEOProductName.setText(""+productX.getCode());
+        	}
+        	
+        	productX = restaurant.getProductByCode(Integer.parseInt(txtEOProductName.getText()));
+        	sizeX = productX.getSizeByName(txtEOSize.getText());
+    		
+    		if(sizeX!=null) {
+    			posToRemoveInRef = searchProductByCodeInReferenceOrder(Integer.parseInt(txtEOProductName.getText()), txtEOSize.getText());
+    			
+    			if(posToRemoveInRef!=-1) {
+    				//checks if the amount number of products to remove is lower than the actual amount
+    				if(Integer.parseInt(txtEOAmount.getText())<tempProductsAmounts.get(posToRemoveInRef)) {
+    					
+    					tempProductsAmounts.set(posToRemoveInRef, tempProductsAmounts.get(posToRemoveInRef)-Integer.parseInt(txtEOAmount.getText()));
+    				//The amount of products to remove is equal or greater than the existing amount
+    				}else{
+    					tempProductCodes.remove(posToRemoveInRef);
+        				tempProductsSizes.remove(posToRemoveInRef);
+        				tempProductsAmounts.remove(posToRemoveInRef);
+        				referenceOrder.getOrderProducts().remove(posToRemoveInRef);
+    				}
+    				loadEditOrder(null);
+        		}	
+    		} else {
+    			Alert error = new Alert(AlertType.ERROR);
+    			error.setTitle("Ningún elemento seleccionado");
+    			error.setContentText("No se ha ingresado ningún tamaño");
+    			error.showAndWait();
+    		}
+    		
+		} else {
+			Alert error = new Alert(AlertType.ERROR);
+			error.setTitle("Ningún elemento seleccionado");
+			error.setContentText("No se ha ingresado ningún producto.");
+			error.showAndWait();
 		}
     }    	
     
@@ -1584,7 +1620,13 @@ public class RestaurantGUI {
     		if(orderCodeReference > 0) {
     			restaurant.updateOrder(orderCodeReference, tempProductCodes, tempProductsAmounts, tempProductsSizes);
     			loadEditOrder(null);
-    		}			
+    		} else {
+    			
+    			Alert warning = new Alert(AlertType.WARNING);
+    			warning.setTitle("Orden inválida");
+    			warning.setContentText("El código de la orden a editar en inválido. Operación detenida.");
+    			warning.showAndWait();
+    		}		
 			
 		} catch (IOException e) {
 		
@@ -1683,7 +1725,6 @@ public class RestaurantGUI {
     public LocalDateTime getLowDate() {
     	
     	LocalDate init = txtInitialDate.getValue();
-    	
     	LocalDateTime startOfDay = LocalDateTime.of(init, LocalTime.MIDNIGHT); //00:00
     	
     	return startOfDay;
@@ -1691,15 +1732,11 @@ public class RestaurantGUI {
     
     public LocalDateTime getTopDate() {
     	
-    	//set formatter
     	LocalDate finit = txtFinalDate.getValue();
-    	
     	LocalDateTime endOfDay = LocalDateTime.of(finit, LocalTime.MAX);	//23:59
     	
     	return endOfDay;
     }
-
-    
 
     @FXML
     public void generateEmployeeReport(ActionEvent event) {
