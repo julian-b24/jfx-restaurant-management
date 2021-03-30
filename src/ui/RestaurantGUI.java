@@ -1970,7 +1970,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void loadVisualizeInfo(ActionEvent event) {
+    public void loadVisualizeInfo(ActionEvent event) {
     	
     }
 }
