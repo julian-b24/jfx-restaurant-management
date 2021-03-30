@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class Restaurant{
@@ -192,6 +193,20 @@ public class Restaurant{
 			}
 		}
 		return tempIngredients;
+	}
+	
+	public SystemUser getUserByUserName(String userName) {
+		SystemUser user = null;
+		
+		boolean found = false;
+		for (int i = 0; i < systemUsers.size() && !found; i++) {
+			if (systemUsers.get(i).getUserName().equals(userName)) {
+				user = systemUsers.get(i);
+				found = true;
+			}
+		}
+		
+		return user;
 	}
 	
 	//Req 1.2
@@ -401,7 +416,7 @@ public class Restaurant{
 		
 		return order;
 	}
-
+	
 	//create ingredient
 	public void createIngredient(String name, String creatorRef, String lastE, String val) throws IOException{
 		
@@ -409,6 +424,7 @@ public class Restaurant{
 		double value = Double.parseDouble(val);
 		Ingredient ingredientX; 
 		
+		sortIngredientsBycode();
 		if(ingredients.size()>0) {
 			lastCode = ingredients.get(ingredients.size() - 1).getCode();
 			ingredientX = new Ingredient(name, creatorRef, lastE, lastCode, value);
@@ -420,9 +436,7 @@ public class Restaurant{
 			ingredientX = new Ingredient(name, creatorRef, lastE, lastCode, value);
 			ingredients.add(ingredientX);
 		}
-		sortIngredientByName();
 		saveIngredientData();
-		
 	}
 	
 	//sort ingredients
