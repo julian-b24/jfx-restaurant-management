@@ -1559,26 +1559,19 @@ public class RestaurantGUI {
     
     public LocalDateTime getLowDate() {
     	
-    	//get format from products
-    	String formatString =restaurant.getOrderFormat();
-    	//set formatter
-    	DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(formatString);
     	LocalDate init = txtInitialDate.getValue();
     	
-    	LocalDateTime startOfDay = LocalDateTime.of(init, LocalTime.MIDNIGHT);
+    	LocalDateTime startOfDay = LocalDateTime.of(init, LocalTime.MIDNIGHT); //00:00
     	
     	return startOfDay;
     }
     
     public LocalDateTime getTopDate() {
     	
-    	//get format from products
-    	String formatString =restaurant.getOrderFormat();
     	//set formatter
-    	DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(formatString);
     	LocalDate finit = txtFinalDate.getValue();
     	
-    	LocalDateTime endOfDay = LocalDateTime.of(finit, LocalTime.MAX);
+    	LocalDateTime endOfDay = LocalDateTime.of(finit, LocalTime.MAX);	//23:59
     	
     	return endOfDay;
     }
@@ -1619,12 +1612,12 @@ public class RestaurantGUI {
     @FXML
     public void setStateForward(ActionEvent event) {
     	
-			try {
-				restaurant.updateStateOrder(orderCodeReference);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		try {
+			restaurant.updateStateOrder(orderCodeReference);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
     	loadEditOrder(null);
     }
@@ -1765,7 +1758,6 @@ public class RestaurantGUI {
 		mainPane.getChildren().setAll(addContactPane);
 		
 		int posSystemU = restaurant.searchSystemUser(actualUser);
-		System.out.println("ACCTUAL "+actualUser+": POS: "+ posSystemU);
 		
 		txtEidtUserName.setText(restaurant.getSystemUsers().get(posSystemU).getName());
 		txtEditUserLatName.setText(restaurant.getSystemUsers().get(posSystemU).getLastName());
@@ -1785,9 +1777,12 @@ public class RestaurantGUI {
 			try {
 				if(!restaurant.clientAlreadyExistByCC(txtClientCC.getText())) {
 					restaurant.createClient(txtClientName.getText(), txtClientLastName.getText(), txtClientCC.getText(), txtClientAdress.getText(), txtClientPhone.getText(), txtClientObsField.getText());
-					System.out.println("NEW CLIENT");
 				}else {
 					//alert
+					Alert error = new Alert(AlertType.ERROR);
+					error.setTitle("El cliente ya existe");
+					error.setContentText("Ya existe un cliente con el número de cédula indicado.");
+					error.showAndWait();
 				}
 				
 			} catch (IOException e) {
@@ -1813,6 +1808,10 @@ public class RestaurantGUI {
     			System.out.println(clientRef);
     		}else {
     			//alert cliente no encontrado
+    			Alert warning = new Alert(AlertType.WARNING);
+    			warning.setTitle("Cliente no encontrado");
+    			warning.setContentText("No se ha encontrado un cliente con los nombres indicados");
+    			warning.showAndWait();
     		}
     	}
     }
@@ -1848,9 +1847,14 @@ public class RestaurantGUI {
     			
     		}else {
     			//alerta cedula no encontrada
+    			Alert warning = new Alert(AlertType.WARNING);
+    			warning.setTitle("Cédula no encontrada");
+    			warning.setContentText("Ningun cliente de la lista de clientes tiene la cédula indicada");
+    			warning.showAndWait();
     		}
     	}else {
     		//alerta textfield vacío
+    		warningEmpyText();
     	}
     }
     
@@ -1874,6 +1878,7 @@ public class RestaurantGUI {
 			}
     	}else{
     		//alert empty fields
+    		warningEmpyText();
     	}
     }
     
@@ -1892,6 +1897,7 @@ public class RestaurantGUI {
 			}
     	}else {
     		//alert empty fields
+    		warningEmpyText();
     	}
     }
 
@@ -1924,6 +1930,7 @@ public class RestaurantGUI {
     		}
     	}else {
     		//alert texftfield vacio
+    		warningEmpyText();
     	}
     }
     
@@ -1941,6 +1948,7 @@ public class RestaurantGUI {
     		
     	}else {
     		//alert empty fields
+    		warningEmpyText();
     	}
     }
 
@@ -1957,6 +1965,7 @@ public class RestaurantGUI {
 			}
     	}else {
     		//alert empty fields
+    		warningEmpyText();
     	}
     }
     
