@@ -211,6 +211,7 @@ public class Restaurant{
 		product.updateSizes(sizes, sizesFactors);
 		
 		product.generateIngredientsReferences();
+		product.updateAmountIngredients();
 		saveProductsData();
 	}
 	

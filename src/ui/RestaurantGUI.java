@@ -26,11 +26,14 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import model.Client;
+import model.Employee;
 import model.Ingredient;
 import model.Order;
 import model.Product;
 import model.Restaurant;
 import model.Size;
+import model.SystemUser;
 
 public class RestaurantGUI {
 
@@ -440,6 +443,104 @@ public class RestaurantGUI {
 
     @FXML
     private JFXTextField txtEdituserCC;
+    
+    //showClients
+    @FXML
+    private TableView<Client> tvShowClients;
+
+    @FXML
+    private TableColumn<Client, String> colSClientName;
+
+    @FXML
+    private TableColumn<Client, String> colSClientLastName;
+
+    @FXML
+    private TableColumn<Client, String> colSClientCc;
+
+    @FXML
+    private TableColumn<Client, String> colSClientAdress;
+
+    @FXML
+    private TableColumn<Client, String> colSClientPhone;
+    
+    //showEmployee
+    @FXML
+    private TableView<Employee> tvShowEmployees;
+
+    @FXML
+    private TableColumn<Employee, String> colSEmployeeName;
+
+    @FXML
+    private TableColumn<Employee, String> colSEmployeeLastName;
+
+    @FXML
+    private TableColumn<Employee, String> colSEmployeeCc;
+
+    @FXML
+    private TableColumn<Employee, String> colSEmployeeId;
+
+    //showUsers
+    @FXML
+    private TableView<SystemUser> tvShowUsers;
+
+    @FXML
+    private TableColumn<SystemUser, String> colSUserName;
+
+    @FXML
+    private TableColumn<SystemUser, String> colSUserLastName;
+
+    @FXML
+    private TableColumn<SystemUser, String> colSUserCc;
+
+    @FXML
+    private TableColumn<SystemUser, String> colSUserAdress;
+
+    @FXML
+    private TableColumn<SystemUser, String> colSUserPhone;
+    
+    //show ingredients
+    @FXML
+    private TableView<Ingredient> tvShowIngredients;
+
+    @FXML
+    private TableColumn<Ingredient, String> colSIngredientName;
+
+    @FXML
+    private TableColumn<Ingredient, String> colSIngredientLastName;
+
+    @FXML
+    private TableColumn<Ingredient, String> colSIngredientCc;
+
+    @FXML
+    private TableColumn<Ingredient, String> colSIngredientAdress;
+
+    @FXML
+    private TableColumn<Ingredient, String> colSIngredientPhone;
+    
+    //show products
+    @FXML
+    private TableView<Product> tvShowProduct;
+
+    @FXML
+    private TableColumn<Product, String> colSProductName;
+
+    @FXML
+    private TableColumn<Product, String> colSProductCreator;
+
+    @FXML
+    private TableColumn<Product, String> colSProductCode;
+
+    @FXML
+    private TableColumn<Product, String> colSProductAmountIngredients;
+
+    @FXML
+    private TableColumn<Product, String> colSProductAvailabale;
+
+    @FXML
+    private TableColumn<Product, String> colSProductType;
+    
+    @FXML
+    private TableColumn<Product, String> colSProductPrice;
     
     //Constructor
     public RestaurantGUI(Restaurant restaurant) {
@@ -1972,5 +2073,207 @@ public class RestaurantGUI {
     @FXML
     void loadVisualizeInfo(ActionEvent event) {
     	
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("adminVisualizations-pane.fxml"));
+		fxmlLoader.setController(this); 	
+		
+		Parent addContactPane = null;
+		try {
+			addContactPane = fxmlLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mainPane.getChildren().clear();
+		mainPane.getChildren().setAll(addContactPane);
     }
+    
+    @FXML
+    void visualizeClients(ActionEvent event) {
+
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("listClients-pane.fxml"));
+		fxmlLoader.setController(this); 	
+		
+		Parent addContactPane = null;
+		try {
+			addContactPane = fxmlLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mainPane.getChildren().clear();
+		mainPane.getChildren().setAll(addContactPane);
+		initializeShowClients();
+    }
+    
+    public void initializeShowClients() {
+    	
+    	ObservableList<Client> showClients = FXCollections.observableArrayList(restaurant.getClients());
+		 
+    	colSClientName.setCellValueFactory(new PropertyValueFactory<Client,String>("name"));  		 
+		 
+    	colSClientLastName.setCellValueFactory(new PropertyValueFactory<Client,String>("lastName"));
+		 
+    	colSClientCc.setCellValueFactory(new PropertyValueFactory<Client,String>("cc"));
+    	
+    	colSClientAdress.setCellValueFactory(new PropertyValueFactory<Client,String>("address"));
+		
+    	colSClientPhone.setCellValueFactory(new PropertyValueFactory<Client,String>("phone"));
+		 
+    	tvShowClients.setItems(showClients);
+    }
+
+    @FXML
+    void visualizeEmployees(ActionEvent event) {
+
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("listEmployees-pane.fxml"));
+		fxmlLoader.setController(this); 	
+		
+		Parent addContactPane = null;
+		try {
+			addContactPane = fxmlLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mainPane.getChildren().clear();
+		mainPane.getChildren().setAll(addContactPane);
+		initializeShowEmployees();
+    }
+    
+    public void initializeShowEmployees() {
+    	
+    	ObservableList<Employee> showEmployees = FXCollections.observableArrayList(restaurant.getEmployees());
+		 
+    	colSEmployeeName.setCellValueFactory(new PropertyValueFactory<Employee,String>("name"));  		 
+		 
+    	colSEmployeeLastName.setCellValueFactory(new PropertyValueFactory<Employee,String>("lastName"));
+		 
+    	colSEmployeeCc.setCellValueFactory(new PropertyValueFactory<Employee,String>("cc"));
+    	
+    	colSEmployeeId.setCellValueFactory(new PropertyValueFactory<Employee,String>("employeeId"));
+		 
+    	tvShowEmployees.setItems(showEmployees);
+    }
+
+    @FXML
+    void visualizeUsers(ActionEvent event) {
+
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("listUsers-pane.fxml"));
+		fxmlLoader.setController(this); 	
+		
+		Parent addContactPane = null;
+		try {
+			addContactPane = fxmlLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mainPane.getChildren().clear();
+		mainPane.getChildren().setAll(addContactPane);
+		initializeShowUsers();
+    }
+    
+    public void initializeShowUsers() {
+    	
+    	ObservableList<SystemUser> showUsers = FXCollections.observableArrayList(restaurant.getSystemUsers());
+		 
+    	colSUserName.setCellValueFactory(new PropertyValueFactory<SystemUser,String>("name"));  		 
+		 
+    	colSUserLastName.setCellValueFactory(new PropertyValueFactory<SystemUser,String>("lastName"));
+		 
+    	colSUserCc.setCellValueFactory(new PropertyValueFactory<SystemUser,String>("cc"));
+    	
+    	colSUserAdress.setCellValueFactory(new PropertyValueFactory<SystemUser,String>("username"));
+    	
+    	colSUserPhone.setCellValueFactory(new PropertyValueFactory<SystemUser,String>("password"));
+		 
+    	tvShowUsers.setItems(showUsers);
+    }
+    
+    @FXML
+    void visualizeIngredients(ActionEvent event) {
+
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("listIngredients-pane.fxml"));
+		fxmlLoader.setController(this); 	
+		
+		Parent addContactPane = null;
+		try {
+			addContactPane = fxmlLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mainPane.getChildren().clear();
+		mainPane.getChildren().setAll(addContactPane);
+		initializeShowIngredients();
+    }
+    
+    public void initializeShowIngredients() {
+    	
+    	ObservableList<Ingredient> showIngredients = FXCollections.observableArrayList(restaurant.getIngredients());
+		 
+    	colSIngredientName.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("name"));  		 
+		 
+    	colSIngredientLastName.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("creatorRef"));
+		 
+    	colSIngredientCc.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("lastEditorRef"));
+    	
+    	colSIngredientAdress.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("code"));
+    	
+    	colSIngredientPhone.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("productTypeS"));
+		 
+    	tvShowIngredients.setItems(showIngredients);
+    }
+
+    @FXML
+    void visualizeProducts(ActionEvent event) {
+
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("listProducts-pane.fxml"));
+		fxmlLoader.setController(this); 	
+		
+		Parent addContactPane = null;
+		try {
+			addContactPane = fxmlLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mainPane.getChildren().clear();
+		mainPane.getChildren().setAll(addContactPane);
+		initializeShowProducts();
+    }
+    
+ public void initializeShowProducts() {
+    	
+    	ObservableList<Product> showProducts = FXCollections.observableArrayList(restaurant.getProducts());
+		 
+    	colSProductName.setCellValueFactory(new PropertyValueFactory<Product,String>("name"));  		 
+		 
+    	colSProductCreator.setCellValueFactory(new PropertyValueFactory<Product,String>("creatorRef"));
+    	
+    	colSProductCode.setCellValueFactory(new PropertyValueFactory<Product,String>("code"));
+    	
+    	colSProductAmountIngredients.setCellValueFactory(new PropertyValueFactory<Product,String>("amountIngredients"));
+    	
+    	colSProductAvailabale.setCellValueFactory(new PropertyValueFactory<Product,String>("availableS"));
+    	
+    	colSProductPrice.setCellValueFactory(new PropertyValueFactory<Product,String>("productTypeS"));
+    	
+    	colSProductType.setCellValueFactory(new PropertyValueFactory<Product,String>("price"));
+		 
+    	tvShowProduct.setItems(showProducts);
+    }
+    
+    @FXML
+    void visualizeOrders(ActionEvent event) {
+
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("listOrders-pane.fxml"));
+		fxmlLoader.setController(this); 	
+		
+		Parent addContactPane = null;
+		try {
+			addContactPane = fxmlLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mainPane.getChildren().clear();
+		mainPane.getChildren().setAll(addContactPane);
+    }
+
+
+   
 }

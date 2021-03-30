@@ -15,6 +15,8 @@ public class Product extends Saleable implements Comparable<Product>{
 	private ArrayList<Integer> refCodes;
 	private ProductType type;
 	private double price;
+	private int amountIngredients;
+	private String productTypeS;
 	
 	public Product(String name, String creatRef, String lastE, int lastCode, ArrayList<Ingredient> ingrdints, ProductType typ) {
 		super(name, creatRef, lastE, lastCode);
@@ -24,6 +26,8 @@ public class Product extends Saleable implements Comparable<Product>{
 		addSize(DEFAULT_SIZE);
 		type = typ;
 		price = 0;
+		amountIngredients = refCodes.size();
+		productTypeS = getType().getType();
 	}
 	
 	public void addSize(String sizeTxt) {
@@ -34,6 +38,26 @@ public class Product extends Saleable implements Comparable<Product>{
 	public void addSize(String sizeTxt, double priceFactor) {
 		Size size = new Size(sizeTxt, priceFactor);
 		sizes.add(size);
+	}
+
+	public int getAmountIngredients() {
+		return amountIngredients;
+	}
+
+	public void setAmountIngredients(int amountIngredients) {
+		this.amountIngredients = amountIngredients;
+	}
+
+	public void updateAmountIngredients() {
+		this.amountIngredients = refCodes.size();
+	}
+	
+	public String getProductTypeS() {
+		return productTypeS;
+	}
+	
+	public void setProductTypeS(String productTypeS) {
+		this.productTypeS = productTypeS;
 	}
 
 	public double getPrice() {
@@ -47,6 +71,7 @@ public class Product extends Saleable implements Comparable<Product>{
 
 	public void setType(ProductType type) {
 		this.type = type;
+		setProductTypeS(type.getType());
 	}
 
 	public ArrayList<Ingredient> getIngredients() {

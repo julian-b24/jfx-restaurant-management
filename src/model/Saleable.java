@@ -14,6 +14,7 @@ public abstract class Saleable implements Serializable{
 	private String lastEditorRef;	//Id of the last editor
 	private int code;				//Code of the saleable
 	private boolean available;		//State of the product, true in case is enable, false in any other way
+	private String availableS;		//String with the available boolean. For the tables
 	
 	public Saleable(String nm, String creatRef, String lastE, int lastCode) {
 		name = nm;
@@ -21,6 +22,7 @@ public abstract class Saleable implements Serializable{
 		lastEditorRef = lastE;
 		code = lastCode + 1;
 		available = DEAFULT_AVAILABLE;
+		availableS = "Sí";
 	}
 
 	//Getters & setters
@@ -30,6 +32,20 @@ public abstract class Saleable implements Serializable{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getAvailableS() {
+		
+		if(available) {
+			this.availableS = "sí";
+		}else {
+			this.availableS = "No";
+		}
+		return availableS;
+	}
+
+	public void setAvailableS(String availableS) {
+		this.availableS = availableS;
 	}
 
 	public String getLastEditorRef() {
