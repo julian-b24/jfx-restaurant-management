@@ -67,7 +67,10 @@
                <VBox.margin>
                   <Insets left="50.0" top="20.0" />
                </VBox.margin></JFXButton>
-            <JFXButton onAction="#LoadEditI" text="edit" textFill="WHITE" />
+            <JFXButton onAction="#LoadEditI" prefHeight="37.0" prefWidth="186.0" style="-fx-background-color: #D9A404;" text="edit" textFill="#fffee0">
+               <VBox.margin>
+                  <Insets left="50.0" top="20.0" />
+               </VBox.margin></JFXButton>
          </children>
       </VBox>
       <TableView fx:id="tableIngr" layoutX="501.0" layoutY="50.0" prefHeight="700.0" prefWidth="768.0" stylesheets="@../styles/tableStyle.css" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="50.0">

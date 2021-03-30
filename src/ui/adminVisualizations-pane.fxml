@@ -62,5 +62,6 @@
             </JFXButton>
          </children>
       </VBox>
+      <JFXButton layoutX="69.0" layoutY="661.0" onAction="#loadMenu" prefHeight="40.0" prefWidth="114.0" style="-fx-background-color: #D9A404;" text="Menú" textFill="#fcffe3" />
    </children>
 </AnchorPane>
