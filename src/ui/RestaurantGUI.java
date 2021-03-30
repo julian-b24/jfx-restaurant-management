@@ -625,7 +625,7 @@ public class RestaurantGUI {
 				restaurant.createEmployee(rNametxf.getText(), rLastNametfx.getText(), rCctfx.getText());
 				restaurant.createSystemUser(rNametxf.getText(), rLastNametfx.getText(), rCctfx.getText(), rUsernametxf.getText(), rPasswordtxf.getText());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			
@@ -756,13 +756,13 @@ public class RestaurantGUI {
     @FXML
     public void createIngredient(ActionEvent event) {
     	
-    	if(!txtIngredientName.getText().equals("") && !txtIngredientValue.getText().equals("")){
+    	if(!txtIngredientName.getText().equals("") && !txtIngredientValue.getText().equals("") && verifyIfNumber(txtIngredientValue.getText())){
     		try {
 				restaurant.createIngredient(txtIngredientName.getText(), Integer.toString(restaurant.getUserByUserName(actualUser).getEmployeeId()), 
 											Integer.toString(restaurant.getUserByUserName(actualUser).getEmployeeId()), 
 											txtIngredientValue.getText());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
     	}
@@ -800,7 +800,7 @@ public class RestaurantGUI {
     
     @FXML
     public void updateIngredient(ActionEvent event) {
-    	if(!txtNewIngName.equals("") && !txtNewIngVal.equals("")) {
+    	if(!txtNewIngName.getText().isEmpty() && !txtNewIngVal.getText().isEmpty() && verifyIfNumber(txtNewIngVal.getText())) {
     		try {
     			boolean available= false;
     			if(radioBtnIngAvailable.isSelected()) {
@@ -871,7 +871,6 @@ public class RestaurantGUI {
     public void createProduct(ActionEvent event) {
     	String type="";
     	boolean valid = validateInputProduct();
-    	System.out.println(valid);
     	if(valid) {
     		
     		if(rbMainDish.isSelected()) {
@@ -1056,7 +1055,6 @@ public class RestaurantGUI {
 			int posToRem =searhIngInTempProduct(ingrToRemove.getCode());
 			if(posToRem!=-1){
 				referenceProduct.getIngredients().remove(posToRem);
-				//System.out.println("");
 				loadEditProduct(null);
 			}		
 			
@@ -1153,11 +1151,9 @@ public class RestaurantGUI {
 		}
     	
     	tempIngrsCodes.clear();
-    	System.out.println("INGS SIZE: "+ tempIngrsCodes.size());
     	
     	for (int i = 0; i < referenceProduct.getIngredients().size() ; i++) {
 			tempIngrsCodes.add(referenceProduct.getIngredients().get(i).getCode());
-			System.out.println("CODES INGS: "+referenceProduct.getIngredients().get(i).getCode());
 		}
     	
     	ArrayList<String> sizesNames = new ArrayList<>();
@@ -1507,10 +1503,6 @@ public class RestaurantGUI {
         		}
     		}
     	}
-    	
-    	System.out.println("SIZE AFTER ADDITION: "+tempProductCodes.size());
-    	System.out.println("SIZE sizes: "+tempProductsSizes.size());
-    	System.out.println("SIZE amount: "+tempProductsAmounts.size());
     }
 
     @FXML
@@ -1679,9 +1671,12 @@ public class RestaurantGUI {
     	
     	try {
 			restaurant.generateReportProductsConsolidated(startOfDay, endOfDay, separator);
-		} catch (IOException e) {
+		} catch (IOException | NumberFormatException e) {
 			
-			e.printStackTrace();
+			Alert error = new Alert(AlertType.ERROR);
+			error.setTitle("Error al generar reporte");
+			error.setContentText("Ocurrió un error al generar el reporte. Algún valor de un producto es incorrecto");
+			error.showAndWait();
 		}
     }
     
@@ -1718,7 +1713,10 @@ public class RestaurantGUI {
 			restaurant.generateReportEmployeesConsolidated(startOfDay, endOfDay, separator);
 		} catch (IOException e) {
 			
-			e.printStackTrace();
+			Alert error = new Alert(AlertType.ERROR);
+			error.setTitle("Error al generar reporte");
+			error.setContentText("Ocurrió un error al generar el reporte. Algún valor de una orden o producto es incorrecto");
+			error.showAndWait();
 		}
     }
 
@@ -1731,7 +1729,7 @@ public class RestaurantGUI {
     	
     	try {
 			restaurant.generateReportOrdersConsolidated(startOfDay, endOfDay, separator);
-		} catch (IOException e) {
+		} catch (IOException | NumberFormatException e) {
 			
 			e.printStackTrace();
 		}
@@ -1802,9 +1800,8 @@ public class RestaurantGUI {
     		restaurant.importIngredients();
 			restaurant.importProducts();
 			importAlert();
-		} catch (IOException e) {
-			
-			e.printStackTrace();
+		} catch (IOException | NumberFormatException e) {
+			importAlertError();
 		}
     }
 
@@ -1814,8 +1811,7 @@ public class RestaurantGUI {
 			restaurant.importClients();
 			importAlert();
 		} catch (IOException e) {
-			
-			e.printStackTrace();
+			importAlertError();
 		}
     }
 
@@ -1825,9 +1821,8 @@ public class RestaurantGUI {
     	try {
 			restaurant.importIngredients();
 			importAlert();
-		} catch (IOException e) {
-			
-			e.printStackTrace();
+		} catch (IOException | NumberFormatException e) {
+			importAlertError();
 		}
     }
 
@@ -1840,9 +1835,8 @@ public class RestaurantGUI {
 			restaurant.importProducts();
 			restaurant.importOrders();
 			importAlert();
-		} catch (IOException e) {
-			
-			e.printStackTrace();
+		} catch (IOException | NumberFormatException e) {
+			importAlertError();
 		}
     }
     
@@ -1941,7 +1935,6 @@ public class RestaurantGUI {
     		
     		if(posClient != -1) {
     			clientRef = restaurant.getClients().get(posClient).getCc();
-    			System.out.println(clientRef);
     		}else {
     			//alert cliente no encontrado
     			Alert warning = new Alert(AlertType.WARNING);
@@ -1996,18 +1989,13 @@ public class RestaurantGUI {
     
     @FXML
     public void updateClient(ActionEvent event) {
-    	System.out.println("HM");
-    	
-    	System.out.println(txtNewClientLastName.getText().isEmpty());
     	
     	if(!txtNewClientName.getText().isEmpty() && !txtNewClientLastName.getText().isEmpty() && !txtNewClientAdress.getText().isEmpty() &&
     			!txtNewClientPhone.getText().isEmpty()) {
-    		System.out.println("INSIDE IF");
        		
     		try {
 				restaurant.updateClient(txtCCToEdit.getText(), txtNewClientName.getText(), txtNewClientLastName.getText(), txtNewClientAdress.getText(),
 						txtNewClientPhone.getText(), txtNewClientObsField.getText());
-				System.out.println("CLIENT UPDATED");
 			} catch (IOException e) {
 
 				e.printStackTrace();
@@ -2094,7 +2082,6 @@ public class RestaurantGUI {
     	if(!txtEidtUserName.getText().isEmpty() && !txtEditUserLatName.getText().isEmpty() && !txtEditUsername.getText().isEmpty() && !txtEditUserPassword.getText().isEmpty()) {
     		try {
 				restaurant.updateSystemUser(actualUser, txtEidtUserName.getText(), txtEditUserLatName.getText(), txtEditUsername.getText(), txtEditUserPassword.getText());
-				System.out.println("ACTUALIZADO EL USUARIO");
 			} catch (IOException e) {
 				
 				e.printStackTrace();
@@ -2330,5 +2317,29 @@ public class RestaurantGUI {
 		warning.setContentText("La infromación se ha importado exitosamente");
 		warning.showAndWait();
     }
-   
+    
+    public void importAlertError() {
+    	Alert error = new Alert(AlertType.ERROR);
+		error.setTitle("Error de importación");
+		error.setContentText("La infromación no se ha importado. Fallos en la lectura");
+		error.showAndWait();
+    }
+ 
+    public boolean verifyIfNumber(String str) {
+    	
+    	boolean isNumber = true;
+    	
+		try {
+			int number = Integer.parseInt(str);
+			boolean isPositive = number > 0;
+			
+			if(!isPositive) {
+				isNumber = false;
+			}
+		}catch(NumberFormatException e) {
+			
+			isNumber = false;
+		}
+		return isNumber;
+	}
 }

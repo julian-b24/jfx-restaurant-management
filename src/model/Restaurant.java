@@ -229,8 +229,6 @@ public class Restaurant{
 		product.updateAmountIngredients();
 		product.updateProductType();
 		
-		System.out.println("1"+product.getAmountIngredients());
-		
 		saveProductsData();
 	}
 	
@@ -373,11 +371,6 @@ public class Restaurant{
 			tempOrderProducts.add(getProductByCode(productCodes.get(i)));
 			tempOrderSizes.add(tempOrderProducts.get(i).getSizeByName(sizesStrings.get(i)));
 		}
-		
-		/*for (int i = 0; i < productCodes.size(); i++) {
-			System.out.println(tempOrderProducts.get(i).getCode());
-			System.out.println(tempOrderSizes.get(i).getSize());
-		}*/
 		
 		orderX.setAmountPerEach(amountsPerEach);		
 		orderX.setSizes(tempOrderSizes);
@@ -968,7 +961,6 @@ public class Restaurant{
 	}
 
 	public void updateIngredient(String referenceIngredient, String newName, String newValue, boolean newAvailable) throws IOException {
-		System.out.println(referenceIngredient+","+newName);
 		
 		int index = binarySearchIng(referenceIngredient, ingredients);
 		ingredients.get(index).setName(newName);
