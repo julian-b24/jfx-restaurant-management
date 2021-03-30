@@ -108,12 +108,11 @@
       <TableView fx:id="tvProducts" layoutX="462.0" layoutY="410.0" prefHeight="330.0" prefWidth="768.0" stylesheets="@../styles/tableStyle.css" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
          <columns>
             <TableColumn fx:id="colPname" prefWidth="156.0" text="Nombre producto" />
-            <TableColumn fx:id="colPIngs" prefWidth="116.0" text="Ingredientes" />
-            <TableColumn fx:id="colLEP" prefWidth="152.0" text="Último editor" />
-            <TableColumn fx:id="colPCode" prefWidth="75.0" text="Código" />
-            <TableColumn fx:id="coPPrice" prefWidth="84.0" text="Precio" />
-            <TableColumn fx:id="colPav" prefWidth="96.0" text="Disponible" />
-            <TableColumn fx:id="colPType" prefWidth="93.0" text="tipo" />
+            <TableColumn fx:id="colLEP" prefWidth="175.0" text="Último editor" />
+            <TableColumn fx:id="colPCode" prefWidth="82.0" text="Código" />
+            <TableColumn fx:id="coPPrice" prefWidth="115.0" text="Precio" />
+            <TableColumn fx:id="colPav" prefWidth="111.0" text="Disponible" />
+            <TableColumn fx:id="colPType" prefWidth="128.0" text="tipo" />
          </columns>
       </TableView>
    </children>

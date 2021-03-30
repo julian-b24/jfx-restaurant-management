@@ -223,7 +223,7 @@
                   </VBox>
                </children>
             </HBox>
-            <JFXButton onAction="#eOupdateProduct" prefHeight="43.0" prefWidth="165.0" style="-fx-background-color: #D9A404;" text="Actualizar producto" textFill="#fffcdd" />
+            <JFXButton onAction="#updateProduct" prefHeight="43.0" prefWidth="165.0" style="-fx-background-color: #D9A404;" text="Actualizar producto" textFill="#fffcdd" />
             <JFXButton onAction="#loadMenu" prefHeight="43.0" prefWidth="165.0" style="-fx-background-color: #D9A404;" text="Volver al menú" textFill="#fffcdd">
                <VBox.margin>
                   <Insets top="30.0" />

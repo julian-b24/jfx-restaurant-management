@@ -211,7 +211,12 @@ public class Restaurant{
 		product.updateSizes(sizes, sizesFactors);
 		
 		product.generateIngredientsReferences();
+		
 		product.updateAmountIngredients();
+		product.updateProductType();
+		
+		System.out.println("1"+product.getAmountIngredients());
+		
 		saveProductsData();
 	}
 	
@@ -365,6 +370,8 @@ public class Restaurant{
 		orderX.setOrderProducts(tempOrderProducts);
 		
 		orderX.generateProductsReferences();
+		orderX.updateStateString();
+		
 		saveOrdersData();
 	}
 	

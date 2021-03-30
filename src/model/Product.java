@@ -26,7 +26,7 @@ public class Product extends Saleable implements Comparable<Product>{
 		addSize(DEFAULT_SIZE);
 		type = typ;
 		price = 0;
-		amountIngredients = refCodes.size();
+		amountIngredients = ingredients.size();
 		productTypeS = getType().getType();
 	}
 	
@@ -49,7 +49,11 @@ public class Product extends Saleable implements Comparable<Product>{
 	}
 
 	public void updateAmountIngredients() {
-		this.amountIngredients = refCodes.size();
+		this.amountIngredients = ingredients.size();
+	}
+	
+	public void updateProductType() {
+		productTypeS = type.getType();
 	}
 	
 	public String getProductTypeS() {

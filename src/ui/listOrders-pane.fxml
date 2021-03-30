@@ -11,11 +11,10 @@
    <children>
       <TableView fx:id="tvShowOrder" layoutX="327.0" layoutY="115.0" onMouseClicked="#fillProductTextFields" prefHeight="584.0" prefWidth="1180.0" stylesheets="@../styles/tableStyle.css" AnchorPane.bottomAnchor="101.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="115.0">
          <columns>
-            <TableColumn fx:id="colSOrderCcClient" prefWidth="298.0" text="Cédula del cliente" />
-            <TableColumn fx:id="colSOrderCreator" prefWidth="291.0" text="Creador" />
-            <TableColumn fx:id="colSOrderCode" prefWidth="200.0" text="Código de la orden" />
-            <TableColumn fx:id="colSOrderDate" prefWidth="213.0" text="Fecha de pedido" />
-            <TableColumn fx:id="colSOrderState" prefWidth="177.0" text="Estado del pedido" />
+            <TableColumn fx:id="colSOrderCcClient" prefWidth="413.0" text="Cédula del cliente" />
+            <TableColumn fx:id="colSOrderCode" prefWidth="264.0" text="Código de la orden" />
+            <TableColumn fx:id="colSOrderDate" prefWidth="240.0" text="Fecha de pedido" />
+            <TableColumn fx:id="colSOrderState" prefWidth="262.0" text="Estado del pedido" />
          </columns>
       </TableView>
       <Text fill="#fff2cd" layoutX="521.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lista de ordenes" AnchorPane.bottomAnchor="717.0" AnchorPane.leftAnchor="521.0" AnchorPane.rightAnchor="521.2520141601562" AnchorPane.topAnchor="49.0">

@@ -13,6 +13,7 @@ public class Order implements Comparable<Order>, Serializable{
 	private int code;
 	private String observations;
 	private String clientRef;
+	private String stateString;
 	private int employeeRef;
 	
 	private LocalDateTime date;
@@ -37,6 +38,7 @@ public class Order implements Comparable<Order>, Serializable{
 		calculateTotalPrice();
 		state = State.REQUESTED;
 		sizes = sizs;
+		stateString = getState().getState();
 	}
 	
 	public Order(int cod, String obs, String clntRef, int mployeRef, LocalDateTime dte, ArrayList<Product> products, ArrayList<Integer> amountEach, ArrayList<Size> sizs, String stae) {
@@ -66,6 +68,18 @@ public class Order implements Comparable<Order>, Serializable{
 
 	public void setCode(int code) {
 		this.code = code;
+	}
+
+	public void updateStateString() {
+		stateString = getState().getState();
+	}
+	
+	public String getStateString() {
+		return stateString;
+	}
+
+	public void setStateString(String stateString) {
+		this.stateString = stateString;
 	}
 
 	public String getObservations() {

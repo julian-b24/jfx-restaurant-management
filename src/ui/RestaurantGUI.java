@@ -944,19 +944,15 @@ public class RestaurantGUI {
 		 
 		 colPname.setCellValueFactory(new PropertyValueFactory<Product,String>("name"));  		 
 		 
-		 colPIngs.setCellValueFactory(new PropertyValueFactory<Product,String>("ingredients"));
-		 
 		 colLEP.setCellValueFactory(new PropertyValueFactory<Product,String>("lastEditorRef"));
 		 
 		 colPCode.setCellValueFactory(new PropertyValueFactory<Product,String>("code"));
 		 
-		 coPPrice.setCellValueFactory(new PropertyValueFactory<Product,String>("price")); 
-		 
-		 coPPrice.setCellValueFactory(new PropertyValueFactory<Product,String>("price"));    	
+		 coPPrice.setCellValueFactory(new PropertyValueFactory<Product,String>("price")); 	
 
-		 colPav.setCellValueFactory(new PropertyValueFactory<Product,String>("available"));    	
+		 colPav.setCellValueFactory(new PropertyValueFactory<Product,String>("availableS"));    	
 		 
-		 colPType.setCellValueFactory(new PropertyValueFactory<Product,String>("type"));    	
+		 colPType.setCellValueFactory(new PropertyValueFactory<Product,String>("productTypeS"));    	
 		 
 		 tvProducts.setItems(productArray);	 
 	 }
@@ -1331,45 +1327,57 @@ public class RestaurantGUI {
     public void loadEditOrder(ActionEvent event) {
     	    	
     	Order orderX = tvOrders.getSelectionModel().getSelectedItem();
-    	referenceOrder = orderX;
-    	orderCodeReference = orderX.getCode();
     	
-    	for (int i = 0; i < orderX.getOrderProducts().size(); i++) {
-    		if(tempProductCodes.size()<orderX.getOrderProducts().size()) {
-    			
-    			tempProductCodes.add(orderX.getOrderProducts().get(i).getCode());
-    			tempProductsSizes.add(orderX.getSizes().get(i).getSize());
-    			tempProductsAmounts.add(orderX.getAmountPerEach().get(i));
+    	
+    	if(orderX != null) {
+    		
+    		referenceOrder = orderX;
+        	orderCodeReference = orderX.getCode();
+        	
+    		for (int i = 0; i < orderX.getOrderProducts().size(); i++) {
+        		if(tempProductCodes.size()<orderX.getOrderProducts().size()) {
+        			
+        			tempProductCodes.add(orderX.getOrderProducts().get(i).getCode());
+        			tempProductsSizes.add(orderX.getSizes().get(i).getSize());
+        			tempProductsAmounts.add(orderX.getAmountPerEach().get(i));
+        		}
     		}
-		}
+        	
+    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editOrder-pane.fxml"));
+    		fxmlLoader.setController(this); 	
+    		
+    		Parent addContactPane = null;
+    		try {
+    			addContactPane = fxmlLoader.load();
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    		}
+    		mainPane.getChildren().clear();
+    		String css = "styles/tableStyle.css";
+    		addContactPane.getStylesheets().add(css);
+    		mainPane.getChildren().setAll(addContactPane);
+    		
+    		//state
+    		if(orderX.getState().getState().equals("Solicitado")) {
+    			radioBtnState1.setSelected(true);
+    		}else if(orderX.getState().getState().equals("En proceso")){
+    			radioBtnState2.setSelected(true);
+    		}else if(orderX.getState().getState().equals("Enviado")){
+    			radioBtnState3.setSelected(true);
+    		}else if(orderX.getState().getState().equals("Entregado")){
+    			radioBtnState4.setSelected(true);
+    		}
+    		
+    		initializeProductsInOrder(referenceOrder);
+    		initializeProductsInEditingOrder();
+    	}else {
+    		Alert warning = new Alert(AlertType.WARNING);
+			warning.setTitle("Producto referenciado!");
+			warning.setContentText("No has seleccionado un elemento de la tabala");
+			warning.showAndWait();
+    	}
     	
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editOrder-pane.fxml"));
-		fxmlLoader.setController(this); 	
-		
-		Parent addContactPane = null;
-		try {
-			addContactPane = fxmlLoader.load();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		mainPane.getChildren().clear();
-		String css = "styles/tableStyle.css";
-		addContactPane.getStylesheets().add(css);
-		mainPane.getChildren().setAll(addContactPane);
-		
-		//state
-		if(orderX.getState().getState().equals("Solicitado")) {
-			radioBtnState1.setSelected(true);
-		}else if(orderX.getState().getState().equals("En proceso")){
-			radioBtnState2.setSelected(true);
-		}else if(orderX.getState().getState().equals("Enviado")){
-			radioBtnState3.setSelected(true);
-		}else if(orderX.getState().getState().equals("Entregado")){
-			radioBtnState4.setSelected(true);
-		}
-		
-		initializeProductsInOrder(referenceOrder);
-		initializeProductsInEditingOrder();
+    	
 
     }
     
@@ -1392,7 +1400,7 @@ public class RestaurantGUI {
 		 
     	colOrdersCodes.setCellValueFactory(new PropertyValueFactory<Order,String>("code"));
 		 
-    	colOrdersStates.setCellValueFactory(new PropertyValueFactory<Order,String>("state"));
+    	colOrdersStates.setCellValueFactory(new PropertyValueFactory<Order,String>("stateString"));
 
     	colOrdersPrices.setCellValueFactory(new PropertyValueFactory<Order,String>("totalPrice"));    		
 		 
@@ -1565,15 +1573,18 @@ public class RestaurantGUI {
     @FXML
     public void eOupdateProduct(ActionEvent event) {
     	try {
-    		 			
-			restaurant.updateOrder(orderCodeReference, tempProductCodes, tempProductsAmounts, tempProductsSizes);
+    		if(orderCodeReference > 0) {
+    			restaurant.updateOrder(orderCodeReference, tempProductCodes, tempProductsAmounts, tempProductsSizes);
+    			loadEditOrder(null);
+    		}			
 			
 		} catch (IOException e) {
 		
 			e.printStackTrace();
 		}
-    	loadEditOrder(null);
+    	
     }
+   
     
     public void initializeProductsInOrder(Order orderX) {
     	
@@ -2113,7 +2124,7 @@ public class RestaurantGUI {
 		 
     	colSClientCc.setCellValueFactory(new PropertyValueFactory<Client,String>("cc"));
     	
-    	colSClientAdress.setCellValueFactory(new PropertyValueFactory<Client,String>("address"));
+    	colSClientAdress.setCellValueFactory(new PropertyValueFactory<Client,String>("adress"));
 		
     	colSClientPhone.setCellValueFactory(new PropertyValueFactory<Client,String>("phone"));
 		 
@@ -2179,7 +2190,7 @@ public class RestaurantGUI {
 		 
     	colSUserCc.setCellValueFactory(new PropertyValueFactory<SystemUser,String>("cc"));
     	
-    	colSUserAdress.setCellValueFactory(new PropertyValueFactory<SystemUser,String>("username"));
+    	colSUserAdress.setCellValueFactory(new PropertyValueFactory<SystemUser,String>("userName"));
     	
     	colSUserPhone.setCellValueFactory(new PropertyValueFactory<SystemUser,String>("password"));
 		 
@@ -2215,7 +2226,7 @@ public class RestaurantGUI {
     	
     	colSIngredientAdress.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("code"));
     	
-    	colSIngredientPhone.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("productTypeS"));
+    	colSIngredientPhone.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("price"));
 		 
     	tvShowIngredients.setItems(showIngredients);
     }
@@ -2234,6 +2245,7 @@ public class RestaurantGUI {
 		}
 		mainPane.getChildren().clear();
 		mainPane.getChildren().setAll(addContactPane);
+		restaurant.sortPorductsByPrice();
 		initializeShowProducts();
     }
     
@@ -2246,8 +2258,6 @@ public class RestaurantGUI {
     	colSProductCreator.setCellValueFactory(new PropertyValueFactory<Product,String>("creatorRef"));
     	
     	colSProductCode.setCellValueFactory(new PropertyValueFactory<Product,String>("code"));
-    	
-    	colSProductAmountIngredients.setCellValueFactory(new PropertyValueFactory<Product,String>("amountIngredients"));
     	
     	colSProductAvailabale.setCellValueFactory(new PropertyValueFactory<Product,String>("availableS"));
     	
