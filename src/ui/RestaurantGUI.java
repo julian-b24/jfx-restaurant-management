@@ -1712,7 +1712,7 @@ public class RestaurantGUI {
     	String separator = txtSeparator.getText();
     	
     	try {
-			restaurant.generateReportProductsConsolidated(startOfDay, endOfDay, separator);
+			restaurant.generateReportProductsConsolidated(startOfDay, endOfDay, separator); 	
 		} catch (IOException | NumberFormatException e) {
 			
 			Alert error = new Alert(AlertType.ERROR);

@@ -62,5 +62,6 @@
             </JFXButton>
          </children>
       </VBox>
+      <JFXButton layoutX="1098.0" layoutY="111.0" onAction="#loadLogin" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: #D9A404;" text="Cerrar sesión" textFill="#fffeed" />
    </children>
 </AnchorPane>

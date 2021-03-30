@@ -167,21 +167,27 @@
             </Button>
             <Button mnemonicParsing="false" onAction="#loadAdminClients" prefHeight="31.0" prefWidth="163.0" style="-fx-background-color: #D9A404;" text="Crear nuevo cliente" textFill="#fff7d9">
                <VBox.margin>
-                  <Insets left="50.0" top="17.0" />
+                  <Insets left="50.0" top="10.0" />
                </VBox.margin>
             </Button>
             <Button mnemonicParsing="false" onAction="#addProductToOrder" prefHeight="31.0" prefWidth="163.0" style="-fx-background-color: #D9A404;" text="Añadir producto" textFill="#fff7d9">
                <VBox.margin>
-                  <Insets left="50.0" top="20.0" />
+                  <Insets left="50.0" top="10.0" />
                </VBox.margin>
             </Button>
             <JFXButton onAction="#createOrder" prefHeight="31.0" prefWidth="164.0" style="-fx-background-color: #D9A404;" text="Crear orden" textFill="#fff8cf">
                <VBox.margin>
-                  <Insets left="50.0" top="20.0" />
+                  <Insets left="50.0" top="10.0" />
                </VBox.margin>
             </JFXButton>
-            <Button mnemonicParsing="false" onAction="#loadMenu" text="Volver" />
-            <Button mnemonicParsing="false" onAction="#loadEditOrder" text="Editar" />
+            <Button mnemonicParsing="false" onAction="#loadMenu" prefHeight="31.0" prefWidth="165.0" style="-fx-background-color: #D9A404;" text="Volver" textFill="#fff7d9">
+               <VBox.margin>
+                  <Insets left="50.0" top="10.0" />
+               </VBox.margin></Button>
+            <Button mnemonicParsing="false" onAction="#loadEditOrder" prefHeight="31.0" prefWidth="166.0" style="-fx-background-color: #D9A404;" text="Editar" textFill="#fff7d9">
+               <VBox.margin>
+                  <Insets left="50.0" top="10.0" />
+               </VBox.margin></Button>
          </children>
       </VBox>
       <TableView fx:id="tvProductsList" layoutX="604.0" layoutY="100.0" onMouseClicked="#fillProductTextFields" prefHeight="285.0" prefWidth="626.0" stylesheets="@../styles/tableStyle.css" AnchorPane.bottomAnchor="415.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0">
