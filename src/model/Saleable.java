@@ -85,12 +85,12 @@ public abstract class Saleable implements Serializable{
 	 * enable, sets the field "available" of a saleable in true.
 	 * <b> pos: </b> The field available is setted as true <br>
 	 */
-	public static void enable() {}
+	public void enable() {}
 	
 	/**
 	 * disable, sets the field "available" of a saleable in false.
 	 * <b> pos: </b> The field available is setted as false <br>
 	 */
-	public static void disable() {}
+	public void disable() {}
 
 }

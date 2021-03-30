@@ -97,7 +97,7 @@ public class RestaurantGUI {
     private TableColumn<Ingredient, String> colLastE;
 
     @FXML
-    private TableColumn<Ingredient, String> colCode;
+    private TableColumn<Ingredient, Integer> colCode;
 
     @FXML
     private TableColumn<Ingredient, String> colValue;
@@ -742,7 +742,9 @@ public class RestaurantGUI {
     	
     	if(!txtIngredientName.getText().equals("") && !txtIngredientValue.getText().equals("")){
     		try {
-				restaurant.createIngredient(txtIngredientName.getText(), actualUser, actualUser, txtIngredientValue.getText());
+				restaurant.createIngredient(txtIngredientName.getText(), Integer.toString(restaurant.getUserByUserName(actualUser).getEmployeeId()), 
+											Integer.toString(restaurant.getUserByUserName(actualUser).getEmployeeId()), 
+											txtIngredientValue.getText());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -806,7 +808,7 @@ public class RestaurantGUI {
     		 
     		 colLastE.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("lastEditorRef"));
     		 
-    		 colCode.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("code"));
+    		 colCode.setCellValueFactory(new PropertyValueFactory<Ingredient,Integer>("code"));
     		 
     		 colValue.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("price"));    		
     		 
@@ -865,7 +867,8 @@ public class RestaurantGUI {
     		}
     		
     		try {
-				restaurant.createProduct(txtPName.getText(), actualUser, actualUser, tempIngrsCodes, type);
+				restaurant.createProduct(txtPName.getText(), Integer.toString(restaurant.getUserByUserName(actualUser).getEmployeeId()), 
+										Integer.toString(restaurant.getUserByUserName(actualUser).getEmployeeId()), tempIngrsCodes, type);
 				tempIngrsCodes.clear();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -2082,7 +2085,7 @@ public class RestaurantGUI {
     }
     
     @FXML
-    void loadVisualizeInfo(ActionEvent event) {
+    public void loadVisualizeInfo(ActionEvent event) {
     	
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("adminVisualizations-pane.fxml"));
 		fxmlLoader.setController(this); 	
