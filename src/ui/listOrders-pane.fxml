@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="tvShowOrder" layoutX="327.0" layoutY="115.0" onMouseClicked="#fillProductTextFields" prefHeight="584.0" prefWidth="1180.0" stylesheets="@../styles/tableStyle.css" AnchorPane.bottomAnchor="101.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="115.0">
+         <columns>
+            <TableColumn fx:id="colSOrderCcClient" prefWidth="298.0" text="Cédula del cliente" />
+            <TableColumn fx:id="colSOrderCreator" prefWidth="291.0" text="Creador" />
+            <TableColumn fx:id="colSOrderCode" prefWidth="200.0" text="Código de la orden" />
+            <TableColumn fx:id="colSOrderDate" prefWidth="213.0" text="Fecha de pedido" />
+            <TableColumn fx:id="colSOrderState" prefWidth="177.0" text="Estado del pedido" />
+         </columns>
+      </TableView>
+      <Text fill="#fff2cd" layoutX="521.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lista de ordenes" AnchorPane.bottomAnchor="717.0" AnchorPane.leftAnchor="521.0" AnchorPane.rightAnchor="521.2520141601562" AnchorPane.topAnchor="49.0">
+         <font>
+            <Font name="Montserrat SemiBold" size="28.0" />
+         </font>
+      </Text>
+      <JFXButton layoutX="576.0" layoutY="726.0" onAction="#loadMenu" prefHeight="34.0" prefWidth="128.0" style="-fx-background-color: #D9A404;" text="Menú" textFill="#fcffd6" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="576.0" AnchorPane.rightAnchor="576.0" AnchorPane.topAnchor="726.0" />
+   </children>
+</AnchorPane>

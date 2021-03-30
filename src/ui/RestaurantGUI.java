@@ -1959,4 +1959,9 @@ public class RestaurantGUI {
     		//alert empty fields
     	}
     }
+    
+    @FXML
+    void loadVisualizeInfo(ActionEvent event) {
+    	
+    }
 }
