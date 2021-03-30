@@ -71,7 +71,7 @@ public class Order implements Comparable<Order>, Serializable{
 	}
 
 	public void updateStateString() {
-		stateString = getState().getState();
+		stateString = state.getState();
 	}
 	
 	public String getStateString() {

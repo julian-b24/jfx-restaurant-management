@@ -542,6 +542,22 @@ public class RestaurantGUI {
     @FXML
     private TableColumn<Product, String> colSProductPrice;
     
+    //show orders
+    @FXML
+    private TableView<Order> tvShowOrder;
+
+    @FXML
+    private TableColumn<Order, String> colSOrderCcClient;
+
+    @FXML
+    private TableColumn<Order, String> colSOrderCode;
+
+    @FXML
+    private TableColumn<Order, String> colSOrderDate;
+
+    @FXML
+    private TableColumn<Order, String> colSOrderState;
+    
     //Constructor
     public RestaurantGUI(Restaurant restaurant) {
 		this.restaurant = restaurant;
@@ -1379,9 +1395,6 @@ public class RestaurantGUI {
 			warning.setContentText("No has seleccionado un elemento de la tabala");
 			warning.showAndWait();
     	}
-    	
-    	
-
     }
     
     public void initializePorudctsInCreateOrder() {
@@ -1786,7 +1799,9 @@ public class RestaurantGUI {
     public void imoprtProducts(ActionEvent event) {
     	
     	try {
+    		restaurant.importIngredients();
 			restaurant.importProducts();
+			importAlert();
 		} catch (IOException e) {
 			
 			e.printStackTrace();
@@ -1797,6 +1812,7 @@ public class RestaurantGUI {
     public void importClients(ActionEvent event) {
     	try {
 			restaurant.importClients();
+			importAlert();
 		} catch (IOException e) {
 			
 			e.printStackTrace();
@@ -1808,6 +1824,7 @@ public class RestaurantGUI {
 
     	try {
 			restaurant.importIngredients();
+			importAlert();
 		} catch (IOException e) {
 			
 			e.printStackTrace();
@@ -1818,7 +1835,11 @@ public class RestaurantGUI {
     public void importOrders(ActionEvent event) {
 
     	try {
+    		restaurant.importClients();
+    		restaurant.importIngredients();
+			restaurant.importProducts();
 			restaurant.importOrders();
+			importAlert();
 		} catch (IOException e) {
 			
 			e.printStackTrace();
@@ -2285,8 +2306,29 @@ public class RestaurantGUI {
 		}
 		mainPane.getChildren().clear();
 		mainPane.getChildren().setAll(addContactPane);
+		initializeShowOrders();
     }
 
+    public void initializeShowOrders() {
+    	
+    	ObservableList<Order> showOrders = FXCollections.observableArrayList(restaurant.getOrders());
+		 
+    	colSOrderCcClient.setCellValueFactory(new PropertyValueFactory<Order,String>("clientRef"));  		 
+		 
+    	colSOrderCode.setCellValueFactory(new PropertyValueFactory<Order,String>("code"));
+    	
+    	colSOrderDate.setCellValueFactory(new PropertyValueFactory<Order,String>("date"));
+    	
+    	colSOrderState.setCellValueFactory(new PropertyValueFactory<Order,String>("stateString"));
+		 
+    	tvShowOrder.setItems(showOrders);
+    }
 
+    public void importAlert() {
+    	Alert warning = new Alert(AlertType.INFORMATION);
+		warning.setTitle("Información importada");
+		warning.setContentText("La infromación se ha importado exitosamente");
+		warning.showAndWait();
+    }
    
 }
