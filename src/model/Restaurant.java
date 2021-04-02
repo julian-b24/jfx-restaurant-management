@@ -92,7 +92,7 @@ public class Restaurant{
 		int pos = 0;
 		Client clientX = new Client(nam, lastN, ccP, adrs, phn, obs);
 		if(clients.size()>0) {
-			
+
 			pos = binarySearch(lastN+nam, clients);
 			if(pos==-1) {
 				clients.add(clientX);
@@ -347,6 +347,8 @@ public class Restaurant{
 			code = orders.get(orders.size() - 1).getCode() + 1;
 		}
 		
+		System.out.println("TEST AMOUNT PER EACH RESTAURAMT: "+productsAmounts.size());
+		
 		Order order;
 		if (state == null) {
 			order = new Order(code, obs, clientRef, employeeRef, dateRequest, productsOrdered, productsAmounts, sizes);
@@ -387,6 +389,7 @@ public class Restaurant{
 		
 		Order order = getOrderByCode(code);
 		order.updateState();
+		order.updateStateString();
 		saveOrdersData();
 	}
 	
@@ -510,7 +513,7 @@ public class Restaurant{
 		int top = clients.size() - 1;
 		boolean found = false;
 		
-		while(low < top && !found) {
+		while(low <= top && !found) {
 			
 			int mid = (low + top)/2;
 			if (clients.get(mid).getName().equals(firstName) && clients.get(mid).getLastName().equals(lastName)) {

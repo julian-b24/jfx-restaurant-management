@@ -1358,20 +1358,23 @@ public class RestaurantGUI {
     public void loadEditOrder(ActionEvent event) {
     	    	
     	Order orderX = tvOrders.getSelectionModel().getSelectedItem();
-    	
+    	tempProductCodes.clear();
+    	tempProductsSizes.clear();
+    	tempProductsAmounts.clear();
     	
     	if(orderX != null) {
     		
     		referenceOrder = orderX;
         	orderCodeReference = orderX.getCode();
         	
+        	
     		for (int i = 0; i < orderX.getOrderProducts().size(); i++) {
-        		if(tempProductCodes.size()<orderX.getOrderProducts().size()) {
+        		//if(tempProductCodes.size()<orderX.getOrderProducts().size()) {
         			
         			tempProductCodes.add(orderX.getOrderProducts().get(i).getCode());
         			tempProductsSizes.add(orderX.getSizes().get(i).getSize());
         			tempProductsAmounts.add(orderX.getAmountPerEach().get(i));
-        		}
+        		//}
     		}
         	
     		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editOrder-pane.fxml"));
@@ -1617,14 +1620,14 @@ public class RestaurantGUI {
     @FXML
     public void eOupdateProduct(ActionEvent event) {
     	try {
-    		if(orderCodeReference > 0) {
+    		if(orderCodeReference >= 0) {
     			restaurant.updateOrder(orderCodeReference, tempProductCodes, tempProductsAmounts, tempProductsSizes);
     			loadEditOrder(null);
     		} else {
     			
     			Alert warning = new Alert(AlertType.WARNING);
     			warning.setTitle("Orden inválida");
-    			warning.setContentText("El código de la orden a editar en inválido. Operación detenida.");
+    			warning.setContentText("El código de la orden a editar es inválido. Operación detenida.");
     			warning.showAndWait();
     		}		
 			
@@ -1778,7 +1781,7 @@ public class RestaurantGUI {
 		try {
 			restaurant.updateStateOrder(orderCodeReference);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 		
@@ -1964,7 +1967,7 @@ public class RestaurantGUI {
     	if(!txtSearchClientName.getText().isEmpty() && !txtSearhClientLastName.getText().isEmpty()) {
     		
     		long start = System.nanoTime();
-    		int posClient = restaurant.searchClientByName(txtSearchClientName.getText(), txtSearhClientLastName.getText());
+    		int posClient = restaurant.searchClientByName(txtSearchClientName.getText().trim(), txtSearhClientLastName.getText().trim());
     		long end = System.nanoTime();
     		
     		searchTime = end-start;
