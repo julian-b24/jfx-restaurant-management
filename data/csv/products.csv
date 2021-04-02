@@ -1,5 +1,5 @@
 name,creatorRef,lastEditorRef,ingredient1,ingredient2,ingredient3,type
-"Lodger: A Story of the London Fog, The",6,2,561,291,693,MAIN_DISH
+Lodger: A Story of the London Fog The,6,2,561,291,693,MAIN_DISH
 Charlie Chan in Egypt,4,4,383,452,241,MAIN_DISH
 Haunter,1,1,626,48,662,DRINK
 Hollywood Shuffle,1,5,944,527,132,DRINK
@@ -11,8 +11,8 @@ Stupid Boy (Garçon stupide),2,2,195,867,382,DRINK
 Australian Atomic Confessions,2,3,412,120,297,ADDITIONAL_DISH
 Black Girl (La noire de...),6,6,390,917,473,ADDITIONAL_DISH
 The Last Farm,2,5,882,434,573,DRINK
-"Land Without Bread (Hurdes, tierra sin pan, Las)",4,4,333,540,490,MAIN_DISH
-"Idiot Returns, The (Návrat idiota)",3,6,30,802,314,MAIN_DISH
+Land Without Bread (Hurdes tierra sin pan Las),4,4,333,540,490,MAIN_DISH
+Idiot Returns The (Návrat idiota),3,6,30,802,314,MAIN_DISH
 Land Ho!,1,4,438,61,863,ADDITIONAL_DISH
 Gloria,5,3,280,574,372,DRINK
 Ready to Rumble,4,2,915,428,726,DRINK
@@ -25,34 +25,34 @@ Nobody Knows Anything!,1,4,185,813,16,ADDITIONAL_DISH
 Get Carter,3,1,120,423,506,DRINK
 Versailles,6,4,265,71,727,DRINK
 Set Me Free (Emporte-moi),5,6,603,387,715,DRINK
-"Station, The (Blutgletscher)",6,4,28,582,871,ADDITIONAL_DISH
+Station The (Blutgletscher),6,4,28,582,871,ADDITIONAL_DISH
 Confession,2,5,164,719,21,MAIN_DISH
 To Begin Again (a.k.a. Starting Over) (Volver a Empezar),6,5,805,265,822,DRINK
-"Guardian, The",5,5,177,739,423,DRINK
+Guardian The,5,5,177,739,423,DRINK
 Arthur,3,2,274,734,367,ADDITIONAL_DISH
 Won't Back Down,6,2,217,865,927,DRINK
-"Heiress, The",2,1,850,1000,460,DRINK
+Heiress The,2,1,850,1000,460,DRINK
 No End (Bez konca),5,6,862,132,644,MAIN_DISH
-"Bandit, The (Eskiya)",5,6,387,343,641,DRINK
-"This World, Then the Fireworks",3,2,593,617,40,DRINK
+Bandit The (Eskiya),5,6,387,343,641,DRINK
+This World Then the Fireworks,3,2,593,617,40,DRINK
 Hop,6,2,627,830,523,ADDITIONAL_DISH
 Michael,1,1,16,627,983,DRINK
 Quiz Show,3,5,814,686,563,ADDITIONAL_DISH
 Finding a Family,1,2,649,335,936,MAIN_DISH
-"Double Life, A",2,4,376,458,403,DRINK
-"Object of My Affection, The",1,5,386,422,852,ADDITIONAL_DISH
+Double Life A,2,4,376,458,403,DRINK
+Object of My Affection The,1,5,386,422,852,ADDITIONAL_DISH
 Wit,2,2,365,430,515,ADDITIONAL_DISH
 Rembrandt,6,1,243,422,31,MAIN_DISH
 Deadly Advice,5,4,980,635,62,MAIN_DISH
-"Elephant in the Living Room, The",3,5,1000,954,553,MAIN_DISH
-"Mosquito Coast, The",1,2,725,311,117,DRINK
+Elephant in the Living Room The,3,5,1000,954,553,MAIN_DISH
+Mosquito Coast The,1,2,725,311,117,DRINK
 Restless Souls (Bag det stille ydre),2,5,196,536,99,ADDITIONAL_DISH
 The Woodcarver,1,5,236,405,119,DRINK
-"Corn Is Green, The",4,1,533,950,856,DRINK
+Corn Is Green The,4,1,533,950,856,DRINK
 On My Way (Elle s'en va),4,5,315,569,74,DRINK
 Muppets From Space,3,1,558,418,394,DRINK
 Cirque du Soleil: Varekai,6,1,108,764,361,DRINK
-"Fabulous Baker Boys, The",3,4,973,30,519,DRINK
+Fabulous Baker Boys The,3,4,973,30,519,DRINK
 Jindabyne,5,5,56,987,810,MAIN_DISH
 Bonjour tristesse,1,2,464,638,223,MAIN_DISH
 Memento,4,3,218,824,963,DRINK
@@ -71,36 +71,36 @@ Much Ado About Nothing,3,4,803,717,458,MAIN_DISH
 Bride Flight,2,5,365,746,773,ADDITIONAL_DISH
 Mr. Denning Drives North,1,2,455,810,540,DRINK
 Top Dog,6,3,51,723,875,MAIN_DISH
-"Condemned, The",6,4,873,836,515,ADDITIONAL_DISH
+Condemned The,6,4,873,836,515,ADDITIONAL_DISH
 Charley Varrick,6,5,700,709,3,ADDITIONAL_DISH
 Liberal Arts,5,6,945,864,686,MAIN_DISH
-"Descendants, The",3,4,909,780,67,ADDITIONAL_DISH
+Descendants The,3,4,909,780,67,ADDITIONAL_DISH
 Enemy of the State,5,4,400,437,254,DRINK
 Possession,5,5,927,640,801,MAIN_DISH
-"Hitch Hike (Autostop rosso sangue) (Naked Prey, The)",2,6,129,169,628,DRINK
+Hitch Hike (Autostop rosso sangue) (Naked Prey The),2,6,129,169,628,DRINK
 Nobody Walks,3,3,873,980,734,ADDITIONAL_DISH
 Town Without Pity,4,6,304,135,260,DRINK
-"Private Lives of Pippa Lee, The",3,2,208,583,187,MAIN_DISH
-"Judgement in Stone, A (Cérémonie, La)",5,1,29,70,12,MAIN_DISH
+Private Lives of Pippa Lee The,3,2,208,583,187,MAIN_DISH
+Judgement in Stone A (Cérémonie La),5,1,29,70,12,MAIN_DISH
 Planet Terror,3,5,103,607,191,MAIN_DISH
-"Final Conflict, The (a.k.a. Omen III: The Final Conflict)",4,3,900,505,940,DRINK
+Final Conflict The (a.k.a. Omen III: The Final Conflict),4,3,900,505,940,DRINK
 Steel,4,6,764,582,133,ADDITIONAL_DISH
 Stage Fright (Deliria),3,6,948,37,860,DRINK
 Leprechaun,1,3,170,52,826,MAIN_DISH
-"Tiger and the Snow, The (La tigre e la neve)",6,1,188,352,971,MAIN_DISH
+Tiger and the Snow The (La tigre e la neve),6,1,188,352,971,MAIN_DISH
 Mask,6,3,883,730,998,MAIN_DISH
 Better Luck Tomorrow,3,2,635,13,639,DRINK
 Locke,2,5,235,430,305,MAIN_DISH
 Cabaret,2,1,511,502,651,ADDITIONAL_DISH
 Loving Leah,3,3,209,753,519,DRINK
 Terminator 2: Judgment Day,6,6,552,16,156,MAIN_DISH
-"Headhunter's Sister, The",4,3,594,508,64,ADDITIONAL_DISH
+Headhunter's Sister The,4,3,594,508,64,ADDITIONAL_DISH
 Show People,5,2,352,765,695,ADDITIONAL_DISH
-"Streetcar Named Desire, A",2,2,90,984,556,ADDITIONAL_DISH
+Streetcar Named Desire A,2,2,90,984,556,ADDITIONAL_DISH
 Amadeus,2,5,767,473,811,MAIN_DISH
 Interior. Leather Bar.,6,4,961,611,380,ADDITIONAL_DISH
 Out of the Blue,6,3,534,147,962,DRINK
-"Adventures of Huckleberry Finn, The",6,3,135,8,300,ADDITIONAL_DISH
+Adventures of Huckleberry Finn The,6,3,135,8,300,ADDITIONAL_DISH
 Slave Girls (Prehistoric Women),5,4,872,370,544,MAIN_DISH
 It's Always Fair Weather,2,1,328,706,506,DRINK
 Cyrano de Bergerac,2,6,728,830,373,MAIN_DISH
@@ -108,25 +108,25 @@ Benjamin Blümchen - Seine schönsten Abenteuer,1,5,195,166,96,DRINK
 Miss Kicki,5,6,65,818,96,MAIN_DISH
 Stardust,4,5,184,357,583,ADDITIONAL_DISH
 Beyond the Mat,6,3,333,25,674,DRINK
-"Ronde, La",6,2,756,764,355,ADDITIONAL_DISH
+Ronde La,6,2,756,764,355,ADDITIONAL_DISH
 Swing Shift,5,1,4,585,85,MAIN_DISH
 Jackpot 2,5,1,318,261,819,DRINK
 7th Heaven (Seventh Heaven),5,4,522,827,973,ADDITIONAL_DISH
 Lamerica,4,3,672,365,510,DRINK
 Anita,1,3,803,741,482,DRINK
-"Shawshank Redemption, The",6,3,562,475,651,MAIN_DISH
+Shawshank Redemption The,6,3,562,475,651,MAIN_DISH
 Water for Elephants,1,5,64,866,167,MAIN_DISH
 Why Stop Now,4,3,145,490,527,DRINK
 A Via Láctea,4,6,241,740,211,ADDITIONAL_DISH
-"River, The",3,2,559,871,273,MAIN_DISH
+River The,3,2,559,871,273,MAIN_DISH
 Face (Visage),4,1,81,128,232,ADDITIONAL_DISH
 The Inner Circle,1,2,168,81,857,ADDITIONAL_DISH
-"Little Vampire, The",1,4,523,477,986,DRINK
-"Winner, The",5,5,877,844,213,ADDITIONAL_DISH
+Little Vampire The,1,4,523,477,986,DRINK
+Winner The,5,5,877,844,213,ADDITIONAL_DISH
 Encore,5,1,540,406,529,MAIN_DISH
-"Bad News Bears Go to Japan, The",4,4,623,534,708,MAIN_DISH
-"Story of My Life, The (Mensonges et trahisons et plus si affinités...)",3,4,915,885,131,DRINK
-"Good, the Bad, the Weird, The (Joheunnom nabbeunnom isanghannom)",5,6,46,640,547,MAIN_DISH
+Bad News Bears Go to Japan The,4,4,623,534,708,MAIN_DISH
+Story of My Life The (Mensonges et trahisons et plus si affinités...),3,4,915,885,131,DRINK
+Good The Bad The Weird The (Joheunnom nabbeunnom isanghannom),5,6,46,640,547,MAIN_DISH
 Hesher,6,1,498,324,476,MAIN_DISH
 St. George Shoots the Dragon (Sveti Georgije ubiva azdahu),6,4,759,185,132,ADDITIONAL_DISH
 Of Time and the City,6,6,275,839,35,ADDITIONAL_DISH
@@ -136,9 +136,9 @@ Blackout (Murder by Proxy),4,4,415,523,658,DRINK
 The Cobbler,6,5,852,260,156,MAIN_DISH
 Babe,5,3,628,895,885,DRINK
 Lianna,5,2,748,47,39,ADDITIONAL_DISH
-"Black Windmill, The",5,3,44,403,516,MAIN_DISH
+Black Windmill The,5,3,44,403,516,MAIN_DISH
 Killing Words (Palabras encadenadas),2,1,810,824,888,DRINK
-"Story of Louis Pasteur, The",2,2,393,115,166,ADDITIONAL_DISH
+Story of Louis Pasteur The,2,2,393,115,166,ADDITIONAL_DISH
 The Plague of the Zombies,6,3,473,684,877,ADDITIONAL_DISH
 Swing Kids,5,6,337,828,218,DRINK
 Bridge to the Sun,3,4,838,859,289,ADDITIONAL_DISH
@@ -149,8 +149,8 @@ Beyond Silence (Jenseits der Stille),1,2,841,640,893,ADDITIONAL_DISH
 I Travel Alone,5,6,829,449,388,ADDITIONAL_DISH
 What's the Worst That Could Happen?,4,2,170,393,304,MAIN_DISH
 Lords of Dogtown,2,6,426,286,877,MAIN_DISH
-"Sheriff and the Satellite Kid, The",1,1,719,651,466,ADDITIONAL_DISH
-"Hunting and Gathering (Ensemble, c'est tout)",2,2,965,920,764,MAIN_DISH
+Sheriff and the Satellite Kid The,1,1,719,651,466,ADDITIONAL_DISH
+Hunting and Gathering (Ensemble c'est tout),2,2,965,920,764,MAIN_DISH
 Dark Days,4,2,452,314,954,MAIN_DISH
 Then I Sentenced Them All to Death (Atunci i-am condamnat pe toti la moarte),3,4,579,929,286,ADDITIONAL_DISH
 Raspberry Boat Refugee,2,4,213,320,415,DRINK
@@ -160,10 +160,10 @@ JLG/JLG (JLG/JLG - autoportrait de décembre),3,6,245,158,507,ADDITIONAL_DISH
 You Ain't Seen Nothin' Yet (Vous n'avez encore rien vu),6,1,60,817,428,DRINK
 Child's Pose,6,2,240,922,248,DRINK
 Love with the Proper Stranger,4,5,892,918,328,ADDITIONAL_DISH
-"Return of Mod Squad, The",5,5,203,642,908,ADDITIONAL_DISH
-"Judge, The",5,3,92,22,333,ADDITIONAL_DISH
-"Not Quite Hollywood: The Wild, Untold Story of Ozploitation!",2,5,895,107,242,DRINK
-"Shine of Rainbows, A",6,2,931,930,852,DRINK
+Return of Mod Squad The,5,5,203,642,908,ADDITIONAL_DISH
+Judge The,5,3,92,22,333,ADDITIONAL_DISH
+Not Quite Hollywood: The Wild Untold Story of Ozploitation!,2,5,895,107,242,DRINK
+Shine of Rainbows A,6,2,931,930,852,DRINK
 The Deep Six,2,6,78,734,595,MAIN_DISH
 102 Dalmatians,2,6,859,372,181,DRINK
 Square Dance,1,3,324,347,950,DRINK
@@ -177,34 +177,34 @@ Léolo,4,2,32,819,400,DRINK
 Fall From Grace,6,1,264,224,854,ADDITIONAL_DISH
 Intimate Relations,4,1,197,859,342,DRINK
 Brother of Sleep (Schlafes Bruder),6,5,84,257,855,DRINK
-"I Love You, Alice B. Toklas!",2,3,635,759,200,DRINK
-"Club, The",4,4,329,276,683,ADDITIONAL_DISH
+I Love You Alice B. Toklas!,2,3,635,759,200,DRINK
+Club The,4,4,329,276,683,ADDITIONAL_DISH
 Downhill Racer,2,2,845,966,913,ADDITIONAL_DISH
-"Theory of Everything, The",6,6,194,870,593,MAIN_DISH
+Theory of Everything The,6,6,194,870,593,MAIN_DISH
 Sunrise: A Song of Two Humans,5,5,924,171,54,DRINK
-"Bells, The",6,1,456,45,131,ADDITIONAL_DISH
-"Thank You, Jeeves!",4,2,803,464,10,ADDITIONAL_DISH
+Bells The,6,1,456,45,131,ADDITIONAL_DISH
+Thank You Jeeves!,4,2,803,464,10,ADDITIONAL_DISH
 Alice and Martin (Alice et Martin),6,6,386,226,572,MAIN_DISH
 How to Seduce Difficult Women,2,3,332,689,560,MAIN_DISH
 Singles,1,5,631,356,878,ADDITIONAL_DISH
 Staying Alive,1,4,912,187,532,DRINK
-"Mr. Death: The Rise and Fall of Fred A. Leuchter, Jr.",5,3,422,734,876,ADDITIONAL_DISH
+Mr. Death: The Rise and Fall of Fred A. Leuchter Jr.,5,3,422,734,876,ADDITIONAL_DISH
 Ghost Son,5,5,398,680,749,MAIN_DISH
-"Bothersome Man, The (Brysomme mannen, Den)",5,2,570,733,387,MAIN_DISH
+Bothersome Man The (Brysomme mannen Den),5,2,570,733,387,MAIN_DISH
 Restaurant,2,1,415,979,488,DRINK
 Comes a Bright Day,3,5,55,332,470,MAIN_DISH
 Stone Cold,6,6,471,518,115,MAIN_DISH
 Powder,4,6,59,491,10,DRINK
-"Men Who Tread on the Tiger's Tail, The (Tora no o wo fumu otokotachi)",1,5,235,945,296,DRINK
-"Land That Time Forgot, The",1,2,228,387,969,MAIN_DISH
+Men Who Tread on the Tiger's Tail The (Tora no o wo fumu otokotachi),1,5,235,945,296,DRINK
+Land That Time Forgot The,1,2,228,387,969,MAIN_DISH
 Colonel Redl (Oberst Redl),3,1,814,525,772,DRINK
 Meltdown (Shu dan long wei),6,5,29,849,122,ADDITIONAL_DISH
 Age of Consent,4,2,740,366,139,MAIN_DISH
 The Apocalypse,5,5,754,334,272,ADDITIONAL_DISH
 All the Invisible Children,3,3,852,916,129,DRINK
-"Pont du Nord, Le",1,5,877,800,688,MAIN_DISH
-"Kuroneko (Black Cat from the Grove, The) (Yabu no naka no kuroneko)",4,6,825,89,844,MAIN_DISH
-"Hard Way, The",2,2,301,729,997,DRINK
+Pont du Nord Le,1,5,877,800,688,MAIN_DISH
+Kuroneko (Black Cat from the Grove The) (Yabu no naka no kuroneko),4,6,825,89,844,MAIN_DISH
+Hard Way The,2,2,301,729,997,DRINK
 Grand Prix,5,4,467,232,288,DRINK
 Lady Oscar,6,5,223,542,549,MAIN_DISH
 Vanity Fair,3,4,89,899,469,DRINK
@@ -214,18 +214,18 @@ Camila,2,4,789,764,392,ADDITIONAL_DISH
 Mother and Son (Mat i syn),5,2,353,68,145,MAIN_DISH
 Sweet Evil (L'enfance du mal),1,4,423,97,469,MAIN_DISH
 American Virgin,5,4,425,405,1,DRINK
-"Sacrament, The",5,4,837,231,500,ADDITIONAL_DISH
-"Summer Place, A",1,2,420,445,583,MAIN_DISH
+Sacrament The,5,4,837,231,500,ADDITIONAL_DISH
+Summer Place A,1,2,420,445,583,MAIN_DISH
 American: The Bill Hicks Story,2,4,763,676,580,MAIN_DISH
 Scrooge,4,1,667,161,4,DRINK
 Pleasantville,6,1,714,764,693,ADDITIONAL_DISH
 Shut Up and Play the Hits,5,3,949,321,548,ADDITIONAL_DISH
 7 Women (a.k.a. Seven Women),1,3,817,122,302,DRINK
-"Time Masters (Maîtres du temps, Les)",5,5,118,12,797,MAIN_DISH
+Time Masters (Maîtres du temps Les),5,5,118,12,797,MAIN_DISH
 Nancy Drew,4,5,584,864,121,ADDITIONAL_DISH
 Assault on a Queen,5,4,821,509,458,DRINK
 Vizontele Tuuba,1,2,364,733,499,DRINK
-"Look of Silence, The",1,6,308,597,886,MAIN_DISH
+Look of Silence The,1,6,308,597,886,MAIN_DISH
 Cavalcade,2,5,942,52,407,MAIN_DISH
 The Road to Glory,4,4,312,291,347,MAIN_DISH
 Argentina latente,2,1,667,553,692,MAIN_DISH
@@ -242,18 +242,18 @@ Savages,4,1,617,563,812,MAIN_DISH
 Silja - nuorena nukkunut,2,3,486,450,957,ADDITIONAL_DISH
 When Love Is Not Enough: The Lois Wilson Story,5,2,891,111,761,MAIN_DISH
 Halloween: Resurrection (Halloween 8),3,5,338,714,459,MAIN_DISH
-"Musketeer, The",2,3,700,209,797,MAIN_DISH
-"Karate Kid, The",5,5,984,867,453,ADDITIONAL_DISH
+Musketeer The,2,3,700,209,797,MAIN_DISH
+Karate Kid The,5,5,984,867,453,ADDITIONAL_DISH
 Chapiteau-show (Shapito-shou),5,3,71,824,353,DRINK
 Meteor,2,4,600,197,779,MAIN_DISH
 Fish Story (Fisshu sutôrî),3,3,266,63,44,MAIN_DISH
-"Iron Ladies, The (Satree lek)",3,3,639,219,658,ADDITIONAL_DISH
+Iron Ladies The (Satree lek),3,3,639,219,658,ADDITIONAL_DISH
 She Done Him Wrong,3,5,811,549,427,ADDITIONAL_DISH
 Nothing Like the Holidays,2,1,437,355,908,ADDITIONAL_DISH
 Forgetting Sarah Marshall,4,5,336,683,256,ADDITIONAL_DISH
-"Exterminator, The",5,5,48,607,165,DRINK
-"Animatrix, The",3,2,679,911,116,MAIN_DISH
-"Wiz, The",3,1,252,750,885,DRINK
+Exterminator The,5,5,48,607,165,DRINK
+Animatrix The,3,2,679,911,116,MAIN_DISH
+Wiz The,3,1,252,750,885,DRINK
 Crimes and Misdemeanors,6,6,241,746,192,MAIN_DISH
 Rockabilly Vampire,5,3,739,431,370,ADDITIONAL_DISH
 Desperate Measures,3,4,567,272,505,DRINK
@@ -263,15 +263,15 @@ Asfour Stah,3,1,409,440,806,MAIN_DISH
 Up the River,4,1,9,238,80,ADDITIONAL_DISH
 They Won't Forget,5,6,76,220,123,ADDITIONAL_DISH
 All the King's Men,3,1,36,12,14,DRINK
-"Purple Rose of Cairo, The",1,3,128,75,222,DRINK
+Purple Rose of Cairo The,1,3,128,75,222,DRINK
 Mr. Morgan's Last Love,5,5,541,231,581,DRINK
 Rust and Bone (De rouille et d'os),3,6,720,793,379,MAIN_DISH
-"Shaolin Temple, The (Shao Lin Si)",4,2,418,1000,171,MAIN_DISH
+Shaolin Temple The (Shao Lin Si),4,2,418,1000,171,MAIN_DISH
 Ice Age Columbus: Who Were the First Americans?,5,4,743,587,736,ADDITIONAL_DISH
 If Lucy Fell,1,3,66,602,592,DRINK
 Face to Face (Ansikte mot ansikte),3,6,808,152,937,DRINK
-"Guide, The (O Xenagos)",1,6,855,324,553,ADDITIONAL_DISH
-"Trials of Muhammad Ali, The",3,3,87,487,906,ADDITIONAL_DISH
+Guide The (O Xenagos),1,6,855,324,553,ADDITIONAL_DISH
+Trials of Muhammad Ali The,3,3,87,487,906,ADDITIONAL_DISH
 2:37,3,6,993,765,350,DRINK
 Corky Romano,4,4,668,924,403,DRINK
 So Ends Our Night,5,5,21,682,850,MAIN_DISH
@@ -280,20 +280,20 @@ Pornography (Pornografia),2,6,528,92,590,DRINK
 Battle Royale (Batoru rowaiaru),4,6,398,954,639,DRINK
 Gen-Y Cops (Te jing xin ren lei 2) (Gen-X Cops 2: Metal Mayhem) (Metal Mayhem),4,5,861,402,332,DRINK
 Sleuth,6,5,295,703,283,MAIN_DISH
-"Painted Veil, The",2,1,458,166,479,ADDITIONAL_DISH
-"Other End of the Line, The",4,1,242,208,831,ADDITIONAL_DISH
+Painted Veil The,2,1,458,166,479,ADDITIONAL_DISH
+Other End of the Line The,4,1,242,208,831,ADDITIONAL_DISH
 Montana,5,1,108,673,865,ADDITIONAL_DISH
-"24 Hour Woman, The",1,3,582,258,132,ADDITIONAL_DISH
+24 Hour Woman The,1,3,582,258,132,ADDITIONAL_DISH
 D.E.B.S.,3,3,407,861,912,MAIN_DISH
 Damsels in Distress,2,5,947,108,368,DRINK
 Bad Ass,4,4,461,654,485,DRINK
 Hellgate,6,1,951,187,463,ADDITIONAL_DISH
-"Starfighters, The",3,6,317,902,930,DRINK
-"Time That Remains, The",6,3,236,566,519,DRINK
+Starfighters The,3,6,317,902,930,DRINK
+Time That Remains The,6,3,236,566,519,DRINK
 This Film Is Not Yet Rated,5,5,363,961,551,ADDITIONAL_DISH
 Demons 2 (Dèmoni 2... l'incubo ritorna),3,2,802,528,292,DRINK
 Lost in the Desert,6,4,157,682,677,MAIN_DISH
-"Safety of Objects, The",1,1,311,971,211,MAIN_DISH
+Safety of Objects The,1,1,311,971,211,MAIN_DISH
 Into the Forest of Fireflies' Light,6,5,67,340,603,DRINK
 Kill Bill: Vol. 2,2,2,641,487,582,ADDITIONAL_DISH
 Live-In Maid (Cama adentro),4,6,479,719,911,ADDITIONAL_DISH
@@ -301,17 +301,17 @@ Finding North,3,6,565,920,582,MAIN_DISH
 Seoul Searching,3,3,130,898,568,MAIN_DISH
 Secrets of Eden,5,1,924,645,712,MAIN_DISH
 Nothing Personal,2,1,130,985,926,MAIN_DISH
-"Billy Blazes, Esq.",6,6,689,66,145,ADDITIONAL_DISH
+Billy Blazes Esq.,6,6,689,66,145,ADDITIONAL_DISH
 Super 8 Stories,1,6,357,591,275,ADDITIONAL_DISH
-"Family, The (Famiglia, La)",3,1,215,702,643,DRINK
+Family The (Famiglia La),3,1,215,702,643,DRINK
 I'm Gonna Explode (a.k.a. I'm Going to Explode) (Voy a explotar),6,6,812,177,875,DRINK
-"Soldier, The",3,6,992,974,662,ADDITIONAL_DISH
+Soldier The,3,6,992,974,662,ADDITIONAL_DISH
 Lethal Weapon 4,6,2,266,23,400,DRINK
-"Suspended Vocation, The (La vocation suspendue)",6,5,30,890,963,MAIN_DISH
+Suspended Vocation The (La vocation suspendue),6,5,30,890,963,MAIN_DISH
 Ways to Live Forever,3,6,416,581,187,ADDITIONAL_DISH
 Click,3,6,148,530,180,MAIN_DISH
-"Thin Line Between Love and Hate, A",6,3,375,74,12,ADDITIONAL_DISH
-"Garden of Eden, The",1,2,937,824,398,DRINK
+Thin Line Between Love and Hate A,6,3,375,74,12,ADDITIONAL_DISH
+Garden of Eden The,1,2,937,824,398,DRINK
 Koyaanisqatsi (a.k.a. Koyaanisqatsi: Life Out of Balance),5,4,121,930,376,MAIN_DISH
 Changeling,5,5,168,286,701,ADDITIONAL_DISH
 Confidential Report,1,2,556,604,650,DRINK
@@ -320,82 +320,82 @@ Small Faces,6,2,489,609,806,MAIN_DISH
 Incendies,4,5,487,732,423,DRINK
 Yamla Pagla Deewana 2,4,1,541,549,420,ADDITIONAL_DISH
 Takedown: The DNA of GSP,2,1,774,572,445,ADDITIONAL_DISH
-"Princess for Christmas, A",6,6,940,77,711,MAIN_DISH
+Princess for Christmas A,6,6,940,77,711,MAIN_DISH
 Rocket Gibraltar,2,3,743,115,540,MAIN_DISH
 The Cabin in the Cotton,6,6,28,662,685,MAIN_DISH
 Running With Scissors,1,3,638,499,208,DRINK
 Long Day's Journey Into Night,6,1,808,876,477,ADDITIONAL_DISH
 The Other Side of the Mountain,3,2,623,162,68,MAIN_DISH
 Flamenco (de Carlos Saura),5,4,579,499,15,DRINK
-"Chicago 8, The",3,6,344,193,593,ADDITIONAL_DISH
+Chicago 8 The,3,6,344,193,593,ADDITIONAL_DISH
 Dead Reckoning,6,6,696,861,914,MAIN_DISH
 Roberta,2,6,62,350,370,DRINK
 12 O'Clock Boys,6,6,147,665,197,ADDITIONAL_DISH
 Hysterical Blindness,3,1,891,48,926,DRINK
-"Incredible Shrinking Woman, The",3,2,371,155,724,ADDITIONAL_DISH
-"Trip to Mars, A",4,5,7,404,408,MAIN_DISH
+Incredible Shrinking Woman The,3,2,371,155,724,ADDITIONAL_DISH
+Trip to Mars A,4,5,7,404,408,MAIN_DISH
 Potiche,6,3,790,181,354,MAIN_DISH
-"Bread, Love and Dreams (Pane, amore e fantasia)",5,3,712,125,676,ADDITIONAL_DISH
+Bread Love and Dreams (Pane amore e fantasia),5,3,712,125,676,ADDITIONAL_DISH
 Ellie Parker,6,6,66,779,139,ADDITIONAL_DISH
-"Thin Blue Lie, The",2,2,745,304,744,DRINK
+Thin Blue Lie The,2,2,745,304,744,DRINK
 Dear Jesse,5,3,712,951,590,MAIN_DISH
-"Adventurer: The Curse of the Midas Box, The",2,6,501,809,690,MAIN_DISH
+Adventurer: The Curse of the Midas Box The,2,6,501,809,690,MAIN_DISH
 Through a Glass Darkly (Såsom i en spegel),6,2,649,665,19,ADDITIONAL_DISH
 Shutter,3,1,787,965,39,MAIN_DISH
 Chameleon (Kaméleon),5,3,549,378,734,ADDITIONAL_DISH
-"Wonderful World of the Brothers Grimm, The",1,1,956,434,843,DRINK
+Wonderful World of the Brothers Grimm The,1,1,956,434,843,DRINK
 Secret Admirer,1,6,40,48,632,MAIN_DISH
 American Heart,5,6,10,141,870,ADDITIONAL_DISH
-"Rage in Harlem, A",5,3,255,354,765,MAIN_DISH
+Rage in Harlem A,5,3,255,354,765,MAIN_DISH
 Cast a Giant Shadow,2,1,182,467,7,MAIN_DISH
-"Goodbye, Mr. Chips",1,3,219,83,624,DRINK
-"Last Kiss, The (Ultimo bacio, L')",2,6,750,159,395,MAIN_DISH
+Goodbye Mr. Chips,1,3,219,83,624,DRINK
+Last Kiss The (Ultimo bacio L'),2,6,750,159,395,MAIN_DISH
 Young Ones,1,1,400,834,586,ADDITIONAL_DISH
 Not as a Stranger,6,6,438,409,868,ADDITIONAL_DISH
-"Boy Friend, The",1,6,988,587,259,MAIN_DISH
+Boy Friend The,1,6,988,587,259,MAIN_DISH
 Death by Hanging (Koshikei),4,5,159,350,727,ADDITIONAL_DISH
 The Fighting 69th,2,4,309,449,756,MAIN_DISH
 Dragonfly,3,2,884,985,925,ADDITIONAL_DISH
 Handsome Harry,6,2,107,490,15,DRINK
-"Desert of Forbidden Art, The",3,1,271,502,296,DRINK
+Desert of Forbidden Art The,3,1,271,502,296,DRINK
 Russell Peters: The Green Card Tour - Live from the O2 Arena,3,4,837,133,63,ADDITIONAL_DISH
 I Became a Criminal (They Made Me a Fugitive),2,1,183,627,662,ADDITIONAL_DISH
-"Maze Runner, The",1,1,524,270,1,MAIN_DISH
+Maze Runner The,1,1,524,270,1,MAIN_DISH
 Wirey Spindell,1,3,681,1000,638,DRINK
 Restless (Uro),3,3,791,121,948,DRINK
-"Pebble and the Penguin, The",3,6,519,621,459,MAIN_DISH
+Pebble and the Penguin The,3,6,519,621,459,MAIN_DISH
 Lawrence of Arabia,5,1,654,356,647,ADDITIONAL_DISH
 7 Dwarves: The Forest Is Not Enough,4,3,312,960,516,MAIN_DISH
 XIII: The Conspiracy,6,3,487,66,953,ADDITIONAL_DISH
 Passion Flower,1,5,710,449,522,MAIN_DISH
-"Decoy Bride, The",4,3,499,995,62,ADDITIONAL_DISH
+Decoy Bride The,4,3,499,995,62,ADDITIONAL_DISH
 Love In the Time of Money,3,5,24,382,329,MAIN_DISH
-"Scanner Darkly, A",2,6,990,111,106,DRINK
+Scanner Darkly A,2,6,990,111,106,DRINK
 Only Lovers Left Alive,3,5,960,927,341,MAIN_DISH
 Passeio com Johnny Guitar,6,3,84,413,607,MAIN_DISH
-"Goodnight, Mister Tom",3,5,556,719,915,ADDITIONAL_DISH
+Goodnight Mister Tom,3,5,556,719,915,ADDITIONAL_DISH
 Follow That Dream,4,5,141,170,551,MAIN_DISH
 Conserva Acabada,6,6,679,477,179,DRINK
-"Take, The",4,4,543,22,129,MAIN_DISH
+Take The,4,4,543,22,129,MAIN_DISH
 Waydowntown,2,1,358,190,717,MAIN_DISH
 Don't Blink,4,4,312,796,547,MAIN_DISH
 Violets Are Blue...,1,6,587,768,584,DRINK
 I Accuse,5,5,898,223,820,DRINK
-"Place Promised in Our Early Days, The (Kumo no mukô, yakusoku no basho)",4,2,3,415,485,ADDITIONAL_DISH
+Place Promised in Our Early Days The (Kumo no mukô yakusoku no basho),4,2,3,415,485,ADDITIONAL_DISH
 Who's Your Caddy?,2,6,453,544,405,MAIN_DISH
 Tomcats,3,3,400,162,812,DRINK
-"Other Boleyn Girl, The",5,5,347,234,154,DRINK
+Other Boleyn Girl The,5,5,347,234,154,DRINK
 Prime Cut,2,3,471,856,49,MAIN_DISH
 Romeo and Juliet,2,1,279,529,659,MAIN_DISH
 I Am You (In Her Skin),3,1,759,818,675,ADDITIONAL_DISH
-"Ashes, The (Popioly)",3,5,935,806,124,ADDITIONAL_DISH
+Ashes The (Popioly),3,5,935,806,124,ADDITIONAL_DISH
 Wrestling Ernest Hemingway,3,6,521,57,560,MAIN_DISH
-"Company of Wolves, The",5,4,425,281,396,ADDITIONAL_DISH
+Company of Wolves The,5,4,425,281,396,ADDITIONAL_DISH
 Burton and Taylor,5,4,158,611,343,MAIN_DISH
 Tevye,4,2,559,671,777,ADDITIONAL_DISH
 No habrá paz para los malvados,6,5,656,693,742,ADDITIONAL_DISH
 Style Wars,1,6,334,685,541,DRINK
-"Bible, The (a.k.a. Bible... In the Beginning, The)",6,1,598,249,314,DRINK
+Bible The (a.k.a. Bible... In the Beginning The),6,1,598,249,314,DRINK
 Percy Jackson: Sea of Monsters,1,1,766,908,996,MAIN_DISH
 My Rainy Days,5,2,945,847,637,MAIN_DISH
 Drive Me Crazy,4,2,962,479,743,MAIN_DISH
@@ -405,15 +405,15 @@ Into the Blue,6,2,621,47,497,DRINK
 Hannibal Rising,2,1,802,145,313,ADDITIONAL_DISH
 Brimstone and Treacle,2,3,856,227,62,ADDITIONAL_DISH
 Battleground,1,5,969,915,1,DRINK
-"Times of Harvey Milk, The",5,4,206,232,517,DRINK
+Times of Harvey Milk The,5,4,206,232,517,DRINK
 Rhapsody in August (Hachi-gatsu no kyôshikyoku),5,1,42,340,551,ADDITIONAL_DISH
 Grown Ups 2,6,2,171,693,240,MAIN_DISH
 Season For Assassins,5,2,772,946,86,DRINK
-"Common Man, A",4,1,824,646,172,ADDITIONAL_DISH
+Common Man A,4,1,824,646,172,ADDITIONAL_DISH
 Hickey and Boggs,2,5,704,80,927,ADDITIONAL_DISH
-"Kite Runner, The",5,2,873,780,475,MAIN_DISH
+Kite Runner The,5,2,873,780,475,MAIN_DISH
 Silk,4,2,924,482,146,DRINK
-"Expendables 2, The",4,2,455,716,398,MAIN_DISH
+Expendables 2 The,4,2,455,716,398,MAIN_DISH
 Simon of the Desert (Simón del desierto),3,6,859,832,13,DRINK
 47  Ronin (Shijûshichinin no shikaku),6,1,328,290,58,ADDITIONAL_DISH
 Cape Fear,6,1,709,549,769,MAIN_DISH
@@ -423,72 +423,72 @@ All in a Night's Work,5,5,119,255,686,DRINK
 Pianomania,3,5,447,28,940,ADDITIONAL_DISH
 Soldier Blue,1,6,972,983,275,MAIN_DISH
 The Appointments of Dennis Jennings,3,2,853,13,725,ADDITIONAL_DISH
-"Naked Man, The",1,2,660,88,20,ADDITIONAL_DISH
-"Thief Lord, The",5,5,211,325,520,DRINK
-"Black Coal, Thin Ice (Bai ri yan huo)",4,6,921,458,980,DRINK
-"Innkeepers, The",5,5,769,499,66,MAIN_DISH
+Naked Man The,1,2,660,88,20,ADDITIONAL_DISH
+Thief Lord The,5,5,211,325,520,DRINK
+Black Coal Thin Ice (Bai ri yan huo),4,6,921,458,980,DRINK
+Innkeepers The,5,5,769,499,66,MAIN_DISH
 Amira & Sam,4,4,631,731,990,DRINK
 Let No Man Write My Epitaph,6,2,945,105,933,DRINK
-"Simple Life of Noah Dearborn, The",2,6,640,268,548,DRINK
+Simple Life of Noah Dearborn The,2,6,640,268,548,DRINK
 Scooby-Doo! WrestleMania Mystery,5,3,33,984,983,ADDITIONAL_DISH
 Chasing Papi (a.k.a. Papi Chulo),4,2,695,481,761,MAIN_DISH
 Tales from the Crypt Presents: Bordello of Blood,5,1,538,859,29,DRINK
-"I, the Jury",4,1,723,885,228,MAIN_DISH
+I The Jury,4,1,723,885,228,MAIN_DISH
 Visions of Light: The Art of Cinematography,3,2,836,632,363,MAIN_DISH
 Keeper of the Flame,1,3,752,894,132,DRINK
 Sam Peckinpah: Man of Iron,3,3,255,552,689,DRINK
 Space Battleship Yamato,3,5,32,348,338,DRINK
-"Mariachi, El",1,3,678,86,285,ADDITIONAL_DISH
-"Jar, The (Khomreh)",6,5,723,324,142,ADDITIONAL_DISH
-"Wild, The",5,4,279,830,116,MAIN_DISH
+Mariachi El,1,3,678,86,285,ADDITIONAL_DISH
+Jar The (Khomreh),6,5,723,324,142,ADDITIONAL_DISH
+Wild The,5,4,279,830,116,MAIN_DISH
 Lady Dragon,3,6,616,243,232,MAIN_DISH
 Voyager (Homo Faber),6,1,775,384,537,DRINK
 Trespass,4,5,236,452,861,DRINK
-"Cool Ones, The",1,2,3,999,768,MAIN_DISH
+Cool Ones The,1,2,3,999,768,MAIN_DISH
 Creature Comforts,6,2,235,342,633,ADDITIONAL_DISH
 Hercules in New York,3,1,48,800,177,MAIN_DISH
 Big Brown Eyes,3,6,982,559,909,MAIN_DISH
-"Chocolate Soldier, The",6,3,612,380,491,DRINK
+Chocolate Soldier The,6,3,612,380,491,DRINK
 Future Cops (Chao ji xue xiao ba wang),3,2,936,350,99,ADDITIONAL_DISH
 To End All Wars,6,2,799,526,863,DRINK
 Trouble Bound,6,6,167,150,281,ADDITIONAL_DISH
 Julie,2,6,534,954,560,MAIN_DISH
 Dead Fury,5,4,973,143,434,MAIN_DISH
-"Loves of Carmen, The",5,6,932,145,108,DRINK
-"Kid, The",6,4,514,825,485,ADDITIONAL_DISH
+Loves of Carmen The,5,6,932,145,108,DRINK
+Kid The,6,4,514,825,485,ADDITIONAL_DISH
 Halls of Montezuma,5,1,355,249,914,DRINK
 The .44 Specialist,3,6,343,903,979,ADDITIONAL_DISH
 Blue Crush,4,4,991,861,805,ADDITIONAL_DISH
 Modify ,4,6,682,676,358,ADDITIONAL_DISH
 Spooner,5,3,775,124,407,ADDITIONAL_DISH
 In the Name of the King: A Dungeon Siege Tale,6,5,613,733,926,DRINK
-"Knot, The",1,6,463,947,239,ADDITIONAL_DISH
+Knot The,1,6,463,947,239,ADDITIONAL_DISH
 Wild Bill,2,5,55,847,92,ADDITIONAL_DISH
 Kid Galahad,4,5,746,97,243,DRINK
-"World Unseen, The",6,1,273,607,126,DRINK
-"Place of One's Own, A",3,5,779,759,14,ADDITIONAL_DISH
-"Big Year, The",5,2,358,188,797,MAIN_DISH
-"Assassination Bureau, The",5,6,265,723,918,ADDITIONAL_DISH
+World Unseen The,6,1,273,607,126,DRINK
+Place of One's Own A,3,5,779,759,14,ADDITIONAL_DISH
+Big Year The,5,2,358,188,797,MAIN_DISH
+Assassination Bureau The,5,6,265,723,918,ADDITIONAL_DISH
 Anna and the King,5,4,868,632,99,MAIN_DISH
 Invasion U.S.A.,1,5,351,739,626,MAIN_DISH
 Forbidden Door (Pintu Terlarang),6,3,931,813,517,DRINK
-"Five Minarets in New York (Act of Vengeance) (Terrorist, The)",1,3,542,719,742,DRINK
+Five Minarets in New York (Act of Vengeance) (Terrorist The),1,3,542,719,742,DRINK
 Gridiron Gang,1,2,5,796,606,ADDITIONAL_DISH
 Shadows of Our Forgotten Ancestors (Tini zabutykh predkiv),1,3,483,735,870,ADDITIONAL_DISH
 Memories of Matsuko (Kiraware Matsuko no isshô),1,4,854,980,462,DRINK
 Winterhawk,2,6,694,227,514,DRINK
 Sabotage,3,6,551,715,469,DRINK
 Repast (Meshi),5,3,258,860,53,MAIN_DISH
-"Swindle, The (Rien ne va plus)",5,3,749,984,722,MAIN_DISH
+Swindle The (Rien ne va plus),5,3,749,984,722,MAIN_DISH
 Snowpiercer,3,4,400,821,449,MAIN_DISH
 Boys Life 2,2,4,46,817,832,MAIN_DISH
 Road to Perdition,4,5,12,336,599,ADDITIONAL_DISH
-"Sleep Room, The",2,4,463,535,998,DRINK
+Sleep Room The,2,4,463,535,998,DRINK
 Pastoral Hide and Seek (Den-en ni shisu),5,4,518,820,823,ADDITIONAL_DISH
 Tom and Huck,2,6,548,904,185,DRINK
 Fantastic Flesh: The Art of Make-Up EFX,3,2,164,736,248,MAIN_DISH
-"Burning, The",1,4,389,934,680,MAIN_DISH
-"1, 2, 3, Sun (Un, deuz, trois, soleil)",2,2,213,339,211,DRINK
+Burning The,1,4,389,934,680,MAIN_DISH
+1 2 3 Sun (Un deuz trois soleil),2,2,213,339,211,DRINK
 Theatre of Blood,1,1,416,364,647,MAIN_DISH
 Homegrown,4,2,123,264,380,DRINK
 All Access,5,1,882,873,517,ADDITIONAL_DISH
@@ -498,47 +498,47 @@ Up in the Air,6,5,934,192,832,ADDITIONAL_DISH
 Kawa,4,6,910,319,978,MAIN_DISH
 Throw Down (Yau doh lung fu bong),2,1,281,612,449,DRINK
 Cooperstown,2,6,748,78,789,ADDITIONAL_DISH
-"Red Tent, The (Krasnaya palatka)",2,3,222,767,604,DRINK
+Red Tent The (Krasnaya palatka),2,3,222,767,604,DRINK
 Home Alone: The Holiday Heist,1,4,947,800,991,MAIN_DISH
 Without a Paddle: Nature's Calling,4,4,746,621,76,ADDITIONAL_DISH
 Kung Fu Panda 2,4,5,788,551,603,MAIN_DISH
 Key Largo,5,3,159,500,189,DRINK
 Monster,2,2,801,626,846,MAIN_DISH
-"Silver Chalice, The",1,2,41,878,649,DRINK
+Silver Chalice The,1,2,41,878,649,DRINK
 For the Love of Benji,3,2,420,978,958,DRINK
 Tom and Huck,5,5,870,484,453,ADDITIONAL_DISH
-"Prophet, the Gold and the Transylvanians, The (Profetul, aurul si Ardelenii)",2,5,393,463,974,DRINK
-"Blob, The",6,5,497,458,203,DRINK
+Prophet The Gold and the Transylvanians The (Profetul aurul si Ardelenii),2,5,393,463,974,DRINK
+Blob The,6,5,497,458,203,DRINK
 Bandidas,4,6,954,696,125,MAIN_DISH
 Quiet Chaos (Caos calmo),3,6,62,293,576,MAIN_DISH
 Boy of the Streets,3,1,479,73,180,ADDITIONAL_DISH
 And the Band Played On,1,2,667,857,270,ADDITIONAL_DISH
-"Hunting of the President, The",6,5,493,366,562,ADDITIONAL_DISH
+Hunting of the President The,6,5,493,366,562,ADDITIONAL_DISH
 Every Which Way But Loose,1,1,691,531,762,ADDITIONAL_DISH
 R.S.V.P. ,3,5,990,741,470,MAIN_DISH
-"Price of Forgiveness, The (Ndeysaan)",1,5,934,165,449,ADDITIONAL_DISH
+Price of Forgiveness The (Ndeysaan),1,5,934,165,449,ADDITIONAL_DISH
 Rockers,1,3,644,347,848,MAIN_DISH
 Parents,3,2,712,64,811,DRINK
-"Good bye, Lenin!",1,6,526,528,440,DRINK
+Good bye Lenin!,1,6,526,528,440,DRINK
 Cannonball,4,3,220,994,377,ADDITIONAL_DISH
-"Game of Death, The (Le Jeu de la Mort)",2,1,554,830,768,DRINK
-"Adventures of Sharkboy and Lavagirl 3-D, The",2,6,673,319,951,DRINK
-"Page of Madness, A (Kurutta ippêji)",5,4,915,409,990,ADDITIONAL_DISH
+Game of Death The (Le Jeu de la Mort),2,1,554,830,768,DRINK
+Adventures of Sharkboy and Lavagirl 3-D The,2,6,673,319,951,DRINK
+Page of Madness A (Kurutta ippêji),5,4,915,409,990,ADDITIONAL_DISH
 Taking Sides,2,2,162,628,104,DRINK
 Bright Star,1,1,505,159,107,ADDITIONAL_DISH
 Kalevala - Uusi aika,6,3,829,922,985,DRINK
-"Second Time Around, The",5,2,119,668,742,ADDITIONAL_DISH
+Second Time Around The,5,2,119,668,742,ADDITIONAL_DISH
 Daisies (Sedmikrasky),5,2,624,698,135,MAIN_DISH
 Charlie Chan in Shanghai,4,6,794,863,269,MAIN_DISH
 Airport,5,1,714,132,888,DRINK
 V/H/S,3,4,281,827,95,ADDITIONAL_DISH
-"Mighty Macs, The",5,1,275,242,483,ADDITIONAL_DISH
+Mighty Macs The,5,1,275,242,483,ADDITIONAL_DISH
 What Have I Done to Deserve This? (¿Qué he hecho yo para merecer esto!!),4,4,521,925,266,DRINK
 Sadie Thompson,5,3,646,386,389,MAIN_DISH
 Endurance,6,2,459,15,51,MAIN_DISH
 Seconds Apart ,2,1,142,775,27,ADDITIONAL_DISH
 Intruders,3,2,325,542,285,ADDITIONAL_DISH
-"Great Ziegfeld, The",6,1,178,72,26,ADDITIONAL_DISH
+Great Ziegfeld The,6,1,178,72,26,ADDITIONAL_DISH
 Fiston,4,6,54,141,842,ADDITIONAL_DISH
 Bill Hicks: Revelations,1,4,155,201,593,ADDITIONAL_DISH
 Thunder Bay,2,4,326,66,423,MAIN_DISH
@@ -552,22 +552,22 @@ Gloria,1,2,848,800,71,DRINK
 Buddy,5,5,727,484,475,DRINK
 Helter Skelter,6,6,715,332,10,DRINK
 Shakespeare High,2,4,839,842,993,MAIN_DISH
-"Statement, The",2,1,38,796,802,ADDITIONAL_DISH
+Statement The,2,1,38,796,802,ADDITIONAL_DISH
 Believe Me,5,4,329,640,145,MAIN_DISH
 Showdown in Little Tokyo,5,6,233,368,341,DRINK
 I've Loved You So Long (Il y a longtemps que je t'aime),3,1,921,112,648,ADDITIONAL_DISH
-"Cable Guy, The",5,6,759,667,886,DRINK
-"Arrival of a Train, The",2,6,549,967,867,MAIN_DISH
-"Muertos, Los",4,2,657,271,958,DRINK
-"Spirit of the Beehive, The (Espíritu de la colmena, El)",4,6,612,863,68,DRINK
+Cable Guy The,5,6,759,667,886,DRINK
+Arrival of a Train The,2,6,549,967,867,MAIN_DISH
+Muertos Los,4,2,657,271,958,DRINK
+Spirit of the Beehive The (Espíritu de la colmena El),4,6,612,863,68,DRINK
 Helvetica,2,2,869,444,330,ADDITIONAL_DISH
-"Live and Become (Va, vis et deviens)",1,6,600,984,421,DRINK
+Live and Become (Va vis et deviens),1,6,600,984,421,DRINK
 Best in Show,5,5,692,764,260,ADDITIONAL_DISH
 Killing Lincoln,1,1,323,647,738,ADDITIONAL_DISH
-"Nibelungen: Kriemhild's Revenge, Die (Die Nibelungen: Kriemhilds Rache)",2,4,223,832,884,ADDITIONAL_DISH
+Nibelungen: Kriemhild's Revenge Die (Die Nibelungen: Kriemhilds Rache),2,4,223,832,884,ADDITIONAL_DISH
 The Shoe,4,5,45,313,845,ADDITIONAL_DISH
 Train of Life (Train de vie),4,4,156,646,50,ADDITIONAL_DISH
-"Bon Cop, Bad Cop",2,4,402,740,248,MAIN_DISH
+Bon Cop Bad Cop,2,4,402,740,248,MAIN_DISH
 Tapestries of Hope,6,2,823,297,135,MAIN_DISH
 Snowpiercer,2,4,770,481,703,ADDITIONAL_DISH
 Oceans (Océans),3,1,607,327,244,DRINK
@@ -575,43 +575,43 @@ Stargate,5,3,724,650,115,ADDITIONAL_DISH
 Jane Eyre,5,3,32,887,84,DRINK
 8: The Mormon Proposition,6,5,924,4,733,MAIN_DISH
 Melbourne,1,4,805,35,59,ADDITIONAL_DISH
-"Cup, The (Phörpa)",5,1,193,854,594,DRINK
-"Square, The (Al Midan)",1,5,243,860,527,ADDITIONAL_DISH
+Cup The (Phörpa),5,1,193,854,594,DRINK
+Square The (Al Midan),1,5,243,860,527,ADDITIONAL_DISH
 Food of Love (Manjar de Amor),5,4,7,729,795,DRINK
 Frontrunners,1,4,65,167,586,MAIN_DISH
 Adios Sabata,6,6,160,231,637,ADDITIONAL_DISH
 City Hall,6,6,143,468,103,ADDITIONAL_DISH
 Riding the Bullet,6,4,71,419,311,DRINK
 Tabu,2,5,75,294,1,ADDITIONAL_DISH
-"Fan, The",6,5,809,666,72,ADDITIONAL_DISH
+Fan The,6,5,809,666,72,ADDITIONAL_DISH
 Love Actually,5,6,100,927,757,ADDITIONAL_DISH
 Night of the Day of the Dawn of the Son of the Bride of the Return of the Terror,2,1,815,370,373,DRINK
-"Dead Outside, The",3,5,705,638,491,ADDITIONAL_DISH
+Dead Outside The,3,5,705,638,491,ADDITIONAL_DISH
 The Boys,4,3,794,576,447,ADDITIONAL_DISH
 Countdown to Zero,4,3,453,761,853,ADDITIONAL_DISH
-"Ear, The (Ucho)",1,3,520,439,91,ADDITIONAL_DISH
+Ear The (Ucho),1,3,520,439,91,ADDITIONAL_DISH
 House of Cards,1,6,463,296,758,ADDITIONAL_DISH
-"Time Traveler's Wife, The",2,5,748,123,654,MAIN_DISH
-"5th Musketeer, The (a.k.a. Fifth Musketeer, The)",6,3,508,976,391,ADDITIONAL_DISH
-"Target Shoots First, The",6,1,81,18,605,MAIN_DISH
+Time Traveler's Wife The,2,5,748,123,654,MAIN_DISH
+5th Musketeer The (a.k.a. Fifth Musketeer The),6,3,508,976,391,ADDITIONAL_DISH
+Target Shoots First The,6,1,81,18,605,MAIN_DISH
 Being Flynn,6,1,263,361,156,DRINK
 Outsiders (Ceddo),2,5,567,488,271,MAIN_DISH
-"Constant Nymph, The",3,3,441,902,73,MAIN_DISH
+Constant Nymph The,3,3,441,902,73,MAIN_DISH
 Prisoner of Paradise,2,6,634,836,880,ADDITIONAL_DISH
 The Lazarus Effect,5,6,374,937,500,MAIN_DISH
 Unlawful Killing,3,5,78,413,530,MAIN_DISH
 Bugsy Malone,1,1,890,411,447,ADDITIONAL_DISH
-"Purple Gang, The",2,6,422,931,922,MAIN_DISH
-"Legend of Bigfoot, The",1,5,95,107,51,MAIN_DISH
+Purple Gang The,2,6,422,931,922,MAIN_DISH
+Legend of Bigfoot The,1,5,95,107,51,MAIN_DISH
 Phat Girlz,4,2,442,282,334,DRINK
 Battle Royale 2: Requiem (Batoru rowaiaru II: Chinkonka),5,6,339,991,641,ADDITIONAL_DISH
 Spice World,6,6,234,705,874,ADDITIONAL_DISH
 Detective (Détective),2,4,478,47,180,MAIN_DISH
 1,1,1,512,246,111,MAIN_DISH
 There's a Girl in My Soup,2,3,666,178,532,MAIN_DISH
-"Caveman's Valentine, The",1,4,21,261,467,MAIN_DISH
+Caveman's Valentine The,1,4,21,261,467,MAIN_DISH
 To Grandmother's House We Go,6,3,868,528,636,MAIN_DISH
-"Freddy's Dead: The Final Nightmare (Nightmare on Elm Street Part 6: Freddy's Dead, A)",5,2,884,878,293,DRINK
+Freddy's Dead: The Final Nightmare (Nightmare on Elm Street Part 6: Freddy's Dead A),5,2,884,878,293,DRINK
 Lawless,3,1,295,655,830,MAIN_DISH
 Point Break,3,2,323,762,423,ADDITIONAL_DISH
 Family Affair ,5,1,330,761,618,DRINK
@@ -620,62 +620,62 @@ Stand by for Action,6,2,435,170,285,MAIN_DISH
 Not Without My Daughter,5,4,825,229,78,DRINK
 Scared Shrekless,6,4,696,255,610,MAIN_DISH
 Children of the Corn 666: Isaac's Return,4,4,736,59,85,MAIN_DISH
-"Ghostmaker, The (Box of Shadows)",2,1,698,904,17,ADDITIONAL_DISH
-"Whole Nine Yards, The",1,3,431,750,676,DRINK
-"Horse's Mouth, The",5,2,741,802,825,MAIN_DISH
+Ghostmaker The (Box of Shadows),2,1,698,904,17,ADDITIONAL_DISH
+Whole Nine Yards The,1,3,431,750,676,DRINK
+Horse's Mouth The,5,2,741,802,825,MAIN_DISH
 Helicopter String Quartet,3,4,949,505,138,DRINK
 Highly Dangerous,2,4,277,484,669,DRINK
-"Asphyx, The",4,1,461,890,849,DRINK
+Asphyx The,4,1,461,890,849,DRINK
 American Son,6,3,879,818,339,ADDITIONAL_DISH
 Inherit the Wind,3,1,843,565,977,ADDITIONAL_DISH
 Saving Sarah Cain,5,6,912,287,601,MAIN_DISH
-"Accused, The",3,1,738,15,276,DRINK
+Accused The,3,1,738,15,276,DRINK
 Caine (Shark!),5,1,612,498,706,DRINK
 Metal: A Headbanger's Journey,4,4,302,613,480,DRINK
 Zebra Lounge,1,2,249,703,23,MAIN_DISH
 Comic Book Villains,5,4,144,140,311,DRINK
 Shadow of Angels (Schatten der Engel),1,6,682,202,411,ADDITIONAL_DISH
-"Gorilla, The",5,6,140,712,482,DRINK
+Gorilla The,5,6,140,712,482,DRINK
 Amazing Journey: The Story of The Who,1,3,169,364,87,MAIN_DISH
 Ivory Tower,4,2,855,241,478,DRINK
 All In: The Poker Movie,2,6,723,961,771,DRINK
-"Conversation with Gregory Peck, A",5,1,621,898,125,DRINK
+Conversation with Gregory Peck A,5,1,621,898,125,DRINK
 Super Capers,2,1,121,779,727,MAIN_DISH
 The Key,2,2,872,798,294,MAIN_DISH
 Vexille (Bekushiru: 2077 Nihon sakoku),3,2,465,612,131,ADDITIONAL_DISH
 An Evening with Robin Williams,3,6,130,230,660,MAIN_DISH
 Stray Dogs,3,2,322,115,553,MAIN_DISH
-"Lathe of Heaven, The",2,2,652,287,490,ADDITIONAL_DISH
+Lathe of Heaven The,2,2,652,287,490,ADDITIONAL_DISH
 Mr. Warmth: The Don Rickles Project,6,5,480,100,891,DRINK
 One Man's Hero,4,4,286,423,230,MAIN_DISH
 Fantastic Four: Rise of the Silver Surfer,6,4,635,232,250,DRINK
 Camille Claudel 1915,2,2,61,377,599,MAIN_DISH
 Elvis: That's the Way It Is,6,1,172,457,336,DRINK
 Chasing Ghosts: Beyond the Arcade ,2,2,661,274,493,DRINK
-"Thousand Clowns, A",5,6,549,574,853,MAIN_DISH
+Thousand Clowns A,5,6,549,574,853,MAIN_DISH
 Land and Freedom (Tierra y libertad),2,4,170,259,787,ADDITIONAL_DISH
 Dracula A.D. 1972,1,1,620,512,940,MAIN_DISH
 Lad: A Dog,1,6,675,702,529,MAIN_DISH
 First on the Moon (Pervye na Lune),5,6,17,838,474,ADDITIONAL_DISH
-"Last Polka, The",1,6,964,723,397,DRINK
-"General, The",5,5,185,317,735,MAIN_DISH
+Last Polka The,1,6,964,723,397,DRINK
+General The,5,5,185,317,735,MAIN_DISH
 One Night with the King,4,6,669,813,766,MAIN_DISH
 Satan's Blood (Escalofrío),1,2,822,912,179,MAIN_DISH
 Dampfnudelblues,1,5,992,119,483,ADDITIONAL_DISH
 Cremaster 2,4,6,113,366,486,DRINK
-"Beast of Yucca Flats, The",1,3,545,216,605,ADDITIONAL_DISH
+Beast of Yucca Flats The,1,3,545,216,605,ADDITIONAL_DISH
 Hotel Terminus: The Life and Times of Klaus Barbie (Hôtel Terminus),4,4,959,98,64,ADDITIONAL_DISH
-"Trou, Le (Hole, The) (Night Watch, The)",1,1,282,746,447,DRINK
+Trou Le (Hole The) (Night Watch The),1,1,282,746,447,DRINK
 Bounce: Behind the Velvet Rope,6,1,948,682,118,MAIN_DISH
 Moulin Rouge,6,2,276,726,308,DRINK
 Lust for Life,2,2,265,238,218,MAIN_DISH
 Road Games (a.k.a. Roadgames),6,6,47,284,330,MAIN_DISH
-"Conformist, The (Conformista, Il)",3,6,220,633,919,MAIN_DISH
+Conformist The (Conformista Il),3,6,220,633,919,MAIN_DISH
 Rampart,3,4,720,746,953,MAIN_DISH
 Business as Usual,5,1,926,148,354,ADDITIONAL_DISH
-"Pursuit of Unhappiness, The (Anleitung zum Unglücklichsein)",6,5,157,213,158,ADDITIONAL_DISH
+Pursuit of Unhappiness The (Anleitung zum Unglücklichsein),6,5,157,213,158,ADDITIONAL_DISH
 Rodan (Sora no daikaijû Radon),4,6,165,40,490,ADDITIONAL_DISH
-"Grand Maneuver, The (Les grandes manoeuvres)",5,6,583,790,644,ADDITIONAL_DISH
+Grand Maneuver The (Les grandes manoeuvres),5,6,583,790,644,ADDITIONAL_DISH
 Love and Sex under Nazi Occupation (Amour et sexe sous l'occupation) ,4,4,184,488,988,ADDITIONAL_DISH
 Out of the Past,4,1,860,646,729,ADDITIONAL_DISH
 Volver,5,1,457,889,87,ADDITIONAL_DISH
@@ -683,35 +683,35 @@ Green Zone,1,2,18,107,629,MAIN_DISH
 Journey to the Sun (Günese yolculuk),3,1,264,9,810,MAIN_DISH
 Starship Troopers,4,5,152,58,209,ADDITIONAL_DISH
 Monte Carlo,4,3,949,211,697,MAIN_DISH
-"Slugger's Wife, The",1,1,414,379,667,MAIN_DISH
+Slugger's Wife The,1,1,414,379,667,MAIN_DISH
 The Overnight,3,5,165,189,622,ADDITIONAL_DISH
 Underworld,5,6,251,249,641,DRINK
 My Side of the Mountain,1,3,696,889,4,DRINK
-"Boys Diving, Honolulu",6,2,141,378,786,ADDITIONAL_DISH
+Boys Diving Honolulu,6,2,141,378,786,ADDITIONAL_DISH
 Gremlins 2: The New Batch,6,3,653,29,777,ADDITIONAL_DISH
 Inside Deep Throat,1,4,64,973,948,DRINK
-"Desperados, The",6,3,136,80,475,DRINK
+Desperados The,6,3,136,80,475,DRINK
 Journey to the Far Side of the Sun (a.k.a. Doppelgänger),4,2,296,550,958,ADDITIONAL_DISH
 Calamity Jane,1,3,702,316,770,MAIN_DISH
 On Any Sunday,2,2,489,359,492,MAIN_DISH
 Zatoichi the Fugitive (Zatôichi kyôjô-tabi) (Zatôichi 4),5,6,219,2,334,MAIN_DISH
 Winter Soldier,4,3,70,120,34,DRINK
-"7th Dawn, The",3,2,199,200,986,MAIN_DISH
+7th Dawn The,3,2,199,200,986,MAIN_DISH
 Roman,2,1,175,396,342,ADDITIONAL_DISH
 On the Riviera,2,3,85,4,960,MAIN_DISH
 Swamp Shark,6,5,877,49,690,ADDITIONAL_DISH
 This Christmas,6,1,823,542,119,MAIN_DISH
-"Most Hated Family in America, The",1,3,433,572,857,ADDITIONAL_DISH
+Most Hated Family in America The,1,3,433,572,857,ADDITIONAL_DISH
 Our Children (À perdre la raison),5,2,956,507,498,DRINK
 Red Corner,4,3,624,565,972,MAIN_DISH
 Risky Business,1,1,139,576,79,MAIN_DISH
 Skyline,5,4,451,503,157,DRINK
 Jacknife,6,4,153,183,717,DRINK
-"Very Potter Musical, A",5,5,951,353,4,ADDITIONAL_DISH
-"Saragossa Manuscript, The (Rekopis znaleziony w Saragossie)",2,5,471,104,372,MAIN_DISH
+Very Potter Musical A,5,5,951,353,4,ADDITIONAL_DISH
+Saragossa Manuscript The (Rekopis znaleziony w Saragossie),2,5,471,104,372,MAIN_DISH
 Lady and the Tramp,4,3,71,784,432,MAIN_DISH
 Tukkijoella,3,1,433,344,510,DRINK
-"Thief of Bagdad, The",5,1,430,590,456,MAIN_DISH
+Thief of Bagdad The,5,1,430,590,456,MAIN_DISH
 Spring Break Shark Attack,5,6,909,721,155,ADDITIONAL_DISH
 Shark Attack,4,3,136,785,772,DRINK
 Food of Love (Manjar de Amor),6,5,525,483,577,MAIN_DISH
@@ -719,27 +719,27 @@ Food of Love (Manjar de Amor),6,5,525,483,577,MAIN_DISH
 Sunlight Jr.,4,1,756,719,717,ADDITIONAL_DISH
 388 Arletta Avenue,5,5,561,242,458,ADDITIONAL_DISH
 Shadows Over Chinatown,2,1,396,451,748,MAIN_DISH
-"Mouse on the Moon, The",3,6,118,354,78,DRINK
+Mouse on the Moon The,3,6,118,354,78,DRINK
 Native Son,5,2,574,716,852,MAIN_DISH
 Harvey,2,5,156,744,75,MAIN_DISH
 Murder She Said,3,2,714,9,552,DRINK
-"Limits of Control, The",4,4,998,873,260,DRINK
+Limits of Control The,4,4,998,873,260,DRINK
 Van Gogh,3,5,323,873,707,DRINK
 Rough Riders,1,1,303,331,748,DRINK
 Asterix and the Vikings (Astérix et les Vikings),3,1,20,551,206,DRINK
 Gangster No. 1,2,4,324,601,226,DRINK
-"Dangerous Man, A",1,2,516,917,222,MAIN_DISH
-"Getaway, The",4,6,536,449,457,ADDITIONAL_DISH
+Dangerous Man A,1,2,516,917,222,MAIN_DISH
+Getaway The,4,6,536,449,457,ADDITIONAL_DISH
 Here be Dragons,5,1,3,775,93,DRINK
 Becoming Chaz,1,4,8,868,358,DRINK
-"Last Hurrah, The",3,2,728,538,125,MAIN_DISH
+Last Hurrah The,3,2,728,538,125,MAIN_DISH
 Just Around the Corner,6,1,702,161,703,ADDITIONAL_DISH
 99 and 44/100% Dead,3,3,588,264,58,DRINK
 Measuring the World (Die Vermessung der Welt),5,2,860,500,758,ADDITIONAL_DISH
-"Official Story, The (La historia oficial)",6,4,725,632,132,ADDITIONAL_DISH
+Official Story The (La historia oficial),6,4,725,632,132,ADDITIONAL_DISH
 Lost in Beijing (Ping guo),2,5,525,955,926,DRINK
 Brooklyn,5,1,429,424,86,MAIN_DISH
-"First Nudie Musical, The",4,5,304,159,918,DRINK
+First Nudie Musical The,4,5,304,159,918,DRINK
 This Gun for Hire,6,6,132,429,129,ADDITIONAL_DISH
 Hotel Pacific (Zaklete rewiry),4,1,564,366,51,ADDITIONAL_DISH
 Good Copy Bad Copy,3,2,740,449,713,DRINK
@@ -747,15 +747,15 @@ Homicide,1,6,729,763,816,ADDITIONAL_DISH
 Love,2,1,633,822,838,DRINK
 Nirvana,1,1,95,277,630,ADDITIONAL_DISH
 Slam,4,5,668,339,136,MAIN_DISH
-"Hypnotist, The (Hypnotisören)",5,4,643,211,298,MAIN_DISH
+Hypnotist The (Hypnotisören),5,4,643,211,298,MAIN_DISH
 Superclásico,2,5,535,810,369,MAIN_DISH
 Finding Nemo,5,6,692,280,470,ADDITIONAL_DISH
 Justice League: The New Frontier ,1,6,247,312,242,ADDITIONAL_DISH
 Roberta,1,6,740,168,634,MAIN_DISH
-"Seven-Per-Cent Solution, The",5,4,415,364,307,DRINK
+Seven-Per-Cent Solution The,5,4,415,364,307,DRINK
 Dead Genesis,1,2,416,758,67,ADDITIONAL_DISH
 1066,5,4,670,955,461,MAIN_DISH
-"Midsummer Night's Dream, A",4,2,945,348,495,ADDITIONAL_DISH
+Midsummer Night's Dream A,4,2,945,348,495,ADDITIONAL_DISH
 42nd Street,3,6,634,336,143,MAIN_DISH
 Charley Varrick,2,2,956,783,360,ADDITIONAL_DISH
 Reign Over Me,4,6,953,696,353,ADDITIONAL_DISH
@@ -764,23 +764,23 @@ Pokémon the Movie 2000,5,3,879,567,569,DRINK
 Four more years (Fyra år till),6,1,788,393,350,DRINK
 Senso,2,1,322,796,610,ADDITIONAL_DISH
 Passenger Side,1,4,703,881,835,DRINK
-"Hen, his wife",4,3,336,197,136,DRINK
+Hen his wife,4,3,336,197,136,DRINK
 Parasomnia,5,5,394,172,763,ADDITIONAL_DISH
 Crash,4,3,441,721,509,ADDITIONAL_DISH
-"American Tail: Fievel Goes West, An",3,5,103,347,804,MAIN_DISH
+American Tail: Fievel Goes West An,3,5,103,347,804,MAIN_DISH
 Unexpected,4,5,206,898,476,ADDITIONAL_DISH
-"Clockwork Orange, A",4,5,387,427,508,MAIN_DISH
+Clockwork Orange A,4,5,387,427,508,MAIN_DISH
 Tattoo Nation,4,3,541,751,18,ADDITIONAL_DISH
 Time of Eve (Eve no jikan),6,3,849,878,191,ADDITIONAL_DISH
-"Secret Life of Walter Mitty, The",3,3,428,454,421,DRINK
+Secret Life of Walter Mitty The,3,3,428,454,421,DRINK
 Paprika (Papurika),2,3,331,209,168,ADDITIONAL_DISH
-"Man Who Would Be King, The",6,4,883,757,574,ADDITIONAL_DISH
+Man Who Would Be King The,6,4,883,757,574,ADDITIONAL_DISH
 Twenty Bucks,6,6,492,457,890,DRINK
 Conan the Destroyer,4,1,382,996,468,MAIN_DISH
 8 ½ Women (a.k.a. 8 1/2 Women) (a.k.a. Eight and a Half Women),2,4,425,381,562,ADDITIONAL_DISH
 Profound Desires of the Gods (Kamigami no fukaki yokubo) ,6,2,719,39,632,DRINK
-"Unforgiven, The",1,6,734,497,413,DRINK
-"Heart in Winter, A (Un coeur en hiver)",3,5,958,93,273,ADDITIONAL_DISH
+Unforgiven The,1,6,734,497,413,DRINK
+Heart in Winter A (Un coeur en hiver),3,5,958,93,273,ADDITIONAL_DISH
 Bikini Spring Break (Revenge of the Nerds' Bikini Spring Break),4,1,110,293,19,MAIN_DISH
 Take a Giant Step,3,1,627,256,961,ADDITIONAL_DISH
 Man on a Ledge,4,1,320,953,303,DRINK
@@ -790,9 +790,9 @@ Jar City (Mýrin),1,5,115,101,230,MAIN_DISH
 Kiss Me Kate,6,4,950,152,411,MAIN_DISH
 One in the Chamber,6,5,59,483,8,ADDITIONAL_DISH
 Kon-Tiki,4,1,18,463,666,ADDITIONAL_DISH
-"Black Magic Rites & the Secret Orgies of the 14th Century (Riti, magie nere e segrete orge nel trecento...)",3,6,550,337,396,MAIN_DISH
+Black Magic Rites & the Secret Orgies of the 14th Century (Riti magie nere e segrete orge nel trecento...),3,6,550,337,396,MAIN_DISH
 Chan Is Missing,2,1,942,871,764,ADDITIONAL_DISH
-"Kids Are All Right, The",1,3,639,796,647,MAIN_DISH
+Kids Are All Right The,1,3,639,796,647,MAIN_DISH
 Nas: Time Is Illmatic,6,4,315,96,72,ADDITIONAL_DISH
 Stars Above,4,5,457,741,527,ADDITIONAL_DISH
 30 Minutes or Less,2,2,188,630,408,DRINK
@@ -801,17 +801,17 @@ Welcome to the Jungle,6,6,591,983,302,DRINK
 Love and Lemons (Små citroner gula),5,5,877,679,725,MAIN_DISH
 Bonneville,5,5,386,203,199,MAIN_DISH
 Match Point,6,3,883,220,574,MAIN_DISH
-"Quiet Ones, The",3,2,872,252,285,MAIN_DISH
+Quiet Ones The,3,2,872,252,285,MAIN_DISH
 Buried,6,3,858,248,19,DRINK
 American Outlaws,2,5,301,750,617,DRINK
 Just Add Water,4,1,949,685,812,MAIN_DISH
 Bounce: Behind the Velvet Rope,6,3,416,11,507,MAIN_DISH
 Expelled: No Intelligence Allowed,5,2,465,261,92,MAIN_DISH
-"Early Years: Erik Nietzsche Part 1, The (De unge år: Erik Nietzsche)",3,2,648,166,16,ADDITIONAL_DISH
+Early Years: Erik Nietzsche Part 1 The (De unge år: Erik Nietzsche),3,2,648,166,16,ADDITIONAL_DISH
 Camille Claudel 1915,2,3,871,248,210,ADDITIONAL_DISH
 Adoration,1,6,953,753,324,ADDITIONAL_DISH
-"Wild Hunt, The",4,5,139,487,292,ADDITIONAL_DISH
-"Amityville Curse, The",4,1,173,816,60,ADDITIONAL_DISH
+Wild Hunt The,4,5,139,487,292,ADDITIONAL_DISH
+Amityville Curse The,4,1,173,816,60,ADDITIONAL_DISH
 Ruggles of Red Gap,1,2,626,165,516,DRINK
 White Sands,5,2,753,444,702,ADDITIONAL_DISH
 Billy Elliot,4,6,713,374,874,DRINK
@@ -826,7 +826,7 @@ CJ7 (Cheung Gong 7 hou),1,1,243,433,254,DRINK
 The Trial of Lee Harvey Oswald,5,4,827,150,79,ADDITIONAL_DISH
 Sunset Blvd. (a.k.a. Sunset Boulevard),3,1,503,558,431,DRINK
 Linsanity,1,4,678,820,692,DRINK
-"Band's Visit, The (Bikur Ha-Tizmoret)",6,4,208,472,885,DRINK
+Band's Visit The (Bikur Ha-Tizmoret),6,4,208,472,885,DRINK
 2001: A Space Odyssey,1,1,134,63,281,ADDITIONAL_DISH
 Fantomas vs. Scotland Yard,5,4,57,288,91,DRINK
 Up the River,6,3,913,630,293,MAIN_DISH
@@ -840,31 +840,31 @@ Troy,5,6,138,135,987,MAIN_DISH
 Play Girl,6,5,184,10,224,ADDITIONAL_DISH
 Lady Snowblood (Shurayukihime),2,3,43,406,28,DRINK
 C.H.O.M.P.S.,2,1,132,706,99,ADDITIONAL_DISH
-"Strange Little Cat, The (Das merkwürdige Kätzchen)",4,1,148,400,773,ADDITIONAL_DISH
+Strange Little Cat The (Das merkwürdige Kätzchen),4,1,148,400,773,ADDITIONAL_DISH
 Tapped,4,3,364,85,49,ADDITIONAL_DISH
-"Conscientious Objector, The",4,5,233,524,964,ADDITIONAL_DISH
+Conscientious Objector The,4,5,233,524,964,ADDITIONAL_DISH
 Always Tell Your Wife,2,2,147,471,103,ADDITIONAL_DISH
-"Centenarian Who Climbed Out the Window and Vanished, The (Hundraåringen som klev ut genom fönstret och försvann)",4,1,374,488,893,ADDITIONAL_DISH
+Centenarian Who Climbed Out the Window and Vanished The (Hundraåringen som klev ut genom fönstret och försvann),4,1,374,488,893,ADDITIONAL_DISH
 Where the Heart Is,6,4,911,379,544,ADDITIONAL_DISH
 I Am a Fugitive from a Chain Gang,2,3,150,157,65,DRINK
-"Dark Angel, The",1,4,512,637,190,DRINK
+Dark Angel The,1,4,512,637,190,DRINK
 Bitch Slap,5,3,936,159,801,ADDITIONAL_DISH
 Dead Heat on a Merry-Go-Round,6,1,878,568,708,DRINK
-"Fool There Was, A",5,3,701,704,797,ADDITIONAL_DISH
+Fool There Was A,5,3,701,704,797,ADDITIONAL_DISH
 Life is a Miracle (Zivot je cudo),4,3,901,820,295,DRINK
 Chronic Town,3,4,812,63,412,DRINK
-"Recruiter, The",4,5,196,618,140,MAIN_DISH
+Recruiter The,4,5,196,618,140,MAIN_DISH
 Ip Man: The Final Fight,5,2,814,206,470,MAIN_DISH
 Mother Wore Tights,4,2,401,88,247,ADDITIONAL_DISH
 Save the Last Dance,3,5,87,10,707,DRINK
-"Wind, The",1,1,873,826,514,DRINK
+Wind The,1,1,873,826,514,DRINK
 Budd Boetticher: A Man Can Do That,2,3,107,75,138,MAIN_DISH
 Kamikaze Girls (Shimotsuma monogatari),4,3,227,68,124,MAIN_DISH
 Out of Sight,3,6,77,971,643,ADDITIONAL_DISH
 Laputa: Castle in the Sky (Tenkû no shiro Rapyuta),5,6,611,948,275,MAIN_DISH
-"Good Guy, The",6,2,800,501,883,ADDITIONAL_DISH
-"Tortured, The",1,5,458,101,665,DRINK
-"Spy in Black, The",2,2,643,799,440,MAIN_DISH
+Good Guy The,6,2,800,501,883,ADDITIONAL_DISH
+Tortured The,1,5,458,101,665,DRINK
+Spy in Black The,2,2,643,799,440,MAIN_DISH
 Forever Amber,4,1,741,418,369,ADDITIONAL_DISH
 Solarbabies,3,3,871,55,115,ADDITIONAL_DISH
 One Way Boogie Woogie,6,2,634,754,440,MAIN_DISH
@@ -872,24 +872,24 @@ Nobody Knows Anything!,5,4,365,734,280,ADDITIONAL_DISH
 Aftershock (Tangshan dadizhen),4,1,862,664,236,ADDITIONAL_DISH
 Primary,1,4,957,608,904,ADDITIONAL_DISH
 HealtH,4,5,113,814,637,MAIN_DISH
-"Bachelor Weekend, The",4,5,720,37,746,MAIN_DISH
+Bachelor Weekend The,4,5,720,37,746,MAIN_DISH
 Laffghanistan: Comedy Down Range,3,1,482,951,402,ADDITIONAL_DISH
 Chu Chin Chow,4,2,741,281,904,DRINK
 Igor,2,4,754,954,597,MAIN_DISH
 White Dog,4,5,104,849,239,DRINK
 Wrong Turn,6,4,776,209,35,MAIN_DISH
 Private Benjamin,5,2,266,368,970,ADDITIONAL_DISH
-"Party, The",4,6,608,493,432,DRINK
+Party The,4,6,608,493,432,DRINK
 Gimme Shelter,1,6,951,560,372,ADDITIONAL_DISH
-"Ron Clark Story, The",1,1,784,431,205,DRINK
+Ron Clark Story The,1,1,784,431,205,DRINK
 Upside Down,1,4,381,874,854,DRINK
 Three of Hearts,1,2,650,61,511,ADDITIONAL_DISH
 Hiding Cot (Piilopirtti),2,3,772,841,323,ADDITIONAL_DISH
-"Killing Machine, The (Icarus)",5,3,137,860,944,MAIN_DISH
+Killing Machine The (Icarus),5,3,137,860,944,MAIN_DISH
 Murder on Flight 502,4,3,635,472,975,ADDITIONAL_DISH
 Gummo,3,5,386,899,995,ADDITIONAL_DISH
 Mar Baum,2,6,385,589,743,DRINK
-"Young Poisoner's Handbook, The",3,6,175,212,913,ADDITIONAL_DISH
+Young Poisoner's Handbook The,3,6,175,212,913,ADDITIONAL_DISH
 Crazy Horse,4,3,379,366,903,DRINK
 After Midnight,5,5,48,573,672,MAIN_DISH
 Hit and Run (Hit & Run),6,1,521,485,425,MAIN_DISH
@@ -897,38 +897,38 @@ Set It Off,4,1,525,492,461,DRINK
 American Samurai (Ninja: American Samurai),2,2,518,112,119,DRINK
 Tony Takitani,6,3,556,119,963,ADDITIONAL_DISH
 Dirty Pretty Things,4,1,912,375,447,MAIN_DISH
-"Goodnight, Mister Tom",3,2,59,570,622,DRINK
+Goodnight Mister Tom,3,2,59,570,622,DRINK
 The Violent Enemy,1,5,35,874,179,MAIN_DISH
 The Trap,5,3,47,73,361,ADDITIONAL_DISH
 Haunted Castle,1,5,91,838,150,MAIN_DISH
 Melody Time,4,6,889,340,452,DRINK
-"Time to Love and a Time to Die, A",2,1,105,285,707,DRINK
+Time to Love and a Time to Die A,2,1,105,285,707,DRINK
 Drunken Master (Jui kuen),3,4,455,10,393,MAIN_DISH
 Into the Abyss,6,4,966,657,665,MAIN_DISH
 Down From the Mountain,1,3,331,200,617,DRINK
-"Song of Sparrows, The (Avaze gonjeshk-ha)",1,6,859,74,389,ADDITIONAL_DISH
+Song of Sparrows The (Avaze gonjeshk-ha),1,6,859,74,389,ADDITIONAL_DISH
 Night of the Zombies (a.k.a. Hell of the Living Dead) (Virus),4,1,823,432,956,MAIN_DISH
 Death Race 2,4,6,410,147,489,DRINK
 Impulse,1,5,494,472,547,MAIN_DISH
 Malta G.C.,2,1,230,152,155,DRINK
-"Million to Juan, A",6,2,960,577,661,MAIN_DISH
+Million to Juan A,6,2,960,577,661,MAIN_DISH
 The Hellions,2,5,321,354,602,MAIN_DISH
 Diamond Dogs,2,1,827,594,549,ADDITIONAL_DISH
-"Day After, The",2,3,342,351,299,ADDITIONAL_DISH
+Day After The,2,3,342,351,299,ADDITIONAL_DISH
 Broken Sky (El cielo dividido),2,2,424,310,700,ADDITIONAL_DISH
 Parisian Love,2,4,858,944,429,ADDITIONAL_DISH
 Mr. Bug Goes to Town (a.k.a. Hoppity Goes to Town),5,3,287,350,778,DRINK
 Sunlight Jr.,4,6,236,718,820,ADDITIONAL_DISH
-Tyler Perry's A Madea Christmas,5,2,686,918,160,ADDITIONAL_DISH
+Tyler Perrys A Madea Christmas,5,2,686,918,160,ADDITIONAL_DISH
 When in Rome,5,5,667,999,57,ADDITIONAL_DISH
 New York Minute,1,5,762,57,982,MAIN_DISH
-"Longest Day, The",3,4,108,267,596,ADDITIONAL_DISH
+Longest Day The,3,4,108,267,596,ADDITIONAL_DISH
 About Adam,6,5,351,643,631,MAIN_DISH
 In Gold We Trust (600 kilos d'or pur),3,3,620,588,775,DRINK
 Benjamin Blümchen - Seine schönsten Abenteuer,6,2,115,980,127,MAIN_DISH
 Joe and Max,4,5,314,744,604,MAIN_DISH
 Vesna va veloce,6,4,656,778,816,DRINK
-"Conspirator, The",2,6,509,372,616,MAIN_DISH
+Conspirator The,2,6,509,372,616,MAIN_DISH
 Island in the Sun,6,1,319,752,881,ADDITIONAL_DISH
 Around the World Under the Sea,4,5,640,875,663,MAIN_DISH
 Good Old Daze (Le péril jeune),6,1,687,647,644,ADDITIONAL_DISH
@@ -937,23 +937,23 @@ Teknolust,4,6,895,979,912,DRINK
 Survive Style 5+,5,3,79,609,819,MAIN_DISH
 Letting Go of God,5,6,369,486,319,DRINK
 Angels in America,1,6,894,57,840,ADDITIONAL_DISH
-"Book of Stars, The",4,2,429,950,336,MAIN_DISH
+Book of Stars The,4,2,429,950,336,MAIN_DISH
 Indiana Jones and the Kingdom of the Crystal Skull,1,6,870,895,492,MAIN_DISH
 Class of 1999 II: The Substitute,3,3,34,920,225,DRINK
 Up!,5,2,544,555,37,ADDITIONAL_DISH
-"Apple Dumpling Gang Rides Again, The",1,3,397,548,142,ADDITIONAL_DISH
+Apple Dumpling Gang Rides Again The,1,3,397,548,142,ADDITIONAL_DISH
 Turkish Delight (Turks fruit),3,6,226,772,840,MAIN_DISH
 Moon Child,1,4,646,150,895,MAIN_DISH
 Reversal of Fortune,5,3,254,351,635,DRINK
 Shanghai Noon,4,6,406,65,315,MAIN_DISH
 Jingle All the Way 2,4,5,689,545,371,DRINK
-"Best of Ernie and Bert, The",2,5,390,244,331,MAIN_DISH
+Best of Ernie and Bert The,2,5,390,244,331,MAIN_DISH
 Tender Is the Night,5,2,712,658,496,ADDITIONAL_DISH
 Rosvo Roope,4,1,314,9,786,ADDITIONAL_DISH
-"Cool World, The",5,1,296,551,131,ADDITIONAL_DISH
+Cool World The,5,1,296,551,131,ADDITIONAL_DISH
 In the Name of the King: A Dungeon Siege Tale,5,4,551,456,11,DRINK
 Change of Address (Changement d'adresse),1,6,171,260,338,DRINK
-"One I Love, The",6,4,143,640,503,ADDITIONAL_DISH
+One I Love The,6,4,143,640,503,ADDITIONAL_DISH
 Uncle Boonmee Who Can Recall His Past Lives (Loong Boonmee raleuk chat),3,6,171,348,112,ADDITIONAL_DISH
 Off Limits,3,1,840,815,323,ADDITIONAL_DISH
 Dillinger and Capone,1,6,922,820,420,DRINK
@@ -961,23 +961,23 @@ Angels & Demons,6,2,90,81,678,ADDITIONAL_DISH
 Trinity: Gambling for High Stakes (Odds and Evens) (Pari e dispari),2,1,426,746,997,ADDITIONAL_DISH
 Burn Up!,5,1,35,363,672,DRINK
 Let Me In,5,2,849,66,235,ADDITIONAL_DISH
-"Visitor, The",5,2,493,791,98,ADDITIONAL_DISH
-"'burbs, The",3,3,817,580,177,DRINK
-"Hand of Death, The (Shao Lin men)",6,3,704,387,103,ADDITIONAL_DISH
+Visitor The,5,2,493,791,98,ADDITIONAL_DISH
+burbs The,3,3,817,580,177,DRINK
+Hand of Death The (Shao Lin men),6,3,704,387,103,ADDITIONAL_DISH
 Indestructible Man,1,5,886,18,4,DRINK
 From Paris with Love,4,4,827,563,939,ADDITIONAL_DISH
 Szamanka,1,5,918,522,788,DRINK
 Taxi to the Dark Side,1,5,733,707,466,DRINK
 Lola (Twinky) (London Affair),2,3,977,994,566,DRINK
-"Better Tomorrow II, A (Ying hung boon sik II)",5,1,595,200,922,DRINK
+Better Tomorrow II A (Ying hung boon sik II),5,1,595,200,922,DRINK
 If You Love (Jos rakastat),4,2,623,899,311,ADDITIONAL_DISH
 War of the Worlds 2: The Next Wave,5,5,345,274,654,DRINK
 Bloodtide,1,4,961,600,351,DRINK
 Deathstalker II,3,6,675,798,223,MAIN_DISH
 Morgan!,1,3,635,980,170,MAIN_DISH
-"Happiest Days of Your Life, The",1,6,25,480,957,ADDITIONAL_DISH
+Happiest Days of Your Life The,1,6,25,480,957,ADDITIONAL_DISH
 Home Alone 4,2,3,442,813,602,ADDITIONAL_DISH
-"Awful Truth, The",5,4,130,62,379,DRINK
+Awful Truth The,5,4,130,62,379,DRINK
 Drop Dead Fred,6,3,140,306,529,ADDITIONAL_DISH
 Lincz,3,5,535,586,983,ADDITIONAL_DISH
 Skyjacked,5,6,674,905,106,MAIN_DISH
@@ -987,11 +987,11 @@ Gloria,5,4,259,888,138,DRINK
 All About Steve,1,6,30,147,223,ADDITIONAL_DISH
 Ted Bundy,2,2,568,365,129,MAIN_DISH
 Gleason,3,6,693,373,156,MAIN_DISH
-"Mists of Avalon, The",3,5,949,982,337,ADDITIONAL_DISH
-"Situation, The",6,1,231,152,994,ADDITIONAL_DISH
+"Mists of Avalon The,3,5,949,982,337,ADDITIONAL_DISH
+Situation The,6,1,231,152,994,ADDITIONAL_DISH
 Things You Can Tell Just by Looking at Her,1,3,967,560,18,ADDITIONAL_DISH
 Bebe's Kids,3,6,263,355,392,DRINK
-"Blackbird, The",2,6,405,995,657,ADDITIONAL_DISH
+Blackbird The,2,6,405,995,657,ADDITIONAL_DISH
 Go Go Tales,2,6,623,691,159,DRINK
 Keith,2,1,824,24,200,ADDITIONAL_DISH
 Hiroshima,6,1,294,816,52,DRINK
