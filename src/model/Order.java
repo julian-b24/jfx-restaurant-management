@@ -3,7 +3,6 @@ package model;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Order implements Comparable<Order>, Serializable{
 
@@ -209,17 +208,28 @@ public class Order implements Comparable<Order>, Serializable{
 		String stringO = "order\n"+ 
 						"Prodcuts names: "+getProductNames()+"\n"+
 						"amount per each: "+ getAmounts()+"\n"+
+						"sizes: "+ getSizesString()+"\n"+
 						"total price: "+ totalPrice;
 		
 		return stringO;
 	}
 	
 	public String getAmounts() {
-		String xd = "";
+		String amountsP = "";
 		for (Integer integer : amountPerEach) {
-			xd+=integer+",";
+			amountsP+=integer+",";
 		}
 		
-		return xd;
+		return amountsP;
+	}
+	
+	public 	String getSizesString() {
+		String lineX = "";
+		
+		for (Size size : sizes) {
+			lineX += size.getSize()+",";
+		}
+		
+		return lineX;
 	}
 }

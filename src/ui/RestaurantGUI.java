@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
 
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
@@ -338,7 +337,7 @@ public class RestaurantGUI {
     private JFXRadioButton radioBtnState4;
 
     @FXML
-    private JFXTextField txtEOProductName;
+    private JFXTextField txtEOProductCode;
 
     @FXML
     private JFXTextField actionIngtxt11;
@@ -666,20 +665,9 @@ public class RestaurantGUI {
 			e.printStackTrace();
 		}
 		mainPane.getChildren().clear();
-		mainPane.getChildren().setAll(addContactPane);
-		
-		printToString(null);
-		
+		mainPane.getChildren().setAll(addContactPane);		
 	}
     
-    @FXML
-    public void printToString(ActionEvent even) {
-    	if(restaurant.getOrders().size()>0) {
-			System.out.println("GUI MENU");
-			System.out.println(restaurant.getOrders().get(0).toString());
-		}
-    }
-
     @FXML
     public void loadAdminProducts(ActionEvent event) {
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("adminProducts-pane.fxml"));
@@ -1277,6 +1265,12 @@ public class RestaurantGUI {
         			tempProductCodes.add(Integer.parseInt(txtOrderProductCode.getText()));
         			tempProductsAmounts.add(numberAmount);
         			tempProductsSizes.add(txtOrderProductSize.getText());
+        			
+        			Alert info = new Alert(AlertType.INFORMATION);
+        			info.setTitle("Producto añadido");
+        			info.setContentText("El producto seleccionado ha sido agregado exitosamente  a la orden");
+        			info.showAndWait();
+        			
         		}else {
         			//alerta el producto o el tamaño no existen, o el numero es negativo
         			Alert warning = new Alert(AlertType.WARNING);
@@ -1332,7 +1326,8 @@ public class RestaurantGUI {
     	}
     }
     
-    @FXML
+    @SuppressWarnings("unchecked")
+	@FXML
     public void createOrder(ActionEvent event) {
     		
 		LocalDateTime orderTime = LocalDateTime.now();
@@ -1347,9 +1342,26 @@ public class RestaurantGUI {
 		
 		try {
 			if(clientRef != null) {
-				restaurant.createOrder(tempProductCodes, tempProductsAmounts, tempProductsSizes, clientRef, id, orderTime, txtOrderOBs.getText(), state);
+				
+				ArrayList<Integer> cloneProductCodes =  (ArrayList<Integer>) tempProductCodes.clone();
+				ArrayList<Integer> cloneProductAmounts = (ArrayList<Integer>) tempProductsAmounts.clone();
+    			ArrayList<String> cloneProductSizes = (ArrayList<String>) tempProductsSizes.clone();
+				
+				restaurant.createOrder(cloneProductCodes, cloneProductAmounts, cloneProductSizes, clientRef, id, orderTime, txtOrderOBs.getText(), state);
+				
+				tempProductCodes.clear();
+				tempProductsAmounts.clear();
+				tempProductsSizes.clear();
+				
+				loadAdminOrders(null);
+				
+				//success alert 
+				Alert info = new Alert(AlertType.INFORMATION);
+				info.setTitle("Orden creada exitosamente");
+				info.setContentText("La orden ha sido creada exitosamente");
+				info.showAndWait();
 			}else {
-				//Alert no hay referenica al cliente 
+				//Alert no client reference
 				Alert warning = new Alert(AlertType.WARNING);
 				warning.setTitle("Cliente no encontrado");
 				warning.setContentText("No se ha ingresado un cliente válido.");
@@ -1372,9 +1384,6 @@ public class RestaurantGUI {
     public void loadEditOrder(ActionEvent event) {
     	    	
     	Order orderX = tvOrders.getSelectionModel().getSelectedItem();
-    	tempProductCodes.clear();
-    	tempProductsSizes.clear();
-    	tempProductsAmounts.clear();
     	
     	if(orderX != null) {
     		
@@ -1382,12 +1391,12 @@ public class RestaurantGUI {
         	orderCodeReference = orderX.getCode();
         	
     		for (int i = 0; i < orderX.getOrderProducts().size(); i++) {
-        		//if(tempProductCodes.size()<orderX.getOrderProducts().size()) {
+        		if(tempProductCodes.size()<orderX.getOrderProducts().size()) {
         			
         			tempProductCodes.add(orderX.getOrderProducts().get(i).getCode());
         			tempProductsSizes.add(orderX.getSizes().get(i).getSize());
         			tempProductsAmounts.add(orderX.getAmountPerEach().get(i));
-        		//}
+        		}
     		}
         	
     		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editOrder-pane.fxml"));
@@ -1452,96 +1461,56 @@ public class RestaurantGUI {
     }
     
     @FXML
-    public void eOaddIngrToProduct(ActionEvent event) {
+    void fillEditOrderFields(MouseEvent event) {
+
     	Product productX = tvregisteredProducts.getSelectionModel().getSelectedItem();
+    	if(productX != null) {
+    		txtEOProductCode.setText(""+productX.getCode());
+    	}
     	
-    	//product added by selecting an item from the table
-    	if(productX!=null) {
+    	if(txtEOAmount.getText().isEmpty()) {
+    		txtEOAmount.setText(""+1);
+    	}
+    	
+    	if(txtEOSize.getText().isEmpty()) {
+    		txtEOSize.setText(Product.DEFAULT_SIZE);
+    	}
+    }
+    
+    @FXML
+    public void eOaddProductToOrder(ActionEvent event) {
+    	
+    	if(!txtEOProductCode.getText().isEmpty() && !txtEOAmount.getText().isEmpty() && !txtEOSize.getText().isEmpty() ) {
     		
-    		tempProductCodes.add(productX.getCode());
-    		referenceOrder.getOrderProducts().add(productX);
+    		Product productX = restaurant.getProductByCode(Integer.parseInt(txtEOProductCode.getText()));
     		
-    		if(txtEOAmount.getText().isEmpty() && txtEOSize.getText().isEmpty()) {
-    			tempProductsAmounts.add(1);
-    			tempProductsSizes.add(Product.DEFAULT_SIZE); 
-    			loadEditOrder(null);
+    		if(productX != null) {
     			
-    		}else if (!txtEOAmount.getText().isEmpty() && txtEOSize.getText().isEmpty()) {
-    			
-    			tempProductsAmounts.add(Integer.parseInt(txtEOAmount.getText()));
-    			tempProductsSizes.add(Product.DEFAULT_SIZE); 
-    			loadEditOrder(null);
-    			
-    		}else if(txtEOAmount.getText().isEmpty() && !txtEOSize.getText().isEmpty()) {
-    			
-    			tempProductsAmounts.add(1);
-    			
-    			Size sizeX =productX.getSizeByName(txtEOSize.getText());
-    			
-    			if(sizeX!=null) {
-    				tempProductsSizes.add(txtEOSize.getText()); 
-    				loadEditOrder(null);
-    			}
-    		}else {
-    			tempProductsAmounts.add(Integer.parseInt(txtEOAmount.getText()));
-    			Size sizeX =productX.getSizeByName(txtEOSize.getText());
-    			
-    			if(sizeX!=null) {
-    				tempProductsSizes.add(txtEOSize.getText()); 
-    				loadEditOrder(null);
-    			}  			
-    			
-    		}
-    	//Product added by searching the code
-    	}else if (!txtEOProductName.getText().isEmpty()) {
-    		Product temProduct = restaurant.getProductByCode(Integer.parseInt(txtEOProductName.getText()));
-    		Size sizeX;
-    		
-    		if(temProduct!=null) {
-    			
-    			tempProductCodes.add(temProduct.getCode());
-    			referenceOrder.getOrderProducts().add(temProduct);
-    			
-    			if(txtEOAmount.getText().isEmpty() && txtEOSize.getText().isEmpty()) {
-        			tempProductsAmounts.add(1);
-        			tempProductsSizes.add(Product.DEFAULT_SIZE); 
-        			loadEditOrder(null);
+            	Size sizeX = productX.getSizeByName(txtEOSize.getText());
+        		
+        		if(sizeX!=null) {
         			
-        		}else if (!txtEOAmount.getText().isEmpty() && txtEOSize.getText().isEmpty()) {
-        			
-        			tempProductsAmounts.add(Integer.parseInt(txtEOAmount.getText()));
-        			tempProductsSizes.add(Product.DEFAULT_SIZE); 
-        			loadEditOrder(null);
-        			
-        		}else if(txtEOAmount.getText().isEmpty() && !txtEOSize.getText().isEmpty()) {
-        			
-        			tempProductsAmounts.add(1);
-        			
-        			sizeX =temProduct.getSizeByName(txtEOSize.getText());
-        			
-        			if(sizeX!=null) {
-        				tempProductsSizes.add(txtEOSize.getText()); 
-        				loadEditOrder(null);
-        			}
-        			
+        			if(verifyIfNumber(txtEOAmount.getText())) {
+        				
+        				tempProductCodes.add(Integer.parseInt(txtEOProductCode.getText()));
+            			tempProductsAmounts.add(Integer.parseInt(txtEOAmount.getText()));
+            			tempProductsSizes.add(txtEOSize.getText());
+            			referenceOrder.getOrderProducts().add(productX);
+            			
+            			loadEditOrder(null);
+            			
+        			}else {
+        				invalidNumericInputAlert();
+        			}        			
         		}else {
-        			tempProductsAmounts.add(Integer.parseInt(txtEOAmount.getText()));
-        			 sizeX = temProduct.getSizeByName(txtEOSize.getText());
-        			
-        			if(sizeX!=null) {
-        				tempProductsSizes.add(txtEOSize.getText()); 
-        				loadEditOrder(null);
-        			}  			
+        			invalidSizeAlert();
         		}
+    		}else {
+    			invalidProductCodeAlert();
     		}
-    	} 
-    	
-    	if (productX == null) {
-    		Alert error = new Alert(AlertType.ERROR);
-			error.setTitle("Ningún elemento seleccionado");
-			error.setContentText("No se ha seleccionado ningún producto.");
-			error.showAndWait();
-		}
+    	}else{
+    		warningEmpyText();
+    	}
     }
 
     @FXML
@@ -1561,15 +1530,15 @@ public class RestaurantGUI {
         		txtEOSize.setText(Product.DEFAULT_SIZE);
         	}
         	
-        	if(txtEOProductName.getText().isEmpty() && productX!=null) {
-        		txtEOProductName.setText(""+productX.getCode());
+        	if(txtEOProductCode.getText().isEmpty() && productX!=null) {
+        		txtEOProductCode.setText(""+productX.getCode());
         	}
         	
-        	productX = restaurant.getProductByCode(Integer.parseInt(txtEOProductName.getText()));
+        	productX = restaurant.getProductByCode(Integer.parseInt(txtEOProductCode.getText()));
         	sizeX = productX.getSizeByName(txtEOSize.getText());
     		
     		if(sizeX!=null) {
-    			posToRemoveInRef = searchProductByCodeInReferenceOrder(Integer.parseInt(txtEOProductName.getText()), txtEOSize.getText());
+    			posToRemoveInRef = searchProductByCodeInReferenceOrder(Integer.parseInt(txtEOProductCode.getText()), txtEOSize.getText());
     			
     			if(posToRemoveInRef!=-1) {
     				//checks if the amount number of products to remove is lower than the actual amount
@@ -1630,12 +1599,26 @@ public class RestaurantGUI {
     	return pos;
     }    
     
-    @FXML
+    @SuppressWarnings("unchecked")
+	@FXML
     public void eOupdateProduct(ActionEvent event) {
     	try {
     		if(orderCodeReference >= 0) {
-    			restaurant.updateOrder(orderCodeReference, tempProductCodes, tempProductsAmounts, tempProductsSizes);
+    			
+				ArrayList<Integer> cloneProductCodes =  (ArrayList<Integer>) tempProductCodes.clone();
+				ArrayList<Integer> cloneProductAmounts = (ArrayList<Integer>) tempProductsAmounts.clone();
+    			ArrayList<String> cloneProductSizes = (ArrayList<String>) tempProductsSizes.clone();
+    			
+    			restaurant.updateOrder(orderCodeReference, cloneProductCodes, cloneProductAmounts, cloneProductSizes);
     			loadEditOrder(null);
+    			
+    			//success alert
+    			Alert info = new Alert(AlertType.INFORMATION);
+    			info.setTitle("Orden editada exitosamente");
+    			info.setContentText("La orden ha sido editada correctamente");
+    			info.showAndWait();
+    			
+    			loadAdminOrders(null);
     		} else {
     			
     			Alert warning = new Alert(AlertType.WARNING);
@@ -2377,6 +2360,28 @@ public class RestaurantGUI {
 		error.setContentText("La infromación no se ha importado. Fallos en la lectura");
 		error.showAndWait();
     }
+    
+    public void invalidNumericInputAlert() {
+    	Alert error = new Alert(AlertType.WARNING);
+		error.setTitle("Formato de número inválido");
+		error.setContentText("Se ingresó un valor que no es un número");
+		error.showAndWait();
+    }
+    
+    public void invalidProductCodeAlert() {
+    	Alert error = new Alert(AlertType.WARNING);
+		error.setTitle("Código de producto no encontrado");
+		error.setContentText("El código que se insertó no se encuentra dentro de los productos registrados");
+		error.showAndWait();
+    }
+    
+    public void invalidSizeAlert() {
+    	Alert error = new Alert(AlertType.WARNING);
+		error.setTitle("Tamaño no hallado en producto");
+		error.setContentText("El tamaño ingresado no se encuentra registrado dentro del producto seleccionado");
+		error.showAndWait();
+    }
+    
  
     public boolean verifyIfNumber(String str) {
     	
