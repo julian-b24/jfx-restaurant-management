@@ -215,5 +215,6 @@
             <Font name="Montserrat SemiBold" size="22.0" />
          </font>
       </Text>
+      <Button layoutX="870.0" layoutY="757.0" mnemonicParsing="false" onAction="#printToString" prefHeight="31.0" prefWidth="163.0" style="-fx-background-color: #D9A404;" text="Print toString 0" textFill="#fff7d9" />
    </children>
 </AnchorPane>

@@ -347,7 +347,6 @@ public class Restaurant{
 			code = orders.get(orders.size() - 1).getCode() + 1;
 		}
 		
-		System.out.println("TEST AMOUNT PER EACH RESTAURAMT: "+productsAmounts.size());
 		
 		Order order;
 		if (state == null) {
@@ -357,9 +356,9 @@ public class Restaurant{
 		}
 		
 		order.generateProductsReferences();
-		
 		orders.add(order);
 		saveOrdersData();
+		
 	}
 	
 	public void updateOrder(int orderToUpdtaeCode, ArrayList<Integer> productCodes, ArrayList<Integer> amountsPerEach, ArrayList<String> sizesStrings) throws IOException {

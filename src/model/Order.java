@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Order implements Comparable<Order>, Serializable{
 
@@ -39,6 +40,7 @@ public class Order implements Comparable<Order>, Serializable{
 		state = State.REQUESTED;
 		sizes = sizs;
 		stateString = getState().getState();
+		
 	}
 	
 	public Order(int cod, String obs, String clntRef, int mployeRef, LocalDateTime dte, ArrayList<Product> products, ArrayList<Integer> amountEach, ArrayList<Size> sizs, String stae) {
@@ -50,9 +52,7 @@ public class Order implements Comparable<Order>, Serializable{
 	private void calculateTotalPrice() {
 		
 		double total = 0;
-
 		for (int i = 0; i < amountPerEach.size(); i++) {
-			
 			Product tempProduct = orderProducts.get(i);
 			double productPrice = tempProduct.getPrice();
 			total += productPrice * amountPerEach.get(i);
@@ -60,6 +60,18 @@ public class Order implements Comparable<Order>, Serializable{
 		
 		totalPrice = total;
 	}
+	
+	public String getProductNames() {
+		
+		String line="";
+		
+		for (int i = 0; i < orderProducts.size() ; i++) {
+			line += orderProducts.get(i).getName()+",";
+		}
+		
+		return line;
+	}
+	
 	
 	//Getters and setters
 	public int getCode() {
@@ -192,4 +204,22 @@ public class Order implements Comparable<Order>, Serializable{
 		return date.compareTo(otherOrdr.getDate());
 	}
 	
+	public String toString() {
+		
+		String stringO = "order\n"+ 
+						"Prodcuts names: "+getProductNames()+"\n"+
+						"amount per each: "+ getAmounts()+"\n"+
+						"total price: "+ totalPrice;
+		
+		return stringO;
+	}
+	
+	public String getAmounts() {
+		String xd = "";
+		for (Integer integer : amountPerEach) {
+			xd+=integer+",";
+		}
+		
+		return xd;
+	}
 }

@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
@@ -312,7 +313,7 @@ public class RestaurantGUI {
     private TableColumn<Order, String> colOrdersStates;
 
     @FXML
-    private TableColumn<Order, String> colOrdersPrices;
+    private TableColumn<Order, Double> colOrdersPrices;
     
     @FXML
     private JFXTextField txtOrderOBs;
@@ -666,7 +667,18 @@ public class RestaurantGUI {
 		}
 		mainPane.getChildren().clear();
 		mainPane.getChildren().setAll(addContactPane);
+		
+		printToString(null);
+		
 	}
+    
+    @FXML
+    public void printToString(ActionEvent even) {
+    	if(restaurant.getOrders().size()>0) {
+			System.out.println("GUI MENU");
+			System.out.println(restaurant.getOrders().get(0).toString());
+		}
+    }
 
     @FXML
     public void loadAdminProducts(ActionEvent event) {
@@ -1236,6 +1248,7 @@ public class RestaurantGUI {
 			String css = "styles/tableStyle.css";
 			addContactPane.getStylesheets().add(css);
 			mainPane.getChildren().setAll(addContactPane);
+			
 			initializePorudctsInCreateOrder();
 			intializeOrders();
 			
@@ -1344,9 +1357,10 @@ public class RestaurantGUI {
 			}
 			
 			clientRef = null;
-			tempProductCodes.clear();
-			tempProductsAmounts.clear();
-			tempProductsSizes.clear();
+			
+			tempProductCodes = new ArrayList<Integer>();
+			tempProductsAmounts = new ArrayList<Integer>();
+			tempProductsSizes = new ArrayList<String>();
 			
 		} catch (IOException e) {
 			 	
@@ -1366,7 +1380,6 @@ public class RestaurantGUI {
     		
     		referenceOrder = orderX;
         	orderCodeReference = orderX.getCode();
-        	
         	
     		for (int i = 0; i < orderX.getOrderProducts().size(); i++) {
         		//if(tempProductCodes.size()<orderX.getOrderProducts().size()) {
@@ -1426,14 +1439,14 @@ public class RestaurantGUI {
     
     public void intializeOrders() {
     	ObservableList<Order> allOrders = FXCollections.observableArrayList(restaurant.getOrders());
-		 
+    	
     	colOrdersClients.setCellValueFactory(new PropertyValueFactory<Order,String>("clientRef"));  		 
 		 
     	colOrdersCodes.setCellValueFactory(new PropertyValueFactory<Order,String>("code"));
 		 
     	colOrdersStates.setCellValueFactory(new PropertyValueFactory<Order,String>("stateString"));
 
-    	colOrdersPrices.setCellValueFactory(new PropertyValueFactory<Order,String>("totalPrice"));    		
+    	colOrdersPrices.setCellValueFactory(new PropertyValueFactory<Order, Double>("totalPrice"));    		
 		 
     	tvOrders.setItems(allOrders);
     }
