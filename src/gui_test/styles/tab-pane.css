@@ -1,0 +1,33 @@
+*{
+    -fx-primary-color:#ffcd29;
+}
+
+.tab{
+    -fx-background-color: black;
+    -fx-pref-width: 150;
+    -fx-pref-height: 60;
+}
+
+.tab-header-background{
+    -fx-background-color: black;
+}
+
+.jfx-tab-pane .tab-selected-line{
+    -fx-background-color:  -fx-primary-color;
+}
+
+/* Style ScrollPane*/
+.scroll-pane{
+    -fx-background-color: black;
+
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:  black;
+    -fx-background-radius: 30;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: transparent;
+}
+

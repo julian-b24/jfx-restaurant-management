@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="733.0" prefWidth="1080.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="45.0" prefHeight="733.0" prefWidth="689.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="346.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text fill="#ffd563" strokeType="OUTSIDE" strokeWidth="0.0" text="Editar usuario">
+               <font>
+                  <Font size="28.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="50.0" top="59.0" />
+               </VBox.margin>
+            </Text>
+            <HBox prefHeight="64.0" prefWidth="523.0">
+               <children>
+                  <VBox prefHeight="64.0" prefWidth="322.0">
+                     <children>
+                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+                           <VBox.margin>
+                              <Insets left="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <JFXTextField fx:id="txtEidtUserName" focusColor="#d9a404" prefHeight="31.0" prefWidth="227.0" promptText="Nombre">
+                           <VBox.margin>
+                              <Insets left="50.0" right="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXTextField>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="100.0" prefWidth="277.0">
+                     <children>
+                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <JFXTextField fx:id="txtEditUserLatName" focusColor="#d9a404" prefHeight="31.0" prefWidth="227.0" promptText="Apellido">
+                           <font>
+                              <Font size="18.0" />
+                           </font></JFXTextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="64.0" prefWidth="523.0">
+               <children>
+                  <VBox prefHeight="64.0" prefWidth="322.0">
+                     <children>
+                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario">
+                           <VBox.margin>
+                              <Insets left="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <JFXTextField fx:id="txtEditUsername" focusColor="#d9a404" prefHeight="31.0" prefWidth="227.0" promptText="Username">
+                           <VBox.margin>
+                              <Insets left="50.0" right="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXTextField>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="100.0" prefWidth="277.0">
+                     <children>
+                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña de usuario">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <JFXTextField fx:id="txtEditUserPassword" focusColor="#d9a404" prefHeight="31.0" prefWidth="227.0" promptText="Contraseña">
+                           <font>
+                              <Font size="18.0" />
+                           </font></JFXTextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="100.0" prefWidth="337.0">
+                     <children>
+                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Cédula del usuario">
+                           <VBox.margin>
+                              <Insets left="50.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <JFXTextField fx:id="txtEdituserCC" focusColor="#d9a404" prefHeight="31.0" prefWidth="227.0" promptText="c.c">
+                           <VBox.margin>
+                              <Insets left="50.0" right="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXTextField>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <JFXButton onAction="#updateUser" prefHeight="38.0" prefWidth="230.0" style="-fx-background-color: #D9A404;" text="Actualizar usuario" textFill="#ffeecc">
+               <VBox.margin>
+                  <Insets left="50.0" top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </VBox>
+      <FontAwesomeIconView fill="#ffd695" glyphName="ADDRESS_CARD_ALT" layoutX="67.0" layoutY="368.0" size="18" />
+      <FontAwesomeIconView fill="#ffd695" glyphName="USER" layoutX="68.0" layoutY="281.0" size="18" />
+      <FontAwesomeIconView fill="#ffd695" glyphName="FONT" layoutX="68.0" layoutY="185.0" size="18" />
+      <FontAwesomeIconView fill="#ffd695" glyphName="KEY" layoutX="339.0" layoutY="281.0" size="18" />
+      <FontAwesomeIconView fill="#ffd695" glyphName="BEHANCE" layoutX="337.0" layoutY="185.0" size="18" />
+   </children>
+</AnchorPane>

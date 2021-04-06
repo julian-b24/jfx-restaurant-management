@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: blue;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="790.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #D9A404;" BorderPane.alignment="CENTER">
+               <children>
+                  <FontAwesomeIconView fill="WHITE" glyphName="HOME" layoutX="86.0" layoutY="58.0" size="28" text="" AnchorPane.bottomAnchor="497.0" AnchorPane.leftAnchor="86.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="32.0" />
+                  <VBox layoutY="76.0" prefHeight="386.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="76.0">
+                     <children>
+                        <JFXButton fx:id="sample" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadIngredientOptions" text="Ingredientes" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="PAGELINES" size="20" />
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadProductOptions" text="Productos" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="CUTLERY" size="18" />
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadOrderOptions" text="Ordenes" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="TRUCK" size="18" />
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadClientOptions" text="Clientes" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="HANDSHAKE_ALT" size="18" />
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadEmployeeOptions" text="Empleados" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" size="18" />
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Usuarios" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="USERS" lineSpacing="10.0" size="18" />
+                           </graphic>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                        <JFXButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadGenerateReports" text="Reportes" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="FILE_EXCEL_ALT" size="20" />
+                           </graphic>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                        <JFXButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadImports" text="Importar" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="FILE_TEXT_ALT" size="20" />
+                           </graphic>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" layoutY="486.0" prefHeight="50.0" prefWidth="184.0" spacing="4.0" style="-fx-background-color: ffcd29; -fx-background-radius: 10;" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0">
+                     <children>
+                        <FontAwesomeIconView fill="WHITE" glyphName="USER_CIRCLE_ALT" size="24" />
+                        <VBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="123.0" style="-fx-background-color: transparent;">
+                           <children>
+                              <Label fx:id="nameLbl" text="Juan Blanco">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="codeLbl" text="Código: 1" textFill="#393939" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <FontAwesomeIconView fill="#a1a1a1" glyphName="COG" onMouseClicked="#loadEditUser" size="16" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets left="5.0" right="5.0" />
+                     </opaqueInsets>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </left>
+         <center>
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="secondaryPane" layoutY="69.0" prefHeight="733.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="69.0">
+                     <children>
+                        <MenuButton layoutX="51.0" layoutY="91.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Ingredientes" textFill="WHITE">
+                          <items>
+                            <MenuItem mnemonicParsing="false" style="-fx-background-color: transparent;" text="Action 1">
+                                 <graphic>
+                                    <FontAwesomeIconView />
+                                 </graphic>
+                              </MenuItem>
+                            <MenuItem mnemonicParsing="false" text="Action 2">
+                                 <graphic>
+                                    <FontAwesomeIconView />
+                                 </graphic>
+                              </MenuItem>
+                          </items>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="PAGELINES" size="20" />
+                           </graphic>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </MenuButton>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="69.0" prefWidth="733.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <JFXButton layoutX="1002.0" layoutY="16.0" style="-fx-background-color: transparent;" text="Salir" textFill="#d9a404" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="1002.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="16.0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <Label fx:id="timeLbl" layoutX="936.0" layoutY="22.0" prefHeight="25.0" prefWidth="43.0" text="12:00" textFill="#a1a1a1" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="936.0" AnchorPane.rightAnchor="101.0" AnchorPane.topAnchor="22.0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

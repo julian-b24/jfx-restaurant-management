@@ -1,0 +1,13 @@
+*{
+    -fx-primary-color:#ffcd29;
+}
+
+.pane{
+    -fx-border-radius: 10px 10px 10px 10px;
+    -fx-background-radius: 10px 10px 10px 10px;
+}
+
+.button{
+    /*-fx-border-color: -fx-primary-color;*/
+    -fx-border-radius: 20px 20px 20px 20px;
+}
