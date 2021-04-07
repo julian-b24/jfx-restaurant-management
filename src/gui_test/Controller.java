@@ -1,6 +1,7 @@
 package gui_test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
@@ -11,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -18,8 +20,31 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import model.Client;
+import model.Employee;
+import model.Ingredient;
+import model.Order;
+import model.Product;
+import model.Restaurant;
+import model.Size;
+import model.SystemUser;
 
 public class Controller {
+
+	private Restaurant restaurant;
+	
+	//other fields
+	private String actualUser;						//A reference to the system user that is currently logged in
+	private String referenceIngredient;				//A reference to an ingredient selected in the ingredients table, that allows the program to recognize which ingredient has to be edited 
+	private ArrayList<Integer> tempIngrsCodes;		//Temporal list with the indexes of the ingredients that will be added to the product
+	private Product referenceProduct;
+	private Order referenceOrder;
+	private int orderCodeReference;
+	private ArrayList<Integer> tempProductCodes;
+	private ArrayList<Integer> tempProductsAmounts;
+	private ArrayList<String> tempProductsSizes;
+	private String clientRef;						//cc from client in order
+	private long searchTime;						//binary search time of client by name
 
 	@FXML
     private AnchorPane mainPane;
@@ -187,22 +212,26 @@ public class Controller {
     private JFXRadioButton radioBtnIngUnavailable;
 
     @FXML
-    private TableView<?> tableIngr;
+    private TableView<Ingredient> tableIngr;
 
     @FXML
-    private TableColumn<?, ?> colIngr;
+    private TableColumn<Ingredient, String> colIngr;
 
     @FXML
-    private TableColumn<?, ?> colCreator;
+    private TableColumn<Ingredient, String> colCreator;
 
     @FXML
-    private TableColumn<?, ?> colLastE;
+    private TableColumn<Ingredient, String> colLastE;
 
     @FXML
-    private TableColumn<?, ?> colCode;
+    private TableColumn<Ingredient, Integer> colCode;
 
     @FXML
-    private TableColumn<?, ?> colValue;
+    private TableColumn<Ingredient, String> colValue;
+    
+    @FXML
+    private TableColumn<Ingredient, Button> colEdit;
+
     
     //create product pane fields
     @FXML
@@ -221,22 +250,22 @@ public class Controller {
     private JFXRadioButton rbDrink;
 
     @FXML
-    private TableView<?> tvIngP;
+    private TableView<Ingredient> tvIngP;
 
     @FXML
-    private TableColumn<?, ?> colNip;
+    private TableColumn<Ingredient, String> colNip;
 
     @FXML
-    private TableColumn<?, ?> colIngcreP;
+    private TableColumn<Ingredient, String> colIngcreP;
 
     @FXML
-    private TableColumn<?, ?> colIngLastEP;
+    private TableColumn<Ingredient, String> colIngLastEP;
 
     @FXML
-    private TableColumn<?, ?> colIngCodP;
+    private TableColumn<Ingredient, String> colIngCodP;
 
     @FXML
-    private TableColumn<?, ?> colIngVal;
+    private TableColumn<Ingredient, String> colIngVal;
     
     //edit product pane field
     @FXML
@@ -276,37 +305,37 @@ public class Controller {
     private JFXTextField txtMultiply;
 
     @FXML
-    private TableView<?> tvIdp;
+    private TableView<Ingredient> tvIdp;
 
     @FXML
-    private TableColumn<?, ?> colIngInProduct;
+    private TableColumn<Ingredient, String> colIngInProduct;
 
     @FXML
-    private TableColumn<?, ?> colIngInPCode;
+    private TableColumn<Ingredient, String> colIngInPCode;
 
     @FXML
-    private TableColumn<?, ?> colIngInPPrice;
+    private TableColumn<Ingredient, String> colIngInPPrice;
 
     @FXML
-    private TableView<?> tvallInings;
+    private TableView<Ingredient> tvallInings;
 
     @FXML
-    private TableColumn<?, ?> colAlIngsNames;
+    private TableColumn<Ingredient, String> colAlIngsNames;
 
     @FXML
-    private TableColumn<?, ?> colAllIngsCodes;
+    private TableColumn<Ingredient, String> colAllIngsCodes;
 
     @FXML
-    private TableColumn<?, ?> colAllINgPrices;
+    private TableColumn<Ingredient, String> colAllINgPrices;
 
     @FXML
-    private TableView<?> tvProdSizes;
+    private TableView<Size> tvProdSizes;
 
     @FXML
-    private TableColumn<?, ?> colProdSizeName;
+    private TableColumn<Size, String> colProdSizeName;
 
     @FXML
-    private TableColumn<?, ?> colProdSizePrice;
+    private TableColumn<Size, String> colProdSizePrice;
     
     //create order pane fields
     @FXML
@@ -322,16 +351,16 @@ public class Controller {
     private JFXTextField txtOrderOBs;
 
     @FXML
-    private TableView<?> tvProductsList;
+    private TableView<Product> tvProductsList;
 
     @FXML
-    private TableColumn<?, ?> colProductsNames;
+    private TableColumn<Product, String> colProductsNames;
 
     @FXML
-    private TableColumn<?, ?> colProductsCodes;
+    private TableColumn<Product, String> colProductsCodes;
 
     @FXML
-    private TableColumn<?, ?> colProductsPrices;
+    private TableColumn<Product, String> colProductsPrices;
 
     @FXML
     private Label labelSearchTimeClient;
@@ -344,19 +373,19 @@ public class Controller {
 
     //edit order table pane fields
     @FXML
-    private TableView<?> tvOrders;
+    private TableView<Order> tvOrders;
 
     @FXML
-    private TableColumn<?, ?> colOrdersClients;
+    private TableColumn<Order, String> colOrdersClients;
 
     @FXML
-    private TableColumn<?, ?> colOrdersCodes;
+    private TableColumn<Order, String> colOrdersCodes;
 
     @FXML
-    private TableColumn<?, ?> colOrdersStates;
+    private TableColumn<Order, String> colOrdersStates;
 
     @FXML
-    private TableColumn<?, ?> colOrdersPrices;
+    private TableColumn<Order, Double> colOrdersPrices;
     
     //edit order process pane fields
     @FXML
@@ -384,30 +413,167 @@ public class Controller {
     private JFXTextField txtEOSize;
 
     @FXML
-    private TableView<?> tvPIO;
+    private TableView<Product> tvPIO;
 
     @FXML
-    private TableColumn<?, ?> colEOProductName;
+    private TableColumn<Product, String> colEOProductName;
 
     @FXML
-    private TableColumn<?, ?> colEOProductCode;
+    private TableColumn<Product, String> colEOProductCode;
 
     @FXML
-    private TableColumn<?, ?> colEOProductPrice;
+    private TableColumn<Product, String> colEOProductPrice;
 
     @FXML
-    private TableView<?> tvregisteredProducts;
+    private TableView<Product> tvregisteredProducts;
 
     @FXML
-    private TableColumn<?, ?> colEOOrderName;
+    private TableColumn<Product, String> colEOOrderName;
 
     @FXML
-    private TableColumn<?, ?> colEOCode;
+    private TableColumn<Product, String> colEOCode;
 
     @FXML
-    private TableColumn<?, ?> colEOPrice;
+    private TableColumn<Product, String> colEOPrice;
     
-    public Controller() {
+    @FXML
+    private TableView<Product> tvProducts;
+
+    @FXML
+    private TableColumn<Product, String> colPname;
+
+    @FXML
+    private TableColumn<Product, String> colPIngs;
+
+    @FXML
+    private TableColumn<Product, String> colLEP;
+
+    @FXML
+    private TableColumn<Product, String> colPCode;
+
+    @FXML
+    private TableColumn<Product, String> coPPrice;
+
+    @FXML
+    private TableColumn<Product, String> colPav;
+
+    @FXML
+    private TableColumn<Product, String> colPType;
+    
+    @FXML
+    private TableView<Client> tvShowClients;
+
+    @FXML
+    private TableColumn<Client, String> colSClientName;
+
+    @FXML
+    private TableColumn<Client, String> colSClientLastName;
+
+    @FXML
+    private TableColumn<Client, String> colSClientCc;
+
+    @FXML
+    private TableColumn<Client, String> colSClientAdress;
+
+    @FXML
+    private TableColumn<Client, String> colSClientPhone;
+    
+    @FXML
+    private TableView<Employee> tvShowEmployees;
+
+    @FXML
+    private TableColumn<Employee, String> colSEmployeeName;
+
+    @FXML
+    private TableColumn<Employee, String> colSEmployeeLastName;
+
+    @FXML
+    private TableColumn<Employee, String> colSEmployeeCc;
+
+    @FXML
+    private TableColumn<Employee, String> colSEmployeeId;
+    
+    @FXML
+    private TableView<SystemUser> tvShowUsers;
+
+    @FXML
+    private TableColumn<SystemUser, String> colSUserName;
+
+    @FXML
+    private TableColumn<SystemUser, String> colSUserLastName;
+
+    @FXML
+    private TableColumn<SystemUser, String> colSUserCc;
+
+    @FXML
+    private TableColumn<SystemUser, String> colSUserAdress;
+
+    @FXML
+    private TableColumn<SystemUser, String> colSUserPhone;
+    
+    @FXML
+    private TableView<Ingredient> tvShowIngredients;
+
+    @FXML
+    private TableColumn<Ingredient, String> colSIngredientName;
+
+    @FXML
+    private TableColumn<Ingredient, String> colSIngredientLastName;
+
+    @FXML
+    private TableColumn<Ingredient, String> colSIngredientCc;
+
+    @FXML
+    private TableColumn<Ingredient, String> colSIngredientAdress;
+
+    @FXML
+    private TableColumn<Ingredient, String> colSIngredientPhone;
+    
+    @FXML
+    private TableView<Product> tvShowProduct;
+
+    @FXML
+    private TableColumn<Product, String> colSProductName;
+
+    @FXML
+    private TableColumn<Product, String> colSProductCreator;
+
+    @FXML
+    private TableColumn<Product, String> colSProductCode;
+
+    @FXML
+    private TableColumn<Product, String> colSProductAmountIngredients;
+
+    @FXML
+    private TableColumn<Product, String> colSProductAvailabale;
+
+    @FXML
+    private TableColumn<Product, String> colSProductType;
+    
+    @FXML
+    private TableColumn<Product, String> colSProductPrice;
+    
+    @FXML
+    private TableView<Order> tvShowOrder;
+
+    @FXML
+    private TableColumn<Order, String> colSOrderCcClient;
+
+    @FXML
+    private TableColumn<Order, String> colSOrderCode;
+
+    @FXML
+    private TableColumn<Order, String> colSOrderDate;
+
+    @FXML
+    private TableColumn<Order, String> colSOrderState;
+    
+    public Controller(Restaurant restaurant) {
+    	this.restaurant = restaurant;
+		tempIngrsCodes = new ArrayList<>();
+		tempProductCodes = new ArrayList<>();
+		tempProductsAmounts = new ArrayList<>();
+		tempProductsSizes = new ArrayList<>();
 	}
     
     @FXML

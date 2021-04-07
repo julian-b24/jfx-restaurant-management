@@ -5,13 +5,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Restaurant;
 
 public class Main extends Application{
 
+	private Restaurant restaurant;
 	private Controller controller;
 	
 	public Main() {
-		controller = new Controller();
+		restaurant = new Restaurant();
+		controller = new Controller(restaurant);
 	}
 
 	public static void main(String[] args) {
