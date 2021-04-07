@@ -682,15 +682,21 @@ public class Controller {
 		loadTabPaneOptions(null);
 		loadCreate("create-ingredient.fxml");
 		loadEdit("edit-ingredient.fxml");
+		initizalizeTableIngr();
+		
 		loadVisualize("list-ingredients.fxml");
+		initializeShowIngredients();
 	}
     
     @FXML
     public void loadProductOptions(ActionEvent event) {
     	loadTabPaneOptions(null);
 		loadCreate("create-product.fxml");
+		initizalizeTableIngrProd();
+		
 		loadEdit("edit-product.fxml");
 		loadVisualize("list-products.fxml");
+		initializeShowProducts();
     }
     
     @FXML
@@ -699,6 +705,7 @@ public class Controller {
 		loadCreate("create-order.fxml");
 		loadEditOrderTable(null);
 		loadVisualize("list-orders.fxml");
+		initializeShowOrders();
     }
     
     @FXML
@@ -707,6 +714,7 @@ public class Controller {
 		loadCreate("create-client.fxml");
 		loadEdit("edit-client.fxml");
 		loadVisualize("list-clients.fxml");
+		initializeShowClients();
     }
     
     
@@ -716,6 +724,7 @@ public class Controller {
 		loadCreate("create-employee.fxml");
 		loadEdit("update-employee.fxml");
 		loadVisualize("list-employees.fxml");
+		initializeShowEmployees();
     }
     
     @FXML
@@ -728,6 +737,7 @@ public class Controller {
 			
 			secondaryPane.getChildren().clear();
 			secondaryPane.getChildren().setAll(visual);
+			initializeShowUsers();
 			
 		} catch (IOException e) {
 			e.printStackTrace();
