@@ -482,7 +482,7 @@ public class Controller {
     public void loadOrderOptions(ActionEvent event) {
     	loadTabPaneOptions(null);
 		loadCreate("create-order.fxml");
-		loadEditOrder(null);
+		loadEditOrderTable(null);
 		loadVisualize("list-orders.fxml");
     }
     
