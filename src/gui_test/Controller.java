@@ -694,7 +694,8 @@ public class Controller {
 		loadCreate("create-product.fxml");
 		initizalizeTableIngrProd();
 		
-		loadEdit("edit-product.fxml");
+		loadEditProductTable(null);
+		
 		loadVisualize("list-products.fxml");
 		initializeShowProducts();
     }
@@ -703,6 +704,8 @@ public class Controller {
     public void loadOrderOptions(ActionEvent event) {
     	loadTabPaneOptions(null);
 		loadCreate("create-order.fxml");
+		initializePorudctsInCreateOrder();
+		
 		loadEditOrderTable(null);
 		loadVisualize("list-orders.fxml");
 		initializeShowOrders();
@@ -823,15 +826,66 @@ public class Controller {
 			e.printStackTrace();
 		}
     }
+	@FXML
+	public void loadEditProduct(ActionEvent event) {
+		loadEdit("edit-product-process.fxml");
+		//initializeIngsInProduct(Product px)
+		initializeAllRegisIngs();
+		//initSizesProduct(Product px);
+	}
+	
+	@FXML
+	public void loadEditProductTable(ActionEvent event) {
+		loadEdit("edit-product-table.fxml");
+		initializeShowProducts();
+	}
 	
 	@FXML
     public void loadEditOrder(ActionEvent event) {
-		loadEdit("edit-order-process.fxml");
+
+		Order orderX = tvOrders.getSelectionModel().getSelectedItem();
+    	
+    	if(orderX != null) {
+    		
+    		loadEdit("edit-order-process.fxml");
+    		
+    		referenceOrder = orderX;
+        	orderCodeReference = orderX.getCode();
+        	
+    		for (int i = 0; i < orderX.getOrderProducts().size(); i++) {
+        		if(tempProductCodes.size()<orderX.getOrderProducts().size()) {
+        			
+        			tempProductCodes.add(orderX.getOrderProducts().get(i).getCode());
+        			tempProductsSizes.add(orderX.getSizes().get(i).getSize());
+        			tempProductsAmounts.add(orderX.getAmountPerEach().get(i));
+        		}
+    		}
+    		
+    		//state
+    		if(orderX.getState().getState().equals("Solicitado")) {
+    			radioBtnState1.setSelected(true);
+    		}else if(orderX.getState().getState().equals("En proceso")){
+    			radioBtnState2.setSelected(true);
+    		}else if(orderX.getState().getState().equals("Enviado")){
+    			radioBtnState3.setSelected(true);
+    		}else if(orderX.getState().getState().equals("Entregado")){
+    			radioBtnState4.setSelected(true);
+    		}
+    		
+    		initializeProductsInOrder(referenceOrder);
+    		initializeProductsInEditingOrder();
+    	}else {
+    		Alert warning = new Alert(AlertType.WARNING);
+			warning.setTitle("Producto referenciado!");
+			warning.setContentText("No has seleccionado un elemento de la tabala");
+			warning.showAndWait();
+    	}
     }
 	
 	@FXML
     public void loadEditOrderTable(ActionEvent event) {
     	loadEdit("edit-order-table.fxml");
+    	intializeOrders();
     }
 	
 	@FXML
@@ -1043,18 +1097,6 @@ public class Controller {
     		
     		if(posClient != -1) {
     			
-    			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editClient-pane.fxml"));
-    			fxmlLoader.setController(this); 	
-    			
-    			Parent addContactPane = null;
-    			try {
-    				addContactPane = fxmlLoader.load();
-    			} catch (IOException e) {
-    				e.printStackTrace();
-    			}
-    			mainPane.getChildren().clear();
-    			mainPane.getChildren().setAll(addContactPane);
-    			
     			txtNewClientName.setText(restaurant.getClients().get(posClient).getName());
     			txtNewClientLastName.setText(restaurant.getClients().get(posClient).getLastName());
     			txtUpdateClientCC.setText(restaurant.getClients().get(posClient).getCc());
@@ -1085,7 +1127,12 @@ public class Controller {
        		
     		try {
 				restaurant.updateClient(txtCCToEdit.getText(), txtNewClientName.getText(), txtNewClientLastName.getText(), txtNewClientAdress.getText(),
-						txtNewClientPhone.getText(), txtNewClientObsField.getText());
+										txtNewClientPhone.getText(), txtNewClientObsField.getText());
+				Alert info = new Alert(AlertType.INFORMATION);
+				info.setTitle("Cliente actualizado");
+				info.setContentText("Se ha actualizado exitosamente el cliente.");
+				info.showAndWait();
+				loadClientOptions(null);
 			} catch (IOException e) {
 
 				e.printStackTrace();
@@ -1159,6 +1206,14 @@ public class Controller {
 				restaurant.createIngredient(txtIngredientName.getText(), Integer.toString(restaurant.getUserByUserName(actualUser).getEmployeeId()), 
 											Integer.toString(restaurant.getUserByUserName(actualUser).getEmployeeId()), 
 											txtIngredientValue.getText());
+				
+				Alert info = new Alert(AlertType.INFORMATION);
+				info.setHeaderText("Ingrediente creado");
+				info.setContentText("El ingrediente se ha creado exitosamente.");
+				info.showAndWait();
+				
+				loadIngredientOptions(null);
+				
 			} catch (IOException e) {
 
 				e.printStackTrace();
@@ -1201,7 +1256,14 @@ public class Controller {
     			}
     			
 				restaurant.updateIngredient(referenceIngredient, txtNewIngName.getText(), txtNewIngVal.getText(), available);
-			} catch (IOException e) {
+				Alert info = new Alert(AlertType.INFORMATION);
+				info.setTitle("Ingrediente actualizado");
+				info.setContentText("Se ha actualizado la información del cliente exitosamente.");
+				info.showAndWait();
+				
+				loadIngredientOptions(null);
+				
+    		} catch (IOException e) {
 				
 				e.printStackTrace();
 			}
@@ -1418,8 +1480,14 @@ public class Controller {
     	
 		try {
 			restaurant.updateProduct(txtNewProductName.getText(), actualUser, referenceProduct.getCode(), tempIngrsCodes, type, isAvailable, sizesNames, priceFactors);
-		} catch (IOException e) {
 			
+			Alert info = new Alert(AlertType.INFORMATION);
+			info.setTitle("Producto actualizado");
+			info.setContentText("Se ha actualizado el producto exitosamente.");
+			info.showAndWait();
+			loadProductOptions(null);
+			
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
     }
@@ -1687,7 +1755,7 @@ public class Controller {
     			info.setContentText("La orden ha sido editada correctamente");
     			info.showAndWait();
     			
-    			loadEdit("edit-order-process.fxml");
+    			loadOrderOptions(null);
     		} else {
     			
     			Alert warning = new Alert(AlertType.WARNING);
@@ -1750,6 +1818,24 @@ public class Controller {
 			alert.setContentText("Al menos uno de los campos está vacío o el nombre de usuario ingresado ya existe.");
 			alert.showAndWait();
 		}
+    }
+    
+    @FXML
+    public void fillIngredientFields(MouseEvent event) {
+    	Ingredient ingredient = tableIngr.getSelectionModel().getSelectedItem();	
+    	
+    	if(ingredient!=null) {
+    		
+    		txtNewIngName.setText(ingredient.getName());
+    		txtNewIngVal.setText(Double.toString(ingredient.getPrice()));
+    		
+    		if (ingredient.isAvailable()) {
+    			radioBtnIngAvailable.setSelected(true);
+			} else {
+				radioBtnIngUnavailable.setSelected(true);
+			}
+    		
+    	}
     }
     
     public boolean validateRegisterInput(String name, String lastN, String cc, String userN, String pass) {

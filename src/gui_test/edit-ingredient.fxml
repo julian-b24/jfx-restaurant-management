@@ -49,7 +49,7 @@
                   <Insets top="40.0" />
                </VBox.margin>
             </Text>
-            <JFXRadioButton fx:id="radioBtnIngAvailable" text="Desabilitado" textFill="#ffd65b">
+            <JFXRadioButton fx:id="radioBtnIngUnavailable" text="Desabilitado" textFill="#ffd65b">
                <font>
                   <Font size="14.0" />
                </font>
@@ -60,7 +60,7 @@
                   <ToggleGroup fx:id="ingState" />
                </toggleGroup>
             </JFXRadioButton>
-            <JFXRadioButton fx:id="radioBtnIngUnavailable" text="Disponible" textFill="#ffd65b" toggleGroup="$ingState">
+            <JFXRadioButton fx:id="radioBtnIngAvailable" text="Disponible" textFill="#ffd65b" toggleGroup="$ingState">
                <font>
                   <Font size="14.0" />
                </font>
@@ -80,7 +80,7 @@
             </JFXButton>
          </children>
       </VBox>
-      <TableView fx:id="tableIngr" layoutX="482.0" layoutY="33.0" prefHeight="700.0" prefWidth="768.0" stylesheets="@styles/table-ingredients.css">
+      <TableView fx:id="tableIngr" layoutX="482.0" layoutY="33.0" onMouseClicked="#fillIngredientFields" prefHeight="700.0" prefWidth="768.0" stylesheets="@styles/table-ingredients.css">
          <columns>
             <TableColumn fx:id="colIngr" prefWidth="171.0" text="Nombre ingrediente" />
             <TableColumn fx:id="colCreator" prefWidth="193.0" text="Usuario creador" />

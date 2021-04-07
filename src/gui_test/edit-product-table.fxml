@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="733.0" prefWidth="1000.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="tvShowProduct" layoutX="50.0" layoutY="160.0" prefHeight="413.0" prefWidth="900.0" stylesheets="@styles/table-ingredients.css" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="160.0">
+         <columns>
+            <TableColumn fx:id="colSProductName" prefWidth="220.0" text="Nombre" />
+            <TableColumn fx:id="colSProductCreator" prefWidth="120.0" text="Creador" />
+            <TableColumn fx:id="colSProductCode" prefWidth="120.0" text="Código" />
+            <TableColumn fx:id="colSProductAvailabale" prefWidth="130.0" text="Disponible" />
+            <TableColumn fx:id="colSProductType" prefWidth="140.0" text="Tipo" />
+            <TableColumn fx:id="colSProductPrice" prefWidth="170.0" text="Precio" />
+         </columns>
+      </TableView>
+      <Text fill="#fff2cd" layoutX="386.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lista de productos" AnchorPane.bottomAnchor="649.97265625" AnchorPane.leftAnchor="386.0" AnchorPane.rightAnchor="386.30859375" AnchorPane.topAnchor="45.78515625">
+         <font>
+            <Font name="Montserrat SemiBold" size="28.0" />
+         </font>
+      </Text>
+      <Label layoutX="230.0" layoutY="92.0" prefHeight="27.0" prefWidth="626.0" text="Para editar una orden la debes seleccionar de la tabla de ordenes registradas">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="230.0" layoutY="119.0" prefHeight="27.0" prefWidth="626.0" text="y después de esto, seleccionar el botón Editar.">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="417.0" layoutY="573.0" mnemonicParsing="false" onAction="#loadEditProduct" prefHeight="31.0" prefWidth="166.0" style="-fx-background-color: #D9A404;" text="Editar" textFill="#fff7d9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
