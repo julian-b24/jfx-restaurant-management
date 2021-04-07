@@ -12,11 +12,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -811,7 +813,32 @@ public class Controller {
 
     @FXML
     public void loginUser(ActionEvent event) {
+    	if(usernametxf.getText().equals("") || passwordtxf.getText().equals("")) {
 
+			usernametxf.getStyleClass().add("wrong-login");
+			passwordtxf.getStyleClass().add("wrong-login");
+			warningEmpyText();
+			
+		}else {
+			boolean loged = false;
+			for (int i = 0; i < restaurant.getSystemUsers().size(); i++) {
+				if(usernametxf.getText().equals(restaurant.getSystemUsers().get(i).getUserName()) &&
+						passwordtxf.getText().equals(restaurant.getSystemUsers().get(i).getPassword())) {
+					actualUser = usernametxf.getText();
+					loadSideBar(null);
+					loged = true;
+				}
+			}
+			
+			if (!loged) {
+				usernametxf.getStyleClass().add("wrong-login");
+				passwordtxf.getStyleClass().add("wrong-login");
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Valores incorrectos");
+				alert.setContentText("Al menos uno de los dos valores es incorrecto!");
+				alert.showAndWait();
+			}
+		}
     }
 	
 	@FXML
@@ -993,7 +1020,48 @@ public class Controller {
     
     @FXML
     public void createSystemUser(ActionEvent event) {
+    	boolean valid = validateRegisterInput(rNametxf.getText(), rLastNametfx.getText(), rCctfx.getText(),
+				rUsernametxf.getText(), rPasswordtxf.getText());
+		
+		if(valid) {
+			try {
+				restaurant.createEmployee(rNametxf.getText(), rLastNametfx.getText(), rCctfx.getText());
+				restaurant.createSystemUser(rNametxf.getText(), rLastNametfx.getText(), rCctfx.getText(), rUsernametxf.getText(), rPasswordtxf.getText());
+			} catch (IOException e) {
 
+				e.printStackTrace();
+			}
+			
+			loadLogIn(null);
+		}else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Valores inválidos");
+			alert.setContentText("Al menos uno de los campos está vacío o el nombre de usuario ingresado ya existe.");
+			alert.showAndWait();
+		}
+    }
+    
+    public boolean validateRegisterInput(String name, String lastN, String cc, String userN, String pass) {
+    	boolean valid = true;
+    	if(name.equals("") || lastN.equals("") || cc.equals("") || userN.equals("") || pass.equals("")) {
+    		valid = false;
+    	}
+    	if(valid) {
+    		for (int i = 0; i < restaurant.getSystemUsers().size(); i++) {
+				if(restaurant.getSystemUsers().get(i).getUserName().equals(userN)) {
+					valid = false;
+				}
+			}
+    	}
+    	
+    	return valid;
+    }
+    
+    public void warningEmpyText() {
+    	Alert alert = new Alert(Alert.AlertType.WARNING);
+		alert.setTitle("Campos Vacíos");
+		alert.setContentText("Existen campos vacíos!");
+		alert.showAndWait();
     }
     
 }

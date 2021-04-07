@@ -33,7 +33,8 @@ public class Main extends Application{
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Prueba");
 		primaryStage.show();
-		controller.loadSideBar(null);
+		controller.loadLogIn(null);
+		restaurant.loadData();
 	}
 
 }
