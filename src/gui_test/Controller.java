@@ -17,6 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 public class Controller {
 
@@ -180,6 +181,209 @@ public class Controller {
     @FXML
     private TableColumn<?, ?> colValue;
     
+    //create product pane fields
+    @FXML
+    private JFXTextField txtPName;
+
+    @FXML
+    private JFXRadioButton rbMainDish;
+
+    @FXML
+    private ToggleGroup types;
+
+    @FXML
+    private JFXRadioButton rbAdition;
+
+    @FXML
+    private JFXRadioButton rbDrink;
+
+    @FXML
+    private TableView<?> tvIngP;
+
+    @FXML
+    private TableColumn<?, ?> colNip;
+
+    @FXML
+    private TableColumn<?, ?> colIngcreP;
+
+    @FXML
+    private TableColumn<?, ?> colIngLastEP;
+
+    @FXML
+    private TableColumn<?, ?> colIngCodP;
+
+    @FXML
+    private TableColumn<?, ?> colIngVal;
+    
+    //edit product pane field
+    @FXML
+    private JFXTextField txtNewProductName;
+
+    @FXML
+    private JFXRadioButton rbProductUnavailable;
+
+    @FXML
+    private ToggleGroup pState;
+
+    @FXML
+    private JFXRadioButton rbProductAvailable;
+
+    @FXML
+    private VBox rbPMD;
+
+    @FXML
+    private JFXRadioButton rbPMainDish;
+
+    @FXML
+    private ToggleGroup ptype;
+
+    @FXML
+    private JFXRadioButton rbPAd;
+
+    @FXML
+    private JFXRadioButton rbPDrink;
+
+    @FXML
+    private JFXTextField actionIngtxt;
+
+    @FXML
+    private JFXTextField txtAddNameSize;
+
+    @FXML
+    private JFXTextField txtMultiply;
+
+    @FXML
+    private TableView<?> tvIdp;
+
+    @FXML
+    private TableColumn<?, ?> colIngInProduct;
+
+    @FXML
+    private TableColumn<?, ?> colIngInPCode;
+
+    @FXML
+    private TableColumn<?, ?> colIngInPPrice;
+
+    @FXML
+    private TableView<?> tvallInings;
+
+    @FXML
+    private TableColumn<?, ?> colAlIngsNames;
+
+    @FXML
+    private TableColumn<?, ?> colAllIngsCodes;
+
+    @FXML
+    private TableColumn<?, ?> colAllINgPrices;
+
+    @FXML
+    private TableView<?> tvProdSizes;
+
+    @FXML
+    private TableColumn<?, ?> colProdSizeName;
+
+    @FXML
+    private TableColumn<?, ?> colProdSizePrice;
+    
+    //create order pane fields
+    @FXML
+    private JFXTextField txtOrderProductCode;
+
+    @FXML
+    private JFXTextField txtOrderProductAmount;
+
+    @FXML
+    private JFXTextField txtOrderProductSize;
+
+    @FXML
+    private JFXTextField txtOrderOBs;
+
+    @FXML
+    private TableView<?> tvProductsList;
+
+    @FXML
+    private TableColumn<?, ?> colProductsNames;
+
+    @FXML
+    private TableColumn<?, ?> colProductsCodes;
+
+    @FXML
+    private TableColumn<?, ?> colProductsPrices;
+
+    @FXML
+    private Label labelSearchTimeClient;
+
+    @FXML
+    private JFXTextField txtSearchClientName;
+
+    @FXML
+    private JFXTextField txtSearhClientLastName;
+
+    //edit order table pane fields
+    @FXML
+    private TableView<?> tvOrders;
+
+    @FXML
+    private TableColumn<?, ?> colOrdersClients;
+
+    @FXML
+    private TableColumn<?, ?> colOrdersCodes;
+
+    @FXML
+    private TableColumn<?, ?> colOrdersStates;
+
+    @FXML
+    private TableColumn<?, ?> colOrdersPrices;
+    
+    //edit order process pane fields
+    @FXML
+    private JFXRadioButton radioBtnState1;
+
+    @FXML
+    private ToggleGroup orderState;
+
+    @FXML
+    private JFXRadioButton radioBtnState2;
+
+    @FXML
+    private JFXRadioButton radioBtnState3;
+
+    @FXML
+    private JFXRadioButton radioBtnState4;
+
+    @FXML
+    private JFXTextField txtEOProductCode;
+
+    @FXML
+    private JFXTextField txtEOAmount;
+
+    @FXML
+    private JFXTextField txtEOSize;
+
+    @FXML
+    private TableView<?> tvPIO;
+
+    @FXML
+    private TableColumn<?, ?> colEOProductName;
+
+    @FXML
+    private TableColumn<?, ?> colEOProductCode;
+
+    @FXML
+    private TableColumn<?, ?> colEOProductPrice;
+
+    @FXML
+    private TableView<?> tvregisteredProducts;
+
+    @FXML
+    private TableColumn<?, ?> colEOOrderName;
+
+    @FXML
+    private TableColumn<?, ?> colEOCode;
+
+    @FXML
+    private TableColumn<?, ?> colEOPrice;
+    
     public Controller() {
 	}
     
@@ -269,16 +473,16 @@ public class Controller {
     @FXML
     public void loadProductOptions(ActionEvent event) {
     	loadTabPaneOptions(null);
-		//loadCreate();
-		//loadEdit();
+		loadCreate("create-product.fxml");
+		loadEdit("edit-product.fxml");
 		loadVisualize("list-products.fxml");
     }
     
     @FXML
     public void loadOrderOptions(ActionEvent event) {
     	loadTabPaneOptions(null);
-		//loadCreate();
-		//loadEdit();
+		loadCreate("create-order.fxml");
+		loadEditOrder(null);
 		loadVisualize("list-orders.fxml");
     }
     
@@ -373,6 +577,16 @@ public class Controller {
     }
 	
 	@FXML
+    public void loadEditOrder(ActionEvent event) {
+		loadEdit("edit-order-process.fxml");
+    }
+	
+	@FXML
+    public void loadEditOrderTable(ActionEvent event) {
+    	loadEdit("edit-order-table.fxml");
+    }
+	
+	@FXML
     public void updateUser(ActionEvent event) {
 
     }
@@ -458,5 +672,95 @@ public class Controller {
     public void updateIngredient(ActionEvent event) {
 
     }
-	
+    
+    @FXML
+    public void addIngredientToProduct(ActionEvent event) {
+
+    }
+    
+    @FXML
+    public void addIngrToProduct(ActionEvent event) {
+
+    }
+    
+    @FXML
+    public void addSizeToProduct(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void createProduct(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void eliminateProduct(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void removeIngrFromProduct(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void removeSizeFromProduct(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void updateProduct(ActionEvent event) {
+
+    }
+    
+    @FXML
+    public void addProductToOrder(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void createOrder(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void fillProductTextFields(MouseEvent event) {
+
+    }
+
+    @FXML
+    public void loadAdminClients(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void searchClient(ActionEvent event) {
+
+    }
+    
+    @FXML
+    public void eOaddProductToOrder(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void eOremoveIngrFromProduct(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void eOupdateProduct(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void fillEditOrderFields(MouseEvent event) {
+
+    }
+
+    @FXML
+    public void setStateForward(ActionEvent event) {
+
+    }
+    
 }
