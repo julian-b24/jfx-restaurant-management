@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="733.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="72.0" layoutY="131.0" prefHeight="505.0" prefWidth="344.0" AnchorPane.bottomAnchor="97.0" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="864.0" AnchorPane.topAnchor="131.0">
+         <children>
+            <Text fill="#ffcf88" strokeType="OUTSIDE" strokeWidth="0.0" text="Nuevo nombre del ingrediente">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
+            </Text>
+            <JFXTextField fx:id="txtNewIngName" alignment="CENTER" focusColor="#fff0b8" promptText="Nombre del ingrediente" unFocusColor="#7c6656">
+               <font>
+                  <Font size="16.0" />
+               </font></JFXTextField>
+            <Text fill="#ffcf88" strokeType="OUTSIDE" strokeWidth="0.0" text="Nuevo valor del ingrediente">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
+            </Text>
+            <JFXTextField fx:id="txtNewIngVal" alignment="CENTER" focusColor="#fff0b8" promptText="valor del ingrediente" unFocusColor="#7c6656">
+               <font>
+                  <Font size="16.0" />
+               </font></JFXTextField>
+            <Text fill="#fff1cc" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado">
+               <font>
+                  <Font name="Montserrat Medium" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
+            </Text>
+            <JFXRadioButton fx:id="radioBtnIngAvailable" text="Desabilitado" textFill="#ffd65b">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <toggleGroup>
+                  <ToggleGroup fx:id="ingState" />
+               </toggleGroup>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="radioBtnIngUnavailable" text="Disponible" textFill="#ffd65b" toggleGroup="$ingState">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </VBox.margin>
+            </JFXRadioButton>
+            <JFXButton onAction="#eliminateIngredient" prefHeight="43.0" prefWidth="165.0" style="-fx-background-color: #D9A404;" text="Eliminar ingrediente" textFill="#fffcdd">
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
+            </JFXButton>
+            <JFXButton onAction="#updateIngredient" prefHeight="43.0" prefWidth="165.0" style="-fx-background-color: #D9A404;" text="Actualizar ingrediente" textFill="#fffcdd">
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
+            </JFXButton>
+         </children>
+      </VBox>
+      <TableView fx:id="tableIngr" layoutX="482.0" layoutY="33.0" prefHeight="700.0" prefWidth="768.0" stylesheets="@styles/table-ingredients.css">
+         <columns>
+            <TableColumn fx:id="colIngr" prefWidth="171.0" text="Nombre ingrediente" />
+            <TableColumn fx:id="colCreator" prefWidth="193.0" text="Usuario creador" />
+            <TableColumn fx:id="colLastE" prefWidth="195.0" text="Último editor" />
+            <TableColumn fx:id="colCode" prefWidth="99.0" text="Código" />
+            <TableColumn fx:id="colValue" prefWidth="109.0" text="Valor" />
+         </columns>
+      </TableView>
+      <Text fill="#ffeaba" layoutX="84.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edición de ingrediente">
+         <font>
+            <Font name="Montserrat Medium" size="34.0" />
+         </font>
+      </Text>
+      <Label layoutX="75.0" layoutY="118.0" prefHeight="27.0" prefWidth="355.0" text="Seleccione de la tabla el ingrediente a editar">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

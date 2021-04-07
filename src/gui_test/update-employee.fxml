@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="733.0" prefWidth="1080.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="305.0" layoutY="262.0" prefHeight="248.0" prefWidth="503.0" AnchorPane.bottomAnchor="223.0" AnchorPane.leftAnchor="305.0" AnchorPane.rightAnchor="272.0" AnchorPane.topAnchor="262.0">
+         <children>
+            <HBox prefHeight="64.0" prefWidth="523.0" spacing="20.0">
+               <children>
+                  <VBox prefHeight="64.0" prefWidth="322.0">
+                     <children>
+                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre del empleado">
+                           <VBox.margin>
+                              <Insets left="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <JFXTextField fx:id="txtNewEmploName" focusColor="#d9a404" prefHeight="31.0" prefWidth="227.0" promptText="Nombre">
+                           <VBox.margin>
+                              <Insets left="50.0" right="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXTextField>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="100.0" prefWidth="277.0">
+                     <children>
+                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido del empleado">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <JFXTextField fx:id="txtNewEmploLastName" focusColor="#d9a404" prefHeight="31.0" prefWidth="227.0" promptText="Apellido">
+                           <font>
+                              <Font size="16.0" />
+                           </font></JFXTextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="100.0" prefWidth="337.0">
+                     <children>
+                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Cédula del empleado">
+                           <VBox.margin>
+                              <Insets left="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <JFXTextField fx:id="txtUpdateEmploCC" focusColor="#d9a404" prefHeight="31.0" prefWidth="227.0" promptText="c.c">
+                           <VBox.margin>
+                              <Insets left="50.0" right="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXTextField>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="100.0" prefWidth="277.0">
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <Text fill="#ffd563" layoutX="414.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Actualizar empleado" AnchorPane.bottomAnchor="660.97265625" AnchorPane.leftAnchor="414.0" AnchorPane.rightAnchor="413.767578125" AnchorPane.topAnchor="34.78515625">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <JFXButton layoutX="425.0" layoutY="539.0" onAction="#updateEmployeeX" prefHeight="38.0" prefWidth="230.0" style="-fx-background-color: #D9A404;" text="Actualizar" textFill="#ffeecc" AnchorPane.bottomAnchor="156.0" AnchorPane.leftAnchor="425.0" AnchorPane.rightAnchor="425.0" AnchorPane.topAnchor="539.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <Text fill="#ffd695" layoutX="425.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id del empleado" AnchorPane.bottomAnchor="561.984375" AnchorPane.leftAnchor="425.0" AnchorPane.rightAnchor="540.15625" AnchorPane.topAnchor="149.734375">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <JFXTextField fx:id="txtCCEmployeeToEdit" focusColor="#d9a404" layoutX="427.0" layoutY="173.0" prefHeight="31.0" prefWidth="227.0" promptText="Id" AnchorPane.bottomAnchor="529.0" AnchorPane.leftAnchor="427.0" AnchorPane.rightAnchor="426.0" AnchorPane.topAnchor="173.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton layoutX="425.0" layoutY="224.0" onAction="#editEmployee" prefHeight="38.0" prefWidth="230.0" style="-fx-background-color: #D9A404;" text="Buscar" textFill="#ffeecc">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="358.0" layoutY="98.0" prefHeight="27.0" prefWidth="365.0" text="Debe ingresar el id del empleado a actualizar">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

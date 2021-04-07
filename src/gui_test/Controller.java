@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 
 import javafx.event.ActionEvent;
@@ -11,6 +12,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -90,9 +94,6 @@ public class Controller {
     @FXML
     private JFXTextField txtClientObsField;
 	
-	public Controller() {
-	}
-	
 	//edit client pane fields
 	@FXML
     private JFXTextField txtNewClientName;
@@ -115,6 +116,73 @@ public class Controller {
     @FXML
     private JFXTextField txtCCToEdit;
 	
+    //create employee fields
+    @FXML
+    private JFXTextField txtEmployeeName;
+
+    @FXML
+    private JFXTextField txtEmployeeLastName;
+
+    @FXML
+    private JFXTextField txtEmployeeCc;
+
+    @FXML
+    private JFXTextField txtCCEmployeeToEdit;
+    
+    //edit employee pane fields
+    @FXML
+    private JFXTextField txtNewEmploName;
+
+    @FXML
+    private JFXTextField txtNewEmploLastName;
+
+    @FXML
+    private JFXTextField txtUpdateEmploCC;
+    
+    //create ingredient pane fields
+    @FXML
+    private JFXTextField txtIngredientName;
+
+    @FXML
+    private JFXTextField txtIngredientValue;
+    
+    //edit ingredient fields
+    @FXML
+    private JFXTextField txtNewIngName;
+
+    @FXML
+    private JFXTextField txtNewIngVal;
+
+    @FXML
+    private JFXRadioButton radioBtnIngAvailable;
+
+    @FXML
+    private ToggleGroup ingState;
+
+    @FXML
+    private JFXRadioButton radioBtnIngUnavailable;
+
+    @FXML
+    private TableView<?> tableIngr;
+
+    @FXML
+    private TableColumn<?, ?> colIngr;
+
+    @FXML
+    private TableColumn<?, ?> colCreator;
+
+    @FXML
+    private TableColumn<?, ?> colLastE;
+
+    @FXML
+    private TableColumn<?, ?> colCode;
+
+    @FXML
+    private TableColumn<?, ?> colValue;
+    
+    public Controller() {
+	}
+    
 	public void loadSideBar(ActionEvent event) {
 		
 		try {
@@ -193,24 +261,24 @@ public class Controller {
     @FXML
 	public void loadIngredientOptions(ActionEvent event) {
 		loadTabPaneOptions(null);
-		//loadCreate("create-ingredient.fxml");
-		//loadEditIngredient("edit-ingredient.fxml");
+		loadCreate("create-ingredient.fxml");
+		loadEdit("edit-ingredient.fxml");
 		loadVisualize("list-ingredients.fxml");
 	}
     
     @FXML
     public void loadProductOptions(ActionEvent event) {
     	loadTabPaneOptions(null);
-		//loadCreateProduct();
-		//loadEditProduct();
+		//loadCreate();
+		//loadEdit();
 		loadVisualize("list-products.fxml");
     }
     
     @FXML
     public void loadOrderOptions(ActionEvent event) {
     	loadTabPaneOptions(null);
-		//loadCreateProduct();
-		//loadEditProduct();
+		//loadCreate();
+		//loadEdit();
 		loadVisualize("list-orders.fxml");
     }
     
@@ -226,8 +294,8 @@ public class Controller {
     @FXML
     public void loadEmployeeOptions(ActionEvent event) {
     	loadTabPaneOptions(null);
-		//loadCreateProduct();
-		//loadEditProduct();
+		loadCreate("create-employee.fxml");
+		loadEdit("update-employee.fxml");
 		loadVisualize("list-employees.fxml");
     }
     
@@ -352,12 +420,42 @@ public class Controller {
     }
     
     @FXML
-    void editClient(ActionEvent event) {
+    public void editClient(ActionEvent event) {
 
     }
 
     @FXML
-    void updateClient(ActionEvent event) {
+    public void updateClient(ActionEvent event) {
+
+    }
+    
+    @FXML
+    public void createEmployee(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void editEmployee(ActionEvent event) {
+
+    }
+    
+    @FXML
+    public void updateEmployeeX(ActionEvent event) {
+
+    }
+    
+    @FXML
+    public void createIngredient(ActionEvent event) {
+
+    }
+    
+    @FXML
+    public void eliminateIngredient(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void updateIngredient(ActionEvent event) {
 
     }
 	

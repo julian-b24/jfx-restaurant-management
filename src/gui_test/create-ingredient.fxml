@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="733.0" prefWidth="1080.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="386.0" layoutY="163.0" prefHeight="211.0" prefWidth="409.0" AnchorPane.bottomAnchor="359.0" AnchorPane.leftAnchor="386.0" AnchorPane.rightAnchor="285.0" AnchorPane.topAnchor="163.0">
+         <children>
+            <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre del ingrediente">
+               <VBox.margin>
+                  <Insets left="50.0" top="40.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <JFXTextField fx:id="txtIngredientName" prefHeight="25.0" prefWidth="350.0" promptText="Nombre">
+               <VBox.margin>
+                  <Insets left="50.0" right="150.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+            <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor del ingrediente">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="50.0" top="40.0" />
+               </VBox.margin>
+            </Text>
+            <JFXTextField fx:id="txtIngredientValue" promptText="Valor">
+               <VBox.margin>
+                  <Insets left="50.0" right="150.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+         </children>
+      </VBox>
+      <Text fill="#ffd736" layoutX="427.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crear ingredientes">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <JFXButton layoutX="446.0" layoutY="405.0" onAction="#createIngredient" prefHeight="39.0" prefWidth="188.0" style="-fx-background-color: #D9A404;" text="Crear Ingrediente" textFill="#fff8bf">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="332.0" layoutY="95.0" prefHeight="27.0" prefWidth="417.0" text="Ingrese el nombre y precio del ingrediente, si desea">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="342.0" layoutY="119.0" prefHeight="27.0" prefWidth="397.0" text="ver los ingredientes disponibles, vaya a Visualizar">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
