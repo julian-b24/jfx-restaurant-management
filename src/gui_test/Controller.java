@@ -16,7 +16,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class Controller {
 
-    @FXML
+	@FXML
     private AnchorPane mainPane;
     
     //Side bar fields
@@ -71,8 +71,49 @@ public class Controller {
     @FXML
     private JFXTextField txtEdituserCC;
 	
+    //create client pane fields
+    @FXML
+    private JFXTextField txtClientName;
+
+    @FXML
+    private JFXTextField txtClientLastName;
+
+    @FXML
+    private JFXTextField txtClientCC;
+
+    @FXML
+    private JFXTextField txtClientAdress;
+
+    @FXML
+    private JFXTextField txtClientPhone;
+
+    @FXML
+    private JFXTextField txtClientObsField;
+	
 	public Controller() {
 	}
+	
+	//edit client pane fields
+	@FXML
+    private JFXTextField txtNewClientName;
+
+    @FXML
+    private JFXTextField txtNewClientLastName;
+
+    @FXML
+    private JFXTextField txtUpdateClientCC;
+
+    @FXML
+    private JFXTextField txtNewClientAdress;
+
+    @FXML
+    private JFXTextField txtNewClientPhone;
+
+    @FXML
+    private JFXTextField txtNewClientObsField;
+
+    @FXML
+    private JFXTextField txtCCToEdit;
 	
 	public void loadSideBar(ActionEvent event) {
 		
@@ -119,7 +160,7 @@ public class Controller {
 		}
     }
     
-    public void loadEditIngredient(String path) {
+    public void loadEdit(String path) {
     	
     	try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
@@ -176,10 +217,11 @@ public class Controller {
     @FXML
     public void loadClientOptions(ActionEvent event) {
     	loadTabPaneOptions(null);
-		//loadCreateProduct();
-		//loadEditProduct();
+		loadCreate("create-client.fxml");
+		loadEdit("edit-client.fxml");
 		loadVisualize("list-clients.fxml");
     }
+    
     
     @FXML
     public void loadEmployeeOptions(ActionEvent event) {
@@ -263,7 +305,7 @@ public class Controller {
     }
 	
 	@FXML
-    void updateUser(ActionEvent event) {
+    public void updateUser(ActionEvent event) {
 
     }
 	
@@ -301,6 +343,21 @@ public class Controller {
 
     @FXML
     public void importOrders(ActionEvent event) {
+
+    }
+    
+    @FXML
+    public void createClient(ActionEvent event) {
+    	
+    }
+    
+    @FXML
+    void editClient(ActionEvent event) {
+
+    }
+
+    @FXML
+    void updateClient(ActionEvent event) {
 
     }
 	

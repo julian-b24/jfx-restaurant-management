@@ -76,7 +76,7 @@
                               <FontAwesomeIconView fill="WHITE" size="18" />
                            </graphic>
                         </JFXButton>
-                        <JFXButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Usuarios" textFill="WHITE">
+                        <JFXButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadUserOptions" text="Usuarios" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1080.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="314.0" layoutY="297.0" prefHeight="351.0" prefWidth="452.0" AnchorPane.bottomAnchor="152.0" AnchorPane.leftAnchor="314.0" AnchorPane.rightAnchor="314.0" AnchorPane.topAnchor="297.0">
+         <children>
+            <HBox prefHeight="64.0" prefWidth="523.0">
+               <children>
+                  <VBox prefHeight="64.0" prefWidth="322.0">
+                     <children>
+                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+                           <VBox.margin>
+                              <Insets left="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Montserrat Medium" size="16.0" />
+                           </font>
+                        </Text>
+                        <JFXTextField fx:id="txtNewClientName" prefHeight="31.0" prefWidth="227.0" promptText="Nombre">
+                           <VBox.margin>
+                              <Insets left="50.0" right="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXTextField>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="100.0" prefWidth="277.0">
+                     <children>
+                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido">
+                           <font>
+                              <Font name="Montserrat Medium" size="16.0" />
+                           </font>
+                        </Text>
+                        <JFXTextField fx:id="txtNewClientLastName" prefHeight="31.0" prefWidth="227.0" promptText="Apellido">
+                           <font>
+                              <Font size="16.0" />
+                           </font></JFXTextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="100.0" prefWidth="337.0">
+                     <children>
+                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Cédula">
+                           <VBox.margin>
+                              <Insets left="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Montserrat Medium" size="16.0" />
+                           </font>
+                        </Text>
+                        <JFXTextField fx:id="txtUpdateClientCC" prefHeight="31.0" prefWidth="227.0" promptText="c.c">
+                           <VBox.margin>
+                              <Insets left="50.0" right="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXTextField>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="100.0" prefWidth="277.0">
+                     <children>
+                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Dirección">
+                           <font>
+                              <Font name="Montserrat Medium" size="16.0" />
+                           </font>
+                        </Text>
+                        <JFXTextField fx:id="txtNewClientAdress" prefHeight="31.0" prefWidth="227.0" promptText="Dirección">
+                           <font>
+                              <Font size="16.0" />
+                           </font></JFXTextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="64.0" prefWidth="523.0">
+               <children>
+                  <VBox prefHeight="100.0" prefWidth="337.0">
+                     <children>
+                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Teléfono">
+                           <VBox.margin>
+                              <Insets left="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Montserrat Medium" size="16.0" />
+                           </font>
+                        </Text>
+                        <JFXTextField fx:id="txtNewClientPhone" prefHeight="31.0" prefWidth="227.0" promptText="Teléfono">
+                           <VBox.margin>
+                              <Insets left="50.0" right="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXTextField>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="100.0" prefWidth="277.0">
+                     <children>
+                        <Text fill="#ffd695" strokeType="OUTSIDE" strokeWidth="0.0" text="Observaciones">
+                           <font>
+                              <Font name="Montserrat Medium" size="16.0" />
+                           </font>
+                        </Text>
+                        <JFXTextField fx:id="txtNewClientObsField" prefHeight="31.0" prefWidth="227.0" promptText="Observaciones">
+                           <font>
+                              <Font size="16.0" />
+                           </font></JFXTextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Text fill="#ffd695" layoutX="435.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cédula del cliente" AnchorPane.bottomAnchor="601.9765625" AnchorPane.leftAnchor="435.0" AnchorPane.rightAnchor="456.6796875" AnchorPane.topAnchor="166.1015625">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <JFXTextField fx:id="txtCCToEdit" layoutX="418.0" layoutY="209.0" prefHeight="31.0" prefWidth="224.0" promptText="Cédula" AnchorPane.bottomAnchor="560.0" AnchorPane.leftAnchor="418.0" AnchorPane.rightAnchor="438.0" AnchorPane.topAnchor="209.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton layoutX="415.0" layoutY="259.0" onAction="#editClient" prefHeight="38.0" prefWidth="231.0" style="-fx-background-color: #D9A404;" text="Buscar" textFill="#ffeecc" AnchorPane.bottomAnchor="503.0" AnchorPane.leftAnchor="415.0" AnchorPane.rightAnchor="434.0" AnchorPane.topAnchor="259.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <Text fill="#ffd563" layoutX="435.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Actualizar cliente">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Label layoutX="290.0" layoutY="83.0" prefHeight="27.0" prefWidth="548.0" text="Antes de actualizar los datos de un cliente debes indicar su cédula" AnchorPane.bottomAnchor="690.0" AnchorPane.leftAnchor="290.0" AnchorPane.rightAnchor="242.0" AnchorPane.topAnchor="83.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="425.0" layoutY="115.0" prefHeight="27.0" prefWidth="231.0" text="para buscarlo en el sistema." AnchorPane.bottomAnchor="658.0" AnchorPane.leftAnchor="425.0" AnchorPane.rightAnchor="424.0" AnchorPane.topAnchor="115.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="416.0" layoutY="648.0" onAction="#updateClient" prefHeight="38.0" prefWidth="230.0" style="-fx-background-color: #D9A404;" text="Actualizar" textFill="#ffeecc">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>
