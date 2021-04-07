@@ -548,7 +548,7 @@ public class Controller {
     private TableColumn<Product, String> colSProductCreator;
 
     @FXML
-    private TableColumn<Product, String> colSProductCode;
+    private TableColumn<Product, Integer> colSProductCode;
 
     @FXML
     private TableColumn<Product, String> colSProductAmountIngredients;
@@ -557,7 +557,7 @@ public class Controller {
     private TableColumn<Product, String> colSProductAvailabale;
 
     @FXML
-    private TableColumn<Product, String> colSProductType;
+    private TableColumn<Product, Double> colSProductType;
     
     @FXML
     private TableColumn<Product, String> colSProductPrice;
@@ -828,16 +828,48 @@ public class Controller {
     }
 	@FXML
 	public void loadEditProduct(ActionEvent event) {
-		loadEdit("edit-product-process.fxml");
-		//initializeIngsInProduct(Product px)
-		initializeAllRegisIngs();
-		//initSizesProduct(Product px);
+		
+		Product productX = tvProducts.getSelectionModel().getSelectedItem();
+		referenceProduct = productX;
+		
+		if (productX != null) {
+			loadEdit("edit-product-process.fxml");
+			
+			//set Screen
+			txtNewProductName.setPromptText(referenceProduct.getName());
+			
+			//available
+			if(productX.isAvailable()) {
+				rbProductAvailable.setSelected(true);
+			}else {
+				rbProductUnavailable.setSelected(true);
+			}
+			
+			//type
+			if(productX.getType().toString().equals("MAIN_DISH")){
+				rbPMainDish.setSelected(true);
+			}else if(productX.getType().toString().equals("ADDITIONAL_DISH")){
+				rbPAd.setSelected(true);
+			}else if(productX.getType().toString().equals("DRINK")){
+				rbPDrink.setSelected(true);
+			}
+			
+			initializeIngsInProduct(referenceProduct);
+			initializeAllRegisIngs();
+			initSizesProduct(referenceProduct);
+		} else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Ningún elemento seleccionado");
+			alert.setContentText("No se ha seleccionado ningún producto para editar!");
+			alert.showAndWait();
+		}
+		
 	}
 	
 	@FXML
 	public void loadEditProductTable(ActionEvent event) {
 		loadEdit("edit-product-table.fxml");
-		initializeShowProducts();
+		initizalizeTableProducts();
 	}
 	
 	@FXML
@@ -2177,13 +2209,13 @@ public class Controller {
 		 
     	colSProductCreator.setCellValueFactory(new PropertyValueFactory<Product,String>("creatorRef"));
     	
-    	colSProductCode.setCellValueFactory(new PropertyValueFactory<Product,String>("code"));
+    	colSProductCode.setCellValueFactory(new PropertyValueFactory<Product,Integer>("code"));
     	
     	colSProductAvailabale.setCellValueFactory(new PropertyValueFactory<Product,String>("availableS"));
     	
     	colSProductPrice.setCellValueFactory(new PropertyValueFactory<Product,String>("productTypeS"));
     	
-    	colSProductType.setCellValueFactory(new PropertyValueFactory<Product,String>("price"));
+    	colSProductType.setCellValueFactory(new PropertyValueFactory<Product,Double>("price"));
 		 
     	tvShowProduct.setItems(showProducts);
     }

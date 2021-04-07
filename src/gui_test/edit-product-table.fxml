@@ -10,16 +10,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="733.0" prefWidth="1000.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="tvShowProduct" layoutX="50.0" layoutY="160.0" prefHeight="413.0" prefWidth="900.0" stylesheets="@styles/table-ingredients.css" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="160.0">
-         <columns>
-            <TableColumn fx:id="colSProductName" prefWidth="220.0" text="Nombre" />
-            <TableColumn fx:id="colSProductCreator" prefWidth="120.0" text="Creador" />
-            <TableColumn fx:id="colSProductCode" prefWidth="120.0" text="Código" />
-            <TableColumn fx:id="colSProductAvailabale" prefWidth="130.0" text="Disponible" />
-            <TableColumn fx:id="colSProductType" prefWidth="140.0" text="Tipo" />
-            <TableColumn fx:id="colSProductPrice" prefWidth="170.0" text="Precio" />
-         </columns>
-      </TableView>
       <Text fill="#fff2cd" layoutX="386.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lista de productos" AnchorPane.bottomAnchor="649.97265625" AnchorPane.leftAnchor="386.0" AnchorPane.rightAnchor="386.30859375" AnchorPane.topAnchor="45.78515625">
          <font>
             <Font name="Montserrat SemiBold" size="28.0" />
@@ -40,5 +30,15 @@
             <Font size="18.0" />
          </font>
       </Button>
+      <TableView fx:id="tvProducts" layoutX="116.0" layoutY="202.0" prefHeight="330.0" prefWidth="768.0" stylesheets="@../styles/tableStyle.css">
+         <columns>
+            <TableColumn fx:id="colPname" prefWidth="156.0" text="Nombre producto" />
+            <TableColumn fx:id="colLEP" prefWidth="175.0" text="Último editor" />
+            <TableColumn fx:id="colPCode" prefWidth="82.0" text="Código" />
+            <TableColumn fx:id="coPPrice" prefWidth="115.0" text="Precio" />
+            <TableColumn fx:id="colPav" prefWidth="111.0" text="Disponible" />
+            <TableColumn fx:id="colPType" prefWidth="128.0" text="tipo" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>
