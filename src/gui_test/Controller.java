@@ -1490,7 +1490,7 @@ public class Controller {
 		if(rbPMainDish.isSelected()) {
 			type = "MAIN_DISH";
 		}else if(rbPAd.isSelected()) {
-			type = "ADDIOTIONAL_DISH";
+			type = "ADDITIONAL_DISH";
 		}else {
 			type = "DRINK";
 		}
@@ -1857,6 +1857,8 @@ public class Controller {
     	Ingredient ingredient = tableIngr.getSelectionModel().getSelectedItem();	
     	
     	if(ingredient!=null) {
+    		
+    		referenceIngredient = ingredient.getName();
     		
     		txtNewIngName.setText(ingredient.getName());
     		txtNewIngVal.setText(Double.toString(ingredient.getPrice()));
