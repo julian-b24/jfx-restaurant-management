@@ -50,6 +50,29 @@ public class Controller {
     @FXML
     private AnchorPane visualizePane;
     
+    //login pane fields
+    @FXML
+    private JFXTextField usernametxf;
+
+    @FXML
+    private JFXTextField passwordtxf;
+    
+    //register pane fields
+    @FXML
+    private JFXTextField rNametxf;
+
+    @FXML
+    private JFXTextField rLastNametfx;
+
+    @FXML
+    private JFXTextField rCctfx;
+
+    @FXML
+    private JFXTextField rUsernametxf;
+
+    @FXML
+    private JFXTextField rPasswordtxf;
+    
     //Reports pane fields
     @FXML
     private JFXTextField txtSeparator;
@@ -387,15 +410,32 @@ public class Controller {
     public Controller() {
 	}
     
+    @FXML
+    public void loadLogIn(ActionEvent event) {
+    	
+    	try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login-pane.fxml"));
+			fxmlLoader.setController(this);
+			Parent login = fxmlLoader.load();
+			
+			mainPane.getChildren().clear();
+			mainPane.getChildren().setAll(login);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    @FXML
 	public void loadSideBar(ActionEvent event) {
 		
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("bar-menu-pane.fxml"));
 			fxmlLoader.setController(this);
-			Parent menu_bar = fxmlLoader.load();
+			Parent menuBar = fxmlLoader.load();
 			
 			mainPane.getChildren().clear();
-			mainPane.getChildren().setAll(menu_bar);
+			mainPane.getChildren().setAll(menuBar);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -587,6 +627,28 @@ public class Controller {
     }
 	
 	@FXML
+	public void loadRegister(ActionEvent event) {
+		
+		try {
+			
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("register-user.fxml"));
+			fxmlLoader.setController(this);
+			Parent register = fxmlLoader.load();
+			
+			mainPane.getChildren().clear();
+			mainPane.getChildren().setAll(register);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+
+    @FXML
+    public void loginUser(ActionEvent event) {
+
+    }
+	
+	@FXML
     public void updateUser(ActionEvent event) {
 
     }
@@ -760,6 +822,11 @@ public class Controller {
 
     @FXML
     public void setStateForward(ActionEvent event) {
+
+    }
+    
+    @FXML
+    public void createSystemUser(ActionEvent event) {
 
     }
     

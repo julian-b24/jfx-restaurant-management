@@ -165,7 +165,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="69.0" prefWidth="733.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <JFXButton layoutX="1002.0" layoutY="16.0" style="-fx-background-color: transparent;" text="Salir" textFill="#d9a404" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="1002.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="16.0">
+                        <JFXButton layoutX="1002.0" layoutY="16.0" onAction="#loadLogIn" style="-fx-background-color: transparent;" text="Salir" textFill="#d9a404" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="1002.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="16.0">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
