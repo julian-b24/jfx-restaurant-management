@@ -1,6 +1,10 @@
 package gui_test;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import com.jfoenix.controls.JFXButton;
@@ -8,6 +12,8 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +25,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -738,6 +745,29 @@ public class Controller {
 			secondaryPane.getChildren().clear();
 			secondaryPane.getChildren().setAll(reports);
 			
+			//dates default
+			LocalDate localDate = LocalDate.now();
+			//getStart of the day time
+			LocalDateTime startOfDay = LocalDateTime.of(localDate, LocalTime.MIDNIGHT);
+			//get end of the day time
+			LocalDateTime endOfDay = LocalDateTime.of(localDate, LocalTime.MAX);
+			//get format from products
+			String formatString =restaurant.getOrderFormat();
+			//set formatter
+			DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(formatString);
+			
+			//
+			if(txtInitialDate.getValue()==null) {
+			
+				dateFormat.format(startOfDay);
+				txtInitialDate.setValue(startOfDay.toLocalDate());
+			}		
+			if(txtFinalDate.getValue()==null) {
+				
+				dateFormat.format(endOfDay);
+				txtFinalDate.setValue(endOfDay.toLocalDate());
+			}
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -768,7 +798,7 @@ public class Controller {
 			secondaryPane.getChildren().clear();
 			secondaryPane.getChildren().setAll(editUser);
 			
-			/*
+			
 			int posSystemU = restaurant.searchSystemUser(actualUser);
 			
 			txtEidtUserName.setText(restaurant.getSystemUsers().get(posSystemU).getName());
@@ -778,7 +808,7 @@ public class Controller {
 			txtEdituserCC.setText(restaurant.getSystemUsers().get(posSystemU).getCc());
 			
 			txtEdituserCC.setEditable(false);
-			*/
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -843,144 +873,668 @@ public class Controller {
 	
 	@FXML
     public void updateUser(ActionEvent event) {
-
+		if(!txtEidtUserName.getText().isEmpty() && !txtEditUserLatName.getText().isEmpty() && !txtEditUsername.getText().isEmpty() && !txtEditUserPassword.getText().isEmpty()) {
+    		try {
+				restaurant.updateSystemUser(actualUser, txtEidtUserName.getText(), txtEditUserLatName.getText(), txtEditUsername.getText(), txtEditUserPassword.getText());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    	}else {
+    		//alert empty fields
+    		warningEmpyText();
+    	}
     }
 	
 	//Report methods
 	@FXML
     public void generateEmployeeReport(ActionEvent event) {
-
+		
+		LocalDateTime startOfDay = getLowDate();
+    	LocalDateTime endOfDay = getTopDate();
+    	
+    	String separator = txtSeparator.getText();
+    	
+    	try {
+			restaurant.generateReportEmployeesConsolidated(startOfDay, endOfDay, separator);
+		} catch (IOException e) {
+			
+			Alert error = new Alert(AlertType.ERROR);
+			error.setTitle("Error al generar reporte");
+			error.setContentText("Ocurrió un error al generar el reporte. Algún valor de una orden o producto es incorrecto");
+			error.showAndWait();
+		}
     }
 
     @FXML
     public void generateOrderReport(ActionEvent event) {
-
+    	LocalDateTime startOfDay = getLowDate();
+    	LocalDateTime endOfDay = getTopDate();
+    	
+    	String separator = txtSeparator.getText();
+    	
+    	try {
+			restaurant.generateReportOrdersConsolidated(startOfDay, endOfDay, separator);
+		} catch (IOException | NumberFormatException e) {
+			
+			e.printStackTrace();
+		}
     }
 
     @FXML
     public void generateProductReport(ActionEvent event) {
-
+    	LocalDateTime startOfDay = getLowDate();
+    	LocalDateTime endOfDay = getTopDate();
+    	
+    	String separator = txtSeparator.getText();
+    	
+    	try {
+			restaurant.generateReportProductsConsolidated(startOfDay, endOfDay, separator); 	
+		} catch (IOException | NumberFormatException e) {
+			
+			Alert error = new Alert(AlertType.ERROR);
+			error.setTitle("Error al generar reporte");
+			error.setContentText("Ocurrió un error al generar el reporte. Algún valor de un producto es incorrecto");
+			error.showAndWait();
+		}
+    }
+    
+    public LocalDateTime getLowDate() {
+    	
+    	LocalDate init = txtInitialDate.getValue();
+    	LocalDateTime startOfDay = LocalDateTime.of(init, LocalTime.MIDNIGHT); //00:00
+    	
+    	return startOfDay;
+    }
+    
+    public LocalDateTime getTopDate() {
+    	
+    	LocalDate finit = txtFinalDate.getValue();
+    	LocalDateTime endOfDay = LocalDateTime.of(finit, LocalTime.MAX);	//23:59
+    	
+    	return endOfDay;
     }
     
     //Import methods
     @FXML
     public void importProducts(ActionEvent event) {
-
+    	
+    	try {
+    		restaurant.importIngredients();
+			restaurant.importProducts();
+			importAlert();
+		} catch (IOException | NumberFormatException e) {
+			importAlertError();
+		}
     }
 
     @FXML
     public void importClients(ActionEvent event) {
-
+    	
+    	try {
+			restaurant.importClients();
+			importAlert();
+		} catch (IOException e) {
+			importAlertError();
+		}
     }
 
     @FXML
     public void importIngredients(ActionEvent event) {
-
+    	
+    	try {
+			restaurant.importIngredients();
+			importAlert();
+		} catch (IOException | NumberFormatException e) {
+			importAlertError();
+		}
     }
 
     @FXML
     public void importOrders(ActionEvent event) {
-
+    	try {
+    		restaurant.importClients();
+    		restaurant.importIngredients();
+			restaurant.importProducts();
+			restaurant.importOrders();
+			importAlert();
+		} catch (IOException | NumberFormatException e) {
+			importAlertError();
+		}
     }
     
     @FXML
     public void createClient(ActionEvent event) {
-    	
+    	if(!txtClientName.getText().isEmpty() && !txtClientLastName.getText().isEmpty() && !txtClientCC.getText().isEmpty() && 
+    			!txtClientAdress.getText().isEmpty() && !txtClientPhone.getText().isEmpty()) {
+    			
+			try {
+				
+				if(!restaurant.clientAlreadyExistByCC(txtClientCC.getText())) {
+					restaurant.createClient(txtClientName.getText(), txtClientLastName.getText(), txtClientCC.getText(), txtClientAdress.getText(), txtClientPhone.getText(), txtClientObsField.getText());
+				}else {
+					//alert
+					Alert error = new Alert(AlertType.ERROR);
+					error.setTitle("El cliente ya existe");
+					error.setContentText("Ya existe un cliente con el número de cédula indicado.");
+					error.showAndWait();
+				}
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    	}
     }
     
     @FXML
     public void editClient(ActionEvent event) {
-
+    	
+    	if(!txtCCToEdit.getText().isEmpty()) {
+    		int posClient = restaurant.searchClientByCc(txtCCToEdit.getText());
+    		
+    		if(posClient != -1) {
+    			
+    			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editClient-pane.fxml"));
+    			fxmlLoader.setController(this); 	
+    			
+    			Parent addContactPane = null;
+    			try {
+    				addContactPane = fxmlLoader.load();
+    			} catch (IOException e) {
+    				e.printStackTrace();
+    			}
+    			mainPane.getChildren().clear();
+    			mainPane.getChildren().setAll(addContactPane);
+    			
+    			txtNewClientName.setText(restaurant.getClients().get(posClient).getName());
+    			txtNewClientLastName.setText(restaurant.getClients().get(posClient).getLastName());
+    			txtUpdateClientCC.setText(restaurant.getClients().get(posClient).getCc());
+    			txtNewClientAdress.setText(restaurant.getClients().get(posClient).getAdress());
+    			txtNewClientPhone.setText(restaurant.getClients().get(posClient).getPhone());
+    			txtNewClientObsField.setText(restaurant.getClients().get(posClient).getObsField());
+    			
+    			txtUpdateClientCC.setEditable(false);
+    			
+    		}else {
+    			//alerta cedula no encontrada
+    			Alert warning = new Alert(AlertType.WARNING);
+    			warning.setTitle("Cédula no encontrada");
+    			warning.setContentText("Ningun cliente de la lista de clientes tiene la cédula indicada");
+    			warning.showAndWait();
+    		}
+    	}else {
+    		//alerta textfield vacío
+    		warningEmpyText();
+    	}
     }
 
     @FXML
     public void updateClient(ActionEvent event) {
+    	
+    	if(!txtNewClientName.getText().isEmpty() && !txtNewClientLastName.getText().isEmpty() && !txtNewClientAdress.getText().isEmpty() &&
+    			!txtNewClientPhone.getText().isEmpty()) {
+       		
+    		try {
+				restaurant.updateClient(txtCCToEdit.getText(), txtNewClientName.getText(), txtNewClientLastName.getText(), txtNewClientAdress.getText(),
+						txtNewClientPhone.getText(), txtNewClientObsField.getText());
+			} catch (IOException e) {
 
+				e.printStackTrace();
+			}
+    	}else{
+    		//alert empty fields
+    		warningEmpyText();
+    	}
     }
     
     @FXML
     public void createEmployee(ActionEvent event) {
+    	
+    	if(!txtEmployeeName.getText().isEmpty() && !txtEmployeeLastName.getText().isEmpty() && !txtEmployeeCc.getText().isEmpty()) {
+    		
+    		try {
+				restaurant.createEmployee(txtEmployeeName.getText(), txtEmployeeLastName.getText(), txtEmployeeCc.getText());
 
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    	}else {
+    		//alert empty fields
+    		warningEmpyText();
+    	}
     }
 
     @FXML
     public void editEmployee(ActionEvent event) {
-
+    	
+    	if(!txtCCEmployeeToEdit.getText().isEmpty()) {
+    		
+    		int posEmployee = restaurant.searchEmployeeByCC(txtCCEmployeeToEdit.getText());
+    		
+    		if(posEmployee != -1) {
+    			
+    			txtNewEmploName.setText(restaurant.getEmployees().get(posEmployee).getName());
+    			txtNewEmploLastName.setText(restaurant.getEmployees().get(posEmployee).getLastName());
+    			txtUpdateEmploCC.setText(restaurant.getEmployees().get(posEmployee).getCc());
+    			
+    			txtUpdateEmploCC.setEditable(false);
+    		}
+    	}else {
+    		//alert texftfield vacio
+    		warningEmpyText();
+    	}
     }
     
     @FXML
     public void updateEmployeeX(ActionEvent event) {
-
+    	
+    	if(!txtNewEmploName.getText().isEmpty() && !txtNewEmploLastName.getText().isEmpty()) {
+    		
+    		try {
+				restaurant.updateEmployee(txtUpdateEmploCC.getText(), txtNewEmploName.getText(), txtNewEmploLastName.getText());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    		
+    	}else {
+    		//alert empty fields
+    		warningEmpyText();
+    	}
     }
     
     @FXML
     public void createIngredient(ActionEvent event) {
+    	
+    	if(!txtIngredientName.getText().equals("") && !txtIngredientValue.getText().equals("") && verifyIfNumber(txtIngredientValue.getText())){
+    		try {
+				restaurant.createIngredient(txtIngredientName.getText(), Integer.toString(restaurant.getUserByUserName(actualUser).getEmployeeId()), 
+											Integer.toString(restaurant.getUserByUserName(actualUser).getEmployeeId()), 
+											txtIngredientValue.getText());
+			} catch (IOException e) {
 
+				e.printStackTrace();
+			}
+    	}
     }
     
     @FXML
     public void eliminateIngredient(ActionEvent event) {
-
+    	
+    	try {
+    		
+    		int ingredientPos = restaurant.binarySearchIng(referenceIngredient, restaurant.getIngredients());
+    		
+    		if(restaurant.getIngredients().get(ingredientPos).getReferences().isEmpty()) {
+    			restaurant.deleteIngredient(restaurant.getIngredients().get(ingredientPos).getCode());
+    			loadIngredientOptions(null);
+    		}else {
+    			//alert
+    			Alert warning = new Alert(AlertType.WARNING);
+    			warning.setTitle("Ingrediente referenciado!");
+    			warning.setContentText("Al menos un producto tiene este ingrediente! No se puede eliminar un ingrediente referenciado");
+    			warning.showAndWait();
+    		}
+						
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
     }
 
     @FXML
     public void updateIngredient(ActionEvent event) {
-
+    	
+    	if(!txtNewIngName.getText().isEmpty() && !txtNewIngVal.getText().isEmpty() && verifyIfNumber(txtNewIngVal.getText())) {
+    		try {
+    			boolean available= false;
+    			if(radioBtnIngAvailable.isSelected()) {
+    				available = true;
+    			}
+    			
+				restaurant.updateIngredient(referenceIngredient, txtNewIngName.getText(), txtNewIngVal.getText(), available);
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+    	}
     }
     
     @FXML
     public void addIngredientToProduct(ActionEvent event) {
-
+    	
+    	Ingredient ingrX = tvIngP.getSelectionModel().getSelectedItem();
+    	
+    	if(ingrX != null) {
+    		if( restaurant.ingredientIsAvailable(ingrX.getCode())) {
+    			if(tempIngrsCodes.size()>0) {
+    				
+            		boolean canAdd = searchTempIngr(ingrX.getCode());
+            		if(canAdd) {
+            			
+        	    		tempIngrsCodes.add(ingrX.getCode());
+        	    	}
+            	}else {
+            		tempIngrsCodes.add(ingrX.getCode());
+            	}
+    		}else {
+    			//alerta ingrediente no disponible
+    			Alert warning = new Alert(AlertType.WARNING);
+    			warning.setTitle("Operación inválida");
+    			warning.setContentText("El ingrediente seleccionado está deshabilitado! No se puede agregar a ningún" +
+        							 "producto");
+    			warning.showAndWait();
+    		}
+    			
+    		
+    	}else {
+    		//alerta nada seleccionado
+    		Alert error = new Alert(AlertType.ERROR);
+    		error.setTitle("Error, ninguna selección");
+    		error.setContentText("No se ha seleccionado ningún ingrediente de la tabla. Debe seleccionar un ingrediente para " +
+    							 "poder añadirlo.");
+    		error.showAndWait();
+    	}
     }
     
     @FXML
     public void addIngrToProduct(ActionEvent event) {
-
+    	
+    	Ingredient ingrToAdd = tvallInings.getSelectionModel().getSelectedItem();
+		 
+		 if(ingrToAdd!=null && actionIngtxt.getText().isEmpty()) {
+				 
+			actionIngtxt.setText(""+ingrToAdd.getCode());
+		 }
+		 	 
+		 if(restaurant.ingredientIsAvailable(Integer.parseInt(actionIngtxt.getText()))) {
+				 
+			tempIngrsCodes.add(Integer.parseInt(actionIngtxt.getText()));
+			referenceProduct.getIngredients().add(restaurant.getIngredientByCode(Integer.parseInt(actionIngtxt.getText())));
+			loadEdit("edit-product.fxml");
+		 }else {
+			//alerta no disponible
+			Alert warning = new Alert(AlertType.WARNING);
+			warning.setTitle("Operación inválida");
+			warning.setContentText("El ingrediente seleccionado está deshabilitado! No se puede agregar a ningún" +
+    							 	"producto");
+			warning.showAndWait();
+		 }
     }
     
     @FXML
     public void addSizeToProduct(ActionEvent event) {
-
+    	if(!txtAddNameSize.getText().isEmpty() && !txtMultiply.getText().isEmpty()) {
+			 referenceProduct.addSize(txtAddNameSize.getText(), Double.parseDouble(txtMultiply.getText()));
+			 loadEdit("edit-product.fxml");
+		 } else {
+			 warningEmpyText();
+		 }
     }
 
     @FXML
     public void createProduct(ActionEvent event) {
-
+    	
+    	String type="";
+    	boolean valid = validateInputProduct();
+    	if(valid) {
+    		
+    		if(rbMainDish.isSelected()) {
+    			type = "MAIN_DISH";
+    		}else if(rbAdition.isSelected()) {
+    			type = "ADDITIONAL_DISH";
+    		}else {
+    			type = "DRINK";
+    		}
+    		
+    		try {
+				restaurant.createProduct(txtPName.getText(), Integer.toString(restaurant.getUserByUserName(actualUser).getEmployeeId()), 
+										Integer.toString(restaurant.getUserByUserName(actualUser).getEmployeeId()), tempIngrsCodes, type);
+				tempIngrsCodes.clear();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    		
+    	}
     }
 
     @FXML
     public void eliminateProduct(ActionEvent event) {
-
+    	try {
+			if(restaurant.getProductByCode(referenceProduct.getCode()).getRefCodes().isEmpty()) {
+				restaurant.deleteProduct(referenceProduct.getCode());
+				loadProductOptions(null);
+			}else {
+	    		//alert product is referenced
+				Alert warning = new Alert(AlertType.WARNING);
+				warning.setTitle("Producto referenciado");
+				warning.setContentText( "Al menos una orden o ingrediente usa este producto! No se puede eliminar un" + 
+										" producto referenciado.");
+				warning.showAndWait();
+	    	}
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
     }
 
     @FXML
     public void removeIngrFromProduct(ActionEvent event) {
 
+    	Ingredient ingrToRemove = tvIdp.getSelectionModel().getSelectedItem();
+    	
+		if(ingrToRemove != null) {
+			
+			int posToRem = searhIngInTempProduct(ingrToRemove.getCode());
+			if(posToRem!= -1){
+				referenceProduct.getIngredients().remove(posToRem);
+				loadEdit("edit-product.fxml");
+			}		
+			
+		}else if(!actionIngtxt.getText().equals(actionIngtxt.getPromptText()) || !actionIngtxt.getText().isEmpty()) {
+			
+			int removeCod = restaurant.binarySearchIng(actionIngtxt.getText(), restaurant.getIngredients());
+			int posToRemo = searhIngInTempProduct(restaurant.getIngredients().get(removeCod).getCode());
+
+			if(posToRemo!=-1) {
+				
+				referenceProduct.getIngredients().remove(posToRemo);
+				loadEdit("edit-product.fxml");
+			}	
+		}
+		
+		if(ingrToRemove == null) {
+			Alert error = new Alert(AlertType.ERROR);
+			error.setTitle("Ningún elemento seleccionado");
+			error.setContentText("No se ha seleccionado ningún ingrediente a remover.");
+			error.showAndWait();
+		}
     }
 
     @FXML
     public void removeSizeFromProduct(ActionEvent event) {
-
+    	boolean found = false;
+		 int pos =-1;
+		 
+		 if(!txtAddNameSize.getText().isEmpty()) {
+			 for (int i = 0; i < referenceProduct.getSizes().size() && !found; i++) {
+				if(referenceProduct.getSizes().get(i).getSize().equalsIgnoreCase(txtAddNameSize.getText())) {
+					found = true;
+					pos = i;
+				}
+			}
+		 }
+		 if(pos!=-1) {
+			 referenceProduct.getSizes().remove(pos);
+			 loadEdit("edit-product.fxml");
+		 }
     }
 
     @FXML
     public void updateProduct(ActionEvent event) {
-
+    	
+    	if(txtNewProductName.getText().isEmpty()) {
+    		txtNewProductName.setText(referenceProduct.getName());
+    	}
+    	
+    	//available
+    	boolean isAvailable=true;
+		if(rbProductUnavailable.isSelected()) {
+			isAvailable=false;
+		}
+		
+		//type
+		String type="";
+		if(rbPMainDish.isSelected()) {
+			type = "MAIN_DISH";
+		}else if(rbPAd.isSelected()) {
+			type = "ADDIOTIONAL_DISH";
+		}else {
+			type = "DRINK";
+		}
+    	
+    	tempIngrsCodes.clear();
+    	
+    	for (int i = 0; i < referenceProduct.getIngredients().size() ; i++) {
+			tempIngrsCodes.add(referenceProduct.getIngredients().get(i).getCode());
+		}
+    	
+    	ArrayList<String> sizesNames = new ArrayList<>();
+    	ArrayList<Double> priceFactors = new ArrayList<>();
+    	
+    	for (int i = 0; i < referenceProduct.getSizes().size(); i++) {
+			sizesNames.add(referenceProduct.getSizes().get(i).getSize());
+			priceFactors.add(referenceProduct.getSizes().get(i).getPriceFactor());
+		}
+    	
+    	
+		try {
+			restaurant.updateProduct(txtNewProductName.getText(), actualUser, referenceProduct.getCode(), tempIngrsCodes, type, isAvailable, sizesNames, priceFactors);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
     }
     
     @FXML
     public void addProductToOrder(ActionEvent event) {
+    	
+    	if(!txtOrderProductCode.getText().isEmpty() && !txtOrderProductAmount.getText().isEmpty() && !txtOrderProductSize.getText().isEmpty()) {
+    		
+    		boolean productExists = restaurant.getProductByCode(Integer.parseInt(txtOrderProductCode.getText())) != null;
+    		boolean sizeExists = false;
+    		if (productExists) {
+    			sizeExists = restaurant.getProductByCode(Integer.parseInt(txtOrderProductCode.getText())).getSizeByName(txtOrderProductSize.getText()) != null;
+			}
 
+    		try {
+    			int numberAmount = Integer.parseInt(txtOrderProductAmount.getText());
+    			boolean isPositive = numberAmount > 0;
+    					
+    			if(productExists && sizeExists && isPositive) {
+        			
+        			tempProductCodes.add(Integer.parseInt(txtOrderProductCode.getText()));
+        			tempProductsAmounts.add(numberAmount);
+        			tempProductsSizes.add(txtOrderProductSize.getText());
+        			
+        			Alert info = new Alert(AlertType.INFORMATION);
+        			info.setTitle("Producto añadido");
+        			info.setContentText("El producto seleccionado ha sido agregado exitosamente  a la orden");
+        			info.showAndWait();
+        			
+        		}else {
+        			//alerta el producto o el tamaño no existen, o el numero es negativo
+        			Alert warning = new Alert(AlertType.WARNING);
+        			warning.setTitle("Error añadiendo el producto a la orden");
+        			String warningString = "Se puede haber presentado alguno de los siguientes errores: \n";
+        			if (!isPositive) {
+						warningString += " - El número ingresado no es mayor que 0 \n";
+					}
+        			
+        			if (!productExists) {
+        				warningString += "- No existe un producto con el código ingresado \n";
+					}
+        			
+        			if (!sizeExists) {
+        				warningString += "- El producto no tiene el tamaño indicado \n";
+					}
+        			warning.setContentText(warningString);
+        			warning.showAndWait();
+        			
+        		}
+    		}catch(NumberFormatException e) {
+    			//alerta el txt no es un numero
+    			Alert error = new Alert(AlertType.ERROR);
+    			error.setTitle("Cantidad inválida");
+    			error.setContentText("La cantidad ingresada no es un número! Ingrese una cantidad válida");
+    			error.showAndWait();
+    		}
+    				
+    		
+    	}else {
+    		//alerta algun textfield vacio
+    		warningEmpyText();
+    	}
     }
 
-    @FXML
+    @SuppressWarnings("unchecked")
+	@FXML
     public void createOrder(ActionEvent event) {
-
+    	
+    	LocalDateTime orderTime = LocalDateTime.now();
+		
+		int id = restaurant.searchEmployeeByUserName(actualUser);
+		String state ="REQUESTED";
+		
+		try {
+			if(clientRef != null) {
+				
+				ArrayList<Integer> cloneProductCodes =  (ArrayList<Integer>) tempProductCodes.clone();
+				ArrayList<Integer> cloneProductAmounts = (ArrayList<Integer>) tempProductsAmounts.clone();
+    			ArrayList<String> cloneProductSizes = (ArrayList<String>) tempProductsSizes.clone();
+				
+				restaurant.createOrder(cloneProductCodes, cloneProductAmounts, cloneProductSizes, clientRef, id, orderTime, txtOrderOBs.getText(), state);
+				
+				tempProductCodes.clear();
+				tempProductsAmounts.clear();
+				tempProductsSizes.clear();
+				
+				loadCreate("create-order.fxml");
+				
+				//success alert 
+				Alert info = new Alert(AlertType.INFORMATION);
+				info.setTitle("Orden creada exitosamente");
+				info.setContentText("La orden ha sido creada exitosamente");
+				info.showAndWait();
+			}else {
+				//Alert no client reference
+				Alert warning = new Alert(AlertType.WARNING);
+				warning.setTitle("Cliente no encontrado");
+				warning.setContentText("No se ha ingresado un cliente válido.");
+				warning.showAndWait();
+			}
+			
+			clientRef = null;
+			
+			tempProductCodes = new ArrayList<Integer>();
+			tempProductsAmounts = new ArrayList<Integer>();
+			tempProductsSizes = new ArrayList<String>();
+			
+		} catch (IOException e) {
+			 	
+			e.printStackTrace();
+		}
     }
 
     @FXML
     public void fillProductTextFields(MouseEvent event) {
-
+    	
+    	Product productX = tvProductsList.getSelectionModel().getSelectedItem();	
+    	
+    	if(productX!=null) {
+    		
+    		txtOrderProductCode.setText(""+productX.getCode());
+    		txtOrderProductAmount.setText(""+1);
+    		txtOrderProductSize.setText("Standard");
+    	}
     }
 
     @FXML
@@ -990,32 +1544,179 @@ public class Controller {
 
     @FXML
     public void searchClient(ActionEvent event) {
-
+    	
+    	if(!txtSearchClientName.getText().isEmpty() && !txtSearhClientLastName.getText().isEmpty()) {
+    		
+    		long start = System.nanoTime();
+    		int posClient = restaurant.searchClientByName(txtSearchClientName.getText().trim(), txtSearhClientLastName.getText().trim());
+    		long end = System.nanoTime();
+    		
+    		searchTime = end-start;
+    		labelSearchTimeClient.setText("" + searchTime + " ns");
+    		
+    		if(posClient != -1) {
+    			clientRef = restaurant.getClients().get(posClient).getCc();
+    		}else {
+    			//alert cliente no encontrado
+    			Alert warning = new Alert(AlertType.WARNING);
+    			warning.setTitle("Cliente no encontrado");
+    			warning.setContentText("No se ha encontrado un cliente con los nombres indicados");
+    			warning.showAndWait();
+    		}
+    	}
     }
     
     @FXML
     public void eOaddProductToOrder(ActionEvent event) {
-
+    	
+    	if(!txtEOProductCode.getText().isEmpty() && !txtEOAmount.getText().isEmpty() && !txtEOSize.getText().isEmpty() ) {
+    		
+    		Product productX = restaurant.getProductByCode(Integer.parseInt(txtEOProductCode.getText()));
+    		
+    		if(productX != null) {
+    			
+            	Size sizeX = productX.getSizeByName(txtEOSize.getText());
+        		
+        		if(sizeX!=null) {
+        			
+        			if(verifyIfNumber(txtEOAmount.getText())) {
+        				
+        				tempProductCodes.add(Integer.parseInt(txtEOProductCode.getText()));
+            			tempProductsAmounts.add(Integer.parseInt(txtEOAmount.getText()));
+            			tempProductsSizes.add(txtEOSize.getText());
+            			referenceOrder.getOrderProducts().add(productX);
+            			
+            			loadEditOrder(null);
+            			
+        			}else {
+        				invalidNumericInputAlert();
+        			}        			
+        		}else {
+        			invalidSizeAlert();
+        		}
+    		}else {
+    			invalidProductCodeAlert();
+    		}
+    	}else{
+    		warningEmpyText();
+    	}
     }
 
     @FXML
     public void eOremoveIngrFromProduct(ActionEvent event) {
-
+    	
+    	Product productX = tvPIO.getSelectionModel().getSelectedItem();
+    	
+    	int posToRemoveInRef;
+    	Size sizeX;
+    	
+    	if (productX != null) {
+    		//if any filed is empty it fills it with default values (1 for amounts, default size for sizes and the code of the selected item)
+        	if(txtEOAmount.getText().isEmpty()) {
+        		txtEOAmount.setText(""+1);
+        	}
+        	if(txtEOSize.getText().isEmpty()) {
+        		txtEOSize.setText(Product.DEFAULT_SIZE);
+        	}
+        	
+        	if(txtEOProductCode.getText().isEmpty() && productX!=null) {
+        		txtEOProductCode.setText(""+productX.getCode());
+        	}
+        	
+        	productX = restaurant.getProductByCode(Integer.parseInt(txtEOProductCode.getText()));
+        	sizeX = productX.getSizeByName(txtEOSize.getText());
+    		
+    		if(sizeX!=null) {
+    			posToRemoveInRef = searchProductByCodeInReferenceOrder(Integer.parseInt(txtEOProductCode.getText()), txtEOSize.getText());
+    			
+    			if(posToRemoveInRef!=-1) {
+    				//checks if the amount number of products to remove is lower than the actual amount
+    				if(Integer.parseInt(txtEOAmount.getText())<tempProductsAmounts.get(posToRemoveInRef)) {
+    					
+    					tempProductsAmounts.set(posToRemoveInRef, tempProductsAmounts.get(posToRemoveInRef)-Integer.parseInt(txtEOAmount.getText()));
+    				//The amount of products to remove is equal or greater than the existing amount
+    				}else{
+    					tempProductCodes.remove(posToRemoveInRef);
+        				tempProductsSizes.remove(posToRemoveInRef);
+        				tempProductsAmounts.remove(posToRemoveInRef);
+        				referenceOrder.getOrderProducts().remove(posToRemoveInRef);
+    				}
+    				loadEditOrder(null);
+        		}	
+    		} else {
+    			Alert error = new Alert(AlertType.ERROR);
+    			error.setTitle("Ningún elemento seleccionado");
+    			error.setContentText("No se ha ingresado ningún tamaño");
+    			error.showAndWait();
+    		}
+    		
+		} else {
+			Alert error = new Alert(AlertType.ERROR);
+			error.setTitle("Ningún elemento seleccionado");
+			error.setContentText("No se ha ingresado ningún producto.");
+			error.showAndWait();
+		}
     }
 
-    @FXML
+    @SuppressWarnings("unchecked")
+	@FXML
     public void eOupdateProduct(ActionEvent event) {
-
+    	try {
+    		if(orderCodeReference >= 0) {
+    			
+				ArrayList<Integer> cloneProductCodes =  (ArrayList<Integer>) tempProductCodes.clone();
+				ArrayList<Integer> cloneProductAmounts = (ArrayList<Integer>) tempProductsAmounts.clone();
+    			ArrayList<String> cloneProductSizes = (ArrayList<String>) tempProductsSizes.clone();
+    			
+    			restaurant.updateOrder(orderCodeReference, cloneProductCodes, cloneProductAmounts, cloneProductSizes);
+    			loadEditOrder(null);
+    			
+    			//success alert
+    			Alert info = new Alert(AlertType.INFORMATION);
+    			info.setTitle("Orden editada exitosamente");
+    			info.setContentText("La orden ha sido editada correctamente");
+    			info.showAndWait();
+    			
+    			loadEdit("edit-order-process.fxml");
+    		} else {
+    			
+    			Alert warning = new Alert(AlertType.WARNING);
+    			warning.setTitle("Orden inválida");
+    			warning.setContentText("El código de la orden a editar es inválido. Operación detenida.");
+    			warning.showAndWait();
+    		}		
+			
+		} catch (IOException e) {
+		
+			e.printStackTrace();
+		}
     }
 
     @FXML
     public void fillEditOrderFields(MouseEvent event) {
-
+    	Product productX = tvregisteredProducts.getSelectionModel().getSelectedItem();
+    	if(productX != null) {
+    		txtEOProductCode.setText(""+productX.getCode());
+    	}
+    	
+    	if(txtEOAmount.getText().isEmpty()) {
+    		txtEOAmount.setText(""+1);
+    	}
+    	
+    	if(txtEOSize.getText().isEmpty()) {
+    		txtEOSize.setText(Product.DEFAULT_SIZE);
+    	}
     }
 
     @FXML
     public void setStateForward(ActionEvent event) {
-
+    	try {
+			restaurant.updateStateOrder(orderCodeReference);
+			loadEditOrder(null);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
     
     @FXML
@@ -1062,6 +1763,348 @@ public class Controller {
 		alert.setTitle("Campos Vacíos");
 		alert.setContentText("Existen campos vacíos!");
 		alert.showAndWait();
+    }
+    
+    public boolean verifyIfNumber(String str) {
+    	
+    	boolean isNumber = true;
+    	
+		try {
+			int number = Integer.parseInt(str);
+			boolean isPositive = number > 0;
+			
+			if(!isPositive) {
+				isNumber = false;
+			}
+		}catch(NumberFormatException e) {
+			
+			isNumber = false;
+		}
+		return isNumber;
+	}
+    
+    public boolean validateInputProduct() {
+		
+		boolean valid = true;
+
+		if(txtPName.getText().equals("")) {
+			valid = false;
+		}
+
+		if(!rbMainDish.isSelected() && !rbAdition.isSelected() && !rbDrink.isSelected()) {
+			valid = false;
+		}
+
+		return valid;
+	}
+    
+    public boolean searchTempIngr(int codeI) {
+    	boolean found=false;
+    	for (int i = 0; i < tempIngrsCodes.size() && !found; i++) {
+			if(tempIngrsCodes.get(i)==codeI) {
+				found = true;
+			}
+		}
+    	return found;
+    }
+    
+    public int searhIngInTempProduct(int code) {
+    	
+    	int pos = -1;
+    	boolean found = false;
+		for (int i = 0; i < referenceProduct.getIngredients().size() && !found; i++) {
+			if(code == referenceProduct.getIngredients().get(i).getCode()){
+				pos = i;
+				found = true;
+			}
+		}
+		return pos;
+    }
+    
+    public int searchProductByCodeInReferenceOrder(int code, String size){
+    	
+    	int pos = -1;
+    	boolean found = false;
+    	
+    	for (int i = 0; i < tempProductCodes.size() && !found; i++) {
+			if(tempProductCodes.get(i) == code && tempProductsSizes.get(i).equals(size)) {
+				pos = i;
+				found = true;
+			}
+		}
+    	return pos;
+    }    
+    
+    public void importAlert() {
+    	Alert warning = new Alert(AlertType.INFORMATION);
+		warning.setTitle("Información importada");
+		warning.setContentText("La infromación se ha importado exitosamente");
+		warning.showAndWait();
+    }
+    
+    public void importAlertError() {
+    	Alert error = new Alert(AlertType.ERROR);
+		error.setTitle("Error de importación");
+		error.setContentText("La infromación no se ha importado. Fallos en la lectura");
+		error.showAndWait();
+    }
+    
+    public void invalidNumericInputAlert() {
+    	Alert error = new Alert(AlertType.WARNING);
+		error.setTitle("Formato de número inválido");
+		error.setContentText("Se ingresó un valor que no es un número");
+		error.showAndWait();
+    }
+    
+    public void invalidProductCodeAlert() {
+    	Alert error = new Alert(AlertType.WARNING);
+		error.setTitle("Código de producto no encontrado");
+		error.setContentText("El código que se insertó no se encuentra dentro de los productos registrados");
+		error.showAndWait();
+    }
+    
+    public void invalidSizeAlert() {
+    	Alert error = new Alert(AlertType.WARNING);
+		error.setTitle("Tamaño no hallado en producto");
+		error.setContentText("El tamaño ingresado no se encuentra registrado dentro del producto seleccionado");
+		error.showAndWait();
+    }
+    
+    public void initizalizeTableIngr() {
+		 ObservableList<Ingredient> ingredientArray = FXCollections.observableArrayList(restaurant.getIngredients());
+		 
+		 colIngr.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("name"));  		 
+		 
+		 colCreator.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("creatorRef"));
+		 
+		 colLastE.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("lastEditorRef"));
+		 
+		 colCode.setCellValueFactory(new PropertyValueFactory<Ingredient,Integer>("code"));
+		 
+		 colValue.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("price"));    		
+		 
+		 tableIngr.setItems(ingredientArray);	 
+	 }
+    
+    public void initizalizeTableIngrProd() {
+		 ObservableList<Ingredient> ingredientArrays = FXCollections.observableArrayList(restaurant.getIngredients());
+		 
+		 colNip.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("name"));  		 
+		 
+		 colIngcreP.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("creatorRef"));
+		 
+		 colIngLastEP.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("lastEditorRef"));
+		 
+		 colIngCodP.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("code"));
+		 
+		 colIngVal.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("price"));    		
+		 
+		 tvIngP.setItems(ingredientArrays);	 
+	 }
+    
+    public void initizalizeTableProducts() {
+		 ObservableList<Product> productArray = FXCollections.observableArrayList(restaurant.getProducts());
+		 
+		 colPname.setCellValueFactory(new PropertyValueFactory<Product,String>("name"));  		 
+		 
+		 colLEP.setCellValueFactory(new PropertyValueFactory<Product,String>("lastEditorRef"));
+		 
+		 colPCode.setCellValueFactory(new PropertyValueFactory<Product,String>("code"));
+		 
+		 coPPrice.setCellValueFactory(new PropertyValueFactory<Product,String>("price")); 	
+
+		 colPav.setCellValueFactory(new PropertyValueFactory<Product,String>("availableS"));    	
+		 
+		 colPType.setCellValueFactory(new PropertyValueFactory<Product,String>("productTypeS"));    	
+		 
+		 tvProducts.setItems(productArray);	 
+	 }
+    
+    public void initializeIngsInProduct(Product px) {
+    	
+    	ObservableList<Ingredient> ingredientsInProduct = FXCollections.observableArrayList(px.getIngredients()); 
+    	
+		colIngInProduct.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("name"));  		 
+		 
+		colIngInPCode.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("code"));
+		
+		colIngInPPrice.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("price"));    		
+		 
+		tvIdp.setItems(ingredientsInProduct);
+    }
+    
+    public void initializeAllRegisIngs() {
+    	ObservableList<Ingredient> ingredientsInProduct = FXCollections.observableArrayList(restaurant.getIngredients());
+		 
+    	colAlIngsNames.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("name"));  		 
+		 
+    	colAllIngsCodes.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("code"));
+		 
+    	colAllINgPrices.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("price"));    		
+		 
+    	tvallInings.setItems(ingredientsInProduct);
+    }
+    
+    public void initSizesProduct(Product px) {
+    	ObservableList<Size> productSizes = FXCollections.observableArrayList(px.getSizes());
+		 
+    	colProdSizeName.setCellValueFactory(new PropertyValueFactory<Size,String>("size"));  		 
+		 
+    	colProdSizePrice.setCellValueFactory(new PropertyValueFactory<Size,String>("priceFactor"));   		
+		
+    	tvProdSizes.setItems(productSizes);
+    }
+    
+    public void initializePorudctsInCreateOrder() {
+    	ObservableList<Product> allProducts = FXCollections.observableArrayList(restaurant.getProducts());
+		 
+    	colProductsNames.setCellValueFactory(new PropertyValueFactory<Product,String>("name"));  		 
+		 
+    	colProductsCodes.setCellValueFactory(new PropertyValueFactory<Product,String>("code"));
+		 
+    	colProductsPrices.setCellValueFactory(new PropertyValueFactory<Product,String>("price"));    		
+		 
+    	tvProductsList.setItems(allProducts);
+    }
+    
+    public void intializeOrders() {
+    	ObservableList<Order> allOrders = FXCollections.observableArrayList(restaurant.getOrders());
+    	
+    	colOrdersClients.setCellValueFactory(new PropertyValueFactory<Order,String>("clientRef"));  		 
+		 
+    	colOrdersCodes.setCellValueFactory(new PropertyValueFactory<Order,String>("code"));
+		 
+    	colOrdersStates.setCellValueFactory(new PropertyValueFactory<Order,String>("stateString"));
+
+    	colOrdersPrices.setCellValueFactory(new PropertyValueFactory<Order, Double>("totalPrice"));    		
+		 
+    	tvOrders.setItems(allOrders);
+    }
+    
+    public void initializeProductsInOrder(Order orderX) {
+    	
+    	ObservableList<Product> productsInOrder = FXCollections.observableArrayList(orderX.getOrderProducts());
+		 
+    	colEOProductName.setCellValueFactory(new PropertyValueFactory<Product,String>("name"));  		 
+		 
+    	colEOProductCode.setCellValueFactory(new PropertyValueFactory<Product,String>("code"));
+		 
+    	colEOProductPrice.setCellValueFactory(new PropertyValueFactory<Product,String>("price"));
+		 
+    	tvPIO.setItems(productsInOrder);
+    }
+    
+    public void initializeProductsInEditingOrder() {
+    	
+    	ObservableList<Product> productsRegistered = FXCollections.observableArrayList(restaurant.getProducts());
+		 
+    	colEOOrderName.setCellValueFactory(new PropertyValueFactory<Product,String>("name"));  		 
+		 
+    	colEOCode.setCellValueFactory(new PropertyValueFactory<Product,String>("code"));
+		 
+    	colEOPrice.setCellValueFactory(new PropertyValueFactory<Product,String>("price"));
+		 
+    	tvregisteredProducts.setItems(productsRegistered);
+    }
+    
+    public void initializeShowClients() {
+    	
+    	ObservableList<Client> showClients = FXCollections.observableArrayList(restaurant.getClients());
+		 
+    	colSClientName.setCellValueFactory(new PropertyValueFactory<Client,String>("name"));  		 
+		 
+    	colSClientLastName.setCellValueFactory(new PropertyValueFactory<Client,String>("lastName"));
+		 
+    	colSClientCc.setCellValueFactory(new PropertyValueFactory<Client,String>("cc"));
+    	
+    	colSClientAdress.setCellValueFactory(new PropertyValueFactory<Client,String>("adress"));
+		
+    	colSClientPhone.setCellValueFactory(new PropertyValueFactory<Client,String>("phone"));
+		 
+    	tvShowClients.setItems(showClients);
+    }
+    
+    public void initializeShowEmployees() {
+    	
+    	ObservableList<Employee> showEmployees = FXCollections.observableArrayList(restaurant.getEmployees());
+		 
+    	colSEmployeeName.setCellValueFactory(new PropertyValueFactory<Employee,String>("name"));  		 
+		 
+    	colSEmployeeLastName.setCellValueFactory(new PropertyValueFactory<Employee,String>("lastName"));
+		 
+    	colSEmployeeCc.setCellValueFactory(new PropertyValueFactory<Employee,String>("cc"));
+    	
+    	colSEmployeeId.setCellValueFactory(new PropertyValueFactory<Employee,String>("employeeId"));
+		 
+    	tvShowEmployees.setItems(showEmployees);
+    }
+    
+    public void initializeShowUsers() {
+    	
+    	ObservableList<SystemUser> showUsers = FXCollections.observableArrayList(restaurant.getSystemUsers());
+		 
+    	colSUserName.setCellValueFactory(new PropertyValueFactory<SystemUser,String>("name"));  		 
+		 
+    	colSUserLastName.setCellValueFactory(new PropertyValueFactory<SystemUser,String>("lastName"));
+		 
+    	colSUserCc.setCellValueFactory(new PropertyValueFactory<SystemUser,String>("cc"));
+    	
+    	colSUserAdress.setCellValueFactory(new PropertyValueFactory<SystemUser,String>("userName"));
+    	
+    	colSUserPhone.setCellValueFactory(new PropertyValueFactory<SystemUser,String>("password"));
+		 
+    	tvShowUsers.setItems(showUsers);
+    }
+    
+    public void initializeShowIngredients() {
+    	
+    	ObservableList<Ingredient> showIngredients = FXCollections.observableArrayList(restaurant.getIngredients());
+		 
+    	colSIngredientName.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("name"));  		 
+		 
+    	colSIngredientLastName.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("creatorRef"));
+		 
+    	colSIngredientCc.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("lastEditorRef"));
+    	
+    	colSIngredientAdress.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("code"));
+    	
+    	colSIngredientPhone.setCellValueFactory(new PropertyValueFactory<Ingredient,String>("price"));
+		 
+    	tvShowIngredients.setItems(showIngredients);
+    }
+    
+    public void initializeShowProducts() {
+    	
+    	ObservableList<Product> showProducts = FXCollections.observableArrayList(restaurant.getProducts());
+		 
+    	colSProductName.setCellValueFactory(new PropertyValueFactory<Product,String>("name"));  		 
+		 
+    	colSProductCreator.setCellValueFactory(new PropertyValueFactory<Product,String>("creatorRef"));
+    	
+    	colSProductCode.setCellValueFactory(new PropertyValueFactory<Product,String>("code"));
+    	
+    	colSProductAvailabale.setCellValueFactory(new PropertyValueFactory<Product,String>("availableS"));
+    	
+    	colSProductPrice.setCellValueFactory(new PropertyValueFactory<Product,String>("productTypeS"));
+    	
+    	colSProductType.setCellValueFactory(new PropertyValueFactory<Product,String>("price"));
+		 
+    	tvShowProduct.setItems(showProducts);
+    }
+    
+    public void initializeShowOrders() {
+    	
+    	ObservableList<Order> showOrders = FXCollections.observableArrayList(restaurant.getOrders());
+		 
+    	colSOrderCcClient.setCellValueFactory(new PropertyValueFactory<Order,String>("clientRef"));  		 
+		 
+    	colSOrderCode.setCellValueFactory(new PropertyValueFactory<Order,String>("code"));
+    	
+    	colSOrderDate.setCellValueFactory(new PropertyValueFactory<Order,String>("date"));
+    	
+    	colSOrderState.setCellValueFactory(new PropertyValueFactory<Order,String>("stateString"));
+		 
+    	tvShowOrder.setItems(showOrders);
     }
     
 }
