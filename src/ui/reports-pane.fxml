@@ -11,19 +11,19 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="733.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
-      <HBox layoutX="46.0" layoutY="362.0" prefHeight="252.0" prefWidth="1174.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="733.0" stroke="BLACK" strokeType="INSIDE" width="1080.0" />
+      <HBox layoutY="362.0" prefHeight="252.0" prefWidth="1080.0" spacing="3.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="252.0" prefWidth="406.0">
+            <VBox alignment="TOP_CENTER" prefHeight="252.0" prefWidth="340.0">
                <children>
-                  <Text fill="#ffc721" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción reporte pedido">
+                  <Text fill="#d9a404" strokeType="OUTSIDE" strokeWidth="0.0" text="Reporte pedidos">
                      <VBox.margin>
                         <Insets left="40.0" right="40.0" />
                      </VBox.margin>
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Text>
                   <Text fill="#ffffe1" strokeType="OUTSIDE" strokeWidth="0.0" text="Genera un reporte de todos los pedidos entregados en un rango de fechas dado. Destacando la información de los pedidos junto con su valor." textAlignment="CENTER" wrappingWidth="325.0">
@@ -34,9 +34,9 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </Text>
-                  <JFXButton onAction="#generateOrderReport" prefHeight="64.0" prefWidth="471.0" style="-fx-background-color: #D9A404;" text="Generar reporte pedidos " textFill="#fff5d8">
+                  <JFXButton onAction="#generateOrderReport" prefHeight="64.0" prefWidth="471.0" style="-fx-background-color: #D9A404;" text="Generar" textFill="WHITE">
                      <font>
-                        <Font name="Montserrat Medium" size="19.0" />
+                        <Font name="System Bold" size="19.0" />
                      </font>
                      <VBox.margin>
                         <Insets left="40.0" right="40.0" top="50.0" />
@@ -46,9 +46,9 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="494.0" prefWidth="384.0">
                <children>
-                  <Text fill="#ffc721" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción reporte productos">
+                  <Text fill="#93bfbb" strokeType="OUTSIDE" strokeWidth="0.0" text="Reporte productos">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Text>
                   <Text fill="#ffffe1" strokeType="OUTSIDE" strokeWidth="0.0" text="Genera un reporte de todos los productos registrados en un rango de fechas dado. Destacando sus principales atributos" textAlignment="CENTER" wrappingWidth="325.0">
@@ -59,9 +59,9 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </Text>
-                  <JFXButton onAction="#generateProductReport" prefHeight="64.0" prefWidth="464.0" style="-fx-background-color: #D9A404;" text="Generar reporte productos" textFill="#fff5d8">
+                  <JFXButton onAction="#generateProductReport" prefHeight="64.0" prefWidth="464.0" style="-fx-background-color: #93BFBB;" text="Generar" textFill="WHITE">
                      <font>
-                        <Font name="Montserrat Medium" size="19.0" />
+                        <Font name="System Bold" size="19.0" />
                      </font>
                      <VBox.margin>
                         <Insets left="40.0" right="40.0" top="68.0" />
@@ -69,11 +69,11 @@
                   </JFXButton>
                </children>
             </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="567.0" prefWidth="419.0">
+            <VBox alignment="TOP_CENTER" prefHeight="252.0" prefWidth="360.0">
                <children>
-                  <Text fill="#ffc721" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción reporte empleados">
+                  <Text fill="#a1cc90" strokeType="OUTSIDE" strokeWidth="0.0" text="Reporte empleados">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Text>
                   <Text fill="#ffffe1" strokeType="OUTSIDE" strokeWidth="0.0" text="Genera un reporte de todos los empleados registrados en un rango de fechas dado. Destacando sus principales atributos y ventas." textAlignment="CENTER" wrappingWidth="325.0">
@@ -84,25 +84,24 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </Text>
-                  <JFXButton onAction="#generateEmployeeReport" prefHeight="64.0" prefWidth="418.0" style="-fx-background-color: #D9A404;" text="Generar reporte empleados" textFill="#fff5d8">
+                  <JFXButton onAction="#generateEmployeeReport" prefHeight="64.0" prefWidth="418.0" style="-fx-background-color: #87c96d;" text="Generar" textFill="WHITE">
                      <font>
-                        <Font name="Montserrat Medium" size="19.0" />
+                        <Font name="System Bold" size="19.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="40.0" right="40.0" top="48.0" />
+                        <Insets left="40.0" right="40.0" top="68.0" />
                      </VBox.margin>
                   </JFXButton>
                </children>
             </VBox>
          </children>
       </HBox>
-      <JFXButton layoutX="46.0" layoutY="40.0" onAction="#loadMenu" prefHeight="38.0" prefWidth="107.0" style="-fx-background-color: #D9A404;" text="Menu" textFill="#fff3e0" />
-      <Text fill="#fff3dc" layoutX="557.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reportes">
+      <Text fill="#fff3dc" layoutX="469.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reportes">
          <font>
             <Font name="Montserrat Medium" size="36.0" />
          </font>
       </Text>
-      <HBox alignment="TOP_CENTER" layoutX="80.0" layoutY="234.0" prefHeight="44.0" prefWidth="1107.0">
+      <HBox alignment="TOP_CENTER" layoutY="234.0" prefHeight="44.0" prefWidth="1080.0">
          <children>
             <Text fill="#ffd28f" strokeType="OUTSIDE" strokeWidth="0.0" text="Separador:">
                <font>

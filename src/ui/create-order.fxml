@@ -111,7 +111,7 @@
             </JFXButton>
          </children>
       </VBox>
-      <TableView fx:id="tvProductsList" layoutX="604.0" layoutY="100.0" onMouseClicked="#fillProductTextFields" prefHeight="313.0" prefWidth="626.0" stylesheets="@../styles/tableStyle.css" AnchorPane.bottomAnchor="387.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0">
+      <TableView fx:id="tvProductsList" layoutX="604.0" layoutY="100.0" onMouseClicked="#fillProductTextFields" prefHeight="313.0" prefWidth="626.0" stylesheets="@../styles/table-ingredients.css" AnchorPane.bottomAnchor="387.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0">
          <columns>
             <TableColumn fx:id="colProductsNames" prefWidth="360.0" text="Nombre del producto" />
             <TableColumn fx:id="colProductsCodes" prefWidth="135.0" text="Código" />

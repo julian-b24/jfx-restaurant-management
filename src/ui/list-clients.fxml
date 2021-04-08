@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="733.0" prefWidth="1000.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="tvShowClients" layoutX="327.0" layoutY="115.0" prefHeight="584.0" prefWidth="1180.0" stylesheets="@styles/table-ingredients.css" AnchorPane.bottomAnchor="101.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="115.0">
+      <TableView fx:id="tvShowClients" layoutX="327.0" layoutY="115.0" prefHeight="584.0" prefWidth="1180.0" stylesheets="@../styles/table-ingredients.css" AnchorPane.bottomAnchor="101.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="115.0">
          <columns>
             <TableColumn fx:id="colSClientName" prefWidth="200.0" text="Nombre" />
             <TableColumn fx:id="colSClientLastName" prefWidth="200.0" text="Apelldio" />

@@ -30,7 +30,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <TableView fx:id="tvProducts" layoutX="116.0" layoutY="202.0" prefHeight="330.0" prefWidth="768.0" stylesheets="@../styles/tableStyle.css">
+      <TableView fx:id="tvProducts" layoutX="116.0" layoutY="202.0" prefHeight="330.0" prefWidth="768.0" stylesheets="@../styles/table-ingredients.css">
          <columns>
             <TableColumn fx:id="colPname" prefWidth="156.0" text="Nombre producto" />
             <TableColumn fx:id="colLEP" prefWidth="175.0" text="Último editor" />

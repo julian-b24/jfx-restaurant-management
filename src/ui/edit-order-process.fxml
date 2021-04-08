@@ -164,7 +164,7 @@
                   <Insets />
                </VBox.margin>
             </Text>
-            <TableView fx:id="tvPIO" prefHeight="305.0" prefWidth="401.0" stylesheets="@../styles/tableStyle.css">
+            <TableView fx:id="tvPIO" prefHeight="305.0" prefWidth="401.0" stylesheets="@../styles/table-ingredients.css">
                <columns>
                   <TableColumn fx:id="colEOProductName" prefWidth="185.0" text="Nombre producto" />
                   <TableColumn fx:id="colEOProductCode" prefWidth="84.0" text="Código" />
@@ -182,7 +182,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Text>
-            <TableView fx:id="tvregisteredProducts" onMouseClicked="#fillEditOrderFields" prefHeight="276.0" prefWidth="401.0" stylesheets="@../styles/tableStyle.css">
+            <TableView fx:id="tvregisteredProducts" onMouseClicked="#fillEditOrderFields" prefHeight="276.0" prefWidth="401.0" stylesheets="@../styles/table-ingredients.css">
                <columns>
                   <TableColumn fx:id="colEOOrderName" prefWidth="185.0" text="Nombre ingrediente" />
                   <TableColumn fx:id="colEOCode" prefWidth="84.0" text="Código" />

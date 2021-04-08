@@ -237,7 +237,7 @@
                   <Insets />
                </VBox.margin>
             </Text>
-            <TableView fx:id="tvIdp" prefHeight="145.0" prefWidth="375.0" stylesheets="@../styles/tableStyle.css">
+            <TableView fx:id="tvIdp" prefHeight="145.0" prefWidth="375.0" stylesheets="@../styles/table-ingredients.css">
                <columns>
                   <TableColumn fx:id="colIngInProduct" prefWidth="185.0" text="Nombre ingrediente" />
                   <TableColumn fx:id="colIngInPCode" prefWidth="84.0" text="Código" />
@@ -255,7 +255,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Text>
-            <TableView fx:id="tvallInings" prefHeight="155.0" prefWidth="375.0" stylesheets="@../styles/tableStyle.css">
+            <TableView fx:id="tvallInings" prefHeight="155.0" prefWidth="375.0" stylesheets="@../styles/table-ingredients.css">
                <columns>
                   <TableColumn fx:id="colAlIngsNames" prefWidth="185.0" text="Nombre ingrediente" />
                   <TableColumn fx:id="colAllIngsCodes" prefWidth="84.0" text="Código" />
@@ -273,7 +273,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Text>
-            <TableView fx:id="tvProdSizes" prefHeight="168.0" prefWidth="375.0" stylesheets="@../styles/tableStyle.css">
+            <TableView fx:id="tvProdSizes" prefHeight="168.0" prefWidth="375.0" stylesheets="@../styles/table-ingredients.css">
                <columns>
                   <TableColumn fx:id="colProdSizeName" prefWidth="185.0" text="Tamaño del producto" />
                   <TableColumn fx:id="colProdSizePrice" prefWidth="189.0" text="Multiplicador de precio" />
