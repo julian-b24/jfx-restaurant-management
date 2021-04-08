@@ -611,12 +611,19 @@ public class Controller {
 			
 			mainPane.getChildren().clear();
 			mainPane.getChildren().setAll(menuBar);
+			setUpInfo();
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	public void setUpInfo() {
+		
+		nameLbl.setText(restaurant.getUserByUserName(actualUser).getName());
+		codeLbl.setText("Código: " + restaurant.getUserByUserName(actualUser).getEmployeeId());
+	}
+
 	public void loadTabPaneOptions(ActionEvent event) {
 		
 		try {

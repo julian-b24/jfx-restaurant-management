@@ -4,8 +4,6 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -18,7 +16,7 @@
          <left>
             <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #D9A404;" BorderPane.alignment="CENTER">
                <children>
-                  <FontAwesomeIconView fill="WHITE" glyphName="HOME" layoutX="86.0" layoutY="58.0" size="28" text="" AnchorPane.bottomAnchor="497.0" AnchorPane.leftAnchor="86.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="32.0" />
+                  <FontAwesomeIconView fill="WHITE" layoutX="86.0" layoutY="58.0" size="28" text="" AnchorPane.bottomAnchor="497.0" AnchorPane.leftAnchor="86.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="32.0" />
                   <VBox layoutY="76.0" prefHeight="386.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="76.0">
                      <children>
                         <JFXButton fx:id="sample" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadIngredientOptions" text="Ingredientes" textFill="WHITE">
@@ -139,30 +137,7 @@
          <center>
             <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane fx:id="secondaryPane" layoutY="69.0" prefHeight="733.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="69.0">
-                     <children>
-                        <MenuButton layoutX="51.0" layoutY="91.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Ingredientes" textFill="WHITE">
-                          <items>
-                            <MenuItem mnemonicParsing="false" style="-fx-background-color: transparent;" text="Action 1">
-                                 <graphic>
-                                    <FontAwesomeIconView />
-                                 </graphic>
-                              </MenuItem>
-                            <MenuItem mnemonicParsing="false" text="Action 2">
-                                 <graphic>
-                                    <FontAwesomeIconView />
-                                 </graphic>
-                              </MenuItem>
-                          </items>
-                           <graphic>
-                              <FontAwesomeIconView fill="WHITE" glyphName="PAGELINES" size="20" />
-                           </graphic>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </MenuButton>
-                     </children>
-                  </AnchorPane>
+                  <AnchorPane fx:id="secondaryPane" layoutY="69.0" prefHeight="733.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="69.0" />
                   <AnchorPane prefHeight="69.0" prefWidth="733.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <JFXButton layoutX="1002.0" layoutY="16.0" onAction="#loadLogIn" style="-fx-background-color: transparent;" text="Salir" textFill="#d9a404" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="1002.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="16.0">
