@@ -4,6 +4,8 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -137,7 +139,34 @@
          <center>
             <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane fx:id="secondaryPane" layoutY="69.0" prefHeight="733.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="69.0" />
+                  <AnchorPane fx:id="secondaryPane" layoutY="69.0" prefHeight="733.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="69.0">
+                     <children>
+                        <ImageView fitHeight="289.0" fitWidth="338.0" layoutX="371.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../imgs/logo-golden-house.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="337.0" layoutY="374.0" prefHeight="53.0" prefWidth="406.0" text="¡Has ingresado con éxito!" textFill="#ffe761">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="198.0" layoutY="427.0" prefHeight="35.0" prefWidth="684.0" text="En  el menú lateral encontrarás todas las opciones que necesitas">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="476.0" layoutY="496.0" prefHeight="35.0" prefWidth="128.0" text="Y recuerda:">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="236.0" layoutY="531.0" prefHeight="53.0" prefWidth="607.0" text="𝘉𝘶𝘦𝘯𝘢 𝘯𝘶𝘵𝘳𝘪𝘤𝘪ó𝘯 𝘱𝘢𝘳𝘢 𝘵𝘰𝘥𝘰𝘴 𝘭𝘰𝘴 𝘨𝘶𝘴𝘵𝘰𝘴" textFill="#ffe761">
+                           <font>
+                              <Font name="System Bold Italic" size="36.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
                   <AnchorPane prefHeight="69.0" prefWidth="733.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <JFXButton layoutX="1002.0" layoutY="16.0" onAction="#loadLogIn" style="-fx-background-color: transparent;" text="Salir" textFill="#d9a404" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="1002.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="16.0">
