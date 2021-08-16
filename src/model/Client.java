@@ -10,6 +10,7 @@ public class Client extends Person implements Comparable<Client>, Serializable{
 	private String phone;				// client contact phone
 	private String obsField;			//client observation field
 	
+	
 	public Client(String nam, String lastN, String ccP, String adrs, String phn, String obs) {
 		
 		super(nam, lastN, ccP);
