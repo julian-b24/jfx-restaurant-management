@@ -2,8 +2,8 @@
 
 *{
   -fx-header-color: rgb(250, 95, 85);
-  -fx-row-odd-color: rgba(138, 95, 94, 0.74);
-  -fx-row-even-color: rgba(221, 158, 119, 0.623);
+  -fx-row-odd-color: rgba(218, 175, 204, 0.74);
+  -fx-row-even-color: rgba(255, 238, 199, 0.623);
   -fx-scrollbar-color: rgb(173, 42, 103);
   font-family: 'Montserrat';
   

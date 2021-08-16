@@ -140,9 +140,9 @@ public class Restaurant{
 			}else {
 				if(fullName.compareTo(clients.get(middle).getLastName()+clients.get(middle).getName())>0) {
 					pos = middle;
-					}else {
-						pos = middle+1;
-					}
+				}else {
+					pos = middle+1;
+				}
 			}				
 		}
 		if(pos<0) {
